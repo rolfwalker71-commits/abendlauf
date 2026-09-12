@@ -117,4 +117,30 @@
     {% endif %}
   </div>
 </section>
+{% if page.header.treueaktiv and page.header.treue %}
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>{{ page.header.treuetitel|default('Jahr für Jahr dabei') }}</h2>
+      </div>
+
+      <ol class="loyal">
+        {% for p in page.header.treue %}
+          <li class="loyal__item">
+            <span class="loyal__count">{{ p.jahre }}<small>von {{ p.von }}</small></span>
+            <span class="loyal__who">
+              <strong>{{ p.name }}</strong>
+              <small>Jahrgang {{ p.jahrgang }}</small>
+            </span>
+          </li>
+        {% endfor %}
+      </ol>
+
+      {% if page.header.treuehinweis %}
+        <p class="chart__note">{{ page.header.treuehinweis }}</p>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
 {% endblock %}

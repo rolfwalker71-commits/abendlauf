@@ -1761,3 +1761,104 @@ a:hover { color: var(--accent); }
 /* Jahreszahl im Haupttitel — in der Leitfarbe, damit sie sich als
    eigene Angabe liest und nicht als Teil des Namens. */
 .hero__jahr { color: var(--accent-text); }
+
+/* ---------- Entwicklung als Säulen ---------- */
+
+/* Reine CSS-Säulen, kein Diagrammwerkzeug — bei zehn Werten wäre eine
+   Bibliothek mehr Ballast als Nutzen. Die Lücken der nicht
+   ausgewerteten Jahre werden sichtbar gemacht, statt sie
+   stillschweigend zu überspringen. */
+.chart {
+  display: flex; align-items: flex-end; gap: .5rem;
+  height: clamp(180px, 26vh, 260px);
+  padding-top: 1.6rem;
+}
+
+.chart__bar {
+  flex: 1 1 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+  height: 100%; min-width: 0;
+  position: relative;
+}
+
+.chart__column {
+  width: 100%;
+  background: var(--accent);
+  border-radius: 5px 5px 0 0;
+  transition: background-color .2s ease;
+}
+.chart__bar--hoch .chart__column { background: var(--signal); }
+
+.chart__value {
+  font-family: var(--font-display); font-size: .82rem;
+  font-variant-numeric: tabular-nums; color: var(--muted);
+  margin-bottom: .35rem;
+}
+.chart__bar--hoch .chart__value { color: var(--text); font-weight: 600; }
+
+.chart__label {
+  font-family: var(--font-display); font-size: .74rem;
+  color: var(--muted); margin-top: .5rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Nicht ausgewertete Jahre: schmaler, gestrichelter Platzhalter */
+.chart__gap {
+  flex: 0 0 auto;
+  align-self: stretch;
+  display: flex; align-items: flex-end; justify-content: center;
+  border-left: 1px dashed var(--line);
+  border-right: 1px dashed var(--line);
+  padding-inline: .35rem;
+}
+.chart__gap span {
+  font-size: .66rem; color: var(--muted);
+  writing-mode: vertical-rl; transform: rotate(180deg);
+  padding-bottom: 1.6rem;
+}
+
+.chart__note {
+  color: var(--muted); font-size: .85rem; margin: 1.4rem 0 0;
+  max-width: 62ch;
+}
+
+@media (max-width: 640px) {
+  .chart { gap: .25rem; }
+  .chart__value { font-size: .68rem; }
+  .chart__label { font-size: .62rem; }
+  .chart__gap span { display: none; }
+  .chart__gap { padding-inline: .15rem; }
+}
+
+/* ---------- Wer am häufigsten dabei war ---------- */
+
+.loyal {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: .6rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.loyal__item {
+  display: flex; align-items: center; gap: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: .9rem 1.1rem;
+}
+
+.loyal__count {
+  flex: none;
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 1.7rem; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-text);
+  display: flex; flex-direction: column; align-items: center;
+}
+.loyal__count small {
+  font-size: .38em; font-weight: 400; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--muted); margin-top: .25rem;
+}
+
+.loyal__who { display: flex; flex-direction: column; min-width: 0; }
+.loyal__who strong { font-size: 1rem; }
+.loyal__who small { color: var(--muted); font-size: .82rem; }

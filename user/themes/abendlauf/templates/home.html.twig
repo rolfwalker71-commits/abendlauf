@@ -177,6 +177,20 @@
             <p class="bignum__note">Mittwochs, August und September</p>
           </div>
         {% endif %}
+        {% if h.alterVon and h.alterBis %}
+          <div class="bignum">
+            <p class="bignum__value">{{ h.alterVon }}–{{ h.alterBis }}<small>Jahre</small></p>
+            <p class="bignum__label">Altersspanne</p>
+            <p class="bignum__note">Jüngste und älteste Gewertete</p>
+          </div>
+        {% endif %}
+        {% if h.anteilKinder %}
+          <div class="bignum">
+            <p class="bignum__value">{{ h.anteilKinder }}<small>%</small></p>
+            <p class="bignum__label">Kinder und Eltern</p>
+            <p class="bignum__note">Kein Volkslauf mit Kinderprogramm — umgekehrt</p>
+          </div>
+        {% endif %}
         {% for k in kennzahlen %}
           <div class="bignum">
             <p class="bignum__value">{{ k.wert|replace({' m': '', 'CHF ': ''}) }}<small>{{ ' m' in k.wert ? 'm' : ('CHF' in k.wert ? 'CHF' : '') }}</small></p>
@@ -206,7 +220,7 @@
   <section class="section">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">04</span> {{ h.rekordetitel|default('Streckenrekorde') }}</h2>
+        <h2><span class="section__num">05</span> {{ h.rekordetitel|default('Streckenrekorde') }}</h2>
         {% if h.rekordehinweis %}<p class="section__aside">{{ h.rekordehinweis }}</p>{% endif %}
       </div>
 
@@ -224,13 +238,48 @@
   </section>
 {% endif %}
 
+{% if h.statistikaktiv and h.statistik %}
+  {% set hoechst = h.statistik|reduce((m, r) => r.anzahl > m ? r.anzahl : m, 0) %}
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">04</span> {{ h.statistiktitel|default('Entwicklung') }}</h2>
+        <p class="section__aside">Höchststand {{ hoechst }} im Jahr {{ (h.statistik|filter(r => r.anzahl == hoechst)|first).jahr }}</p>
+      </div>
+
+      <div class="chart reveal" role="img"
+           aria-label="{% for r in h.statistik %}{{ r.jahr }}: {{ r.anzahl }} Gewertete. {% endfor %}">
+        {% for r in h.statistik %}
+          {% set vorher = loop.index0 > 0 ? h.statistik[loop.index0 - 1].jahr : null %}
+          {# Ausgelassene Jahre sichtbar machen, statt sie stillschweigend
+             zu überspringen — sonst liest man eine lückenlose Reihe. #}
+          {% if vorher and r.jahr - vorher > 1 %}
+            <div class="chart__gap" title="{{ vorher + 1 }}{{ r.jahr - vorher > 2 ? '–' ~ (r.jahr - 1) : '' }} nicht ausgewertet">
+              <span>{{ vorher + 1 }}{{ r.jahr - vorher > 2 ? '–' ~ (r.jahr - 1) : '' }}</span>
+            </div>
+          {% endif %}
+          <div class="chart__bar{{ r.anzahl == hoechst ? ' chart__bar--hoch' : '' }}">
+            <span class="chart__value">{{ r.anzahl }}</span>
+            <span class="chart__column" style="height: {{ (r.anzahl / hoechst * 100)|round }}%"></span>
+            <span class="chart__label">{{ r.jahr }}</span>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% if h.statistikhinweis %}
+        <p class="chart__note">{{ h.statistikhinweis }}</p>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
+
 {% include 'partials/fotostreifen.html.twig' with { bilder: streifenA, hoehe: 210 } %}
 
 {% if alben is not empty %}
   <section class="section">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">05</span> Aus den Alben</h2>
+        <h2><span class="section__num">06</span> Aus den Alben</h2>
         <p class="section__aside"><a href="{{ fotoSeite.url }}">Alle Alben</a></p>
       </div>
       <div class="bleed-strip">
@@ -255,7 +304,7 @@
       <div class="offer">
         <div class="offer__text">
           {% if h.aktionpartner %}<p class="eyebrow">{{ h.aktionpartner }}</p>{% endif %}
-          <h2><span class="section__num">06</span> {{ h.aktiontitel|default('Aktion') }}</h2>
+          <h2><span class="section__num">07</span> {{ h.aktiontitel|default('Aktion') }}</h2>
           <div class="prose">{{ h.aktiontext|markdown|externe_links|raw }}</div>
           {% if h.aktionlink %}
             <p style="margin-top:1.4rem;">
@@ -289,7 +338,7 @@
   <section class="section section--tint">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">07</span> Patronat</h2>
+        <h2><span class="section__num">08</span> Patronat</h2>
         {% if sponsorenSeite %}
           <p class="section__aside">
             <a href="{{ sponsorenSeite.url }}">Alle {{ (alleSponsoren|filter(s => s.aktiv))|length }} Sponsoren ansehen</a>
