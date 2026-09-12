@@ -3,3 +3,7 @@ Template: logo
 ----
 
 Alt: GIPO
+
+----
+
+Uuid: 15p9uf80yayxtrft

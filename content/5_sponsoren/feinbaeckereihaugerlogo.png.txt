@@ -3,3 +3,7 @@ Template: logo
 ----
 
 Alt: Feinbäckerei Hauger (Verpflegungssponsor)
+
+----
+
+Uuid: fcnr7mwnfnb3zvtt

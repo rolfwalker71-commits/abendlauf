@@ -1,0 +1,9 @@
+Template: bild
+
+----
+
+Alt: Streckenkarte der kleinen Runde rund ums Schloss A Pro
+
+----
+
+Uuid: x6jodj9bgwloywku

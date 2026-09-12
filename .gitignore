@@ -62,7 +62,7 @@ Icon
 # Versionsgeschichte. Wieder einspielen: siehe werkzeuge/
 /content/4_fotos/*/*.jpg
 /content/4_fotos/*/*.jpeg
-/content/3_ranglisten/*.pdf
+/content/**/*.pdf
 
 # Zwischenergebnisse
 *.tmp

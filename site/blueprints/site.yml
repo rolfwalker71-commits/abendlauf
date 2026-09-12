@@ -17,6 +17,7 @@ tabs:
         templates:
           - default
           - ausschreibung
+          - strecke
           - ranglisten
           - fotos
           - sponsoren

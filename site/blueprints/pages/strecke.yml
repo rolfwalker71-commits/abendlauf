@@ -1,0 +1,94 @@
+title: Strecke
+icon: pin
+
+columns:
+  - width: 1/1
+    sections:
+      text:
+        type: fields
+        fields:
+          intro:
+            label: Einleitungstext
+            type: textarea
+            size: small
+
+  - width: 1/1
+    sections:
+      runden:
+        type: fields
+        fields:
+          runden:
+            label: Runden
+            type: structure
+            help: Karten zuerst unter „Karten und Bilder" hochladen, danach hier zuordnen.
+            columns:
+              titel:
+                width: 2/5
+              distanz:
+                width: 1/5
+              untergrund:
+                width: 2/5
+            fields:
+              titel:
+                label: Bezeichnung
+                type: text
+                required: true
+                placeholder: Kleine Runde
+              distanz:
+                label: Distanz
+                type: text
+                width: 1/3
+                placeholder: 1210 m
+              hoehenmeter:
+                label: Höhenunterschied
+                type: text
+                width: 1/3
+                placeholder: flach
+              untergrund:
+                label: Untergrund
+                type: text
+                width: 1/3
+                placeholder: Naturweg
+              karte:
+                label: Streckenkarte
+                type: files
+                query: page.images
+                max: 1
+              beschreibung:
+                label: Beschreibung
+                type: textarea
+                size: small
+              kategorien:
+                label: Wer läuft hier
+                type: text
+                help: z. B. „Alle Kinder- und Elternkategorien"
+
+  - width: 2/3
+    sections:
+      weiteres:
+        type: fields
+        fields:
+          text:
+            label: Weitere Angaben
+            type: textarea
+            size: medium
+
+  - width: 1/3
+    sections:
+      kopf:
+        type: fields
+        fields:
+          kopfHintergrund:
+            label: Hintergrundbild des Kopfbereichs
+            type: files
+            query: page.images
+            uploads:
+              template: bild
+            max: 1
+            layout: cards
+      bilder:
+        type: files
+        label: Karten und Bilder
+        template: bild
+        layout: cards
+        size: small
