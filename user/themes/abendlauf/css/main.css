@@ -1909,8 +1909,16 @@ a:hover { color: var(--accent); }
 
 /* Beschrifteter Eintrag im Menü — wirkt auch dort, wo es kein
    Überfahren gibt. */
-.nav__start { display: flex; align-items: center; gap: .35rem; }
-.nav__start svg { width: 15px; height: 15px; flex: none; }
+/* Nur das Symbol — quadratisch, damit es neben den Textlinks nicht
+   wie ein abgeschnittenes Wort wirkt. */
+.nav__start { display: grid; place-items: center; padding-inline: .6rem; }
+.nav__start svg { width: 18px; height: 18px; }
+
+/* Im aufgeklappten Menü schmaler Bildschirme steht es links neben den
+   übrigen Einträgen und braucht dieselbe Ausrichtung. */
+@media (max-width: 950px) {
+  .nav a.nav__start { display: flex; justify-content: flex-start; padding-inline: .5rem; }
+}
 
 @media (max-width: 950px) {
   .nav a.nav__start { display: flex; }

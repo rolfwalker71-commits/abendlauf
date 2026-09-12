@@ -97,12 +97,15 @@
     {% set hauptaktion = verein.hauptaktion ? pages.find(verein.hauptaktion) : null %}
 
     <nav class="nav" id="nav" aria-label="Hauptnavigation">
-      <a class="nav__start" href="{{ base_url == '' ? '/' : base_url }}"{% if page.template == 'home' %} aria-current="page"{% endif %}>
+      {# Nur das Symbol. Der Name steht als aria-label und title dran,
+         sonst hätte der Verweis für Screenreader keine Bezeichnung. #}
+      <a class="nav__start" href="{{ base_url == '' ? '/' : base_url }}"
+         title="Startseite" aria-label="Startseite"
+         {% if page.template == 'home' %}aria-current="page"{% endif %}>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
           <path d="M4 11.5 12 4l8 7.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M6.5 10.5V20h11v-9.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        Start
       </a>
       {% for eintrag in pages.children.visible %}
         {% if not hauptaktion or eintrag.url != hauptaktion.url %}
