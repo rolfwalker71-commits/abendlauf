@@ -82,9 +82,11 @@
   --muted:       #5B6B7B;
   --line:        #DCE4EC;
 
-  --accent:       #00A0E8;
-  --accent-hover: #0086C4;
-  --accent-ink:   #FFFFFF;   /* Text auf der Leitfarbe */
+  --accent:       #00A0E8;   /* Logo-Cyan — nur für Flächen und grosse Grafik */
+  --accent-hover: #0089C4;
+  --accent-ink:   #0C1524;   /* Schrift AUF der Leitfarbe: 6,3:1 */
+  --accent-text:  #0070A2;   /* Leitfarbe als Schriftfarbe: 5,5:1 auf Weiss,
+                                5,0:1 auf den getönten Flächen */
 
   --warn:        #C2410C;
 
@@ -117,6 +119,7 @@
     --accent:       #2BB2F0;
     --accent-hover: #57C5F6;
     --accent-ink:   #06121F;
+    --accent-text:  #2BB2F0;   /* auf dunklem Grund tragen 7,6:1 */
 
     --warn:      #FB923C;
 
@@ -138,6 +141,7 @@
   --accent:       #2BB2F0;
   --accent-hover: #57C5F6;
   --accent-ink:   #06121F;
+  --accent-text:  #2BB2F0;
 
   --warn:      #FB923C;
 
@@ -178,8 +182,8 @@ h3 { font-size: 1.25rem; }
 p { margin: 0 0 1em; }
 p:last-child { margin-bottom: 0; }
 
-a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
-a:hover { color: var(--accent-hover); }
+a { color: var(--accent-text); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent); }
 
 :focus-visible {
   outline: 3px solid var(--accent);
@@ -574,7 +578,7 @@ a:hover { color: var(--accent-hover); }
 .site-footer__cols { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); padding-block: 2.5rem; }
 .site-footer h3 { font-size: .95rem; margin-bottom: .6rem; }
 .site-footer a { color: inherit; text-decoration: none; }
-.site-footer a:hover { color: var(--accent); }
+.site-footer a:hover { color: var(--accent-text); }
 .site-footer__base { border-top: 1px solid var(--line); padding-block: 1rem; text-align: center; color: var(--muted); font-size: .85rem; }
 
 /* ---------- Bildbetrachter ---------- */
@@ -610,7 +614,7 @@ a:hover { color: var(--accent-hover); }
 /* Abschnittsnummern geben der Seite Rhythmus. */
 .section__head h2 { display: flex; align-items: baseline; gap: .7rem; }
 .section__num {
-  font-size: .62em; font-weight: 400; color: var(--accent);
+  font-size: .62em; font-weight: 400; color: var(--accent-text);
   font-variant-numeric: tabular-nums;
 }
 
@@ -691,7 +695,7 @@ a:hover { color: var(--accent-hover); }
   border: 1px solid var(--line); background: var(--bg);
   font-size: .85rem; font-weight: 600; text-decoration: none; color: inherit;
 }
-.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip:hover { border-color: var(--accent); color: var(--accent-text); }
 .chip--active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 
 /* Bildzahl auf der Albumkachel */
@@ -737,7 +741,7 @@ a:hover { color: var(--accent-hover); }
 }
 .notice-panel__body a:hover,
 .notice-panel__body a:focus-visible {
-  color: var(--accent);
+  color: var(--accent-text);
   border-bottom-color: currentColor;
 }
 
@@ -813,7 +817,7 @@ a:hover { color: var(--accent-hover); }
 }
 .notice-panel__body a:hover,
 .notice-panel__body a:focus-visible {
-  color: var(--accent);
+  color: var(--accent-text);
   border-bottom-color: currentColor;
 }
 

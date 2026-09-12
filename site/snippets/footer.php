@@ -18,6 +18,10 @@
       <?php if ($k = $site->find('kontakt')): ?>
         <p><a href="<?= $k->url() ?>">Kontaktformular</a></p>
       <?php endif ?>
+      <?php /* Rechtliches gehört in die Fusszeile, nicht in die Hauptnavigation. */ ?>
+      <?php if ($d = $site->find('datenschutz')): ?>
+        <p><a href="<?= $d->url() ?>"><?= $d->title() ?></a></p>
+      <?php endif ?>
     </div>
 
     <div>
