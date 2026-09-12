@@ -23,6 +23,10 @@ form:
           validate:
             min: 1900
             max: 2100
+        verein.hauptaktion:
+          label: Hervorgehobener Menüpunkt
+          type: text
+          help: 'Adresse der wichtigsten Seite, z. B. /ausschreibung. Erscheint rechts im Menü als Knopf und nicht mehr in der Liste. Leer lassen für kein Hervorheben.'
         verein.adresse:
           label: Adresse
           type: textarea

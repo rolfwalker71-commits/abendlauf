@@ -1,5 +1,7 @@
 ---
 title: 'Links'
+# Gehört in die Fusszeile, nicht in die Hauptnavigation.
+visible: false
 intro: ""
 kopfhintergrund:
   - kopfbild.jpg

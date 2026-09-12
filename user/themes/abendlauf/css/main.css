@@ -261,9 +261,32 @@ a:hover { color: var(--accent); }
   font-size: .95rem; font-weight: 600; color: inherit; text-decoration: none;
 }
 .nav a:hover { background: var(--surface); }
-/* Gelb markiert durchgehend den aktuellen Zustand — wo man ist,
-   was gerade läuft. Cyan bleibt Marke und Links. */
-.nav a[aria-current="page"] { color: var(--signal-ink); background: var(--signal); }
+
+/* „Du bist hier" ist eine Ortsangabe, keine Aktion — deshalb eine
+   Unterstreichung statt einer gefüllten Fläche. Gefüllt las sich der
+   aktive Punkt wie ein Knopf und zog die Aufmerksamkeit auf den
+   Menüpunkt, auf dem man ohnehin schon steht. */
+.nav a[aria-current="page"] {
+  color: var(--text);
+  background: transparent;
+  box-shadow: inset 0 -3px 0 var(--accent);
+  border-radius: 0;
+}
+
+/* Hauptaktion rechts, abgesetzt vom Menü */
+.site-header__tools { display: flex; gap: .5rem; align-items: center; }
+.nav__cta {
+  padding: .55rem 1.1rem;
+  font-size: .85rem;
+}
+/* Im waagrechten Menü ist die Hauptaktion der Knopf rechts —
+   der Eintrag in der Liste wäre eine Dopplung. */
+.nav__cta-mobil { display: none; }
+
+@media (max-width: 950px) {
+  .nav__cta { display: none; }
+  .nav__cta-mobil { display: block; }
+}
 
 .theme-toggle {
   display: grid; place-items: center;

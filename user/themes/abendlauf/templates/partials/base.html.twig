@@ -86,13 +86,27 @@
       </span>
     </a>
 
+    {# Die wichtigste Seite steht rechts als Knopf und nicht mehr in
+       der Liste — acht gleichrangige Einträge sagen nicht, wo man
+       anfangen soll. Welche das ist, steht in den Vereinsangaben. #}
+    {% set hauptaktion = verein.hauptaktion ? pages.find(verein.hauptaktion) : null %}
+
     <nav class="nav" id="nav" aria-label="Hauptnavigation">
       {% for eintrag in pages.children.visible %}
-        <a href="{{ eintrag.url }}"{% if page.url starts with eintrag.url %} aria-current="page"{% endif %}>{{ eintrag.menu }}</a>
+        {% if not hauptaktion or eintrag.url != hauptaktion.url %}
+          <a href="{{ eintrag.url }}"{% if page.url starts with eintrag.url %} aria-current="page"{% endif %}>{{ eintrag.menu }}</a>
+        {% endif %}
       {% endfor %}
+      {% if hauptaktion %}
+        {# Im aufgeklappten Menü schmaler Bildschirme gehört sie dazu #}
+        <a class="nav__cta-mobil" href="{{ hauptaktion.url }}"{% if page.url starts with hauptaktion.url %} aria-current="page"{% endif %}>{{ hauptaktion.menu }}</a>
+      {% endif %}
     </nav>
 
-    <div style="display:flex; gap:.45rem; align-items:center;">
+    <div class="site-header__tools">
+      {% if hauptaktion %}
+        <a class="btn btn--primary nav__cta" href="{{ hauptaktion.url }}">{{ hauptaktion.menu }}</a>
+      {% endif %}
       <button class="theme-toggle" type="button" id="theme-toggle"
               aria-label="Zwischen hellem und dunklem Erscheinungsbild wechseln">
         <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -132,7 +146,7 @@
       {% set kontakt = pages.find('/kontakt') %}
       {% if kontakt %}<p><a href="{{ kontakt.url }}">Kontaktformular</a></p>{% endif %}
       {# Rechtliches gehört in die Fusszeile, nicht in die Hauptnavigation. #}
-      {% for route in ['/datenschutz', '/impressum'] %}
+      {% for route in ['/links', '/datenschutz', '/impressum'] %}
         {% set seite = pages.find(route) %}
         {% if seite %}<p><a href="{{ seite.url }}">{{ seite.title }}</a></p>{% endif %}
       {% endfor %}

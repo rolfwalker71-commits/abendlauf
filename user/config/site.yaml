@@ -12,7 +12,8 @@ metadata:
 verein:
   titel: 'Urner Abendläufe'
   untertitel: 'STV Altdorf'
-  gruendung: 1995   # erste Austragung — daraus wird die Austragungsnummer berechnet
+  gruendung: 1995
+  hauptaktion: '/ausschreibung'   # als Knopf rechts im Menü hervorgehoben   # erste Austragung — daraus wird die Austragungsnummer berechnet
   adresse: "OK Urner Abendläufe\nSTV Altdorf\n6460 Altdorf"
   email: 'praesidium@abendlauf.ch'
   formular_empfaenger: 'praesidium@abendlauf.ch'
