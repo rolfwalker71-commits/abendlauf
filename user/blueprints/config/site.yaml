@@ -16,6 +16,13 @@ form:
           label: Untertitel
           type: text
           help: Erscheint klein neben dem Logo.
+        verein.gruendung:
+          label: Jahr der ersten Austragung
+          type: number
+          help: Daraus werden die Austragungsnummer und die „seit"-Angaben berechnet.
+          validate:
+            min: 1900
+            max: 2100
         verein.adresse:
           label: Adresse
           type: textarea

@@ -32,15 +32,22 @@
 
 {# Zahlen zur Seite statt Dekoration — sie stehen ohnehin in den
    Daten und sagen mehr als ein unscharfes Foto. #}
+{# Fehlende Jahre benennen, statt „lückenlos" zu behaupten — 2020
+   fand kein Anlass statt. #}
+{% set fehlende = [] %}
+{% for j in (jahrgaenge|last)..aktuell %}
+  {% if j not in jahrgaenge %}{% set fehlende = fehlende|merge([j]) %}{% endif %}
+{% endfor %}
+
 {% include 'partials/pagehead-daten.html.twig' with {
   eyebrow: 'Medien · Resultate',
   titel: page.title,
   lead: page.header.intro,
   daten: [
-    { wert: jahrgaenge|length, label: 'Jahrgänge', notiz: 'lückenlos seit ' ~ jahrgaenge|last },
+    { wert: jahrgaenge|length, label: 'Jahrgänge', notiz: fehlende is not empty ? 'seit ' ~ jahrgaenge|last ~ ', ohne ' ~ fehlende|join(' und ') : 'lückenlos seit ' ~ jahrgaenge|last },
     { wert: listen|length,     label: 'Ranglisten', notiz: 'drei Abende plus Gesamt' },
     { wert: jahrgaenge|last,   label: 'Ältester Jahrgang', notiz: 'im Archiv abrufbar' },
-    { wert: aktuell,           label: 'Neuester Jahrgang', notiz: (aktuell - 1994) ~ '. Austragung' }
+    { wert: aktuell,           label: 'Neuester Jahrgang', notiz: (aktuell - config.site.verein.gruendung + 1) ~ '. Austragung' }
   ]
 } %}
 

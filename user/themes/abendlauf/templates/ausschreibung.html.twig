@@ -5,6 +5,10 @@
 {% set kategorien = page.header.kategorien|default([]) %}
 {% set dateien    = page.media.all|filter(m => m.extension|lower == 'pdf') %}
 
+{# Distanzen und erste Startzeit werden abgeleitet, nicht eingetippt. #}
+{% set runden = (pages.find('/strecke').header.runden)|default([]) %}
+{% set nachZeit = kategorien|sort((a, b) => a.startzeit <=> b.startzeit) %}
+
 {% set aktionen = '' %}
 {% for name, d in dateien %}
   {% set aktionen = aktionen ~ '<a class="btn btn--primary" href="' ~ d.url ~ '" download>' ~ (d.meta.titel|default('Als PDF')) ~ '</a>' %}
@@ -17,9 +21,11 @@
   aktionen: aktionen,
   daten: [
     { wert: kategorien|length, label: 'Kategorien', notiz: 'Vom Pfüderi bis zur Volksläuferin' },
-    { wert: (kategorien|first).startzeit, label: 'Erster Start', notiz: 'Anmeldung ab 16.30 Uhr' },
-    { wert: '1210', einheit: 'm', label: 'Kleine Runde', notiz: 'Rund ums Schloss A Pro' },
-    { wert: '2260', einheit: 'm', label: 'Grosse Runde', notiz: 'Weg der Schweiz' }
+    { wert: (nachZeit|first).startzeit, label: 'Erster Start', notiz: 'Anmeldung ab 16.30 Uhr' },
+    { wert: runden|length > 0 ? (runden[0].distanz|replace({' m': ''})) : null, einheit: 'm',
+      label: runden|length > 0 ? runden[0].titel : '', notiz: runden|length > 0 ? runden[0].kategorien|default(runden[0].untergrund) : '' },
+    { wert: runden|length > 1 ? (runden[1].distanz|replace({' m': ''})) : null, einheit: 'm',
+      label: runden|length > 1 ? runden[1].titel : '', notiz: runden|length > 1 ? runden[1].kategorien|default(runden[1].untergrund) : '' }
   ]
 } %}
 

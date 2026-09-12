@@ -20,6 +20,10 @@
 {% set alleSponsoren  = sponsorenSeite ? sponsorenSeite.header.sponsoren|default([]) : [] %}
 {% set patronat       = alleSponsoren|filter(s => s.aktiv and s.kategorie in ['haupt', 'co']) %}
 
+{# Strecken- und Vereinsdaten zuerst — die Kennzahlen greifen darauf zu. #}
+{% set streckenRunden = (pages.find('/strecke').header.runden)|default([]) %}
+{% set gruendung = config.site.verein.gruendung|default(1995) %}
+
 {# Kennzahlen kommen aus der Ausschreibung, damit sie nie auseinanderlaufen. #}
 {% set ausschreibung = pages.find('/ausschreibung') %}
 {% set kategorien = ausschreibung ? ausschreibung.header.kategorien|default([]) : [] %}
@@ -29,7 +33,9 @@
   {% set kleine = (kategorien|filter(k => 'kleine' in k.runden)|first).distanz|default(null) %}
   {% set kennzahlen = [
       { label: 'Kleine Runde', wert: kleine,   notiz: 'Rund ums Schloss A Pro' },
-      { label: 'Grosse Runde', wert: '2260 m', notiz: 'Weg der Schweiz' },
+      { label: streckenRunden|length > 1 ? streckenRunden[1].titel : 'Grosse Runde',
+        wert: streckenRunden|length > 1 ? streckenRunden[1].distanz : null,
+        notiz: streckenRunden|length > 1 ? streckenRunden[1].untergrund : '' },
       { label: 'Kategorien',   wert: kategorien|length, notiz: 'Vom Pfüderi bis zur Volksläuferin' },
       { label: 'Startgeld',    wert: gelder is not empty ? 'CHF ' ~ min(gelder) ~ '–' ~ max(gelder) : null,
         notiz: 'Anmeldung vor Ort' }
@@ -154,15 +160,19 @@
 
       <div class="bignums reveal">
         <div class="bignum">
-          <p class="bignum__value">1995</p>
+          <p class="bignum__value">{{ gruendung }}</p>
           <p class="bignum__label">Seit</p>
           {% if nummer %}<p class="bignum__note">{{ nummer }}. Austragung</p>{% endif %}
         </div>
-        <div class="bignum">
-          <p class="bignum__value">3<small>Abende</small></p>
-          <p class="bignum__label">Jeden Sommer</p>
-          <p class="bignum__note">Mittwochs, August und September</p>
-        </div>
+        {# Zahl der Abende aus den gepflegten Terminen, nicht eingetippt #}
+        {% set abende = (h.laufabende|default([]))|length %}
+        {% if abende > 0 %}
+          <div class="bignum">
+            <p class="bignum__value">{{ abende }}<small>{{ abende == 1 ? 'Abend' : 'Abende' }}</small></p>
+            <p class="bignum__label">Jeden Sommer</p>
+            <p class="bignum__note">Mittwochs, August und September</p>
+          </div>
+        {% endif %}
         {% for k in kennzahlen %}
           <div class="bignum">
             <p class="bignum__value">{{ k.wert|replace({' m': '', 'CHF ': ''}) }}<small>{{ ' m' in k.wert ? 'm' : ('CHF' in k.wert ? 'CHF' : '') }}</small></p>

@@ -11,7 +11,7 @@
   daten: [
     { wert: alle|length, label: 'Unterstützen uns', notiz: 'Firmen und Institutionen' },
     { wert: alle|filter(s => s.kategorie in ['haupt','co'])|length, label: 'Patronat', notiz: 'Hauptsponsor und Partner' },
-    { wert: '1995', label: 'Seit', notiz: 'Jahr für Jahr dabei' }
+    { wert: config.site.verein.gruendung, label: 'Seit', notiz: 'Jahr für Jahr dabei' }
   ]
 } %}
 
