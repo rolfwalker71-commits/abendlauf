@@ -1,0 +1,22 @@
+{# Gemeinsamer Seitenkopf aller Unterseiten.
+   Erwartet: titel; optional eyebrow, lead, aktionen, bild, hintergrund #}
+{% set bild        = bild|default(null) %}
+{% set hintergrund = hintergrund|default(null) %}
+<section class="hero hero--compact {{ bild ? '' : 'hero--plain' }} {{ hintergrund ? 'hero--backdrop' : '' }}">
+  {% if hintergrund %}
+    <div class="hero__backdrop" aria-hidden="true">
+      {{ hintergrund.cropZoom(1600, 700).html('', '', 'hintergrund')|raw }}
+    </div>
+  {% endif %}
+
+  <div class="hero__text">
+    {% if eyebrow is defined and eyebrow %}<p class="eyebrow">{{ eyebrow }}</p>{% endif %}
+    <h1>{{ titel }}</h1>
+    {% if lead is defined and lead %}<p class="hero__lead">{{ lead|raw }}</p>{% endif %}
+    {% if aktionen is defined and aktionen %}<div class="hero__actions">{{ aktionen|raw }}</div>{% endif %}
+  </div>
+
+  {% if bild %}
+    <div class="hero__media">{{ bild.cropZoom(1100, 760).html('', '', 'kopfbild')|raw }}</div>
+  {% endif %}
+</section>

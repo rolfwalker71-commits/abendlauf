@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Dätwyler Stiftung
-
-----
-
-Uuid: uoo9my0aiqiql5pe

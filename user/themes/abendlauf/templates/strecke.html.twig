@@ -1,0 +1,55 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set runden = page.header.runden|default([]) %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: runden is not empty ? runden|length ~ ' Runden · ' ~ runden|map(r => r.distanz)|join(' und ') : null,
+  titel: page.title,
+  lead: page.header.intro,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+{% for runde in runden %}
+  {% set karte = runde.karte ? page.media[runde.karte|first] : null %}
+  <section class="section{{ loop.index0 is odd ? ' section--tint' : '' }}">
+    <div class="wrap route">
+
+      <div class="route__text">
+        <div class="section__head">
+          <h2><span class="section__num">{{ '%02d'|format(loop.index) }}</span> {{ runde.titel }}</h2>
+        </div>
+
+        {% if runde.beschreibung %}<p>{{ runde.beschreibung }}</p>{% endif %}
+
+        <dl class="route__facts">
+          {% for label, wert in {
+            'Distanz': runde.distanz,
+            'Profil': runde.hoehenmeter,
+            'Untergrund': runde.untergrund,
+            'Kategorien': runde.kategorien
+          } %}
+            {% if wert %}<div><dt>{{ label }}</dt><dd>{{ wert }}</dd></div>{% endif %}
+          {% endfor %}
+        </dl>
+      </div>
+
+      {% if karte %}
+        <figure class="route__map">
+          <a href="{{ karte.url }}" data-lightbox data-caption="{{ runde.titel }} · {{ runde.distanz }}">
+            {{ karte.resize(900).html(karte.meta.alt|default(runde.titel), '', '', 'lazy')|raw }}
+          </a>
+          <figcaption>Karte anklicken für die grosse Ansicht</figcaption>
+        </figure>
+      {% endif %}
+
+    </div>
+  </section>
+{% endfor %}
+
+{% if page.content %}
+  <section class="section">
+    <div class="wrap prose" style="max-width: 46rem;">{{ page.content|raw }}</div>
+  </section>
+{% endif %}
+{% endblock %}

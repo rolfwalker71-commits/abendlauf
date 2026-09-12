@@ -1,0 +1,40 @@
+title: Seite
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        inhalt:
+          type: tab
+          title: Inhalt
+          fields:
+            header.intro:
+              type: textarea
+              label: Kurztext / Lead
+              rows: 3
+            content:
+              type: markdown
+              label: Inhalt
+
+        kopfbild:
+          type: tab
+          title: Kopfbild
+          fields:
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+
+        dateien:
+          type: tab
+          title: Dateien
+          fields:
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Dateien zum Download

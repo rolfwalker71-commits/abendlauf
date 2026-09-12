@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Arnold & Co.
-
-----
-
-Uuid: ho1vdt8rvxbbqzuu

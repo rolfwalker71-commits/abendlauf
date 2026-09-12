@@ -1,0 +1,5 @@
+enabled: true
+
+# Die Schriften und das Stylesheet werden gebündelt ausgeliefert.
+pipeline:
+  enabled: true

@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Jauch Optik
-
-----
-
-Uuid: zc1ngoldqemvkyda

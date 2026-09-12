@@ -1,0 +1,74 @@
+title: Sponsoren
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        liste:
+          type: tab
+          title: Sponsoren
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            header.sponsoren:
+              type: list
+              label: Sponsoren
+              style: vertical
+              help: Logos zuerst unter „Logos" hochladen, danach hier zuordnen. Reihenfolge durch Verschieben ändern.
+              fields:
+                .name:
+                  type: text
+                  label: Name
+                .logo:
+                  type: pagemedia
+                  label: Logo
+                .url:
+                  type: text
+                  label: Website
+                .kategorie:
+                  type: select
+                  label: Kategorie
+                  default: sponsor
+                  options:
+                    haupt: Hauptsponsor
+                    co: Co-Sponsor
+                    sponsor: Sponsor
+                    goenner: Gönner
+                .aktiv:
+                  type: toggle
+                  label: Aktiv
+                  highlight: 1
+                  default: true
+                  options:
+                    1: Wird gezeigt
+                    0: Pausiert
+                  validate:
+                    type: bool
+
+        kopfbild:
+          type: tab
+          title: Kopfbild
+          fields:
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+
+        logos:
+          type: tab
+          title: Logos
+          fields:
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Logos
+              accept:
+                - image/*

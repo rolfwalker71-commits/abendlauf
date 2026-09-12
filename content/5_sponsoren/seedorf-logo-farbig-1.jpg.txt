@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Gemeindeverwaltung Seedorf
-
-----
-
-Uuid: u5lzzwwogeqt2l6v

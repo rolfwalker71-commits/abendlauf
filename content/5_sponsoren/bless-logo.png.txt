@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Bless AG
-
-----
-
-Uuid: 1k88gsxu8xbwwbmx

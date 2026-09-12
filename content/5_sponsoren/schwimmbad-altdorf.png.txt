@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Schwimmbad Altdorf
-
-----
-
-Uuid: fqjkublzcrtdxq1e

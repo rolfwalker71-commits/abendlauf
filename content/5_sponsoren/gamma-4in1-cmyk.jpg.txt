@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Gamma AG Holding
-
-----
-
-Uuid: 9y5dkjrjkuel2cuv

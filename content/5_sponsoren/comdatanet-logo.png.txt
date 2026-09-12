@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: ComDataNet
-
-----
-
-Uuid: fytsdtg4hxwj0skf

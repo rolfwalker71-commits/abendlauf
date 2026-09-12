@@ -1,9 +1,0 @@
-Template: bild
-
-----
-
-Alt: Markus Schuler
-
-----
-
-Uuid: j28zwgnbs6wwdpjd

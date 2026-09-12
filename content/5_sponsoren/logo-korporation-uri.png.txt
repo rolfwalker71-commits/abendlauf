@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Korporation Uri
-
-----
-
-Uuid: eri4ifohtimfawkr

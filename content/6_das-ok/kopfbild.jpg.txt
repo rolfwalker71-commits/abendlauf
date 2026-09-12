@@ -1,9 +1,0 @@
-Template: bild
-
-----
-
-Alt: Helferinnen im Rechenbüro
-
-----
-
-Uuid: a26ymbbzvuai0d20

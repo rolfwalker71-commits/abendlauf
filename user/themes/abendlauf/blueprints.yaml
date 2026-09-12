@@ -1,0 +1,14 @@
+name: Abendlauf
+slug: abendlauf
+type: theme
+version: 1.0.0
+description: Theme der Urner Abendläufe
+author:
+  name: OK Urner Abendläufe
+
+form:
+  validation: loose
+  fields:
+    enabled:
+      type: hidden
+      default: true

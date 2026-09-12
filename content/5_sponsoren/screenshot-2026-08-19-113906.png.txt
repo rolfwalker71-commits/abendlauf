@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Gasthaus Reiser
-
-----
-
-Uuid: k9wdzssj7und8wur

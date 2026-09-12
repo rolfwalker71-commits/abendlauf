@@ -1,0 +1,106 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{# Die Ranglisten liegen als Dateien an dieser Seite, jede mit Jahr und
+   Lauf in ihrer .meta.yaml. Daraus wird eine Matrix: eine Zeile pro
+   Jahr, eine Spalte pro Abend. #}
+{% set listen = page.media.all|filter(m => m.meta.art|default('') == 'rangliste' and m.meta.jahr|default(0) > 0) %}
+
+{# PHP wandelt Zahlen-Zeichenketten in Ganzzahl-Schlüssel um, und
+   array_merge nummeriert Ganzzahl-Schlüssel neu durch statt sie zu
+   ersetzen. Deshalb tragen beide Ebenen ein Buchstaben-Präfix. #}
+{% set jahre = {} %}
+{% for name, datei in listen %}
+  {% set jk = 'j' ~ datei.meta.jahr %}
+  {% set lk = 'l' ~ (datei.meta.lauf|default('gesamt')) %}
+  {% set bisher = jahre[jk]|default({ jahr: datei.meta.jahr, dateien: {} }) %}
+  {% set jahre = jahre|merge({ (jk): {
+        jahr: datei.meta.jahr,
+        dateien: bisher.dateien|merge({ (lk): datei })
+     } }) %}
+{% endfor %}
+
+{# Nach Jahr absteigend sortieren #}
+{% set jahrgaenge = [] %}
+{% for jk, eintrag in jahre %}
+  {% set jahrgaenge = jahrgaenge|merge([eintrag.jahr]) %}
+{% endfor %}
+{% set jahrgaenge = jahrgaenge|sort|reverse %}
+{% set aktuell = jahrgaenge|first %}
+
+{% set spalten = { '1': '1. Abend', '2': '2. Abend', '3': '3. Abend', 'gesamt': 'Gesamt' } %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: jahrgaenge is not empty ? 'Resultate ' ~ (jahrgaenge|last) ~ ' bis ' ~ aktuell : 'Resultate',
+  titel: page.title,
+  lead: page.header.intro,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+{% set gesamt = aktuell ? jahre['j' ~ aktuell].dateien['lgesamt']|default(null) : null %}
+{% if gesamt %}
+  <section class="section" style="padding-bottom:0;">
+    <div class="wrap">
+      <a class="result-highlight" href="{{ gesamt.url }}" download>
+        <span>
+          <h3>Gesamtrangliste {{ aktuell }}</h3>
+          <p>Alle Kategorien über alle Abende · PDF, {{ (gesamt.size / 1024)|number_format(0, ',', '.') }} KB</p>
+        </span>
+        <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M12 3v13" stroke-linecap="round"/>
+          <path d="m6.5 11.5 5.5 5.5 5.5-5.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 20h16" stroke-linecap="round"/>
+        </svg>
+      </a>
+    </div>
+  </section>
+{% endif %}
+
+<section class="section">
+  <div class="wrap">
+    {% if jahrgaenge is empty %}
+      <p class="section__aside">Noch keine Ranglisten hochgeladen.</p>
+    {% else %}
+      <div class="results">
+        <table>
+          <caption class="visually-hidden">Ranglisten nach Jahrgang und Laufabend</caption>
+          <thead>
+            <tr>
+              <th scope="col">Jahrgang</th>
+              {% for titel in spalten %}<th scope="col" class="is-center">{{ titel }}</th>{% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            {% for jahr in jahrgaenge %}
+              <tr{{ jahr == aktuell ? ' class="is-current"' : '' }}>
+                <th scope="row" class="results__year">
+                  {# Die Abendläufe starteten 1995 — daraus ergibt sich die Austragungsnummer. #}
+                  {{ jahr }} <small>{{ jahr - 1994 }}. Abendläufe</small>
+                </th>
+                {% for schluessel, spaltenTitel in spalten %}
+                  <td class="is-center" data-label="{{ spaltenTitel }}">
+                    {% include 'partials/pdf-link.html.twig' with { datei: jahre['j' ~ jahr].dateien['l' ~ schluessel]|default(null) } %}
+                  </td>
+                {% endfor %}
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endif %}
+
+    {% set weitere = page.media.all|filter(m => m.meta.art|default('') not in ['rangliste', '']) %}
+    {% if weitere is not empty %}
+      <h2 style="margin-top:3rem;">Weitere Dokumente</h2>
+      <ul class="file-list">
+        {% for name, d in weitere %}
+          <li>
+            <a href="{{ d.url }}" download>{{ d.meta.titel|default(name) }}</a>
+            <span class="file-list__meta">{{ d.extension|upper }} · {{ (d.size / 1024)|number_format(0, ',', '.') }} KB</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

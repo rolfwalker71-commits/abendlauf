@@ -1,0 +1,82 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set punkte     = page.header.punkte|default([]) %}
+{% set kategorien = page.header.kategorien|default([]) %}
+{% set dateien    = page.media.all|filter(m => m.extension|lower == 'pdf') %}
+
+{% set aktionen = '' %}
+{% for name, d in dateien %}
+  {% set aktionen = aktionen ~ '<a class="btn btn--primary" href="' ~ d.url ~ '" download>' ~ (d.meta.titel|default('Als PDF')) ~ '</a>' %}
+{% endfor %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: kategorien is not empty ? kategorien|length ~ ' Kategorien · Start ab ' ~ (kategorien|first).startzeit ~ ' Uhr' : null,
+  titel: page.title,
+  lead: page.header.intro,
+  aktionen: aktionen,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+{% if kategorien is not empty %}
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">01</span> Kategorien und Startzeiten</h2>
+        <p class="section__aside">An allen drei Abenden identisch</p>
+      </div>
+      <div class="results">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Kategorie</th>
+              <th scope="col">Zeit</th>
+              <th scope="col">Kat.</th>
+              <th scope="col">Jahrgang</th>
+              <th scope="col">Runden</th>
+              <th scope="col">Distanz</th>
+              <th scope="col">Startgeld</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for k in kategorien|sort((a, b) => a.startzeit <=> b.startzeit) %}
+              <tr>
+                {# Auf schmalen Bildschirmen wird jede Zeile zur Karte:
+                   die Bezeichnung ist die Überschrift, die übrigen Werte
+                   tragen ihre Spaltenbeschriftung selbst. #}
+                <th scope="row" class="results__rowhead">{{ k.bezeichnung }}</th>
+                <td data-label="Startzeit"><strong>{{ k.startzeit }}</strong></td>
+                <td data-label="Kategorie">{{ k.kuerzel }}</td>
+                <td data-label="Jahrgang">{{ k.jahrgang }}</td>
+                <td data-label="Runden">{{ k.runden }}</td>
+                <td data-label="Distanz">{{ k.distanz }}</td>
+                <td data-label="Startgeld">{{ k.startgeld }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if punkte is not empty %}
+  <section class="section section--tint">
+    <div class="wrap">
+      <h2><span class="section__num">02</span> Organisatorisches</h2>
+      <div class="results">
+        <table>
+          <tbody>
+            {% for p in punkte %}
+              <tr>
+                <th scope="row" style="width:11rem; vertical-align:top;">{{ p.stichwort }}</th>
+                <td>{{ p.text|markdown(false)|raw }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% endblock %}

@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Die Mobiliar
-
-----
-
-Uuid: mlowds6wr0e2yjjv

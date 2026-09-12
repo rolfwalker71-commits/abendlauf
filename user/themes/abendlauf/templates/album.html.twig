@@ -1,0 +1,50 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set h = page.header %}
+{% set bilder = page.media.images %}
+{% set cover = h.cover ? page.media[h.cover|first] : bilder|first %}
+{% set laufTitel = { '1': '1. Abend', '2': '2. Abend', '3': '3. Abend', 'gesamt': 'Schlussfeier' } %}
+
+{% set meta = [bilder|length ~ ' Bilder'] %}
+{% if h.datum %}{% set meta = meta|merge([h.datum|date('d.m.Y')]) %}{% endif %}
+{% if h.fotograf %}{% set meta = meta|merge(['Fotos: ' ~ h.fotograf]) %}{% endif %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: 'Album · ' ~ h.jahr ~ (h.lauf ? ' · ' ~ laufTitel[h.lauf]|default('') : ''),
+  titel: page.title,
+  lead: meta|join(' · ') ~ (h.beschreibung ? '<br>' ~ h.beschreibung : ''),
+  bild: cover
+} %}
+
+{% set geschwister = page.parent.children.visible|filter(p => p.url != page.url) %}
+{% if geschwister is not empty %}
+  <div class="chips-bar">
+    <div class="wrap chips">
+      <span class="chip chip--active">{{ page.title }}</span>
+      {% for a in geschwister %}<a class="chip" href="{{ a.url }}">{{ a.title }}</a>{% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+<section class="section">
+  <div class="wrap">
+    {% if bilder is empty %}
+      <p class="section__aside">In diesem Album sind noch keine Bilder.</p>
+    {% else %}
+      <div class="gallery">
+        {% for name, bild in bilder %}
+          <a href="{{ bild.url }}" data-lightbox data-caption="{{ bild.meta.bildtext|default('') }}">
+            {{ bild.cropZoom(500, 500).html(bild.meta.alt|default(bild.meta.bildtext|default('')), '', '', 'lazy')|raw }}
+          </a>
+        {% endfor %}
+      </div>
+      <p class="gallery__hint">Bild anklicken für die grosse Ansicht — dort mit den Pfeiltasten blättern.</p>
+    {% endif %}
+
+    <p style="margin-top:2.5rem;">
+      <a class="btn btn--ghost" href="{{ page.parent.url }}">Alle Alben</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

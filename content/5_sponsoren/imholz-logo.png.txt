@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Imholz Sport Bürglen
-
-----
-
-Uuid: k9tffsy9fnrphgu4

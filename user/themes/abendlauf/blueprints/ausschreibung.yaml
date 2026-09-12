@@ -1,0 +1,92 @@
+title: Ausschreibung
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        angaben:
+          type: tab
+          title: Angaben
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            header.punkte:
+              type: list
+              label: Organisatorisches
+              style: vertical
+              help: Anmeldung, Garderoben, Parkplatz, Versicherung und so weiter.
+              fields:
+                .stichwort:
+                  type: text
+                  label: Stichwort
+                  placeholder: Anmeldung
+                .text:
+                  type: textarea
+                  label: Text
+                  rows: 4
+
+        kategorien:
+          type: tab
+          title: Kategorien
+          fields:
+            header.kategorien:
+              type: list
+              label: Kategorien und Startzeiten
+              style: vertical
+              help: Diese Tabelle erscheint eins zu eins auf der Website. Die Kennzahlen der Startseite werden daraus berechnet.
+              fields:
+                .bezeichnung:
+                  type: text
+                  label: Bezeichnung
+                  placeholder: Piccolo Knaben
+                .kuerzel:
+                  type: text
+                  label: Kategorie
+                  placeholder: A
+                .jahrgang:
+                  type: text
+                  label: Jahrgang
+                  placeholder: 2016 – 2017
+                .startzeit:
+                  type: text
+                  label: Startzeit
+                  placeholder: '17:25'
+                .runden:
+                  type: text
+                  label: Runden
+                  placeholder: 1 kleine Runde
+                .distanz:
+                  type: text
+                  label: Distanz
+                  placeholder: 1210 m
+                .startgeld:
+                  type: text
+                  label: Startgeld
+                  placeholder: CHF 6
+
+        kopfbild:
+          type: tab
+          title: Kopfbild
+          fields:
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+              help: Wird stark weichgezeichnet hinter dem Titel angezeigt.
+
+        dateien:
+          type: tab
+          title: Dateien
+          fields:
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Ausschreibung als PDF

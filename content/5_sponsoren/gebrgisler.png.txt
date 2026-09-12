@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Gebr. Gisler
-
-----
-
-Uuid: h15njypolabu01ok

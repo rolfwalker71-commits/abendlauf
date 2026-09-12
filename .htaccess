@@ -1,67 +1,99 @@
-# Kirby .htaccess
-# revision 2023-07-22
-
-# rewrite rules
 <IfModule mod_rewrite.c>
 
-# enable awesome urls. i.e.:
-# http://yourdomain.com/about-us/team
-RewriteEngine on
+RewriteEngine On
 
-# make sure to set the RewriteBase correctly
-# if you are running the site in a subfolder;
-# otherwise links or the entire site will break.
-#
-# If your homepage is http://yourdomain.com/mysite,
-# set the RewriteBase to:
-#
-# RewriteBase /mysite
+## Begin RewriteBase
+# If you are getting 500 or 404 errors on subpages, you may have to uncomment the RewriteBase entry
+# You should change the '/' to your appropriate subfolder. For example if you have
+# your Grav install at the root of your site '/' should work, else it might be something
+# along the lines of: RewriteBase /<your_sub_folder>
+##
 
-# In some environments it's necessary to
-# set the RewriteBase to:
-#
 # RewriteBase /
 
-# block files and folders beginning with a dot, such as .git
-# except for the .well-known folder, which is used for Let's Encrypt and security.txt
-RewriteRule (^|/)\.(?!well-known\/) index.php [L]
+## End - RewriteBase
 
-# block all files in the content folder from being accessed directly
-RewriteRule ^content/(.*) index.php [L]
+## Begin - X-Forwarded-Proto
+# In some hosted or load balanced environments, SSL negotiation happens upstream.
+# In order for Grav to recognize the connection as secure, you need to uncomment
+# the following lines.
+#
+# RewriteCond %{HTTP:X-Forwarded-Proto} https
+# RewriteRule .* - [E=HTTPS:on]
+#
+## End - X-Forwarded-Proto
 
-# block all files in the site folder from being accessed directly
-RewriteRule ^site/(.*) index.php [L]
+## Begin - Exploits
+# If you experience problems on your site block out the operations listed below
+# This attempts to block the most common type of exploit `attempts` to Grav
+#
+# Block out any script trying to use twig tags in URL.
+RewriteCond %{REQUEST_URI} ({{|}}|{%|%}) [OR]
+RewriteCond %{QUERY_STRING} ({{|}}|{%25|%25}) [OR]
+# Block out any script trying to base64_encode data within the URL.
+RewriteCond %{QUERY_STRING} base64_encode[^(]*\([^)]*\) [OR]
+# Block out any script that includes a <script> tag in URL.
+RewriteCond %{QUERY_STRING} (<|%3C)([^s]*s)+cript.*(>|%3E) [NC,OR]
+# Block out any script trying to set a PHP GLOBALS variable via URL.
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+# Block out any script trying to modify a _REQUEST variable via URL.
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+# Return 403 Forbidden header and show the content of the root homepage
+RewriteRule .* index.php [F]
+#
+## End - Exploits
 
-# block direct access to Kirby and the Panel sources
-RewriteRule ^kirby/(.*) index.php [L]
-
-# make site links work
+## Begin - Index
+# If the requested path and file is not /index.php and the request
+# has not already been internally rewritten to the index.php script
+RewriteCond %{REQUEST_URI} !^/index\.php
+# and the requested path and file doesn't directly match a physical file
 RewriteCond %{REQUEST_FILENAME} !-f
+# and the requested path and file doesn't directly match a physical folder
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*) index.php [L]
+# internally rewrite the request to the index.php script
+RewriteRule .* index.php [L]
+## End - Index
+
+## Begin - Security
+# Block all direct access for these folders
+RewriteRule ^(\.git|cache|bin|logs|backup|webserver-configs|tests)/(.*) error [F,NC]
+# Block all direct access to these sensitive user folders, whatever the file type
+RewriteRule ^(user)/(config|env)/(.*) error [F,NC]
+# Block user/accounts too, but allow avatar images to be served directly,
+# whether stored at user/accounts/avatars/<file> (flatfile accounts) or
+# user/accounts/<username>/<file> (Flex folder storage). Account data
+# (.yaml password hashes) stays blocked; SVG is excluded as a stored-XSS vector.
+RewriteCond %{REQUEST_URI} !/user/accounts/[^/]+/[^/]+\.(jpe?g|png|gif|webp|avif|bmp|ico)$ [NC]
+RewriteRule ^(user)/accounts/(.*) error [F,NC]
+# Block user/data too, but allow public asset uploads (e.g. Flex Object images)
+# to be served directly. SVG stays blocked as a stored-XSS vector; .css/.js are
+# served per project policy despite the same risk on this user-writable folder.
+RewriteCond %{REQUEST_URI} !\.(jpe?g|png|gif|webp|avif|bmp|ico|mp4|webm|ogg|ogv|mov|mp3|wav|m4a|flac|pdf|woff2|woff|ttf|otf|eot|css|js)$ [NC]
+RewriteRule ^(user)/data/(.*) error [F,NC]
+# Serve page media only through the page route, so plugins can apply the page's
+# `access` rules to it (the Login plugin's "Protect a login-protected page media"
+# setting, for one). Page media is normally linked by its path on disk, which the
+# web server answers without ever starting Grav.
+# DO NOT enable this without first setting `pages.media_route_urls: true` in
+# user/config/system.yaml, or every media URL on the site becomes a 403.
+# RewriteRule ^(user)/pages/(.*) error [F,NC]
+# Block access to specific file types for these system folders
+RewriteRule ^(system|vendor)/(.*)\.(txt|xml|md|html|htm|shtml|shtm|json|yaml|yml|php|php2|php3|php4|php5|phar|phtml|pl|py|cgi|twig|sh|bat)$ error [F,NC]
+# Block access to specific file types for these user folders
+RewriteRule ^(user)/(.*)\.(txt|md|json|yaml|yml|php|php2|php3|php4|php5|phar|phtml|pl|py|cgi|twig|sh|bat)$ error [F,NC]
+# Block all direct access to .md files (a page route ending in .md is not a file, so Grav's Markdown output still works):
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule \.md$ error [F,NC]
+# Block all direct access to files and folders beginning with a dot
+RewriteRule (^|/)\.(?!well-known) - [F]
+# Block access to specific files in the root folder
+RewriteRule ^(LICENSE\.txt|composer\.lock|composer\.json|\.htaccess)$ error [F,NC]
+## End - Security
 
 </IfModule>
 
-# pass the Authorization header to PHP
-SetEnvIf Authorization "(.+)" HTTP_AUTHORIZATION=$1
-
-# compress text file responses
-<IfModule mod_deflate.c>
-AddOutputFilterByType DEFLATE text/plain
-AddOutputFilterByType DEFLATE text/html
-AddOutputFilterByType DEFLATE text/css
-AddOutputFilterByType DEFLATE text/javascript
-AddOutputFilterByType DEFLATE application/json
-AddOutputFilterByType DEFLATE application/javascript
-AddOutputFilterByType DEFLATE application/x-javascript
-</IfModule>
-
-# set security headers in all responses
-<IfModule mod_headers.c>
-
-# serve files as plain text if the actual content type is not known
-# (hardens against attacks from malicious file uploads)
-Header set Content-Type "text/plain" "expr=-z %{CONTENT_TYPE}"
-Header set X-Content-Type-Options "nosniff"
-
-</IfModule>
+# Begin - Prevent Browsing and Set Default Resources
+Options -Indexes
+DirectoryIndex index.php index.html index.htm
+# End - Prevent Browsing and Set Default Resources

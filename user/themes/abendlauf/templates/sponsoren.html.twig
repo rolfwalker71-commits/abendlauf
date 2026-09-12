@@ -1,0 +1,34 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set alle = page.header.sponsoren|default([])|filter(s => s.aktiv) %}
+{% set gruppen = { 'haupt': 'Hauptsponsoren', 'co': 'Co-Sponsoren', 'sponsor': 'Sponsoren', 'goenner': 'Gönner' } %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: alle|length ~ ' Firmen und Institutionen',
+  titel: page.title,
+  lead: page.header.intro,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+{% for schluessel, titel in gruppen %}
+  {% set teil = alle|filter(s => s.kategorie|default('sponsor') == schluessel) %}
+  {% if teil is not empty %}
+    <section class="section{{ schluessel == 'haupt' ? '' : ' section--tint' }}">
+      <div class="wrap"><h2>{{ titel }}</h2></div>
+      {% if schluessel == 'sponsor' and teil|length > 8 %}
+        {# Viele kleine Logos laufen als Band durch, statt ein Raster zu füllen. #}
+        <div class="marquee" data-marquee>
+          <div class="marquee__track">
+            {% include 'partials/sponsors.html.twig' with { sponsoren: teil, medien: page } %}
+          </div>
+        </div>
+      {% else %}
+        <div class="wrap">
+          {% include 'partials/sponsors.html.twig' with { sponsoren: teil, medien: page } %}
+        </div>
+      {% endif %}
+    </section>
+  {% endif %}
+{% endfor %}
+{% endblock %}

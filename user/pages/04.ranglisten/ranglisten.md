@@ -1,0 +1,8 @@
+---
+title: 'Ranglisten'
+intro: 'Jeden Abend wird eine Rangliste erstellt und noch am selben Abend hier aufgeschaltet. Wer an mindestens zwei Läufen teilgenommen hat, steht zusätzlich in der Gesamtrangliste.'
+kopfhintergrund:
+  - kopfbild.jpg
+# aus Kirby übernommen: ebs4wvs1rpitdgo5
+---
+

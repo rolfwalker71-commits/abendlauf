@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Rofina
-
-----
-
-Uuid: bgupoqzta1mpr2qm

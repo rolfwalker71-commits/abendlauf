@@ -1,0 +1,56 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set alben = page.children.visible %}
+{% set bilderGesamt = 0 %}
+{% for a in alben %}{% set bilderGesamt = bilderGesamt + a.media.images|length %}{% endfor %}
+{% set erstes = alben|first %}
+{% set titelbild = erstes ? (erstes.header.cover ? erstes.media[erstes.header.cover|first] : erstes.media.images|first) : null %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: alben is not empty ? alben|length ~ ' Alben · ' ~ bilderGesamt ~ ' Bilder' : null,
+  titel: page.title,
+  lead: page.header.intro,
+  bild: titelbild
+} %}
+
+<section class="section">
+  <div class="wrap">
+    {% if alben is empty %}
+      <p class="section__aside">Noch keine Alben veröffentlicht.</p>
+    {% else %}
+      {# Nach Jahrgang gruppieren — so bleibt das Archiv übersichtlich,
+         auch wenn jedes Jahr drei Alben dazukommen. Bewusst von Hand
+         aufgebaut: der group-Filter ist nicht in jeder Twig-Fassung
+         vorhanden und liefert hier keine Seitenlisten zurück. #}
+      {% set jahrgaenge = [] %}
+      {% for a in alben %}
+        {% if a.header.jahr not in jahrgaenge %}
+          {% set jahrgaenge = jahrgaenge|merge([a.header.jahr]) %}
+        {% endif %}
+      {% endfor %}
+      {% for jahr in jahrgaenge|sort|reverse %}
+        {% set gruppe = alben|filter(a => a.header.jahr == jahr) %}
+        <div class="year-block">
+          <div class="section__head">
+            <h2><span class="section__num">{{ jahr }}</span> {{ gruppe|length }} Alben</h2>
+          </div>
+          <div class="grid grid--3 reveal">
+            {% for album in gruppe %}
+              {% set cover = album.header.cover ? album.media[album.header.cover|first] : album.media.images|first %}
+              <a class="album-card" href="{{ album.url }}">
+                <div class="album-card__img">
+                  {% if cover %}{{ cover.cropZoom(800, 534).html('', '', '', 'lazy')|raw }}{% endif %}
+                  <span class="album-card__count">{{ album.media.images|length }}</span>
+                </div>
+                <h3 class="album-card__title">{{ album.title }}</h3>
+                <p class="album-card__meta">{{ album.media.images|length }} Bilder</p>
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

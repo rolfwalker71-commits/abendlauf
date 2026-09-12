@@ -1,0 +1,38 @@
+title: Site
+extends@: site
+
+form:
+  fields:
+    verein:
+      type: fieldset
+      title: Urner Abendläufe
+      icon: heart
+      collapsed: false
+      fields:
+        verein.titel:
+          label: Name der Website
+          type: text
+        verein.untertitel:
+          label: Untertitel
+          type: text
+          help: Erscheint klein neben dem Logo.
+        verein.adresse:
+          label: Adresse
+          type: textarea
+          rows: 3
+        verein.email:
+          label: E-Mail-Adresse
+          type: email
+        verein.formular_empfaenger:
+          label: Kontaktformular geht an
+          type: email
+          help: An diese Adresse werden Nachrichten aus dem Formular gesendet.
+        verein.facebook:
+          label: Facebook
+          type: url
+        verein.instagram:
+          label: Instagram
+          type: url
+        verein.fusszeile:
+          label: Fusszeile
+          type: text

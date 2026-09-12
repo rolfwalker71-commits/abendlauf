@@ -1,0 +1,68 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% include 'partials/pagehead.html.twig' with {
+  titel: page.title,
+  lead: page.header.intro,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+<section class="section">
+  <div class="wrap" style="display:grid; gap:2.5rem; grid-template-columns:repeat(auto-fit,minmax(280px,1fr));">
+
+    <div class="prose">
+      {{ page.content|raw }}
+      {% if config.site.verein.adresse %}
+        <h3>Adresse</h3>
+        <p>{{ config.site.verein.adresse|nl2br }}</p>
+      {% endif %}
+      {% if config.site.verein.email %}
+        <p><a href="mailto:{{ config.site.verein.email }}">{{ config.site.verein.email }}</a></p>
+      {% endif %}
+    </div>
+
+    {% if page.header.formularaktiv is not same as(false) %}
+      <div>
+        {# Nach dem Absenden hängt die Meldung am Formular-Objekt, das
+           Grav über die Sitzung zurückgibt. Das Formular bleibt danach
+           stehen — so sieht man die Bestätigung im Zusammenhang. #}
+        {% set formular = form ?? forms(page) %}
+        {% if formular.message %}
+          <p class="alert alert--{{ formular.status == 'error' ? 'fail' : 'ok' }}">{{ formular.message|raw }}</p>
+        {% endif %}
+        <form method="post" action="{{ page.url }}#formular" id="formular">
+          {# Gravs Verarbeitung erkennt das Formular an diesen beiden Feldern. #}
+          <input type="hidden" name="__form-name__" value="kontakt">
+          <input type="hidden" name="form-nonce" value="{{ formular.getNonce() }}">
+
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="data[name]" required>
+          </div>
+          <div class="field">
+            <label for="f-email">E-Mail</label>
+            <input type="email" id="f-email" name="data[email]" required>
+          </div>
+          <div class="field">
+            <label for="f-betreff">Betreff</label>
+            <input type="text" id="f-betreff" name="data[betreff]" required>
+          </div>
+          <div class="field">
+            <label for="f-nachricht">Nachricht</label>
+            <textarea id="f-nachricht" name="data[nachricht]" required minlength="10"></textarea>
+          </div>
+
+          {# Spamfalle: für Menschen unsichtbar, Bots füllen sie aus. #}
+          <div class="field field--hp" aria-hidden="true">
+            <label for="f-website">Website</label>
+            <input type="text" id="f-website" name="data[website]" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button class="btn btn--primary" type="submit">Nachricht senden</button>
+        </form>
+      </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

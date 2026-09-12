@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Bissig Küchenbau
-
-----
-
-Uuid: 37hmpasxhunuye0i

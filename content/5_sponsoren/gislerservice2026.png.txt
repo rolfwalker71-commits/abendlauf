@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Gisler Service
-
-----
-
-Uuid: vmmcvwrlvbjeddju

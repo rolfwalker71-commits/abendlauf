@@ -1,9 +1,0 @@
-Template: bild
-
-----
-
-Alt: Kinder auf der Strecke
-
-----
-
-Uuid: pmte81giorzs1hiw

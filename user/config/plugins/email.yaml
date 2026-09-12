@@ -1,0 +1,22 @@
+enabled: true
+
+# Absender muss zur eigenen Domain gehören, sonst stufen die
+# Empfänger die Nachricht als Spam ein.
+from: 'praesidium@abendlauf.ch'
+from_name: 'Urner Abendläufe'
+
+# VOR DEM LIVEGANG AUSFÜLLEN — die Zugangsdaten gibt es bei Hostpoint
+# unter Hosting / E-Mail. Ohne SMTP versucht PHP es über sendmail,
+# was auf Shared Hosting meist im Spamordner landet.
+mailer:
+  engine: smtp
+  smtp:
+    server: 'REPLACE-smtp.hostpoint.ch'
+    port: 587
+    encryption: tls
+    user: 'REPLACE-praesidium@abendlauf.ch'
+    password: 'REPLACE-passwort'
+
+# Lokal wird nichts versendet, sondern ins Log geschrieben.
+content_type: text/plain
+debug: false

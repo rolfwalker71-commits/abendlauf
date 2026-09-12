@@ -1,0 +1,26 @@
+title: Fotos
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        angaben:
+          type: tab
+          title: Angaben
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            hinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                Die Alben sind **Unterseiten** dieser Seite. Ein neues Album
+                anlegen: oben auf „Neu" und als Vorlage *Fotoalbum* wählen.

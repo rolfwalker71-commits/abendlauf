@@ -1,0 +1,30 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set mitglieder = page.header.mitglieder|default([]) %}
+
+{% include 'partials/pagehead.html.twig' with {
+  eyebrow: mitglieder|length ~ ' Personen',
+  titel: page.title,
+  lead: page.header.intro,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+<section class="section">
+  <div class="wrap">
+    <div class="grid grid--personen">
+      {% for m in mitglieder %}
+        {% set foto = m.portrait ? page.media[m.portrait|first] : null %}
+        <div class="person">
+          <div class="person__img">
+            {% if foto %}{{ foto.cropZoom(440, 440).html(m.name, '', '', 'lazy')|raw }}{% endif %}
+          </div>
+          <p class="person__name">{{ m.name }}</p>
+          <p class="person__role">{{ m.funktion }}</p>
+          {% if m.email %}<p class="person__role"><a href="mailto:{{ m.email }}">{{ m.email }}</a></p>{% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

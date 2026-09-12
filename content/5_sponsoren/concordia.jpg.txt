@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Concordia Versicherung
-
-----
-
-Uuid: yj8p9lrqxb5nlbzw

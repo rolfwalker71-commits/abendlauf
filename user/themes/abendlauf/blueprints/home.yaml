@@ -1,0 +1,173 @@
+title: Startseite
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+
+      fields:
+
+        kopf:
+          type: tab
+          title: Kopfbereich
+          fields:
+            header.headline:
+              type: text
+              label: Überschrift
+              help: Beginnt die Überschrift mit einer Zahl und einem Punkt, wird die Zahl gross herausgestellt.
+            header.subline:
+              type: text
+              label: Unterzeile
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 4
+            header.herobild:
+              type: pagemedia
+              label: Hintergrundbild
+              help: Grosses Bild rechts neben der Überschrift.
+
+        aktuelles:
+          type: tab
+          title: Aktuelles
+          fields:
+            header.aktuellaktiv:
+              type: toggle
+              label: Bereich anzeigen
+              highlight: 1
+              default: true
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.aktuelltitel:
+              type: text
+              label: Überschrift
+              default: Aktuell
+            header.aktuellstand:
+              type: date
+              label: Stand vom
+              help: Erscheint klein neben der Überschrift.
+            header.aktuelltext:
+              type: textarea
+              label: Text
+              rows: 14
+              help: 'Der Bereich, der vor, während und nach den Läufen ausgetauscht wird. Aufzählungen mit einem Bindestrich am Zeilenanfang, Links als [Text](Adresse).'
+
+        termine:
+          type: tab
+          title: Laufabende
+          fields:
+            header.laufabende:
+              type: list
+              label: Termine
+              style: vertical
+              help: Die Startseite zeigt automatisch die nächsten drei Termine. Vergangene verschwinden von selbst.
+              fields:
+                .titel:
+                  type: text
+                  label: Bezeichnung
+                  placeholder: Erster Abend
+                .datum:
+                  type: datetime
+                  label: Datum und Startzeit
+                .ort:
+                  type: text
+                  label: Ort
+                  default: Seerestaurant Seedorf
+                .status:
+                  type: select
+                  label: Status
+                  default: findet-statt
+                  options:
+                    findet-statt: Findet statt
+                    abgesagt: Abgesagt
+                    verschoben: Verschoben
+                .statushinweis:
+                  type: text
+                  label: Hinweis zum Status
+                  help: Wird bei „abgesagt" oder „verschoben" auf der Kachel gezeigt.
+                .bild:
+                  type: pagemedia
+                  label: Bild
+
+        aktion:
+          type: tab
+          title: Aktion
+          fields:
+            header.aktionaktiv:
+              type: toggle
+              label: Bereich anzeigen
+              highlight: 1
+              default: true
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.aktionpartner:
+              type: text
+              label: Partner
+              help: Erscheint klein über der Überschrift.
+            header.aktiontitel:
+              type: text
+              label: Überschrift
+            header.aktiontext:
+              type: textarea
+              label: Text
+              rows: 6
+            header.aktionbilder:
+              type: pagemedia
+              label: Bilder
+              help: Ein bis drei Bilder, zum Beispiel Gutschein und Kontaktkarte.
+            header.aktionlink:
+              type: text
+              label: Link
+            header.aktionlinktext:
+              type: text
+              label: Beschriftung des Links
+              default: Zum Shop
+
+        hinweis:
+          type: tab
+          title: Hinweisbanner
+          fields:
+            header.hinweisaktiv:
+              type: toggle
+              label: Banner anzeigen
+              highlight: 0
+              default: false
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.hinweistext:
+              type: textarea
+              label: Text
+              rows: 2
+              help: Kurzmeldung zuoberst, z. B. „Ranglisten des 2. Abends sind online".
+            header.hinweislink:
+              type: text
+              label: Link
+
+        medien:
+          type: tab
+          title: Bilder
+          fields:
+            header.media:
+              type: section
+              title: Bilder dieser Seite
+              underline: false
+              fields:
+                media:
+                  type: file
+                  destination: self@
+                  multiple: true
+                  accept:
+                    - image/*

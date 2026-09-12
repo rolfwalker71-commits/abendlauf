@@ -1,0 +1,28 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% include 'partials/pagehead.html.twig' with {
+  titel: page.title,
+  lead: page.header.intro,
+  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+} %}
+
+<section class="section">
+  <div class="wrap prose" style="max-width: 46rem;">
+    {{ page.content|raw }}
+
+    {% set dateien = page.media.all|filter(m => m.extension|lower in ['pdf','xlsx','csv','docx']) %}
+    {% if dateien is not empty %}
+      <h2>Dateien</h2>
+      <ul class="file-list">
+        {% for name, datei in dateien %}
+          <li>
+            <a href="{{ datei.url }}" download>{{ datei.meta.titel|default(name) }}</a>
+            <span class="file-list__meta">{{ datei.extension|upper }} · {{ (datei.size / 1024 / 1024)|number_format(1, ',', '.') }} MB</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

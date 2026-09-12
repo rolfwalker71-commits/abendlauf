@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Pouletburg Attinghausen
-
-----
-
-Uuid: 5kuc2imefok71du0

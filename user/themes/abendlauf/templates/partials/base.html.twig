@@ -1,0 +1,121 @@
+{% set verein = config.site.verein %}
+{% set startseite = pages.find('/home') %}
+<!DOCTYPE html>
+<html lang="de-CH">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>{% if page.template == 'home' %}{{ verein.titel }}{% else %}{{ page.title }} — {{ verein.titel }}{% endif %}</title>
+  {% if page.header.intro %}
+    <meta name="description" content="{{ page.header.intro|striptags|truncate(160, true, '…') }}">
+  {% endif %}
+
+  {# Farbschema VOR dem ersten Zeichnen setzen, sonst blitzt beim Laden
+     kurz die falsche Variante auf. #}
+  <script>
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+
+  {# Die beiden sofort sichtbaren Schnitte mit Vorrang laden — ohne das
+     zeichnet der Browser erst mit der Systemschrift und tauscht sichtbar um. #}
+  <link rel="preload" href="{{ url('theme://fonts/Oswald-600.woff2') }}" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="{{ url('theme://fonts/SourceSans3-400.woff2') }}" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="{{ url('theme://css/main.css') }}">
+  <link rel="icon" href="{{ url('theme://img/logo.svg') }}" type="image/svg+xml">
+</head>
+<body>
+
+{# Lesefortschritt — rein per CSS an das Scrollen gekoppelt. #}
+<div class="progress" aria-hidden="true"></div>
+
+{% if startseite.header.hinweisaktiv and startseite.header.hinweistext %}
+  <div class="notice">
+    {% if startseite.header.hinweislink %}
+      <a href="{{ startseite.header.hinweislink }}">{{ startseite.header.hinweistext }}</a>
+    {% else %}
+      {{ startseite.header.hinweistext }}
+    {% endif %}
+  </div>
+{% endif %}
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+
+    <a class="brand" href="{{ base_url == '' ? '/' : base_url }}">
+      <span class="brand__logo">{{ svg_image('theme://img/logo.svg')|raw }}</span>
+      <span class="brand__name">
+        {{ verein.titel }}
+        {% if verein.untertitel %}<span class="brand__sub">{{ verein.untertitel }}</span>{% endif %}
+      </span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="Hauptnavigation">
+      {% for eintrag in pages.children.visible %}
+        <a href="{{ eintrag.url }}"{% if page.url starts with eintrag.url %} aria-current="page"{% endif %}>{{ eintrag.menu }}</a>
+      {% endfor %}
+    </nav>
+
+    <div style="display:flex; gap:.45rem; align-items:center;">
+      <button class="theme-toggle" type="button" id="theme-toggle"
+              aria-label="Zwischen hellem und dunklem Erscheinungsbild wechseln">
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5"/>
+          <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5" stroke-linecap="round"/>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <button class="nav-toggle" type="button" id="nav-toggle" aria-controls="nav" aria-expanded="false" aria-label="Menü öffnen">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+
+  </div>
+</header>
+
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__cols">
+
+    <div>
+      <h3>{{ verein.titel }}</h3>
+      {% if verein.adresse %}<p>{{ verein.adresse|nl2br }}</p>{% endif %}
+    </div>
+
+    <div>
+      <h3>Kontakt</h3>
+      {% if verein.email %}<p><a href="mailto:{{ verein.email }}">{{ verein.email }}</a></p>{% endif %}
+      {% set kontakt = pages.find('/kontakt') %}
+      {% if kontakt %}<p><a href="{{ kontakt.url }}">Kontaktformular</a></p>{% endif %}
+      {# Rechtliches gehört in die Fusszeile, nicht in die Hauptnavigation. #}
+      {% set datenschutz = pages.find('/datenschutz') %}
+      {% if datenschutz %}<p><a href="{{ datenschutz.url }}">{{ datenschutz.title }}</a></p>{% endif %}
+    </div>
+
+    <div>
+      <h3>Folgen</h3>
+      {% if verein.facebook %}<p><a href="{{ verein.facebook }}" rel="noopener">Facebook</a></p>{% endif %}
+      {% if verein.instagram %}<p><a href="{{ verein.instagram }}" rel="noopener">Instagram</a></p>{% endif %}
+    </div>
+
+  </div>
+  <div class="site-footer__base wrap">
+    {{ verein.fusszeile ?: '© ' ~ 'now'|date('Y') ~ ' OK Urner Abendläufe' }}
+  </div>
+</footer>
+
+<script src="{{ url('theme://js/site.js') }}" defer></script>
+</body>
+</html>

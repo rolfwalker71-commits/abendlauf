@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Arnold Zentrum Markt
-
-----
-
-Uuid: 5czibjgqeojemdzy

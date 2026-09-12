@@ -1,0 +1,39 @@
+home:
+  alias: '/home'
+
+pages:
+  theme: abendlauf
+
+cache:
+  enabled: true
+  check:
+    method: file
+
+assets:
+  css_pipeline: false
+  js_pipeline: false
+  enable_asset_timestamp: false
+
+errors:
+  display: true
+  log: true
+
+debugger:
+  enabled: false
+  provider: clockwork
+
+gpm:
+  releases: stable
+  verify_peer: true
+
+updates:
+  safe_upgrade: true
+  safe_upgrade_snapshot_limit: 5
+
+# Schweizer Zeitzone — sonst laufen Termine und Countdown falsch.
+timezone: 'Europe/Zurich'
+
+languages:
+  default_lang: de
+
+pages_dateformat: 'd.m.Y'

@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Swiss City Marathon
-
-----
-
-Uuid: qvepomwfvrogy40l

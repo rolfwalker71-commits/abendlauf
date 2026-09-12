@@ -1,0 +1,62 @@
+title: Das OK
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        liste:
+          type: tab
+          title: Mitglieder
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            header.mitglieder:
+              type: list
+              label: OK-Mitglieder
+              style: vertical
+              help: Reihenfolge durch Verschieben ändern — Präsident zuoberst.
+              fields:
+                .name:
+                  type: text
+                  label: Name
+                .funktion:
+                  type: text
+                  label: Funktion
+                  placeholder: Präsident
+                .portrait:
+                  type: pagemedia
+                  label: Portrait
+                .email:
+                  type: email
+                  label: E-Mail
+                .telefon:
+                  type: tel
+                  label: Telefon
+
+        kopfbild:
+          type: tab
+          title: Kopfbild
+          fields:
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+
+        portraits:
+          type: tab
+          title: Portraits
+          fields:
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Portraits
+              accept:
+                - image/*

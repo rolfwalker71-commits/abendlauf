@@ -1,0 +1,4 @@
+# Gilt nur lokal: nicht wirklich versenden, sondern ins Log schreiben.
+mailer:
+  engine: 'none'
+debug: true

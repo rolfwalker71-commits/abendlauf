@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Bistro & Lounge Baggenstos
-
-----
-
-Uuid: dh2oal8gopte4abo

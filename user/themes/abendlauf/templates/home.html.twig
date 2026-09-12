@@ -1,0 +1,204 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% set h = page.header %}
+{% set hero = h.herobild ? page.media[h.herobild|first] : null %}
+
+{# Die Austragungsnummer wird als eigenes Gestaltungselement gesetzt. #}
+{% set teile = h.headline|default(page.title)|split('. ', 2) %}
+{% set nummer = teile[0] matches '/^\\d+$/' ? teile[0] : null %}
+{% set restTitel = nummer ? teile[1] : h.headline|default(page.title) %}
+
+{# Nur Termine ab heute, chronologisch, höchstens drei. #}
+{% set heute = 'today'|date('U') %}
+{% set naechste = (h.laufabende|default([]))
+     |filter(t => t.datum|date('U') >= heute)
+     |sort((a, b) => a.datum|date('U') <=> b.datum|date('U'))
+     |slice(0, 3) %}
+
+{% set sponsorenSeite = pages.find('/sponsoren') %}
+{% set alleSponsoren  = sponsorenSeite ? sponsorenSeite.header.sponsoren|default([]) : [] %}
+{% set patronat       = alleSponsoren|filter(s => s.aktiv and s.kategorie in ['haupt', 'co']) %}
+
+{# Kennzahlen kommen aus der Ausschreibung, damit sie nie auseinanderlaufen. #}
+{% set ausschreibung = pages.find('/ausschreibung') %}
+{% set kategorien = ausschreibung ? ausschreibung.header.kategorien|default([]) : [] %}
+{% set kennzahlen = [] %}
+{% if kategorien is not empty %}
+  {% set gelder = kategorien|map(k => k.startgeld|replace({'CHF': ''})|trim|number_format(0, '.', ''))|filter(g => g > 0) %}
+  {% set kleine = (kategorien|filter(k => 'kleine' in k.runden)|first).distanz|default(null) %}
+  {% set kennzahlen = [
+      { label: 'Kleine Runde', wert: kleine,   notiz: 'Rund ums Schloss A Pro' },
+      { label: 'Grosse Runde', wert: '2260 m', notiz: 'Weg der Schweiz' },
+      { label: 'Kategorien',   wert: kategorien|length, notiz: 'Vom Pfüderi bis zur Volksläuferin' },
+      { label: 'Startgeld',    wert: gelder is not empty ? 'CHF ' ~ min(gelder) ~ '–' ~ max(gelder) : null,
+        notiz: 'Anmeldung vor Ort' }
+    ]|filter(k => k.wert) %}
+{% endif %}
+
+{% set fotoSeite = pages.find('/fotos') %}
+{% set alben = fotoSeite ? fotoSeite.children.visible|slice(0, 3) : [] %}
+
+<section class="hero {{ hero ? '' : 'hero--plain' }}">
+  <div class="hero__text">
+    {% include 'partials/runlogo.html.twig' %}
+    <p class="eyebrow">{{ config.site.verein.untertitel }} · Seedorf am Urnersee</p>
+
+    {% if nummer %}
+      <p class="hero__edition">{{ nummer }}<sup>.</sup></p>
+    {% endif %}
+    <h1>{{ restTitel }}</h1>
+
+    {% if h.subline %}<p class="hero__lead">{{ h.subline }}</p>{% endif %}
+
+    {% if naechste is not empty %}
+      {% set naechster = naechste|first %}
+      {% set ziel = naechster.datum|date('U') %}
+      <div class="countdown" data-countdown="{{ ziel|date('c') }}" aria-live="off">
+        <div class="countdown__unit"><span class="countdown__value" data-unit="tage">–</span><span class="countdown__label">Tage</span></div>
+        <div class="countdown__unit"><span class="countdown__value" data-unit="stunden">–</span><span class="countdown__label">Stunden</span></div>
+        <div class="countdown__unit"><span class="countdown__value" data-unit="minuten">–</span><span class="countdown__label">Minuten</span></div>
+      </div>
+      <p class="countdown__note">
+        bis zum Start: {{ naechster.titel }}, {{ ziel|date('d.m.Y') }} um {{ ziel|date('H:i') }} Uhr
+      </p>
+    {% endif %}
+
+    <div class="hero__actions">
+      {% if ausschreibung %}<a class="btn btn--primary" href="{{ ausschreibung.url }}">Ausschreibung</a>{% endif %}
+      {% set ranglisten = pages.find('/ranglisten') %}
+      {% if ranglisten %}<a class="btn btn--ghost" href="{{ ranglisten.url }}">Ranglisten</a>{% endif %}
+    </div>
+  </div>
+
+  {% if hero %}
+    <div class="hero__media">{{ hero.cropZoom(1100, 900).html('', '', 'kopfbild')|raw }}</div>
+  {% endif %}
+</section>
+
+{% if h.aktuellaktiv and h.aktuelltext %}
+  <section class="section section--overlap">
+    <div class="wrap">
+      <div class="notice-panel">
+        <div class="notice-panel__head">
+          <p class="eyebrow" style="margin:0;">Vom OK</p>
+          <h2><span class="section__num">01</span> {{ h.aktuelltitel|default('Aktuell') }}</h2>
+          {% if h.aktuellstand %}
+            <p class="notice-panel__date">Stand {{ h.aktuellstand|date('d.m.Y') }}</p>
+          {% endif %}
+        </div>
+        <div class="notice-panel__body prose">
+          {{ h.aktuelltext|markdown|externe_links|raw }}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if naechste is not empty %}
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">02</span> Die nächsten Laufabende</h2>
+        <p class="section__aside">Anmeldung jeweils ab 16.30 Uhr vor Ort</p>
+      </div>
+      <div class="grid grid--3 reveal">
+        {% for termin in naechste %}{% include 'partials/event.html.twig' %}{% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if kennzahlen is not empty %}
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">03</span> Strecke und Kategorien</h2>
+        {% if ausschreibung %}<p class="section__aside"><a href="{{ ausschreibung.url }}">Ganze Ausschreibung</a></p>{% endif %}
+      </div>
+      <div class="grid grid--4 reveal">
+        {% for k in kennzahlen %}
+          <div class="fact">
+            <p class="eyebrow" style="margin-bottom:.5rem;">{{ k.label }}</p>
+            <p class="fact__value">{{ k.wert }}</p>
+            <p class="fact__note">{{ k.notiz }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if alben is not empty %}
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">04</span> Aus den Alben</h2>
+        <p class="section__aside"><a href="{{ fotoSeite.url }}">Alle Alben</a></p>
+      </div>
+      <div class="bleed-strip">
+        {% for album in alben %}
+          {% set cover = album.header.cover ? album.media[album.header.cover|first] : album.media.images|first %}
+          <a class="album-card" href="{{ album.url }}">
+            <div class="album-card__img">
+              {% if cover %}{{ cover.cropZoom(800, 534).html('', '', '', 'lazy')|raw }}{% endif %}
+            </div>
+            <h3 class="album-card__title">{{ album.title }}</h3>
+            <p class="album-card__meta">{{ album.media.images|length }} Bilder</p>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if h.aktionaktiv and h.aktiontext %}
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="offer">
+        <div class="offer__text">
+          {% if h.aktionpartner %}<p class="eyebrow">{{ h.aktionpartner }}</p>{% endif %}
+          <h2><span class="section__num">05</span> {{ h.aktiontitel|default('Aktion') }}</h2>
+          <div class="prose">{{ h.aktiontext|markdown|externe_links|raw }}</div>
+          {% if h.aktionlink %}
+            <p style="margin-top:1.4rem;">
+              <a class="btn btn--primary" href="{{ h.aktionlink }}" target="_blank" rel="noopener">
+                {{ h.aktionlinktext|default('Mehr erfahren') }}
+              </a>
+            </p>
+          {% endif %}
+        </div>
+
+        {% if h.aktionbilder %}
+          <div class="offer__media">
+            {% for name in h.aktionbilder %}
+              {% set bild = page.media[name] %}
+              {% if bild %}
+                <a href="{{ bild.url }}" data-lightbox data-caption="{{ bild.meta.alt|default('') }}">
+                  {{ bild.resize(700).html(bild.meta.alt|default(''), '', '', 'lazy')|raw }}
+                </a>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
+{% if patronat is not empty %}
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">06</span> Patronat</h2>
+        {% if sponsorenSeite %}
+          <p class="section__aside">
+            <a href="{{ sponsorenSeite.url }}">Alle {{ (alleSponsoren|filter(s => s.aktiv))|length }} Sponsoren ansehen</a>
+          </p>
+        {% endif %}
+      </div>
+      {% include 'partials/sponsors.html.twig' with { sponsoren: patronat, medien: sponsorenSeite } %}
+    </div>
+  </section>
+{% endif %}
+{% endblock %}

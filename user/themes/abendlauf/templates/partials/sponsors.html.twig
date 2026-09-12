@@ -1,0 +1,20 @@
+{# Sponsorenband. Erwartet: sponsoren (Liste), optional limit, medien (Seite) #}
+{% set liste = sponsoren|filter(s => s.aktiv) %}
+{% if limit is defined %}{% set liste = liste|slice(0, limit) %}{% endif %}
+{% if liste is not empty %}
+  <div class="sponsors">
+    {% for s in liste %}
+      {% set logo = s.logo ? medien.media[s.logo|first] : null %}
+      {% set klasse = 'sponsor sponsor--' ~ (s.kategorie|default('sponsor')) %}
+      {% if s.url %}
+        <a class="{{ klasse }}" href="{{ s.url }}" rel="noopener">
+          {% if logo %}<img src="{{ logo.url }}" alt="{{ s.name }}" loading="lazy">{% else %}<span>{{ s.name }}</span>{% endif %}
+        </a>
+      {% else %}
+        <div class="{{ klasse }}">
+          {% if logo %}<img src="{{ logo.url }}" alt="{{ s.name }}" loading="lazy">{% else %}<span>{{ s.name }}</span>{% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

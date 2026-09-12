@@ -1,0 +1,47 @@
+title: Kontakt
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        angaben:
+          type: tab
+          title: Angaben
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            header.formularaktiv:
+              type: toggle
+              label: Kontaktformular anzeigen
+              highlight: 1
+              default: true
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            hinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                An welche Adresse die Nachrichten gehen, steht unter
+                **Konfiguration → Site → Urner Abendläufe**.
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+
+        text:
+          type: tab
+          title: Weitere Angaben
+          fields:
+            content:
+              type: markdown
+              label: Inhalt

@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Gemeindeverwaltung Altdorf
-
-----
-
-Uuid: mgcfe80okkk4g1z7

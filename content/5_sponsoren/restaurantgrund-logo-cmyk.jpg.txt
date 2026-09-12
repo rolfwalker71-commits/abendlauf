@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Restaurant Grund
-
-----
-
-Uuid: yyxt6rpby8bqbdyf

@@ -1,9 +1,0 @@
-Template: bild
-
-----
-
-Alt: Streckenkarte der grossen Runde am Weg der Schweiz
-
-----
-
-Uuid: pciipnz6by1ovrfq

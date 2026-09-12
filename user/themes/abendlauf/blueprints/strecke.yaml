@@ -1,0 +1,70 @@
+title: Strecke
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        angaben:
+          type: tab
+          title: Runden
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            header.runden:
+              type: list
+              label: Runden
+              style: vertical
+              help: Karten zuerst unter „Dateien" hochladen, danach hier zuordnen.
+              fields:
+                .titel:
+                  type: text
+                  label: Bezeichnung
+                  placeholder: Kleine Runde
+                .distanz:
+                  type: text
+                  label: Distanz
+                  placeholder: 1210 m
+                .hoehenmeter:
+                  type: text
+                  label: Höhenunterschied
+                  placeholder: flach
+                .untergrund:
+                  type: text
+                  label: Untergrund
+                  placeholder: Naturweg
+                .kategorien:
+                  type: text
+                  label: Wer läuft hier
+                .beschreibung:
+                  type: textarea
+                  label: Beschreibung
+                  rows: 3
+                .karte:
+                  type: pagemedia
+                  label: Streckenkarte
+
+        kopfbild:
+          type: tab
+          title: Kopfbild
+          fields:
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+
+        dateien:
+          type: tab
+          title: Dateien
+          fields:
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Karten und Bilder

@@ -1,0 +1,47 @@
+title: Ranglisten
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        angaben:
+          type: tab
+          title: Angaben
+          fields:
+            header.intro:
+              type: textarea
+              label: Einleitungstext
+              rows: 3
+            header.kopfhintergrund:
+              type: pagemedia
+              label: Hintergrundbild des Kopfbereichs
+
+        dateien:
+          type: tab
+          title: Ranglisten
+          fields:
+            hinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                **PDF hochladen, dann Jahr und Lauf setzen.** Die Tabelle auf der
+                Website ordnet sich danach automatisch — eine Zeile pro Jahrgang,
+                eine Spalte pro Abend.
+
+                Die Angaben zu jeder Datei stehen in einer gleichnamigen
+                `.meta.yaml` daneben. Im Panel bearbeitest du sie über das
+                Stift-Symbol an der Datei.
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Dateien
+              accept:
+                - application/pdf
+                - image/*

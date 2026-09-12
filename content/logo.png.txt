@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Urner Abendläufe
-
-----
-
-Uuid: 0dlxxy7guqfauzau

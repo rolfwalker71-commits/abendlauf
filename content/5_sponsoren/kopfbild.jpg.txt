@@ -1,9 +1,0 @@
-Template: bild
-
-----
-
-Alt: Läuferfeld am Weg der Schweiz
-
-----
-
-Uuid: emrwrsvyjoi6yzij

@@ -1,0 +1,64 @@
+title: Fotoalbum
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        angaben:
+          type: tab
+          title: Angaben
+          fields:
+            header.jahr:
+              type: number
+              label: Jahr
+              validate:
+                min: 1995
+                max: 2100
+            header.lauf:
+              type: select
+              label: Lauf
+              options:
+                '1': 1. Abend
+                '2': 2. Abend
+                '3': 3. Abend
+                gesamt: Schlussfeier / Gesamt
+            header.datum:
+              type: date
+              label: Datum des Laufs
+            header.fotograf:
+              type: text
+              label: Fotograf/in
+              help: Erscheint als Bildnachweis unter dem Album.
+            header.beschreibung:
+              type: textarea
+              label: Beschreibung
+              rows: 3
+            header.cover:
+              type: pagemedia
+              label: Titelbild
+              help: Leer lassen = erstes Bild des Albums.
+
+        bilder:
+          type: tab
+          title: Bilder
+          fields:
+            hinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                Mehrere Dateien auf einmal hineinziehen. Die Reihenfolge lässt
+                sich durch Verschieben ändern.
+            media:
+              type: file
+              destination: self@
+              multiple: true
+              label: Bilder
+              accept:
+                - image/*

@@ -1,9 +1,0 @@
-Template: bild
-
-----
-
-Alt: Anmeldung beim Seerestaurant
-
-----
-
-Uuid: fiixzy28mb7e1mse

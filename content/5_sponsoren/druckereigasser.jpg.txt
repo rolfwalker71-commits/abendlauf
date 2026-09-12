@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Druckerei Gasser
-
-----
-
-Uuid: 0yxc1t3qlyhqgxre

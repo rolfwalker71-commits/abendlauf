@@ -1,74 +1,65 @@
-# System files
-# ------------
+# ===================================================================
+#  Urner Abendläufe — was nicht ins Repository gehört
+# ===================================================================
 
-Icon
+# --- Grav selbst -----------------------------------------------------
+# Das CMS wird nicht versioniert, sondern mit dem offiziellen Paket
+# geholt: werkzeuge/grav-einrichten.sh. Sonst lägen 75 MB Fremdcode
+# in der Versionsgeschichte, und ein Grav-Update würde als riesiger
+# Commit erscheinen.
+/system/
+/vendor/
+/bin/
+/user/plugins/
+/index.php
+/composer.json
+/composer.lock
+/robots.txt
+/now.json
+/webserver-configs/
+/CHANGELOG.md
+/.env.example
+/CODE_OF_CONDUCT.md
+/CONTRIBUTING.md
+/LICENSE.txt
+/SECURITY.md
+
+# --- Von Grav erzeugt ------------------------------------------------
+/cache/
+/logs/
+/tmp/
+/backup/
+/images/
+/assets/
+/user/data/
+/user/config/versions.yaml
+
+# --- SICHERHEIT: niemals veröffentlichen -----------------------------
+/user/accounts/
+/user/config/security.yaml
+# Von Grav erzeugter Signaturschlüssel für CSRF-Prüfungen. Die Datei
+# sagt es selbst: "Do NOT commit to version control."
+/user/config/security-private.php
+/.env
+/.env.local
+
+# --- Medienarchive ---------------------------------------------------
+# Liegen auf dem Server und auf abendlauf.ch. Git eignet sich schlecht
+# für Binärdateien; einmal eingecheckt bleiben sie für immer in der
+# Versionsgeschichte. Wieder einspielen: siehe werkzeuge/
+/user/pages/05.fotos/*/*.jpg
+/user/pages/05.fotos/*/*.jpeg
+/user/pages/**/*.pdf
+
+# --- Aufgegebener Next.js-Prototyp -----------------------------------
+/_archiv-nextjs/
+
+# --- System und Werkzeuge --------------------------------------------
 .DS_Store
-
-# Temporary files
-# ---------------
-
-/media/*
-!/media/index.html
-
-# Lock files
-# ---------------
-
-.lock
-
-# Editors
-# (sensitive workspace files)
-# ---------------------------
+Icon
+Thumbs.db
+*.tmp
+*.bak
 *.sublime-workspace
 /.vscode
 /.idea
-
-# -------------SECURITY-------------
-# NEVER publish these files via Git!
-# -------------SECURITY-------------
-
-# Cache Files
-# ---------------
-
-/site/cache/*
-!/site/cache/index.html
-
-# Accounts
-# ---------------
-
-/site/accounts/*
-!/site/accounts/index.html
-
-# Sessions
-# ---------------
-
-/site/sessions/*
-!/site/sessions/index.html
-
-# License
-# ---------------
-
-/site/config/.license
-
-# ===================================================================
-# Projektspezifisch
-# ===================================================================
-
-# Aufgegebener Next.js-Prototyp (enthält node_modules, 1,2 GB)
-/_archiv-nextjs/
-
-# Medienarchive: liegen auf dem Server und auf abendlauf.ch.
-# Git eignet sich schlecht für Binärdateien — jede Änderung würde
-# die Datei vollständig neu speichern und bliebe für immer in der
-# Versionsgeschichte. Wieder einspielen: siehe werkzeuge/
-/content/4_fotos/*/*.jpg
-/content/4_fotos/*/*.jpeg
-/content/**/*.pdf
-
-# Ungespeicherte Panel-Änderungen: Kirby legt Entwürfe unter
-# _changes/ ab, bis jemand im Panel auf Speichern klickt. Das ist
-# Arbeitsstand einer einzelnen Person, kein Inhalt.
-_changes/
-
-# Zwischenergebnisse
-*.tmp
-*.bak

@@ -1,0 +1,20 @@
+title: 'Urner Abendläufe'
+default_lang: de
+
+author:
+  name: 'OK Urner Abendläufe'
+
+metadata:
+  description: 'Die Urner Abendläufe des STV Altdorf — Ausschreibung, Ranglisten und Fotos.'
+
+# Eigene Angaben, die auf jeder Seite gebraucht werden.
+# Im Panel unter Konfiguration / Site bearbeitbar (siehe user/blueprints/config/site.yaml).
+verein:
+  titel: 'Urner Abendläufe'
+  untertitel: 'STV Altdorf'
+  adresse: "OK Urner Abendläufe\nSTV Altdorf\n6460 Altdorf"
+  email: 'praesidium@abendlauf.ch'
+  formular_empfaenger: 'praesidium@abendlauf.ch'
+  facebook: 'https://www.facebook.com/urnerabendlaeufe'
+  instagram: 'https://www.instagram.com/urnerabendlaeufe'
+  fusszeile: '© 2026 OK Urner Abendläufe · STV Altdorf'

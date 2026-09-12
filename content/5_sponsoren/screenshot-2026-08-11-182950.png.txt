@@ -1,9 +1,0 @@
-Template: logo
-
-----
-
-Alt: Schuler Holzbau
-
-----
-
-Uuid: acw0au0mw3gi2grh
