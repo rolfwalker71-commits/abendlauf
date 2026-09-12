@@ -1,0 +1,13 @@
+Template: foto
+
+----
+
+Sort: 172
+
+----
+
+Bildtext: 
+
+----
+
+Alt: 

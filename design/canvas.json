@@ -1,0 +1,38 @@
+{
+  "artboards": [
+    { "file": "EditorialStart.dc.html",      "title": "A · Editorial — Startseite",  "x": 0,    "y": 0,    "w": 1280, "h": 1680 },
+    { "file": "EditorialAlbum.dc.html",      "title": "A · Editorial — Fotoalbum",   "x": 1400, "y": 0,    "w": 1280, "h": 1680 },
+    { "file": "EditorialRangliste.dc.html",  "title": "A · Editorial — Ranglisten",  "x": 2800, "y": 0,    "w": 1280, "h": 1680 },
+
+    { "file": "StartnummerStart.dc.html",     "title": "B · Startnummer — Startseite", "x": 0,    "y": 1820, "w": 1280, "h": 1460 },
+    { "file": "StartnummerAlbum.dc.html",     "title": "B · Startnummer — Fotoalbum",  "x": 1400, "y": 1820, "w": 1280, "h": 1460 },
+    { "file": "StartnummerRangliste.dc.html", "title": "B · Startnummer — Ranglisten", "x": 2800, "y": 1820, "w": 1280, "h": 1460 },
+
+    { "file": "Main.dc.html",                 "title": "C · Abendlicht — Startseite",  "x": 0,    "y": 3420, "w": 1280, "h": 1880 },
+    { "file": "AbendlichtAlbum.dc.html",      "title": "C · Abendlicht — Fotoalbum",   "x": 1400, "y": 3420, "w": 1280, "h": 1880 },
+    { "file": "AbendlichtRangliste.dc.html",  "title": "C · Abendlicht — Ranglisten",  "x": 2800, "y": 3420, "w": 1280, "h": 1880 }
+  ],
+  "annotations": [
+    {
+      "id": "richtung-a",
+      "x": -400, "y": 20, "w": 320,
+      "text": "RICHTUNG A — EDITORIAL\n\nEine Vereinszeitung, keine Sportwebsite. Serifen-Schrift, Papierweiss, dünne Linien, Bilder im Spaltensatz.\n\nDafür: wirkt gewachsen und seriös, altert gut, hebt sich von jeder anderen Laufseite ab.\n\nDagegen: wenig Tempo und Emotion. Wer 'Sport' erwartet, findet hier eher 'Chronik'."
+    },
+    {
+      "id": "richtung-b",
+      "x": -400, "y": 1840, "w": 320,
+      "text": "RICHTUNG B — STARTNUMMER\n\nDie Ästhetik der Startnummer und der Zeitmessung. Schwarz auf Weiss, Signalgelb der Leibchen, dichte Tabellen, Zahlen im Monospace.\n\nDafür: Startzeiten und Ranglisten sind sofort lesbar — das, wofür die meisten die Seite öffnen.\n\nDagegen: nüchtern. Der Familiencharakter des Anlasses kommt kaum vor."
+    },
+    {
+      "id": "richtung-c",
+      "x": -400, "y": 3440, "w": 320,
+      "text": "RICHTUNG C — ABENDLICHT\n\nFotogetrieben und dunkel: Abenddämmerung am Urnersee, warmes Orange, das Cyan aus eurem Logo.\n\nDafür: die Bilder wirken, es sieht nach heute aus, die Kacheln der alten Terminvorschau finden hier ihren Platz.\n\nDagegen: steht und fällt mit guten Fotos. Ohne starke Bilder wird es schnell beliebig."
+    },
+    {
+      "id": "hinweis",
+      "x": -400, "y": 5420, "w": 320,
+      "text": "Alle Inhalte sind echt: Kategorien, Startzeiten, Distanzen und Startgelder aus der Ausschreibung 2026, Ranglisten-Struktur und Dateigrössen von abendlauf.ch, Fotos aus euren Alben.\n\nDie Termine 2027 (18.08. / 25.08. / 01.09.) stammen von der bestehenden Startseite."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

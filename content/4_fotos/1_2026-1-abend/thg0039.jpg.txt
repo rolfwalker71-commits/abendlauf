@@ -1,0 +1,13 @@
+Template: foto
+
+----
+
+Sort: 35
+
+----
+
+Bildtext: 
+
+----
+
+Alt: 

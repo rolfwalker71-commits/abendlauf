@@ -1,0 +1,69 @@
+# System files
+# ------------
+
+Icon
+.DS_Store
+
+# Temporary files
+# ---------------
+
+/media/*
+!/media/index.html
+
+# Lock files
+# ---------------
+
+.lock
+
+# Editors
+# (sensitive workspace files)
+# ---------------------------
+*.sublime-workspace
+/.vscode
+/.idea
+
+# -------------SECURITY-------------
+# NEVER publish these files via Git!
+# -------------SECURITY-------------
+
+# Cache Files
+# ---------------
+
+/site/cache/*
+!/site/cache/index.html
+
+# Accounts
+# ---------------
+
+/site/accounts/*
+!/site/accounts/index.html
+
+# Sessions
+# ---------------
+
+/site/sessions/*
+!/site/sessions/index.html
+
+# License
+# ---------------
+
+/site/config/.license
+
+# ===================================================================
+# Projektspezifisch
+# ===================================================================
+
+# Aufgegebener Next.js-Prototyp (enthält node_modules, 1,2 GB)
+/_archiv-nextjs/
+
+# Medienarchive: liegen auf dem Server und auf abendlauf.ch.
+# Git eignet sich schlecht für Binärdateien — jede Änderung würde
+# die Datei vollständig neu speichern und bliebe für immer in der
+# Versionsgeschichte. Wieder einspielen: siehe werkzeuge/
+/content/4_fotos/*/*.jpg
+/content/4_fotos/*/*.jpeg
+/content/3_ranglisten/*.pdf
+
+# Zwischenergebnisse
+*.tmp
+*.bak

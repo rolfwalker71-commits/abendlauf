@@ -1,0 +1,176 @@
+title: Startseite
+icon: home
+options:
+  changeSlug: false
+  changeStatus: false
+  delete: false
+
+tabs:
+  start:
+    label: Kopfbereich
+    icon: image
+    columns:
+      - width: 2/3
+        sections:
+          kopf:
+            type: fields
+            fields:
+              headline:
+                label: Überschrift
+                type: text
+                required: true
+                default: 33. Urner Abendläufe
+              subline:
+                label: Unterzeile
+                type: text
+                help: Ein Satz, der darunter steht.
+              intro:
+                label: Einleitungstext
+                type: textarea
+                size: medium
+      - width: 1/3
+        sections:
+          bild:
+            type: fields
+            fields:
+              heroBild:
+                label: Hintergrundbild
+                type: files
+                query: page.images
+                uploads: true
+                max: 1
+                layout: cards
+                help: Grosses Bild hinter der Überschrift.
+
+  hinweis:
+    label: Hinweisbanner
+    icon: alert
+    sections:
+      banner:
+        type: fields
+        fields:
+          hinweisAktiv:
+            label: Banner anzeigen
+            type: toggle
+            text:
+              - aus
+              - wird angezeigt
+            default: false
+          hinweisText:
+            label: Text
+            type: textarea
+            size: small
+            buttons: false
+            help: Kurzmeldung zuoberst, z. B. „Ranglisten des 2. Abends sind online".
+            when:
+              hinweisAktiv: true
+          hinweisLink:
+            label: Link (optional)
+            type: url
+            when:
+              hinweisAktiv: true
+
+  aktuell:
+    label: Aktuelles
+    icon: megaphone
+    columns:
+      - width: 1/3
+        sections:
+          steuerung:
+            type: fields
+            fields:
+              aktuellAktiv:
+                label: Bereich anzeigen
+                type: toggle
+                default: true
+                text:
+                  - ausgeblendet
+                  - wird angezeigt
+              aktuellTitel:
+                label: Überschrift
+                type: text
+                default: Aktuell
+              aktuellStand:
+                label: Stand vom
+                type: date
+                display: DD.MM.YYYY
+                help: Erscheint klein neben der Überschrift. Leer lassen, wenn nicht gewünscht.
+      - width: 2/3
+        sections:
+          inhalt:
+            type: fields
+            fields:
+              aktuellText:
+                label: Text
+                type: textarea
+                size: large
+                help: >
+                  Der Bereich, der vor, während und nach den Läufen ausgetauscht wird.
+                  Aufzählungen mit einem Bindestrich am Zeilenanfang, Links als [Text](Adresse).
+
+  termine:
+    label: Laufabende
+    icon: calendar
+    sections:
+      laufabende:
+        type: fields
+        fields:
+          laufabende:
+            label: Termine
+            type: structure
+            help: Die Startseite zeigt automatisch die nächsten drei Termine. Vergangene verschwinden von selbst.
+            sortBy: datum asc
+            columns:
+              datum:
+                width: 1/4
+              titel:
+                width: 1/2
+              status:
+                width: 1/4
+            fields:
+              titel:
+                label: Bezeichnung
+                type: text
+                required: true
+                placeholder: Erster Abend
+              datum:
+                label: Datum und Startzeit
+                type: date
+                time: true
+                required: true
+                display: DD.MM.YYYY
+              ort:
+                label: Ort
+                type: text
+                default: Seerestaurant Seedorf
+              status:
+                label: Status
+                type: select
+                default: findet-statt
+                options:
+                  findet-statt: Findet statt
+                  abgesagt: Abgesagt
+                  verschoben: Verschoben
+              statusHinweis:
+                label: Hinweis zum Status
+                type: text
+                help: Wird bei „abgesagt" oder „verschoben" auf der Kachel gezeigt.
+                when:
+                  status: abgesagt
+              bild:
+                label: Bild
+                type: files
+                query: page.images
+                uploads: true
+                max: 1
+
+  dateien:
+    label: Bilder
+    icon: image
+    sections:
+      bilder:
+        type: files
+        label: Bilder dieser Seite
+        template: bild
+        layout: cards
+        info: "{{ file.dimensions }}"

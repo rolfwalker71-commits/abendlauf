@@ -1,0 +1,42 @@
+title: Ranglisten
+icon: list-bullet
+
+columns:
+  - width: 1/1
+    sections:
+      text:
+        type: fields
+        fields:
+          intro:
+            label: Einleitungstext
+            type: textarea
+            size: small
+
+  - width: 1/1
+    sections:
+      listen:
+        type: files
+        label: Ranglisten und Dokumente
+        template: rangliste
+        layout: table
+        image: false
+        sortBy: jahr desc
+        empty: Noch keine Rangliste hochgeladen
+        info: "{{ file.jahr }} · {{ file.lauf.or('—') }}"
+        text: "{{ file.titel.or(file.filename) }}"
+        help: PDF hochladen, danach Jahr und Lauf setzen. Die Tabelle auf der Website ordnet sich automatisch.
+
+  - width: 1/1
+    sections:
+      kopf:
+        type: fields
+        fields:
+          kopfHintergrund:
+            label: Hintergrundbild des Kopfbereichs
+            type: files
+            query: page.images
+            uploads:
+              template: bild
+            max: 1
+            layout: cards
+            help: Wird stark weichgezeichnet hinter dem Titel angezeigt. Ein Bild zum Thema der Seite.

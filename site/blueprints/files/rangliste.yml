@@ -1,0 +1,38 @@
+title: Datei
+accept:
+  mime: application/pdf, image/jpeg, image/png, text/csv,
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+fields:
+  titel:
+    label: Titel
+    type: text
+    required: true
+    help: So erscheint die Datei auf der Website, z. B. „Gesamtrangliste".
+  art:
+    label: Art
+    type: select
+    default: rangliste
+    required: true
+    options:
+      rangliste: Rangliste
+      ausschreibung: Ausschreibung
+      strecke: Streckenplan
+      sonstiges: Sonstiges
+  jahr:
+    label: Jahr
+    type: number
+    required: true
+    step: 1
+    min: 1995
+    max: 2100
+    width: 1/2
+  lauf:
+    label: Lauf
+    type: select
+    width: 1/2
+    options:
+      "1": 1. Abend
+      "2": 2. Abend
+      "3": 3. Abend
+      gesamt: Gesamtrangliste

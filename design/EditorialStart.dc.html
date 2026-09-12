@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Karla:wght@400;500;700&display=swap">
+  <style>
+    body { margin: 0; background: #F7F4ED; color: #1A2E24;
+           font-family: 'Karla', 'Helvetica Neue', Helvetica, sans-serif; }
+    a { color: #A63A1E; } a:hover { color: #7C2B15; }
+    .serif { font-family: 'Instrument Serif', 'Times New Roman', Times, serif; font-weight: 400; }
+    .rule { border: 0; border-top: 1px solid #D8D2C4; margin: 0; }
+    .eyebrow { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #6E7A70; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; background: #F7F4ED;">
+
+  <!-- Kopfzeile -->
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 64px 16px;">
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <img src="logo.png" alt="Urner Abendläufe" style="width: 46px; height: auto; display: block;">
+      <span class="serif" style="font-size: 22px; letter-spacing: 0.01em;">Urner Abendläufe</span>
+    </div>
+    <div style="display: flex; gap: 26px; font-size: 14px; font-weight: 500;">
+      <span>Ausschreibung</span><span>Strecke</span><span>Ranglisten</span>
+      <span>Fotos</span><span>Sponsoren</span><span>Das OK</span><span>Kontakt</span>
+    </div>
+  </div>
+  <hr class="rule">
+
+  <!-- Titelkopf im Zeitungssatz -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; padding: 48px 64px 40px;">
+    <div style="grid-column: span 7;">
+      <p class="eyebrow" style="margin: 0 0 18px;">Seit 1995 · STV Altdorf · Seedorf am Urnersee</p>
+      <h1 class="serif" style="margin: 0; font-size: 92px; line-height: 0.92; letter-spacing: -0.02em; text-wrap: pretty;">
+        Drei Mittwoch&shy;abende<br><span style="font-style: italic; color: #A63A1E;">am See.</span>
+      </h1>
+      <p style="margin: 26px 0 0; font-size: 19px; line-height: 1.55; max-width: 46ch; color: #33473C;">
+        Ein flacher Rundkurs rund ums Schloss A Pro und über den Weg der Schweiz.
+        Vom Pfüderi an der Hand der Eltern bis zur Volksläuferin auf drei Runden —
+        alle laufen denselben Weg, nur unterschiedlich weit.
+      </p>
+      <div style="display: flex; gap: 14px; margin-top: 34px;">
+        <span style="background: #1A2E24; color: #F7F4ED; padding: 14px 26px; font-size: 15px; font-weight: 700;">Ausschreibung lesen</span>
+        <span style="border: 1px solid #1A2E24; padding: 14px 26px; font-size: 15px; font-weight: 700;">Ranglisten</span>
+      </div>
+    </div>
+    <div style="grid-column: span 5;">
+      <img src="laeufer.jpg" alt="Kinder auf der Strecke" style="width: 100%; height: 430px; object-fit: cover; display: block; filter: saturate(0.88);">
+      <p style="margin: 10px 0 0; font-size: 12px; color: #6E7A70; font-style: italic;">Kategorie F, kleine Runde · Foto: Thomas Hager</p>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Termine als Kalendarium -->
+  <div style="padding: 40px 64px 8px;">
+    <h2 class="serif" style="margin: 0 0 26px; font-size: 34px;">Die Abende 2027</h2>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid #D8D2C4;">
+      <div style="padding: 26px 28px 26px 0; border-right: 1px solid #D8D2C4;">
+        <p class="serif" style="margin: 0; font-size: 56px; line-height: 1;">18<span style="font-size: 26px; color: #6E7A70;">.08.</span></p>
+        <p style="margin: 10px 0 0; font-size: 15px; font-weight: 700;">Erster Abend</p>
+        <p style="margin: 4px 0 0; font-size: 14px; color: #6E7A70;">Mittwoch · Start 17.25 Uhr</p>
+      </div>
+      <div style="padding: 26px 28px; border-right: 1px solid #D8D2C4;">
+        <p class="serif" style="margin: 0; font-size: 56px; line-height: 1;">25<span style="font-size: 26px; color: #6E7A70;">.08.</span></p>
+        <p style="margin: 10px 0 0; font-size: 15px; font-weight: 700;">Zweiter Abend</p>
+        <p style="margin: 4px 0 0; font-size: 14px; color: #6E7A70;">Mittwoch · Start 17.25 Uhr</p>
+      </div>
+      <div style="padding: 26px 0 26px 28px;">
+        <p class="serif" style="margin: 0; font-size: 56px; line-height: 1;">01<span style="font-size: 26px; color: #6E7A70;">.09.</span></p>
+        <p style="margin: 10px 0 0; font-size: 15px; font-weight: 700;">Dritter Abend</p>
+        <p style="margin: 4px 0 0; font-size: 14px; color: #A63A1E; font-weight: 500;">Mit Rangverkündigung, 20 Uhr</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zweispaltiger Infoteil -->
+  <div style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 28px; padding: 44px 64px;">
+    <div style="grid-column: span 4;">
+      <h3 class="serif" style="margin: 0 0 14px; font-size: 26px;">Anmeldung</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #33473C;">
+        Beim Seerestaurant ab 16.30 Uhr, bis 30 Minuten vor dem Start.
+        Keine Online-Anmeldung — man kommt einfach vorbei.
+        Startgeld CHF 6 bis 12 je nach Kategorie.
+      </p>
+    </div>
+    <div style="grid-column: span 4;">
+      <h3 class="serif" style="margin: 0 0 14px; font-size: 26px;">Strecke</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #33473C;">
+        Kleine Runde 1210 m rund ums Schloss A Pro, grosse Runde 2260 m
+        am Weg der Schweiz. Flach, grösstenteils Naturweg.
+        Durchführung bei jeder Witterung.
+      </p>
+    </div>
+    <div style="grid-column: span 4;">
+      <h3 class="serif" style="margin: 0 0 14px; font-size: 26px;">Anreise</h3>
+      <p style="margin: 0; font-size: 15px; line-height: 1.6; color: #33473C;">
+        Parkplätze bei der GIPO (Zone 26) und beim Schulhaus Seedorf.
+        Am See selbst gibt es keine. Am einfachsten mit dem ÖV.
+      </p>
+    </div>
+  </div>
+
+  <hr class="rule">
+
+  <!-- Foto-Essay -->
+  <div style="padding: 44px 64px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px;">
+      <h2 class="serif" style="margin: 0; font-size: 34px;">Aus dem Archiv</h2>
+      <span style="font-size: 14px; font-weight: 700; color: #A63A1E;">Alle Alben →</span>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px;">
+      <div>
+        <img src="familie.jpg" alt="Familien auf der kleinen Runde" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: saturate(0.88);">
+        <p style="margin: 10px 0 0; font-size: 14px; font-weight: 700;">32. Abendläufe, 3. Abend</p>
+        <p style="margin: 2px 0 0; font-size: 13px; color: #6E7A70;">2026 · 148 Bilder</p>
+      </div>
+      <div>
+        <img src="podest.jpg" alt="Rangverkündigung" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: saturate(0.88);">
+        <p style="margin: 10px 0 0; font-size: 14px; font-weight: 700;">Rangverkündigung</p>
+        <p style="margin: 2px 0 0; font-size: 13px; color: #6E7A70;">2026 · 62 Bilder</p>
+      </div>
+      <div>
+        <img src="feld2.jpg" alt="Läuferfeld" style="width: 100%; height: 220px; object-fit: cover; display: block; filter: saturate(0.88);">
+        <p style="margin: 10px 0 0; font-size: 14px; font-weight: 700;">31. Abendläufe, 1. Abend</p>
+        <p style="margin: 2px 0 0; font-size: 13px; color: #6E7A70;">2025 · 173 Bilder</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Patronat -->
+  <div style="background: #1A2E24; color: #F7F4ED; padding: 40px 64px;">
+    <p class="eyebrow" style="margin: 0 0 20px; color: #9DB0A4;">Patronat und Sponsoren</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+      <span class="serif" style="font-size: 24px;">Urner Kantonalbank</span>
+      <span class="serif" style="font-size: 24px;">Imholz Sport Bürglen</span>
+      <span class="serif" style="font-size: 24px; opacity: 0.65;">Gemeinde Seedorf</span>
+      <span class="serif" style="font-size: 24px; opacity: 0.65;">Seerestaurant</span>
+      <span style="font-size: 14px; color: #9DB0A4;">und 37 weitere</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

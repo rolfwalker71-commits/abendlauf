@@ -1,0 +1,156 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Source+Sans+3:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #0C1524; color: #F2EFE9;
+           font-family: 'Source Sans 3', 'Helvetica Neue', Helvetica, sans-serif; }
+    a { color: #F2751F; } a:hover { color: #FF9A4D; }
+    .osw { font-family: 'Oswald', 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: 0.01em; }
+    .lbl { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #8FA3BF; font-weight: 600; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; background: #0C1524;">
+
+  <!-- Transparente Navigation über dem Bild -->
+  <div style="position: relative;">
+    <img src="familie.jpg" alt="Familien auf der Strecke" style="width: 100%; height: 620px; object-fit: cover; display: block;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,21,36,0.85) 0%, rgba(12,21,36,0.25) 38%, rgba(12,21,36,0.97) 100%);"></div>
+
+    <div style="position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 22px 48px;">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="logo.png" alt="" style="width: 40px; height: auto; display: block;">
+        <span class="osw" style="font-size: 20px; font-weight: 600;">Urner Abendläufe</span>
+      </div>
+      <div style="display: flex; gap: 26px; font-size: 14px; font-weight: 600;">
+        <span>Ausschreibung</span><span>Strecke</span><span>Ranglisten</span>
+        <span>Fotos</span><span>Sponsoren</span><span>Das OK</span><span>Kontakt</span>
+      </div>
+    </div>
+
+    <div style="position: absolute; left: 48px; right: 48px; bottom: 46px;">
+      <p class="lbl" style="margin: 0 0 16px; color: #29ABE2;">STV Altdorf · Seerestaurant Seedorf</p>
+      <h1 class="osw" style="margin: 0; font-size: 96px; line-height: 0.9; font-weight: 600; max-width: 16ch;">
+        33. Urner<br>Abendläufe
+      </h1>
+      <p style="margin: 20px 0 0; font-size: 19px; line-height: 1.5; max-width: 50ch; color: #D5DDE9;">
+        Drei Mittwochabende am Urnersee. Kein Anmeldeportal, keine Startgebühr
+        über zwölf Franken — einfach hinkommen und mitlaufen.
+      </p>
+      <div style="display: flex; gap: 12px; margin-top: 28px;">
+        <span style="background: #F2751F; color: #0C1524; padding: 14px 28px; font-size: 15px; font-weight: 700; border-radius: 999px;">Ausschreibung</span>
+        <span style="border: 1px solid rgba(242,239,233,0.35); padding: 14px 28px; font-size: 15px; font-weight: 700; border-radius: 999px;">Ranglisten 2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Termine, gross und bildgestützt -->
+  <div style="padding: 56px 48px 20px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px;">
+      <h2 class="osw" style="margin: 0; font-size: 36px; font-weight: 400;">Die nächsten Laufabende</h2>
+      <span style="font-size: 14px; color: #8FA3BF;">Start ab 17.25 Uhr, Anmeldung ab 16.30 Uhr</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px;">
+      <div style="position: relative; height: 290px; border-radius: 14px; overflow: hidden;">
+        <img src="feld1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,21,36,0.1) 30%, rgba(12,21,36,0.95) 100%);"></div>
+        <span class="osw" style="position: absolute; top: 16px; left: 16px; background: #F2751F; color: #0C1524; padding: 6px 12px; font-size: 17px; font-weight: 600; border-radius: 6px;">Mi 18.08.2027</span>
+        <div style="position: absolute; left: 18px; right: 18px; bottom: 16px;">
+          <p style="margin: 0 0 4px; font-size: 13px; color: #C4D0E0;">Weg der Schweiz · Seedorf</p>
+          <p class="osw" style="margin: 0; font-size: 26px; font-weight: 400;">Erster Abend</p>
+        </div>
+      </div>
+
+      <div style="position: relative; height: 290px; border-radius: 14px; overflow: hidden;">
+        <img src="feld2.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,21,36,0.1) 30%, rgba(12,21,36,0.95) 100%);"></div>
+        <span class="osw" style="position: absolute; top: 16px; left: 16px; background: #F2751F; color: #0C1524; padding: 6px 12px; font-size: 17px; font-weight: 600; border-radius: 6px;">Mi 25.08.2027</span>
+        <div style="position: absolute; left: 18px; right: 18px; bottom: 16px;">
+          <p style="margin: 0 0 4px; font-size: 13px; color: #C4D0E0;">Weg der Schweiz · Seedorf</p>
+          <p class="osw" style="margin: 0; font-size: 26px; font-weight: 400;">Zweiter Abend</p>
+        </div>
+      </div>
+
+      <div style="position: relative; height: 290px; border-radius: 14px; overflow: hidden;">
+        <img src="podest.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,21,36,0.1) 30%, rgba(12,21,36,0.95) 100%);"></div>
+        <span class="osw" style="position: absolute; top: 16px; left: 16px; background: #F2751F; color: #0C1524; padding: 6px 12px; font-size: 17px; font-weight: 600; border-radius: 6px;">Mi 01.09.2027</span>
+        <div style="position: absolute; left: 18px; right: 18px; bottom: 16px;">
+          <p style="margin: 0 0 4px; font-size: 13px; color: #29ABE2; font-weight: 600;">Mit Rangverkündigung, 20 Uhr</p>
+          <p class="osw" style="margin: 0; font-size: 26px; font-weight: 400;">Dritter Abend</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Zahlen zur Strecke, ruhig gesetzt -->
+  <div style="padding: 44px 48px 12px;">
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px;">
+      <div style="background: #131F33; border-radius: 14px; padding: 24px;">
+        <p class="lbl" style="margin: 0 0 10px;">Kleine Runde</p>
+        <p class="osw" style="margin: 0; font-size: 38px; font-weight: 300; line-height: 1;">1210 m</p>
+        <p style="margin: 8px 0 0; font-size: 14px; color: #8FA3BF;">Rund ums Schloss A Pro</p>
+      </div>
+      <div style="background: #131F33; border-radius: 14px; padding: 24px;">
+        <p class="lbl" style="margin: 0 0 10px;">Grosse Runde</p>
+        <p class="osw" style="margin: 0; font-size: 38px; font-weight: 300; line-height: 1;">2260 m</p>
+        <p style="margin: 8px 0 0; font-size: 14px; color: #8FA3BF;">Weg der Schweiz</p>
+      </div>
+      <div style="background: #131F33; border-radius: 14px; padding: 24px;">
+        <p class="lbl" style="margin: 0 0 10px;">Kategorien</p>
+        <p class="osw" style="margin: 0; font-size: 38px; font-weight: 300; line-height: 1;">12</p>
+        <p style="margin: 8px 0 0; font-size: 14px; color: #8FA3BF;">Pfüderi bis Volksläufer</p>
+      </div>
+      <div style="background: #131F33; border-radius: 14px; padding: 24px;">
+        <p class="lbl" style="margin: 0 0 10px;">Startgeld</p>
+        <p class="osw" style="margin: 0; font-size: 38px; font-weight: 300; line-height: 1;">6 – 12</p>
+        <p style="margin: 8px 0 0; font-size: 14px; color: #8FA3BF;">Franken, Anmeldung vor Ort</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fotostreifen -->
+  <div style="padding: 44px 48px 20px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px;">
+      <h2 class="osw" style="margin: 0; font-size: 36px; font-weight: 400;">Aus den Alben</h2>
+      <span style="font-size: 14px; font-weight: 700; color: #F2751F;">Alle Alben →</span>
+    </div>
+    <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 14px; height: 260px;">
+      <div style="position: relative; border-radius: 14px; overflow: hidden;">
+        <img src="laeufer.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,21,36,0) 45%, rgba(12,21,36,0.9) 100%);"></div>
+        <p class="osw" style="position: absolute; left: 18px; bottom: 16px; margin: 0; font-size: 22px;">2026 · 3. Abend</p>
+      </div>
+      <div style="position: relative; border-radius: 14px; overflow: hidden;">
+        <img src="ziel1.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+      <div style="position: relative; border-radius: 14px; overflow: hidden;">
+        <img src="feld3.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Sponsoren -->
+  <div style="padding: 44px 48px 52px;">
+    <p class="lbl" style="margin: 0 0 20px;">Patronat und Sponsoren</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+      <span style="background: #131F33; border-radius: 10px; padding: 16px 26px; font-size: 16px; font-weight: 600;">Urner Kantonalbank</span>
+      <span style="background: #131F33; border-radius: 10px; padding: 16px 26px; font-size: 16px; font-weight: 600;">Imholz Sport Bürglen</span>
+      <span style="background: #131F33; border-radius: 10px; padding: 16px 26px; font-size: 16px; color: #8FA3BF;">Gemeinde Seedorf</span>
+      <span style="background: #131F33; border-radius: 10px; padding: 16px 26px; font-size: 16px; color: #8FA3BF;">Seerestaurant</span>
+      <span style="background: #131F33; border-radius: 10px; padding: 16px 26px; font-size: 16px; color: #8FA3BF;">+ 37 weitere</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

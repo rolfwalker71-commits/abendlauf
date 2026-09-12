@@ -1,0 +1,17 @@
+Template: rangliste
+
+----
+
+Titel: 1. Abend
+
+----
+
+Art: rangliste
+
+----
+
+Jahr: 2021
+
+----
+
+Lauf: 1

@@ -1,0 +1,84 @@
+title: Urner Abendläufe
+
+# Was auf oberster Ebene neu angelegt werden darf.
+options:
+  changeTitle: false
+
+tabs:
+  inhalte:
+    label: Seiten
+    icon: page
+    sections:
+      seiten:
+        type: pages
+        label: Seiten der Website
+        info: "{{ page.template }}"
+        empty: Noch keine Seiten angelegt
+        templates:
+          - default
+          - ausschreibung
+          - ranglisten
+          - fotos
+          - sponsoren
+          - ok
+          - kontakt
+
+  einstellungen:
+    label: Grundeinstellungen
+    icon: settings
+    columns:
+      - width: 1/2
+        sections:
+          verein:
+            type: fields
+            fields:
+              titel:
+                label: Name der Website
+                type: text
+                default: Urner Abendläufe
+              logo:
+                label: Logo
+                type: files
+                query: site.files.template('logo')
+                uploads:
+                  template: logo
+                max: 1
+                layout: cards
+              untertitel:
+                label: Untertitel
+                type: text
+                help: Erscheint neben dem Logo, z. B. „STV Altdorf"
+
+      - width: 1/2
+        sections:
+          kontakt:
+            type: fields
+            fields:
+              adresse:
+                label: Adresse
+                type: textarea
+                size: small
+                buttons: false
+              email:
+                label: E-Mail-Adresse
+                type: email
+              formularEmpfaenger:
+                label: Kontaktformular geht an
+                type: email
+                help: An diese Adresse werden Nachrichten aus dem Formular gesendet.
+              facebook:
+                label: Facebook
+                type: url
+              instagram:
+                label: Instagram
+                type: url
+
+      - width: 1/1
+        sections:
+          fuss:
+            type: fields
+            fields:
+              fusszeile:
+                label: Fusszeile
+                type: text
+                help: Erscheint zuunterst auf jeder Seite.

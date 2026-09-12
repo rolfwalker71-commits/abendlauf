@@ -1,0 +1,17 @@
+Template: rangliste
+
+----
+
+Titel: 2. Abend
+
+----
+
+Art: rangliste
+
+----
+
+Jahr: 2015
+
+----
+
+Lauf: 2

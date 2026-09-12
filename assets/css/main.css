@@ -1,0 +1,1138 @@
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('../fonts/Oswald-300.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/Oswald-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/Oswald-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('../fonts/SourceSans3-400.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('../fonts/SourceSans3-600.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Source Sans 3';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('../fonts/SourceSans3-700.woff2') format('woff2');
+}
+
+/* Ersatzschriften an die Metriken der echten Schriften angleichen,
+   damit beim Umschalten nichts springt. */
+@font-face {
+  font-family: 'Oswald Fallback';
+  src: local('Arial Narrow'), local('Liberation Sans Narrow'), local('Helvetica Neue Condensed');
+  size-adjust: 88%;
+  ascent-override: 105%;
+  descent-override: 25%;
+}
+@font-face {
+  font-family: 'Source Sans Fallback';
+  src: local('Arial'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 97%;
+  ascent-override: 98%;
+  descent-override: 27%;
+}
+
+/* ===================================================================
+   Urner Abendläufe — Farben und Grundwerte
+
+   ALLE Farben der Website stehen in diesem einen Block. Wer das
+   Erscheinungsbild ändern will, ändert hier und nirgends sonst.
+
+   Leitfarbe #00A0E8 ist das Cyan aus dem Vereinslogo.
+   =================================================================== */
+
+:root {
+  color-scheme: light;
+
+  --bg:          #FFFFFF;
+  --surface:     #F2F6FA;
+  --surface-2:   #E7EEF5;
+  --text:        #16222E;
+  --muted:       #5B6B7B;
+  --line:        #DCE4EC;
+
+  --accent:       #00A0E8;
+  --accent-hover: #0086C4;
+  --accent-ink:   #FFFFFF;   /* Text auf der Leitfarbe */
+
+  --warn:        #C2410C;
+
+  --font-display: 'Oswald', 'Oswald Fallback', 'Arial Narrow', sans-serif;
+  --font-body:    'Source Sans 3', 'Source Sans Fallback', system-ui, sans-serif;
+
+  --wrap:   1180px;
+  --gap:    1.25rem;
+  --radius: 12px;
+
+  --shadow: 0 1px 2px rgba(22, 34, 46, .06), 0 8px 24px rgba(22, 34, 46, .07);
+
+  /* Unschärfe der Kopfbilder. Kleiner = Motiv besser erkennbar. */
+  --kopf-unschaerfe: 10px;
+}
+
+/* Dunkelmodus: greift automatisch nach Systemeinstellung,
+   sofern der Besucher nicht ausdrücklich "hell" gewählt hat. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg:        #0C1524;
+    --surface:   #131F33;
+    --surface-2: #1B2A42;
+    --text:      #EAF1F8;
+    --muted:     #94A7C0;
+    --line:      #223350;
+
+    --accent:       #2BB2F0;
+    --accent-hover: #57C5F6;
+    --accent-ink:   #06121F;
+
+    --warn:      #FB923C;
+
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+  }
+}
+
+/* Ausdrückliche Wahl über den Schalter — gewinnt in beide Richtungen. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:        #0C1524;
+  --surface:   #131F33;
+  --surface-2: #1B2A42;
+  --text:      #EAF1F8;
+  --muted:     #94A7C0;
+  --line:      #223350;
+
+  --accent:       #2BB2F0;
+  --accent-hover: #57C5F6;
+  --accent-ink:   #06121F;
+
+  --warn:      #FB923C;
+
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+/* ---------- Grundlagen ---------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg, video { max-width: 100%; height: auto; display: block; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .01em;
+  line-height: 1.05;
+  margin: 0 0 .6em;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.4rem); }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:hover { color: var(--accent-hover); }
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Wer im Betriebssystem reduzierte Bewegung eingestellt hat,
+   bekommt keine Animationen. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-inline: 1.25rem; }
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: .78rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 .8rem;
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ---------- Kopfzeile ---------- */
+
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1rem; padding-block: .7rem;
+}
+
+.brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; color: inherit; }
+.brand__logo { width: 46px; flex: none; }
+.brand__name { font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; line-height: 1; }
+.brand__sub  { display: block; font-family: var(--font-body); font-size: .72rem;
+               text-transform: none; letter-spacing: .04em; color: var(--muted); }
+
+.nav { display: flex; align-items: center; gap: .15rem; }
+.nav a {
+  display: block; padding: .5rem .7rem; border-radius: 8px;
+  font-size: .95rem; font-weight: 600; color: inherit; text-decoration: none;
+}
+.nav a:hover { background: var(--surface); }
+.nav a[aria-current="page"] { color: var(--accent-ink); background: var(--accent); }
+
+.theme-toggle {
+  display: grid; place-items: center;
+  width: 38px; height: 38px; flex: none;
+  border: 1px solid var(--line); border-radius: 9px;
+  background: transparent; color: inherit; cursor: pointer;
+}
+.theme-toggle:hover { background: var(--surface); }
+.theme-toggle svg { width: 19px; height: 19px; }
+:root[data-theme="dark"] .theme-toggle .icon-sun,
+:root:not([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-moon,
+:root:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
+.theme-toggle .icon-moon { display: none; }
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-toggle .icon-sun  { display: block; }
+  :root:not([data-theme="dark"]) .theme-toggle .icon-moon { display: none; }
+}
+
+.nav-toggle { display: none; }
+
+@media (max-width: 950px) {
+  .nav {
+    display: none; position: absolute; inset-inline: 0; top: 100%;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+    padding: .4rem 1.25rem 1rem;
+  }
+  .nav[data-open="true"] { display: flex; }
+  .nav a { padding: .8rem .5rem; border-bottom: 1px solid var(--line); border-radius: 0; }
+  .nav-toggle {
+    display: grid; place-items: center; width: 38px; height: 38px;
+    border: 1px solid var(--line); border-radius: 9px;
+    background: transparent; color: inherit; cursor: pointer;
+  }
+  .nav-toggle svg { width: 20px; height: 20px; }
+  .site-header__inner { position: relative; }
+}
+
+/* ---------- Hinweisbanner ---------- */
+
+.notice {
+  background: var(--accent); color: var(--accent-ink);
+  text-align: center; padding: .7rem 1.25rem; font-weight: 600; font-size: .95rem;
+}
+.notice a { color: inherit; }
+
+/* ---------- Kopfbereich ---------- */
+
+/* Geteilter Aufbau: Text auf ruhigem Grund, Bild randlos daneben.
+   Dadurch ist der Text in beiden Farbschemata sicher lesbar —
+   kein Ratespiel mit dem Kontrast auf dem Foto. */
+.hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+}
+
+.hero__text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 4vw, 3.5rem);
+  padding-left: max(1.25rem, calc((100vw - var(--wrap)) / 2 + 1.25rem));
+  min-height: min(74vh, 620px);
+}
+
+.hero__media { position: relative; overflow: hidden; min-height: 320px; }
+.hero__media img { width: 100%; height: 100%; object-fit: cover; }
+/* Weiche Kante zum Textbereich, damit das Bild nicht abgeschnitten wirkt */
+.hero__media::before {
+  content: ""; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(90deg, var(--surface) 0%, transparent 22%);
+}
+
+.hero__edition {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(4rem, 9vw, 8.5rem); line-height: .8;
+  color: var(--accent); margin: 0 0 .1em; letter-spacing: -.03em;
+}
+.hero__edition sup { font-size: .32em; vertical-align: super; margin-left: .06em; }
+
+.hero h1 {
+  font-size: clamp(1.9rem, 3.6vw, 3rem);
+  margin: 0 0 .5em; text-wrap: balance;
+}
+.hero__lead { font-size: 1.1rem; color: var(--muted); max-width: 38ch; margin: 0; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
+
+/* Ohne Bild: einspaltig */
+.hero--plain { grid-template-columns: 1fr; }
+.hero--plain .hero__text { padding-inline: max(1.25rem, calc((100vw - var(--wrap)) / 2 + 1.25rem)); min-height: auto; }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero__media { order: -1; aspect-ratio: 16 / 10; min-height: 0; }
+  .hero__media::before { background: linear-gradient(180deg, transparent 60%, var(--surface) 100%); }
+  .hero__text { min-height: auto; padding-inline: 1.25rem; }
+}
+
+/* ---------- Countdown ---------- */
+
+.countdown { display: flex; gap: .4rem; margin-top: 1.8rem; flex-wrap: wrap; }
+.countdown__unit {
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px;
+  padding: .6rem .85rem; min-width: 4.1rem; text-align: center;
+}
+.countdown__value {
+  display: block; font-family: var(--font-display); font-weight: 600;
+  font-size: 1.65rem; line-height: 1; font-variant-numeric: tabular-nums;
+}
+.countdown__label {
+  display: block; font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-top: .3rem;
+}
+.countdown__note { font-size: .82rem; color: var(--muted); margin: .7rem 0 0; }
+
+/* ---------- Schaltflächen ---------- */
+
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .85rem 1.5rem; border-radius: 999px;
+  font-family: var(--font-display); font-size: .95rem; text-transform: uppercase;
+  letter-spacing: .03em; text-decoration: none; border: 1px solid transparent;
+  cursor: pointer; transition: background-color .15s, color .15s, border-color .15s;
+}
+.btn--primary { background: var(--accent); color: var(--accent-ink); }
+.btn--primary:hover { background: var(--accent-hover); color: var(--accent-ink); }
+.btn--ghost { border-color: var(--line); color: inherit; }
+.btn--ghost:hover { background: var(--surface); color: inherit; }
+
+/* ---------- Abschnitte ---------- */
+
+.section { padding-block: clamp(2.5rem, 6vw, 4rem); }
+.section--tint { background: var(--surface); }
+.section__head {
+  display: flex; flex-wrap: wrap; align-items: baseline;
+  justify-content: space-between; gap: 1rem; margin-bottom: 1.6rem;
+}
+.section__head h2 { margin: 0; }
+.section__aside { color: var(--muted); font-size: .95rem; }
+
+.grid { display: grid; gap: var(--gap); }
+.grid--3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+/* ---------- Laufabend-Kacheln ---------- */
+
+.event {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+  min-height: 280px; padding: 1.15rem;
+  border-radius: var(--radius); background: var(--surface-2);
+  color: #F4F8FC;   /* auf dem abgedunkelten Bild immer hell */
+}
+.event__media { position: absolute; inset: 0; z-index: -2; }
+.event__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.event:hover .event__media img { transform: scale(1.04); }
+.event::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(8, 16, 28, .15) 25%, rgba(8, 16, 28, .92) 100%);
+}
+/* Ohne Bild bleibt die Kachel im Seitenfarbklima */
+.event--plain { background: linear-gradient(160deg, var(--surface-2), var(--surface)); color: var(--text); }
+.event--plain::after { display: none; }
+
+.event__top { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; }
+.event__date {
+  font-family: var(--font-display); font-size: 1.05rem; line-height: 1;
+  background: var(--accent); color: var(--accent-ink);
+  padding: .45rem .7rem; border-radius: 7px;
+}
+.event__time { display: flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-size: .95rem; }
+.event__time svg { width: 16px; height: 16px; }
+.event__meta { font-size: .88rem; opacity: .85; margin: 0 0 .3rem; }
+.event__title { font-family: var(--font-display); font-size: 1.5rem; text-transform: uppercase; margin: 0; }
+
+.event--abgesagt .event__media img { filter: grayscale(1); }
+.event--abgesagt .event__date { background: var(--muted); color: var(--bg); text-decoration: line-through; }
+.event__status {
+  display: inline-block; margin-top: .6rem; padding: .25rem .55rem;
+  background: var(--warn); color: #fff; border-radius: 5px;
+  font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em;
+}
+
+/* ---------- Kennzahlen ---------- */
+
+.fact { background: var(--surface); border-radius: var(--radius); padding: 1.3rem; }
+.fact__value { font-family: var(--font-display); font-weight: 300; font-size: 2.2rem; line-height: 1; margin: 0; }
+.fact__note { color: var(--muted); font-size: .9rem; margin: .5rem 0 0; }
+
+/* ---------- Ranglisten-Tabelle ---------- */
+
+.results { overflow-x: auto; }
+.results table { width: 100%; border-collapse: collapse; min-width: 560px; }
+.results th, .results td { padding: .85rem .6rem; text-align: left; }
+.results thead th {
+  font-family: var(--font-display); font-size: .72rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--muted); font-weight: 600;
+  border-bottom: 2px solid var(--text);
+}
+.results tbody tr { border-bottom: 1px solid var(--line); }
+.results tbody tr:hover { background: var(--surface); }
+.results__year { font-family: var(--font-display); font-size: 1.25rem; white-space: nowrap; }
+.results__year small { color: var(--muted); font-family: var(--font-body); font-weight: 400; font-size: .8rem; }
+/* Gilt für Kopf- UND Datenzellen — sonst stehen die Überschriften
+   links und die Links darunter zentriert, also nicht auf einer Achse. */
+.results th.is-center,
+.results td.is-center { text-align: center; }
+.results .pdf {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-weight: 600; font-size: .85rem; text-decoration: none;
+}
+.results .pdf svg { width: 15px; height: 15px; }
+.results .is-empty { color: var(--muted); }
+
+/* Aktuellster Jahrgang hervorgehoben */
+.results tbody tr.is-current { background: color-mix(in srgb, var(--accent) 10%, transparent); }
+.results tbody tr.is-current:hover { background: color-mix(in srgb, var(--accent) 16%, transparent); }
+
+.result-highlight {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; background: var(--accent); color: var(--accent-ink);
+  padding: 1.2rem 1.4rem; border-radius: var(--radius); text-decoration: none;
+}
+.result-highlight:hover { background: var(--accent-hover); color: var(--accent-ink); }
+.result-highlight h3 { margin: 0 0 .2rem; font-size: 1.4rem; }
+.result-highlight p { margin: 0; font-size: .9rem; font-weight: 600; }
+
+/* ---------- Fotoalben ---------- */
+
+.album-card { display: block; text-decoration: none; color: inherit; }
+.album-card__img {
+  aspect-ratio: 3 / 2; border-radius: var(--radius); overflow: hidden; background: var(--surface);
+}
+.album-card__img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+.album-card:hover .album-card__img img { transform: scale(1.04); }
+.album-card__title { font-family: var(--font-display); font-size: 1.15rem; text-transform: uppercase; margin: .7rem 0 .1rem; }
+.album-card__meta { color: var(--muted); font-size: .88rem; margin: 0; }
+
+.gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .7rem; }
+.gallery a { display: block; aspect-ratio: 1; border-radius: 9px; overflow: hidden; background: var(--surface); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .35s; }
+.gallery a:hover img { transform: scale(1.05); }
+
+/* ---------- Sponsoren ---------- */
+
+.sponsors { display: flex; flex-wrap: wrap; gap: 1rem; align-items: stretch; }
+.sponsor {
+  display: grid; place-items: center; padding: 1.1rem 1.4rem;
+  background: var(--surface); border-radius: var(--radius);
+  min-width: 150px; text-decoration: none; color: inherit;
+}
+.sponsor:hover { background: var(--surface-2); }
+.sponsor img { max-height: 54px; width: auto; object-fit: contain; }
+
+/* Patronat: deutlich grösser als die übrigen Sponsoren — und beide
+   Platten exakt gleich gross, unabhängig vom Seitenverhältnis des Logos.
+   Die Logos werden innerhalb der Fläche eingepasst, nicht die Fläche
+   ans Logo. */
+.sponsor--haupt,
+.sponsor--co {
+  flex: 1 1 320px;
+  max-width: 400px;
+  min-height: 200px;
+  padding: 2rem 2.4rem;
+}
+.sponsor--haupt img,
+.sponsor--co img {
+  max-height: 124px;
+  max-width: 100%;
+}
+
+@media (max-width: 600px) {
+  .sponsor--haupt,
+  .sponsor--co {
+    flex-basis: 100%;
+    max-width: none;
+    min-height: 160px;
+  }
+  .sponsor--haupt img,
+  .sponsor--co img { max-height: 96px; }
+}
+/* Logos sind meist für hellen Grund gemacht — im Dunkelmodus aufhellen */
+:root[data-theme="dark"] .sponsor img { background: #fff; padding: .4rem; border-radius: 6px; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sponsor img { background: #fff; padding: .4rem; border-radius: 6px; }
+}
+
+/* ---------- Personen ---------- */
+
+.person { text-align: center; }
+.person__img {
+  aspect-ratio: 1; border-radius: 50%; overflow: hidden;
+  background: var(--surface); margin: 0 auto 1rem;
+  max-width: 100%;
+}
+.person__img img { width: 100%; height: 100%; object-fit: cover; }
+.person__name { font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase; margin: 0; }
+.person__role { color: var(--muted); font-size: .9rem; margin: .15rem 0 0; }
+
+/* ---------- Formular ---------- */
+
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-weight: 600; font-size: .92rem; margin-bottom: .3rem; }
+.field input, .field textarea {
+  width: 100%; padding: .75rem .9rem; font: inherit; color: inherit;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 9px;
+}
+.field input:focus, .field textarea:focus { border-color: var(--accent); outline: none; }
+.field textarea { min-height: 170px; resize: vertical; }
+.field--hp { position: absolute; left: -9999px; }   /* Spamfalle */
+
+.alert { padding: .9rem 1.1rem; border-radius: 9px; margin-bottom: 1.2rem; font-weight: 600; }
+.alert--ok   { background: color-mix(in srgb, var(--accent) 15%, transparent); }
+.alert--fail { background: color-mix(in srgb, var(--warn) 18%, transparent); }
+
+/* ---------- Aufzählungen aus dem Backend ---------- */
+
+.prose > * + * { margin-top: 1rem; }
+.prose h2 { margin-top: 2.2rem; }
+.prose h3 { margin-top: 1.8rem; }
+.prose ul, .prose ol { padding-left: 1.4rem; }
+.prose li + li { margin-top: .3rem; }
+
+/* ---------- Fusszeile ---------- */
+
+.site-footer { background: var(--surface); border-top: 1px solid var(--line); margin-top: 3rem; }
+.site-footer__cols { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); padding-block: 2.5rem; }
+.site-footer h3 { font-size: .95rem; margin-bottom: .6rem; }
+.site-footer a { color: inherit; text-decoration: none; }
+.site-footer a:hover { color: var(--accent); }
+.site-footer__base { border-top: 1px solid var(--line); padding-block: 1rem; text-align: center; color: var(--muted); font-size: .85rem; }
+
+/* ---------- Bildbetrachter ---------- */
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 100;
+  display: none; align-items: center; justify-content: center;
+  background: rgba(6, 12, 20, .94); padding: 1rem;
+}
+.lightbox.is-open { display: flex; }
+.lightbox__figure { margin: 0; max-width: min(1400px, 92vw); max-height: 88vh; text-align: center; }
+.lightbox__figure img { max-height: 82vh; width: auto; margin-inline: auto; border-radius: 6px; }
+.lightbox__figure figcaption { color: #D8E2EE; font-size: .9rem; margin-top: .7rem; }
+.lightbox__close, .lightbox__nav {
+  position: absolute; background: transparent; border: 0; color: #fff;
+  cursor: pointer; line-height: 1; padding: .5rem;
+}
+.lightbox__close { top: 1rem; right: 1.2rem; font-size: 2.4rem; }
+.lightbox__nav { top: 50%; transform: translateY(-50%); font-size: 3.4rem; }
+.lightbox__nav--prev { left: .6rem; }
+.lightbox__nav--next { right: .6rem; }
+.lightbox__close:hover, .lightbox__nav:hover { color: var(--accent); }
+.lightbox__count { position: absolute; bottom: 1rem; left: 0; right: 0; text-align: center;
+                   color: #9FB2C6; font-size: .85rem; margin: 0; }
+
+/* ---------- Moderne Feinheiten ---------- */
+
+/* Die Termin-Kacheln überlappen den Kopfbereich — das erzeugt Tiefe
+   und verbindet die beiden Abschnitte. */
+.section--overlap { position: relative; z-index: 2; margin-top: clamp(-5rem, -4vw, -2.5rem); padding-top: 0; }
+@media (max-width: 860px) { .section--overlap { margin-top: 1.5rem; } }
+
+/* Abschnittsnummern geben der Seite Rhythmus. */
+.section__head h2 { display: flex; align-items: baseline; gap: .7rem; }
+.section__num {
+  font-size: .62em; font-weight: 400; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Fotostreifen läuft über den rechten Rand hinaus statt brav zu enden. */
+.bleed-strip {
+  display: grid; grid-auto-flow: column; grid-auto-columns: minmax(290px, 27vw);
+  gap: var(--gap); overflow-x: auto; scroll-snap-type: x proximity;
+  padding-bottom: .6rem;
+  margin-right: calc((var(--wrap) - 100vw) / 2);
+  scrollbar-width: thin;
+}
+.bleed-strip > * { scroll-snap-align: start; }
+@media (max-width: 1220px) { .bleed-strip { margin-right: -1.25rem; padding-right: 1.25rem; } }
+
+/* Abschnitte blenden beim Scrollen sanft ein. Wer reduzierte Bewegung
+   eingestellt hat, sieht sie sofort (siehe Regel weiter oben). */
+.reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* Kennzahlen bekommen eine feine Akzentlinie statt nur Fläche. */
+.fact { border-top: 3px solid var(--accent); border-radius: 0 0 var(--radius) var(--radius); }
+.fact__value { font-size: 2.6rem; }
+
+/* ---------- Mitteilung des OK ---------- */
+
+/* Der Bereich, der vor, während und nach den Läufen ausgetauscht wird.
+   Zweispaltig und mit Akzentkante, damit er sich klar vom Fliesstext
+   abhebt, ohne wie ein Werbebanner zu wirken. */
+.notice-panel {
+  display: grid;
+  grid-template-columns: minmax(180px, 15rem) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  background: var(--surface);
+  border-top: 3px solid var(--accent);
+  border-radius: 0 0 var(--radius) var(--radius);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.notice-panel__head h2 { margin: .4rem 0 0; font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.notice-panel__date { color: var(--muted); font-size: .85rem; margin: .6rem 0 0; }
+
+.notice-panel__body { font-size: 1.05rem; }
+.notice-panel__body > p:first-child { font-size: 1.15rem; }
+
+/* Die Sponsorenaufzählung als Spalten statt als lange Liste */
+.notice-panel__body ul {
+  list-style: none; padding: 0; margin-top: 1.4rem;
+  columns: 2; column-gap: 2rem;
+}
+.notice-panel__body li {
+  break-inside: avoid; padding: .35rem 0 .35rem 1.1rem; position: relative;
+}
+.notice-panel__body li::before {
+  content: ""; position: absolute; left: 0; top: .95em;
+  width: .45rem; height: 2px; background: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .notice-panel { grid-template-columns: 1fr; }
+  .notice-panel__body ul { columns: 1; }
+}
+
+/* Seitenkopf der Unterseiten: gleicher Aufbau wie die Startseite,
+   nur flacher — dort trägt der Inhalt, nicht das Bild. */
+.hero--compact .hero__text { min-height: min(42vh, 380px); }
+.hero--compact .hero__media { min-height: 240px; }
+.hero--compact h1 { font-size: clamp(2rem, 4.4vw, 3.4rem); }
+.hero--compact.hero--plain .hero__text { min-height: auto; padding-block: clamp(2.2rem, 4vw, 3.4rem); }
+
+/* ---------- Unterseiten-Bausteine ---------- */
+
+/* Album-Wechsler unter dem Seitenkopf */
+.chips-bar { background: var(--surface); border-bottom: 1px solid var(--line); padding-block: .9rem; }
+.chips { display: flex; gap: .5rem; flex-wrap: wrap; }
+.chip {
+  display: inline-block; padding: .45rem 1rem; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--bg);
+  font-size: .85rem; font-weight: 600; text-decoration: none; color: inherit;
+}
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+.chip--active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+
+/* Bildzahl auf der Albumkachel */
+.album-card__img { position: relative; }
+.album-card__count {
+  position: absolute; right: .6rem; bottom: .6rem;
+  background: color-mix(in srgb, #060C14 72%, transparent); color: #fff;
+  font-family: var(--font-display); font-size: .82rem;
+  padding: .2rem .55rem; border-radius: 6px;
+}
+
+.year-block + .year-block { margin-top: clamp(2.5rem, 5vw, 4rem); }
+
+.gallery__hint { color: var(--muted); font-size: .85rem; margin-top: 1.2rem; }
+
+/* Dateilisten */
+.file-list { list-style: none; padding: 0; }
+.file-list li {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .6rem;
+  padding: .75rem 0; border-bottom: 1px solid var(--line);
+}
+.file-list__meta { color: var(--muted); font-size: .82rem; }
+
+/* Der Mitteilungsbereich sitzt jetzt direkt unter dem Kopfbereich und
+   überlappt ihn — dafür braucht er einen eigenen Grund, sonst geht er
+   in der Fläche des Kopfbereichs unter. */
+.section--overlap .notice-panel {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--accent);
+  box-shadow: var(--shadow);
+}
+
+/* ---------- Zurückhaltende Links im Mitteilungsbereich ---------- */
+
+/* Die Sponsorennamen sollen wie Text aussehen, nicht wie eine
+   Linksammlung. Erst beim Überfahren zeigt sich, dass es weitergeht. */
+.notice-panel__body a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.notice-panel__body a:hover,
+.notice-panel__body a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: currentColor;
+}
+
+/* Kleiner Chip für Links auf fremde Seiten — erscheint mit dem Hover
+   und bleibt bei Tastaturbedienung sichtbar. */
+.notice-panel__body a[data-extern]::after {
+  content: "Link \2197";
+  display: inline-block;
+  margin-left: .45rem;
+  padding: .05rem .38rem;
+  border-radius: 5px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-display);
+  font-size: .62rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  vertical-align: .1em;
+  opacity: 0;
+  transform: translateX(-3px);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.notice-panel__body a[data-extern]:hover::after,
+.notice-panel__body a[data-extern]:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* Auf Touchgeräten gibt es kein Hover — dort steht der Chip dauerhaft,
+   aber dezent. */
+@media (hover: none) {
+  .notice-panel__body a[data-extern]::after {
+    opacity: .55;
+    transform: none;
+  }
+}
+
+/* ---------- Logo-Gruppe ---------- */
+
+.runlogo {
+  display: block;
+  width: clamp(170px, 21vw, 250px);
+  margin-bottom: 1.3rem;
+  color: var(--accent);
+  animation: runlogo-herein 850ms cubic-bezier(.22, .8, .27, 1) both;
+}
+.runlogo svg { width: 100%; height: auto; display: block; }
+
+@keyframes runlogo-herein {
+  from { transform: translateX(-130%); opacity: 0; }
+  55%  { opacity: 1; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .runlogo { animation: none; }
+}
+
+/* Logo in der Kopfzeile: fest in der Leitfarbe, damit es sich in
+   beiden Farbschemata gegen den Hintergrund hält. */
+.brand__logo { width: 46px; flex: none; color: var(--accent); }
+.brand__logo svg { width: 100%; height: auto; display: block; }
+
+/* ---------- Zurückhaltende Links im Mitteilungsbereich ---------- */
+
+/* Die Sponsorennamen sollen wie Text aussehen, nicht wie eine
+   Linksammlung. Erst beim Überfahren zeigt sich, dass es weitergeht. */
+.notice-panel__body a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.notice-panel__body a:hover,
+.notice-panel__body a:focus-visible {
+  color: var(--accent);
+  border-bottom-color: currentColor;
+}
+
+/* Kleiner Chip für Links auf fremde Seiten — erscheint mit dem Hover
+   und bleibt bei Tastaturbedienung sichtbar. */
+.notice-panel__body a[data-extern]::after {
+  content: "Link \2197";
+  display: inline-block;
+  margin-left: .45rem;
+  padding: .05rem .38rem;
+  border-radius: 5px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-family: var(--font-display);
+  font-size: .62rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  vertical-align: .1em;
+  opacity: 0;
+  transform: translateX(-3px);
+  transition: opacity .15s ease, transform .15s ease;
+}
+.notice-panel__body a[data-extern]:hover::after,
+.notice-panel__body a[data-extern]:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* Auf Touchgeräten gibt es kein Hover — dort steht der Chip dauerhaft,
+   aber dezent. */
+@media (hover: none) {
+  .notice-panel__body a[data-extern]::after {
+    opacity: .55;
+    transform: none;
+  }
+}
+
+/* ---------- Laufende Logo-Gruppe ---------- */
+
+/* Seitenverhältnis des Originallogos: 240 × 204 */
+.runlogo {
+  position: relative;
+  display: block;
+  width: clamp(180px, 22vw, 260px);
+  aspect-ratio: 240 / 204;
+  margin-bottom: 1.2rem;
+}
+
+.runlogo__fig { position: absolute; display: block; }
+.runlogo__fig img { width: 100%; height: auto; display: block; }
+
+/* Zwei getrennte Bewegungen: die Hülle läuft waagrecht herein,
+   das Bild darin hüpft im Laufrhythmus. So überlagern sich die
+   Transformationen, ohne sich gegenseitig zu überschreiben. */
+.runlogo__fig {
+  animation: runlogo-herein 900ms cubic-bezier(.22, .8, .27, 1) both;
+}
+.runlogo__fig img {
+  transform-origin: 50% 100%;
+  animation: runlogo-huepfen 300ms ease-in-out 6 alternate both;
+}
+
+/* Die Gruppe kommt versetzt an — der Grosse voraus, die Kinder folgen. */
+.runlogo__fig--1 { animation-delay:   0ms; }
+.runlogo__fig--2 { animation-delay: 180ms; }
+.runlogo__fig--3 { animation-delay: 120ms; }
+.runlogo__fig--4 { animation-delay:  60ms; }
+
+.runlogo__fig--1 img { animation-delay:   0ms; animation-duration: 300ms; }
+.runlogo__fig--2 img { animation-delay:  90ms; animation-duration: 250ms; }
+.runlogo__fig--3 img { animation-delay:  45ms; animation-duration: 265ms; }
+.runlogo__fig--4 img { animation-delay: 135ms; animation-duration: 290ms; }
+
+@keyframes runlogo-herein {
+  from { transform: translateX(-190%); opacity: 0; }
+  60%  { opacity: 1; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes runlogo-huepfen {
+  from { transform: translateY(0)      scaleY(1);     }
+  to   { transform: translateY(-7.5%)  scaleY(1.018); }
+}
+
+/* Wer reduzierte Bewegung eingestellt hat, sieht sofort das fertige Logo. */
+@media (prefers-reduced-motion: reduce) {
+  .runlogo__fig,
+  .runlogo__fig img { animation: none; opacity: 1; transform: none; }
+}
+
+/* ---------- Weichgezeichneter Kopfhintergrund ---------- */
+
+/* Ein Foto zum Thema der Seite, stark unscharf und aufgehellt bzw.
+   abgedunkelt. Es soll Atmosphäre geben, nicht um Aufmerksamkeit
+   konkurrieren — der Text muss ohne Nachdenken lesbar bleiben. */
+.hero--backdrop { position: relative; isolation: isolate; overflow: hidden; }
+
+.hero__backdrop { position: absolute; inset: 0; z-index: -2; }
+.hero__backdrop img {
+  width: 100%; height: 100%; object-fit: cover;
+  /* Etwas grösser skaliert, damit die Unschärfe keine weichen
+     Ränder am Bildrand hinterlässt — der Faktor folgt der Stärke. */
+  transform: scale(1.05);
+  filter: blur(var(--kopf-unschaerfe)) saturate(1.05);
+}
+
+/* Schleier in der Seitenfarbe — deckt genug, dass der Text sicher
+   trägt, und funktioniert in hell wie dunkel gleich. */
+.hero--backdrop::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(100deg,
+      color-mix(in srgb, var(--surface) 90%, transparent) 0%,
+      color-mix(in srgb, var(--surface) 76%, transparent) 45%,
+      color-mix(in srgb, var(--surface) 54%, transparent) 100%);
+}
+
+/* Mit Hintergrundbild darf der Kopf etwas mehr Luft haben. */
+.hero--backdrop .hero__text { padding-block: clamp(2.8rem, 5vw, 4.2rem); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__backdrop img { transform: scale(1.12); }
+}
+
+/* ===================================================================
+   Moderne Effekte
+
+   Alles hier ist Zusatz, nie Voraussetzung: Wo ein Browser etwas
+   nicht kennt, sieht die Seite schlicht ruhiger aus. Und wer im
+   Betriebssystem reduzierte Bewegung eingestellt hat, bekommt
+   nichts davon (Regel am Ende).
+   =================================================================== */
+
+/* ---------- Übergang zwischen Seiten ---------- */
+
+/* Blendet beim Navigieren sanft über statt hart umzuschalten.
+   Browser ohne Unterstützung navigieren wie immer. */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root) { animation-duration: 180ms; }
+::view-transition-new(root) { animation-duration: 220ms; }
+
+/* Kopfzeile und Logo behalten ihre Identität über den Seitenwechsel */
+.site-header { view-transition-name: kopfzeile; }
+.brand__logo  { view-transition-name: logo; }
+
+/* ---------- Lesefortschritt ---------- */
+
+.progress {
+  position: fixed; inset-inline: 0; top: 0; z-index: 60;
+  height: 3px; background: var(--accent);
+  transform: scaleX(0); transform-origin: 0 50%;
+  animation: fortschritt linear;
+  animation-timeline: scroll(root block);
+}
+@keyframes fortschritt { to { transform: scaleX(1); } }
+
+/* ---------- Sanfte Tiefe beim Überfahren ---------- */
+
+.album-card, .event, .fact, .sponsor, .chip {
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease, border-color .25s ease;
+}
+.album-card:hover, .event:hover { transform: translateY(-5px); }
+.album-card:hover .album-card__img { box-shadow: var(--shadow); }
+.event:hover  { box-shadow: var(--shadow); }
+.fact:hover   { transform: translateY(-3px); box-shadow: var(--shadow); }
+.sponsor:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+
+/* ---------- Bewegung im Kopfbild beim Scrollen ---------- */
+
+/* Das weichgezeichnete Kopfbild wandert langsamer als die Seite.
+   Nur dort, wo scrollgesteuerte Animationen unterstützt werden. */
+@supports (animation-timeline: view()) {
+  .hero__backdrop img {
+    animation: kopf-parallax linear;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes kopf-parallax {
+    from { transform: scale(1.09) translateY(-3.5%); }
+    to   { transform: scale(1.09) translateY(3.5%); }
+  }
+
+  /* Grosses Kopfbild der Startseite ebenso, aber dezenter */
+  .hero__media img {
+    animation: hero-parallax linear;
+    animation-timeline: view();
+    animation-range: entry 0% exit 100%;
+  }
+  @keyframes hero-parallax {
+    from { transform: scale(1.06) translateY(-2%); }
+    to   { transform: scale(1.06) translateY(2%); }
+  }
+}
+
+/* ---------- Überschriften mit Akzentlinie ---------- */
+
+.section__head h2 { position: relative; }
+.section__head h2::after {
+  content: ""; position: absolute; left: 0; bottom: -.45rem;
+  height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--accent), transparent);
+  transform-origin: 0 50%;
+}
+
+/* Die Linie zeichnet sich beim Hereinscrollen. Wo das nicht
+   unterstützt wird, steht sie einfach da — kein Verlust. */
+@supports (animation-timeline: view()) {
+  .section__head h2::after {
+    transform: scaleX(0);
+    animation: linie-ziehen linear both;
+    animation-timeline: view();
+    animation-range: entry 10% entry 60%;
+  }
+  @keyframes linie-ziehen { to { transform: scaleX(1); } }
+}
+
+/* ---------- Klebende Jahreszahl in langen Listen ---------- */
+
+.year-block .section__head {
+  position: sticky; top: 4.2rem; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(8px);
+  padding-block: .6rem; margin-bottom: 1rem;
+}
+
+/* ---------- Bildbetrachter moderner ---------- */
+
+.lightbox { backdrop-filter: blur(14px); }
+.lightbox.is-open .lightbox__figure {
+  animation: bild-auf 260ms cubic-bezier(.2,.8,.3,1) both;
+}
+@keyframes bild-auf {
+  from { opacity: 0; transform: scale(.965); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- Sponsorenband in Bewegung ---------- */
+
+/* Auf der Sponsorenseite laufen die vielen kleinen Logos als ruhiges
+   Band durch — das ist lebendiger als ein statisches Raster und
+   passt zum Thema. Beim Überfahren hält es an. */
+.marquee { overflow: hidden; position: relative; mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.marquee__track { display: flex; gap: 1rem; width: max-content; animation: band 60s linear infinite; }
+.marquee:hover .marquee__track,
+.marquee:focus-within .marquee__track { animation-play-state: paused; }
+@keyframes band { to { transform: translateX(-50%); } }
+
+/* ---------- Reduzierte Bewegung: alles aus ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .progress { display: none; }
+  .album-card:hover, .event:hover, .fact:hover, .sponsor:hover { transform: none; }
+  .hero__backdrop img, .hero__media img { animation: none; }
+  .section__head h2::after { transform: scaleX(1); animation: none; }
+  .marquee__track { animation: none; }
+  .lightbox.is-open .lightbox__figure { animation: none; }
+  @view-transition { navigation: none; }
+}
+
+/* ---------- Ranglisten auf schmalen Bildschirmen ---------- */
+
+/* Statt seitwärts zu scrollen wird aus jeder Tabellenzeile eine Karte:
+   die Zeilenüberschrift oben, darunter die Werte mit ihrer
+   Spaltenbeschriftung. Gilt für alle Tabellen mit der Klasse .results —
+   Ranglisten, Archiv, Kategorien und Organisatorisches. */
+@media (max-width: 700px) {
+  .results { overflow-x: visible; }
+  .results table { min-width: 0; display: block; }
+  .results thead { display: none; }
+  .results tbody { display: block; }
+
+  .results tbody tr {
+    display: block;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: .9rem 1rem;
+    margin-bottom: .8rem;
+  }
+  .results tbody tr.is-current {
+    border-color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 9%, var(--surface));
+  }
+
+  .results tbody th,
+  .results tbody td {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 1rem; padding: .45rem 0; text-align: left;
+  }
+
+  .results tbody th[scope="row"] {
+    border-bottom: 1px solid var(--line);
+    margin-bottom: .35rem; padding-bottom: .6rem;
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+  }
+  .results__rowhead { color: var(--text); }
+
+  /* Die Spaltenüberschrift wandert vor den Wert */
+  .results tbody td[data-label]::before {
+    content: attr(data-label);
+    font-family: var(--font-display);
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .results td.is-center { text-align: right; }
+
+  /* Zeilen ohne Datei nehmen keinen Platz weg */
+  .results tbody td:has(.is-empty) { display: none; }
+}
+
+/* Das OK: grössere Porträts, aber nie mehr als vier je Reihe. */
+.grid--personen {
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  max-width: 1000px; margin-inline: auto;
+}
+@media (min-width: 1000px) {
+  .grid--personen { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

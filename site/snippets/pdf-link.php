@@ -1,0 +1,16 @@
+<?php
+/**
+ * Link auf eine Rangliste. Erwartet: $datei (File) oder null.
+ */
+if (!$datei): ?>
+  <span class="is-empty">—</span>
+<?php else: ?>
+  <a class="pdf" href="<?= $datei->url() ?>" download>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 3v12" stroke-linecap="round"/>
+      <path d="m7 10.5 5 5 5-5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M4 20h16" stroke-linecap="round"/>
+    </svg>
+    PDF
+  </a>
+<?php endif ?>

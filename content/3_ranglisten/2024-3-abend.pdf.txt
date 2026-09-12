@@ -1,0 +1,17 @@
+Template: rangliste
+
+----
+
+Titel: 3. Abend
+
+----
+
+Art: rangliste
+
+----
+
+Jahr: 2024
+
+----
+
+Lauf: 3

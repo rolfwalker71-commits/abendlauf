@@ -1,0 +1,17 @@
+Template: rangliste
+
+----
+
+Titel: Gesamtrangliste
+
+----
+
+Art: rangliste
+
+----
+
+Jahr: 2015
+
+----
+
+Lauf: gesamt

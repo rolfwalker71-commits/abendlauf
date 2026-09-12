@@ -1,0 +1,23 @@
+Title: Kontakt
+
+----
+
+Intro: Fragen zum Anlass? Wir melden uns.
+
+----
+
+Text: 
+
+----
+
+Formularaktiv: true
+
+----
+
+Dankettext: Danke für deine Nachricht — wir melden uns.
+
+----
+
+Kopfhintergrund:
+
+- kopfbild.jpg

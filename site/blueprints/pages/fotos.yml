@@ -1,0 +1,28 @@
+title: Fotos
+icon: image
+
+columns:
+  - width: 1/1
+    sections:
+      text:
+        type: fields
+        fields:
+          intro:
+            label: Einleitungstext
+            type: textarea
+            size: small
+
+  - width: 1/1
+    sections:
+      alben:
+        type: pages
+        label: Fotoalben
+        template: album
+        create: album
+        layout: cards
+        sortBy: jahr desc
+        image:
+          query: page.cover.toFile.or(page.images.sortBy('sort', 'asc').first())
+          ratio: 3/2
+        info: "{{ page.jahr }} · {{ page.images.count }} Bilder"
+        empty: Noch kein Album angelegt

@@ -1,0 +1,139 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FFFFFF; color: #101010;
+           font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, sans-serif; }
+    a { color: #101010; } a:hover { color: #5A5A5A; }
+    .anton { font-family: 'Anton', 'Arial Narrow', Impact, sans-serif; font-weight: 400;
+             text-transform: uppercase; letter-spacing: -0.01em; }
+    .mono { font-family: 'IBM Plex Mono', 'Courier New', monospace; font-variant-numeric: tabular-nums; }
+    .lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: #6B6B6B; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; background: #FFFFFF;">
+
+  <div style="background: #101010; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <span class="anton" style="font-size: 24px;">Urner Abendläufe</span>
+      <span class="mono" style="font-size: 12px; color: #D9F224;">33 · 2027</span>
+    </div>
+    <div style="display: flex; gap: 24px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+      <span>Ausschreibung</span><span>Strecke</span><span style="color: #D9F224;">Ranglisten</span>
+      <span>Fotos</span><span>Sponsoren</span><span>OK</span><span>Kontakt</span>
+    </div>
+  </div>
+
+  <!-- Kopf mit Suche: hier ist die Rangliste der Star -->
+  <div style="padding: 36px 40px 26px; border-bottom: 3px solid #101010;">
+    <h1 class="anton" style="margin: 0 0 20px; font-size: 64px; line-height: 0.9;">Ranglisten</h1>
+    <div style="display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: stretch;">
+      <div style="border: 3px solid #101010; padding: 14px 18px; display: flex; align-items: center; gap: 12px;">
+        <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; flex-shrink: 0;" fill="none" stroke="#6B6B6B" stroke-width="2">
+          <circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5 21 21" stroke-linecap="round"></path>
+        </svg>
+        <span style="font-size: 16px; color: #6B6B6B;">Name, Wohnort oder Startnummer suchen …</span>
+      </div>
+      <span style="background: #D9F224; padding: 14px 30px; font-size: 15px; font-weight: 700; display: flex; align-items: center;">Suchen</span>
+    </div>
+    <p class="mono" style="margin: 12px 0 0; font-size: 12px; color: #6B6B6B;">Durchsucht alle 33 Jahrgänge · 41 Listen</p>
+  </div>
+
+  <!-- Aktueller Jahrgang als Matrix -->
+  <div style="padding: 34px 40px 10px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 16px;">
+      <h2 class="anton" style="margin: 0; font-size: 40px;">2026 — 32. Abendläufe</h2>
+      <span class="lbl">Letzte Aktualisierung 03.09.2026</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; background: #101010; padding: 2px;">
+      <div style="background: #D9F224; padding: 22px 20px;">
+        <p class="lbl" style="margin: 0 0 10px; color: #101010;">Gesamt</p>
+        <p class="anton" style="margin: 0 0 14px; font-size: 30px; line-height: 1;">Gesamt&shy;rangliste</p>
+        <p class="mono" style="margin: 0; font-size: 12px;">PDF · 174 KB</p>
+      </div>
+      <div style="background: #FFFFFF; padding: 22px 20px;">
+        <p class="lbl" style="margin: 0 0 10px;">Mi 19.08.</p>
+        <p class="anton" style="margin: 0 0 14px; font-size: 30px; line-height: 1;">1. Abend</p>
+        <p class="mono" style="margin: 0; font-size: 12px; color: #6B6B6B;">PDF · 156 KB</p>
+      </div>
+      <div style="background: #FFFFFF; padding: 22px 20px;">
+        <p class="lbl" style="margin: 0 0 10px;">Mi 26.08.</p>
+        <p class="anton" style="margin: 0 0 14px; font-size: 30px; line-height: 1;">2. Abend</p>
+        <p class="mono" style="margin: 0; font-size: 12px; color: #6B6B6B;">PDF · 170 KB</p>
+      </div>
+      <div style="background: #FFFFFF; padding: 22px 20px;">
+        <p class="lbl" style="margin: 0 0 10px;">Mi 02.09.</p>
+        <p class="anton" style="margin: 0 0 14px; font-size: 30px; line-height: 1;">3. Abend</p>
+        <p class="mono" style="margin: 0; font-size: 12px; color: #6B6B6B;">PDF · 174 KB</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Archiv als dichte Matrix: ein Blick, alle Jahre -->
+  <div style="padding: 34px 40px 46px;">
+    <h2 class="anton" style="margin: 0 0 16px; font-size: 34px;">Archiv</h2>
+
+    <div style="display: grid; grid-template-columns: 150px repeat(4, minmax(0, 1fr));">
+      <div style="display: contents;">
+        <span class="lbl" style="padding: 10px 0; border-bottom: 2px solid #101010;">Jahrgang</span>
+        <span class="lbl" style="padding: 10px 0; border-bottom: 2px solid #101010; text-align: center;">1. Abend</span>
+        <span class="lbl" style="padding: 10px 0; border-bottom: 2px solid #101010; text-align: center;">2. Abend</span>
+        <span class="lbl" style="padding: 10px 0; border-bottom: 2px solid #101010; text-align: center;">3. Abend</span>
+        <span class="lbl" style="padding: 10px 0; border-bottom: 2px solid #101010; text-align: center;">Gesamt</span>
+      </div>
+
+      <div style="display: contents;">
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; font-size: 16px; font-weight: 600;">2025 <span style="color: #6B6B6B; font-weight: 400;">· 31.</span></span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px; font-weight: 600;">PDF</span>
+      </div>
+      <div style="display: contents;">
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; font-size: 16px; font-weight: 600;">2024 <span style="color: #6B6B6B; font-weight: 400;">· 30.</span></span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px; font-weight: 600;">PDF</span>
+      </div>
+      <div style="display: contents;">
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; font-size: 16px; font-weight: 600;">2023 <span style="color: #6B6B6B; font-weight: 400;">· 29.</span></span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px; font-weight: 600;">PDF</span>
+      </div>
+      <div style="display: contents;">
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; font-size: 16px; font-weight: 600;">2022 <span style="color: #6B6B6B; font-weight: 400;">· 28.</span></span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px; font-weight: 600;">PDF</span>
+      </div>
+      <div style="display: contents;">
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; font-size: 16px; font-weight: 600;">2021 <span style="color: #6B6B6B; font-weight: 400;">· 27.</span></span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px;">PDF</span>
+        <span class="mono" style="padding: 14px 0; border-bottom: 1px solid #E4E4E4; text-align: center; font-size: 13px; font-weight: 600;">PDF</span>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 24px;">
+      <span style="border: 3px solid #101010; padding: 12px 28px; font-size: 14px; font-weight: 700;">Jahre bis 1995 anzeigen</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

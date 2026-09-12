@@ -1,0 +1,17 @@
+Template: rangliste
+
+----
+
+Titel: Gesamtrangliste
+
+----
+
+Art: rangliste
+
+----
+
+Jahr: 2012
+
+----
+
+Lauf: gesamt

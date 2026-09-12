@@ -1,0 +1,76 @@
+title: Das OK
+icon: users
+
+columns:
+  - width: 1/1
+    sections:
+      text:
+        type: fields
+        fields:
+          intro:
+            label: Einleitungstext
+            type: textarea
+            size: small
+
+  - width: 1/1
+    sections:
+      liste:
+        type: fields
+        fields:
+          mitglieder:
+            label: OK-Mitglieder
+            type: structure
+            help: Reihenfolge durch Verschieben ändern — Präsident zuoberst.
+            columns:
+              name:
+                width: 1/3
+              funktion:
+                width: 1/3
+              portrait:
+                width: 1/3
+            fields:
+              name:
+                label: Name
+                type: text
+                required: true
+              funktion:
+                label: Funktion
+                type: text
+                required: true
+                placeholder: Präsident
+              portrait:
+                label: Portrait
+                type: files
+                query: page.images
+                max: 1
+              email:
+                label: E-Mail
+                type: email
+              telefon:
+                label: Telefon
+                type: tel
+
+  - width: 1/1
+    sections:
+      portraits:
+        type: files
+        label: Portraits
+        template: bild
+        layout: cards
+        size: small
+        empty: Portraits hierher ziehen
+
+  - width: 1/1
+    sections:
+      kopf:
+        type: fields
+        fields:
+          kopfHintergrund:
+            label: Hintergrundbild des Kopfbereichs
+            type: files
+            query: page.images
+            uploads:
+              template: bild
+            max: 1
+            layout: cards
+            help: Wird stark weichgezeichnet hinter dem Titel angezeigt. Ein Bild zum Thema der Seite.

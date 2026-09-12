@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600&family=Source+Sans+3:wght@400;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #0C1524; color: #F2EFE9;
+           font-family: 'Source Sans 3', 'Helvetica Neue', Helvetica, sans-serif; }
+    a { color: #F2751F; } a:hover { color: #FF9A4D; }
+    .osw { font-family: 'Oswald', 'Arial Narrow', sans-serif; text-transform: uppercase; letter-spacing: 0.01em; }
+    .lbl { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: #8FA3BF; font-weight: 600; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; background: #0C1524;">
+
+  <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 48px; border-bottom: 1px solid #1C2A42;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+      <img src="logo.png" alt="" style="width: 40px; height: auto; display: block;">
+      <span class="osw" style="font-size: 20px; font-weight: 600;">Urner Abendläufe</span>
+    </div>
+    <div style="display: flex; gap: 26px; font-size: 14px; font-weight: 600;">
+      <span>Ausschreibung</span><span>Strecke</span>
+      <span style="color: #F2751F;">Ranglisten</span>
+      <span>Fotos</span><span>Sponsoren</span><span>Das OK</span><span>Kontakt</span>
+    </div>
+  </div>
+
+  <!-- Kopf -->
+  <div style="padding: 48px 48px 34px;">
+    <p class="lbl" style="margin: 0 0 14px; color: #29ABE2;">Resultate seit 1995</p>
+    <h1 class="osw" style="margin: 0; font-size: 62px; line-height: 0.95; font-weight: 600;">Ranglisten</h1>
+    <p style="margin: 16px 0 0; font-size: 17px; line-height: 1.55; max-width: 56ch; color: #C4D0E0;">
+      Jeden Abend wird eine Rangliste erstellt und noch am selben Abend hier
+      aufgeschaltet. Wer an mindestens zwei Läufen teilgenommen hat, steht
+      zusätzlich in der Gesamtrangliste.
+    </p>
+  </div>
+
+  <!-- Aktueller Jahrgang, hervorgehoben -->
+  <div style="padding: 0 48px 12px;">
+    <div style="background: #131F33; border-radius: 18px; padding: 30px 32px;">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 22px;">
+        <h2 class="osw" style="margin: 0; font-size: 32px; font-weight: 400;">2026 · 32. Abendläufe</h2>
+        <span style="font-size: 13px; color: #8FA3BF;">Aktualisiert 03.09.2026</span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;">
+        <div style="grid-column: span 2; display: flex; align-items: center; justify-content: space-between; gap: 20px; background: #F2751F; color: #0C1524; border-radius: 12px; padding: 20px 24px;">
+          <div>
+            <p class="osw" style="margin: 0 0 4px; font-size: 24px; font-weight: 600;">Gesamtrangliste 2026</p>
+            <p style="margin: 0; font-size: 14px; font-weight: 600;">Alle Kategorien über drei Abende · PDF, 174 KB</p>
+          </div>
+          <svg viewBox="0 0 24 24" style="width: 26px; height: 26px; flex-shrink: 0;" fill="none" stroke="#0C1524" stroke-width="2">
+            <path d="M12 3v13" stroke-linecap="round"></path>
+            <path d="m6.5 11.5 5.5 5.5 5.5-5.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M4 20h16" stroke-linecap="round"></path>
+          </svg>
+        </div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #0C1524; border-radius: 12px; padding: 18px 22px;">
+          <div>
+            <p class="osw" style="margin: 0 0 3px; font-size: 19px;">1. Abend</p>
+            <p style="margin: 0; font-size: 13px; color: #8FA3BF;">Mi 19.08.2026 · 156 KB</p>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #F2751F;">PDF</span>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #0C1524; border-radius: 12px; padding: 18px 22px;">
+          <div>
+            <p class="osw" style="margin: 0 0 3px; font-size: 19px;">2. Abend</p>
+            <p style="margin: 0; font-size: 13px; color: #8FA3BF;">Mi 26.08.2026 · 170 KB</p>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #F2751F;">PDF</span>
+        </div>
+        <div style="grid-column: span 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; background: #0C1524; border-radius: 12px; padding: 18px 22px;">
+          <div>
+            <p class="osw" style="margin: 0 0 3px; font-size: 19px;">3. Abend</p>
+            <p style="margin: 0; font-size: 13px; color: #8FA3BF;">Mi 02.09.2026 · 174 KB</p>
+          </div>
+          <span style="font-size: 13px; font-weight: 700; color: #F2751F;">PDF</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Frühere Jahre als ruhige Liste -->
+  <div style="padding: 36px 48px 52px;">
+    <h2 class="osw" style="margin: 0 0 18px; font-size: 28px; font-weight: 400;">Frühere Jahre</h2>
+
+    <div style="display: grid; grid-template-columns: 1fr;">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; border-top: 1px solid #1C2A42;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span class="osw" style="font-size: 26px; font-weight: 600;">2025</span>
+          <span style="font-size: 14px; color: #8FA3BF;">31. Urner Abendläufe · 4 Listen</span>
+        </div>
+        <span style="font-size: 20px; color: #8FA3BF;">+</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; border-top: 1px solid #1C2A42;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span class="osw" style="font-size: 26px; font-weight: 600;">2024</span>
+          <span style="font-size: 14px; color: #8FA3BF;">30. Urner Abendläufe · 4 Listen</span>
+        </div>
+        <span style="font-size: 20px; color: #8FA3BF;">+</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; border-top: 1px solid #1C2A42;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span class="osw" style="font-size: 26px; font-weight: 600;">2023</span>
+          <span style="font-size: 14px; color: #8FA3BF;">29. Urner Abendläufe · 4 Listen</span>
+        </div>
+        <span style="font-size: 20px; color: #8FA3BF;">+</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 4px; border-top: 1px solid #1C2A42; border-bottom: 1px solid #1C2A42;">
+        <div style="display: flex; align-items: baseline; gap: 16px;">
+          <span class="osw" style="font-size: 26px; font-weight: 600;">2022</span>
+          <span style="font-size: 14px; color: #8FA3BF;">28. Urner Abendläufe · 4 Listen</span>
+        </div>
+        <span style="font-size: 20px; color: #8FA3BF;">+</span>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center; margin-top: 28px;">
+      <span style="border: 1px solid rgba(242,239,233,0.35); padding: 13px 30px; font-size: 14px; font-weight: 700; border-radius: 999px;">
+        Archiv bis 1995 öffnen
+      </span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

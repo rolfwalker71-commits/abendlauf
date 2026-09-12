@@ -1,0 +1,49 @@
+title: Kontakt
+icon: email
+
+columns:
+  - width: 2/3
+    sections:
+      text:
+        type: fields
+        fields:
+          intro:
+            label: Einleitungstext
+            type: textarea
+            size: small
+          text:
+            label: Weitere Angaben
+            type: textarea
+            size: medium
+
+  - width: 1/3
+    sections:
+      formular:
+        type: fields
+        fields:
+          formularAktiv:
+            label: Kontaktformular anzeigen
+            type: toggle
+            default: true
+            text:
+              - aus
+              - wird angezeigt
+          dankeText:
+            label: Text nach dem Absenden
+            type: text
+            default: Danke für deine Nachricht — wir melden uns.
+
+  - width: 1/1
+    sections:
+      kopf:
+        type: fields
+        fields:
+          kopfHintergrund:
+            label: Hintergrundbild des Kopfbereichs
+            type: files
+            query: page.images
+            uploads:
+              template: bild
+            max: 1
+            layout: cards
+            help: Wird stark weichgezeichnet hinter dem Titel angezeigt. Ein Bild zum Thema der Seite.

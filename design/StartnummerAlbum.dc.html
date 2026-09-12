@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FFFFFF; color: #101010;
+           font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, sans-serif; }
+    a { color: #101010; } a:hover { color: #5A5A5A; }
+    .anton { font-family: 'Anton', 'Arial Narrow', Impact, sans-serif; font-weight: 400;
+             text-transform: uppercase; letter-spacing: -0.01em; }
+    .mono { font-family: 'IBM Plex Mono', 'Courier New', monospace; font-variant-numeric: tabular-nums; }
+    .lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: #6B6B6B; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; background: #FFFFFF;">
+
+  <div style="background: #101010; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <span class="anton" style="font-size: 24px;">Urner Abendläufe</span>
+      <span class="mono" style="font-size: 12px; color: #D9F224;">33 · 2027</span>
+    </div>
+    <div style="display: flex; gap: 24px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+      <span>Ausschreibung</span><span>Strecke</span><span>Ranglisten</span>
+      <span style="color: #D9F224;">Fotos</span><span>Sponsoren</span><span>OK</span><span>Kontakt</span>
+    </div>
+  </div>
+
+  <!-- Albumkopf -->
+  <div style="padding: 36px 40px 26px; border-bottom: 3px solid #101010;">
+    <p class="lbl" style="margin: 0 0 12px;">Fotos / 2026 / 3. Abend</p>
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 30px;">
+      <h1 class="anton" style="margin: 0; font-size: 64px; line-height: 0.9;">32. Abendläufe — 3. Abend</h1>
+      <div style="display: flex; gap: 2px; background: #101010; padding: 2px; flex-shrink: 0;">
+        <div style="background: #FFFFFF; padding: 10px 16px;">
+          <p class="lbl" style="margin: 0 0 2px; font-size: 9px;">Bilder</p>
+          <p class="mono" style="margin: 0; font-size: 20px; font-weight: 600;">148</p>
+        </div>
+        <div style="background: #FFFFFF; padding: 10px 16px;">
+          <p class="lbl" style="margin: 0 0 2px; font-size: 9px;">Datum</p>
+          <p class="mono" style="margin: 0; font-size: 20px; font-weight: 600;">02.09.26</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filterleiste -->
+  <div style="display: flex; align-items: center; gap: 10px; padding: 18px 40px; border-bottom: 1px solid #E4E4E4; flex-wrap: wrap;">
+    <span class="lbl" style="margin-right: 6px;">Album</span>
+    <span style="background: #101010; color: #FFFFFF; padding: 7px 14px; font-size: 12px; font-weight: 600;">2026 · 3. Abend</span>
+    <span style="border: 1px solid #C9C9C9; padding: 7px 14px; font-size: 12px; font-weight: 500;">2026 · 2. Abend</span>
+    <span style="border: 1px solid #C9C9C9; padding: 7px 14px; font-size: 12px; font-weight: 500;">2026 · 1. Abend</span>
+    <span style="border: 1px solid #C9C9C9; padding: 7px 14px; font-size: 12px; font-weight: 500;">2025</span>
+    <span style="border: 1px solid #C9C9C9; padding: 7px 14px; font-size: 12px; font-weight: 500;">2024</span>
+    <span style="margin-left: auto; font-size: 12px; font-weight: 700; border-bottom: 2px solid #D9F224;">Album als ZIP laden</span>
+  </div>
+
+  <!-- Gleichmässiges Kontaktbogen-Raster -->
+  <div style="padding: 24px 40px 40px;">
+    <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px;">
+
+      <div style="position: relative;">
+        <img src="familie.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">001</span>
+      </div>
+      <div style="position: relative;">
+        <img src="feld1.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">002</span>
+      </div>
+      <div style="position: relative;">
+        <img src="feld2.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">003</span>
+      </div>
+      <div style="position: relative;">
+        <img src="feld3.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">004</span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="laeufer.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">005</span>
+      </div>
+      <div style="position: relative;">
+        <img src="ziel1.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">006</span>
+      </div>
+      <div style="position: relative;">
+        <img src="podest.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">007</span>
+      </div>
+      <div style="position: relative;">
+        <img src="ziel2.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">008</span>
+      </div>
+
+      <div style="position: relative;">
+        <img src="feld3.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">009</span>
+      </div>
+      <div style="position: relative;">
+        <img src="familie.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">010</span>
+      </div>
+      <div style="position: relative;">
+        <img src="feld2.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">011</span>
+      </div>
+      <div style="position: relative;">
+        <img src="feld1.jpg" alt="" style="width: 100%; height: 190px; object-fit: cover; display: block;">
+        <span class="mono" style="position: absolute; left: 0; bottom: 0; background: #101010; color: #FFFFFF; font-size: 10px; padding: 3px 7px;">012</span>
+      </div>
+
+    </div>
+
+    <!-- Seitenzähler statt Endlos-Scroll -->
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 26px; border-top: 2px solid #101010; padding-top: 16px;">
+      <span class="mono" style="font-size: 13px; color: #6B6B6B;">001 – 012 von 148</span>
+      <div style="display: flex; gap: 6px;">
+        <span class="mono" style="background: #101010; color: #FFFFFF; padding: 7px 13px; font-size: 13px;">1</span>
+        <span class="mono" style="border: 1px solid #C9C9C9; padding: 7px 13px; font-size: 13px;">2</span>
+        <span class="mono" style="border: 1px solid #C9C9C9; padding: 7px 13px; font-size: 13px;">3</span>
+        <span class="mono" style="border: 1px solid #C9C9C9; padding: 7px 13px; font-size: 13px;">…</span>
+        <span class="mono" style="border: 1px solid #C9C9C9; padding: 7px 13px; font-size: 13px;">13</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

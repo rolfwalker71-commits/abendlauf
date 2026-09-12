@@ -1,0 +1,8 @@
+title: Logo
+accept:
+  mime: image/jpeg, image/png, image/svg+xml, image/webp
+
+fields:
+  alt:
+    label: Name des Unternehmens
+    type: text

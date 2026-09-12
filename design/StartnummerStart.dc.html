@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FFFFFF; color: #101010;
+           font-family: 'IBM Plex Sans', 'Helvetica Neue', Helvetica, sans-serif; }
+    a { color: #101010; } a:hover { color: #5A5A5A; }
+    .anton { font-family: 'Anton', 'Arial Narrow', Impact, sans-serif; font-weight: 400;
+             text-transform: uppercase; letter-spacing: -0.01em; }
+    .mono { font-family: 'IBM Plex Mono', 'Courier New', monospace; font-variant-numeric: tabular-nums; }
+    .lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 600; color: #6B6B6B; }
+  </style>
+</helmet>
+
+<div style="width: 1280px; background: #FFFFFF;">
+
+  <!-- Kopfzeile, hart -->
+  <div style="background: #101010; color: #FFFFFF; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 64px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <span class="anton" style="font-size: 24px;">Urner Abendläufe</span>
+      <span class="mono" style="font-size: 12px; color: #D9F224;">33 · 2027</span>
+    </div>
+    <div style="display: flex; gap: 24px; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;">
+      <span>Ausschreibung</span><span>Strecke</span><span>Ranglisten</span>
+      <span>Fotos</span><span>Sponsoren</span><span>OK</span><span>Kontakt</span>
+    </div>
+  </div>
+
+  <!-- Hero als Startnummer -->
+  <div style="display: grid; grid-template-columns: 7fr 5fr; gap: 0; border-bottom: 3px solid #101010;">
+    <div style="padding: 52px 40px 44px;">
+      <div style="display: inline-flex; align-items: center; gap: 10px; background: #D9F224; padding: 7px 14px; margin-bottom: 26px;">
+        <span class="lbl" style="color: #101010;">Anmeldung vor Ort · ab 16.30 Uhr</span>
+      </div>
+      <h1 class="anton" style="margin: 0; font-size: 108px; line-height: 0.85;">
+        33. Urner<br>Abendläufe
+      </h1>
+      <p style="margin: 24px 0 0; font-size: 18px; line-height: 1.5; max-width: 44ch; color: #303030;">
+        Drei Mittwochabende in Seedorf. Zwölf Kategorien von Pfüderi bis
+        Volksläufer. Rangliste noch am selben Abend online.
+      </p>
+
+      <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; margin-top: 36px; background: #101010; padding: 2px;">
+        <div style="background: #FFFFFF; padding: 18px 16px;">
+          <p class="lbl" style="margin: 0 0 6px;">Kleine Runde</p>
+          <p class="mono" style="margin: 0; font-size: 26px; font-weight: 600;">1210<span style="font-size: 14px; color: #6B6B6B;"> m</span></p>
+        </div>
+        <div style="background: #FFFFFF; padding: 18px 16px;">
+          <p class="lbl" style="margin: 0 0 6px;">Grosse Runde</p>
+          <p class="mono" style="margin: 0; font-size: 26px; font-weight: 600;">2260<span style="font-size: 14px; color: #6B6B6B;"> m</span></p>
+        </div>
+        <div style="background: #FFFFFF; padding: 18px 16px;">
+          <p class="lbl" style="margin: 0 0 6px;">Startgeld ab</p>
+          <p class="mono" style="margin: 0; font-size: 26px; font-weight: 600;">CHF 6</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: relative; border-left: 3px solid #101010;">
+      <img src="laeufer.jpg" alt="Läufer mit Startnummer 227" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+      <div style="position: absolute; left: 24px; bottom: 24px; background: #FFFFFF; border: 3px solid #101010; padding: 10px 18px;">
+        <p class="lbl" style="margin: 0 0 2px; font-size: 9px;">Urner Abendläufe</p>
+        <p class="mono" style="margin: 0; font-size: 42px; font-weight: 600; line-height: 1;">227</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Startzeitenplan als Fahrplan -->
+  <div style="padding: 44px 40px 20px;">
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px;">
+      <h2 class="anton" style="margin: 0; font-size: 40px;">Startzeiten</h2>
+      <span class="lbl">Identisch an allen drei Abenden</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr;">
+      <div style="display: grid; grid-template-columns: 84px 1fr 96px 1fr 110px 90px; gap: 16px; padding: 10px 0; border-bottom: 2px solid #101010;">
+        <span class="lbl">Zeit</span><span class="lbl">Kategorie</span><span class="lbl">Kat.</span>
+        <span class="lbl">Jahrgang</span><span class="lbl">Distanz</span><span class="lbl" style="text-align: right;">Startgeld</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 84px 1fr 96px 1fr 110px 90px; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E4E4E4; align-items: center;">
+        <span class="mono" style="font-size: 16px; font-weight: 600;">17:25</span>
+        <span style="font-size: 15px; font-weight: 500;">Piccolo Knaben</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">A</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">2016 – 2017</span>
+        <span class="mono" style="font-size: 14px;">1210 m</span>
+        <span class="mono" style="font-size: 14px; text-align: right;">6.—</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 84px 1fr 96px 1fr 110px 90px; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E4E4E4; align-items: center;">
+        <span class="mono" style="font-size: 16px; font-weight: 600;">17:35</span>
+        <span style="font-size: 15px; font-weight: 500;">Piccolo Mädchen</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">B</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">2016 – 2017</span>
+        <span class="mono" style="font-size: 14px;">1210 m</span>
+        <span class="mono" style="font-size: 14px; text-align: right;">6.—</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 84px 1fr 96px 1fr 110px 90px; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E4E4E4; align-items: center; background: #FBFBEE;">
+        <span class="mono" style="font-size: 16px; font-weight: 600;">18:05</span>
+        <span style="font-size: 15px; font-weight: 500;">Eltern mit Pfüderi</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">C</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">2022 – 2024</span>
+        <span class="mono" style="font-size: 14px;">1210 m</span>
+        <span class="mono" style="font-size: 14px; text-align: right;">12.—</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 84px 1fr 96px 1fr 110px 90px; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E4E4E4; align-items: center;">
+        <span class="mono" style="font-size: 16px; font-weight: 600;">18:50</span>
+        <span style="font-size: 15px; font-weight: 500;">Jugend Knaben</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">H</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">2009 – 2012</span>
+        <span class="mono" style="font-size: 14px;">4440 m</span>
+        <span class="mono" style="font-size: 14px; text-align: right;">6.—</span>
+      </div>
+      <div style="display: grid; grid-template-columns: 84px 1fr 96px 1fr 110px 90px; gap: 16px; padding: 13px 0; border-bottom: 1px solid #E4E4E4; align-items: center;">
+        <span class="mono" style="font-size: 16px; font-weight: 600;">18:50</span>
+        <span style="font-size: 15px; font-weight: 500;">Volksläufer Männer</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">J</span>
+        <span class="mono" style="font-size: 14px; color: #6B6B6B;">2008 und älter</span>
+        <span class="mono" style="font-size: 14px;">6700 m</span>
+        <span class="mono" style="font-size: 14px; text-align: right;">10.—</span>
+      </div>
+      <div style="display: flex; justify-content: flex-end; padding: 14px 0;">
+        <span style="font-size: 13px; font-weight: 700; border-bottom: 2px solid #D9F224;">Alle 12 Kategorien anzeigen</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drei Abende als Balken -->
+  <div style="padding: 24px 40px 44px;">
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;">
+      <div style="border: 3px solid #101010; padding: 22px;">
+        <p class="lbl" style="margin: 0 0 10px;">Erster Abend</p>
+        <p class="anton" style="margin: 0; font-size: 46px; line-height: 0.9;">Mi 18.08.</p>
+        <p class="mono" style="margin: 12px 0 0; font-size: 14px; color: #6B6B6B;">Seerestaurant Seedorf</p>
+      </div>
+      <div style="border: 3px solid #101010; padding: 22px;">
+        <p class="lbl" style="margin: 0 0 10px;">Zweiter Abend</p>
+        <p class="anton" style="margin: 0; font-size: 46px; line-height: 0.9;">Mi 25.08.</p>
+        <p class="mono" style="margin: 12px 0 0; font-size: 14px; color: #6B6B6B;">Seerestaurant Seedorf</p>
+      </div>
+      <div style="border: 3px solid #101010; padding: 22px; background: #D9F224;">
+        <p class="lbl" style="margin: 0 0 10px; color: #101010;">Dritter Abend</p>
+        <p class="anton" style="margin: 0; font-size: 46px; line-height: 0.9;">Mi 01.09.</p>
+        <p class="mono" style="margin: 12px 0 0; font-size: 14px;">Rangverkündigung 20:00</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sponsorenband -->
+  <div style="background: #101010; color: #FFFFFF; padding: 28px 40px; display: flex; align-items: center; gap: 34px; flex-wrap: wrap;">
+    <span class="lbl" style="color: #D9F224;">Patronat</span>
+    <span class="anton" style="font-size: 20px;">Urner Kantonalbank</span>
+    <span class="anton" style="font-size: 20px;">Imholz Sport Bürglen</span>
+    <span class="mono" style="font-size: 13px; color: #8A8A8A;">+ 39 Sponsoren</span>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

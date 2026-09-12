@@ -1,0 +1,88 @@
+Title: Startseite
+
+----
+
+Headline: 33. Urner Abendläufe
+
+----
+
+Subline: Drei Mittwochabende am Urnersee — für alle, vom Pfüderi bis zur Volksläuferin.
+
+----
+
+Intro: Die Urner Abendläufe des STV Altdorf finden seit 1995 jeden Spätsommer an drei Mittwochabenden beim Seerestaurant in Seedorf statt. Angemeldet wird vor Ort, gelaufen wird bei jeder Witterung.
+
+----
+
+Hinweisaktiv: false
+
+----
+
+Hinweistext: 
+
+----
+
+Hinweislink: 
+
+----
+
+Laufabende: 
+
+-
+  titel: Erster Abend
+  datum: 2027-08-18 17:25:00
+  ort: Seerestaurant Seedorf
+  status: findet-statt
+  statushinweis: ""
+  bild:
+    - abend-1.jpg
+-
+  titel: Zweiter Abend
+  datum: 2027-08-25 17:25:00
+  ort: Seerestaurant Seedorf
+  status: findet-statt
+  statushinweis: ""
+  bild:
+    - abend-2.jpg
+-
+  titel: Dritter Abend
+  datum: 2027-09-01 17:25:00
+  ort: Seerestaurant Seedorf
+  status: findet-statt
+  statushinweis: Mit Rangverkündigung um 20 Uhr
+  bild:
+    - abend-3.jpg
+
+----
+
+Herobild:
+
+- hero-feld.jpg
+
+----
+
+Aktuellaktiv: true
+
+----
+
+Aktuelltitel: Aktuell
+
+----
+
+Aktuellstand: 2026-09-03
+
+----
+
+Aktuelltext: Wir bedanken uns ganz herzlich bei allen Teilnehmerinnen und Teilnehmern und natürlich bei den Sponsoren und Gönnern der 32. Urner Abendläufe.
+
+Die 33. Urner Abendläufe finden 2027 an diesen drei Mittwochabenden statt: 18.8. / 25.8. / 1.9.
+
+- [Urner Kantonalbank (Hauptsponsor)](https://www.ukb.ch/)
+- [Imholz Sport Bürglen (Partner)](http://www.imholzsport.ch/)
+- [Verofit (Verpflegungssponsor)](http://www.verofit.ch)
+- [Feinbäckerei Hauger AG (Verpflegungssponsor Helfer)](https://hauger.ch)
+- [Seerestaurant Seedorf](https://www.seerestaurant-seedorf.ch/)
+- [Gemeinde Altdorf](http://altdorf.ch)
+- [Gemeinde Seedorf](http://seedorf-uri.ch)
+- Stiftung Breitensport
+- [CONCORDIA Versicherung](https://www.concordia.ch)

@@ -1,0 +1,17 @@
+Template: rangliste
+
+----
+
+Titel: Gesamtrangliste
+
+----
+
+Art: rangliste
+
+----
+
+Jahr: 2024
+
+----
+
+Lauf: gesamt

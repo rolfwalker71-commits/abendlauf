@@ -1,0 +1,13 @@
+title: Foto
+accept:
+  type: image
+  mime: image/jpeg, image/png, image/webp
+
+fields:
+  bildtext:
+    label: Bildunterschrift
+    type: text
+  alt:
+    label: Bildbeschreibung
+    type: text
+    help: Für Screenreader und falls das Bild nicht lädt. Darf leer bleiben.
