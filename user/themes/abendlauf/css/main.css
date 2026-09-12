@@ -1660,13 +1660,14 @@ a:hover { color: var(--accent); }
 
 /* ---------- Zahlen unter dem Titel ---------- */
 
-/* Gleicher Baustein wie im dunklen Band der Startseite — damit die
-   Zahlen überall nach demselben Muster stehen. */
-.pagehead__data {
-  margin: clamp(1.8rem, 4vw, 2.8rem) 0 0;
-  padding-block: clamp(1.4rem, 3vw, 2rem) clamp(1.6rem, 3.5vw, 2.4rem);
-  border-top: 1px solid var(--line);
-}
+/* Die Zahlen stehen in einem eigenen dunklen Band unter dem Titel —
+   derselbe Baustein wie auf der Startseite. Deshalb hat der
+   Titelbereich unten keinen Rand: das Band schliesst direkt an. */
+.pagehead { border-bottom: 0; padding-bottom: clamp(2rem, 4vw, 3rem); }
+
+/* Schmalere Fassung des Bandes für die Seitenköpfe */
+.band--schmal { padding-block: clamp(1.8rem, 4vw, 2.8rem); }
+.band--schmal .bignum__value { font-size: clamp(2rem, 4.2vw, 3rem); }
 
 
 /* ===================================================================

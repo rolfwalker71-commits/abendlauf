@@ -1,10 +1,6 @@
-{# Typografischer Seitenkopf ohne Hintergrundbild.
-   Erwartet: titel; optional eyebrow, lead, aktionen,
-             daten (Liste aus { wert, einheit, label })
-
-   Kein Bild hinter dem Text: Der Kopf informiert, statt zu schmücken.
-   Die Bilder erscheinen darunter als Inhalt. Nebeneffekt — die
-   Gratwanderung mit dem Textkontrast auf Fotos entfällt. #}
+{# Typografischer Seitenkopf: Titel auf ruhiger Fläche, darunter die
+   Zahlen auf dunklem Grund — derselbe Baustein wie das Zahlenband
+   der Startseite, inklusive Läuferfries. #}
 <section class="pagehead">
   <div class="wrap">
     {% if eyebrow is defined and eyebrow %}
@@ -20,20 +16,24 @@
     {% if aktionen is defined and aktionen %}
       <div class="hero__actions">{{ aktionen|raw }}</div>
     {% endif %}
-
-    {% if daten is defined and daten is not empty %}
-      {# Gleicher Baustein wie das Zahlenband der Startseite. #}
-      <div class="pagehead__data">
-        <div class="bignums">
-          {% for d in daten %}
-            <div class="bignum">
-              <p class="bignum__value">{{ d.wert }}{% if d.einheit %}<small>{{ d.einheit }}</small>{% endif %}</p>
-              <p class="bignum__label">{{ d.label }}</p>
-              {% if d.notiz %}<p class="bignum__note">{{ d.notiz }}</p>{% endif %}
-            </div>
-          {% endfor %}
-        </div>
-      </div>
-    {% endif %}
   </div>
 </section>
+
+{% if daten is defined and daten is not empty %}
+  <section class="band band--schmal">
+    <div class="band__frieze" aria-hidden="true">
+      {% for i in 1..7 %}{{ svg_image('theme://img/logo.svg')|raw }}{% endfor %}
+    </div>
+    <div class="wrap">
+      <div class="bignums">
+        {% for d in daten %}
+          <div class="bignum">
+            <p class="bignum__value">{{ d.wert }}{% if d.einheit %}<small>{{ d.einheit }}</small>{% endif %}</p>
+            <p class="bignum__label">{{ d.label }}</p>
+            {% if d.notiz %}<p class="bignum__note">{{ d.notiz }}</p>{% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
