@@ -261,7 +261,9 @@ a:hover { color: var(--accent); }
   font-size: .95rem; font-weight: 600; color: inherit; text-decoration: none;
 }
 .nav a:hover { background: var(--surface); }
-.nav a[aria-current="page"] { color: var(--accent-ink); background: var(--accent); }
+/* Gelb markiert durchgehend den aktuellen Zustand — wo man ist,
+   was gerade läuft. Cyan bleibt Marke und Links. */
+.nav a[aria-current="page"] { color: var(--signal-ink); background: var(--signal); }
 
 .theme-toggle {
   display: grid; place-items: center;
@@ -343,7 +345,14 @@ a:hover { color: var(--accent); }
   font-size: clamp(4rem, 9vw, 8.5rem); line-height: .8;
   color: var(--accent); margin: 0 0 .1em; letter-spacing: -.03em;
 }
-.hero__edition sup { font-size: .32em; vertical-align: super; margin-left: .06em; }
+/* Der Ordnungspunkt sitzt auf der Grundlinie, nicht hochgestellt —
+   sonst liest er sich wie ein Malzeichen. Etwas kleiner als die
+   Ziffern, damit er sie nicht erschlägt. */
+.hero__dot {
+  font-size: .55em;
+  vertical-align: baseline;
+  margin-left: .02em;
+}
 
 .hero h1 {
   font-size: clamp(1.9rem, 3.6vw, 3rem);
@@ -739,13 +748,13 @@ a:hover { color: var(--accent); }
   font-size: .85rem; font-weight: 600; text-decoration: none; color: inherit;
 }
 .chip:hover { border-color: var(--accent); color: var(--accent-text); }
-.chip--active { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.chip--active { background: var(--signal); border-color: var(--signal); color: var(--signal-ink); }
 
 /* Bildzahl auf der Albumkachel */
 .album-card__img { position: relative; }
 .album-card__count {
   position: absolute; right: .6rem; bottom: .6rem;
-  background: color-mix(in srgb, #060C14 72%, transparent); color: #fff;
+  background: var(--signal); color: var(--signal-ink);
   font-family: var(--font-display); font-size: .82rem;
   padding: .2rem .55rem; border-radius: 6px;
 }
@@ -1011,7 +1020,7 @@ a:hover { color: var(--accent); }
 
 .progress {
   position: fixed; inset-inline: 0; top: 0; z-index: 60;
-  height: 3px; background: var(--accent);
+  height: 3px; background: var(--signal);
   transform: scaleX(0); transform-origin: 0 50%;
   animation: fortschritt linear;
   animation-timeline: scroll(root block);
@@ -1336,6 +1345,8 @@ a:hover { color: var(--accent); }
   font-variant-numeric: tabular-nums;
   background: var(--bg);
   padding: .35rem .55rem;
+  /* Bewusst Cyan: ein gelber Rahmen auf Weiss erreicht nur 1,26:1 und
+     ist damit praktisch unsichtbar. Gelb trägt nur als Fläche. */
   border: 2px solid var(--accent);
   border-radius: 9px;
   position: relative; z-index: 1;
@@ -1722,3 +1733,7 @@ a:hover { color: var(--accent); }
 .coverhead:not(:has(.coverhead__media)) .coverhead__inner { color: var(--text); }
 .coverhead:not(:has(.coverhead__media)) .coverhead__eyebrow { color: var(--accent-text); }
 .coverhead:not(:has(.coverhead__media)) .coverhead__lead { color: var(--muted); }
+
+/* Jahreszahl im Haupttitel — in der Leitfarbe, damit sie sich als
+   eigene Angabe liest und nicht als Teil des Namens. */
+.hero__jahr { color: var(--accent-text); }

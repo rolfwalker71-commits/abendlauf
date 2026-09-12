@@ -78,9 +78,13 @@
     <p class="eyebrow">{{ config.site.verein.untertitel }} · Seedorf am Urnersee</p>
 
     {% if nummer %}
-      <p class="hero__edition">{{ nummer }}<sup>.</sup></p>
+      <p class="hero__edition">{{ nummer }}<span class="hero__dot">.</span></p>
     {% endif %}
-    <h1>{{ restTitel }}</h1>
+    {# Das Jahr kommt aus dem nächsten Termin, nicht aus der Überschrift —
+       so stimmt es auch, wenn jemand die Termine pflegt und den Titel
+       vergisst. #}
+    {% set anlassJahr = naechste is not empty ? (naechste|first).datum|date('Y') : null %}
+    <h1>{{ restTitel }}{% if anlassJahr %} <span class="hero__jahr">{{ anlassJahr }}</span>{% endif %}</h1>
 
     {% if h.subline %}<p class="hero__lead">{{ h.subline }}</p>{% endif %}
 
