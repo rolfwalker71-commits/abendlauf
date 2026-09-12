@@ -102,30 +102,6 @@ rekorde:
   zeit: 8:15,5
   name: Jill Bürgler
   jahr: 2023
-statistikaktiv: true
-statistiktitel: So hat sich der Anlass entwickelt
-statistikhinweis: Gewertete Teilnehmende der Gesamtranglisten. 2015 und 2016 fehlen, weil die Ranglisten jener Jahre maschinell nicht vollständig auswertbar sind; 2018 und 2020 fanden keine oder keine auswertbaren Läufe statt.
-statistik:
-- jahr: 2013
-  anzahl: 311
-- jahr: 2014
-  anzahl: 339
-- jahr: 2017
-  anzahl: 373
-- jahr: 2019
-  anzahl: 417
-- jahr: 2021
-  anzahl: 378
-- jahr: 2022
-  anzahl: 409
-- jahr: 2023
-  anzahl: 448
-- jahr: 2024
-  anzahl: 447
-- jahr: 2025
-  anzahl: 443
-- jahr: 2026
-  anzahl: 491
 alterVon: 2
 alterBis: 69
 anteilKinder: 87
