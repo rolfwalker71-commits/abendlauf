@@ -1560,3 +1560,58 @@ a:hover { color: var(--accent); }
 @media (max-width: 700px) {
   .results tbody tr.is-current .results__year::after { display: none; }
 }
+
+/* ---------- Streckenrekorde ---------- */
+
+/* Die Zeit ist das Hauptelement — sie ist der Grund, warum jemand
+   hinschaut. Name und Jahr ordnen sie ein. */
+.records {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+}
+
+.record {
+  position: relative;
+  padding: 1.3rem 1.4rem 1.2rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border-top: 3px solid var(--accent);
+  overflow: hidden;
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease;
+}
+.record:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+
+/* Eine liegende Ziffernfläche im Hintergrund gibt Tiefe, ohne
+   ein Bild zu brauchen. */
+.record::after {
+  content: ""; position: absolute; right: -30%; bottom: -60%;
+  width: 150px; height: 150px; border-radius: 50%;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  pointer-events: none;
+}
+
+.record__kat {
+  font-family: var(--font-display); font-size: .74rem;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted); margin: 0;
+}
+
+.record__time {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(2.1rem, 4.4vw, 2.9rem); line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-text);
+  margin: .5rem 0 .6rem;
+}
+
+.record__who {
+  font-size: 1.02rem; font-weight: 700; margin: 0;
+}
+.record__meta {
+  font-size: .85rem; color: var(--muted); margin: .15rem 0 0;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .record:hover { transform: none; }
+}

@@ -59,6 +59,55 @@ form:
               rows: 14
               help: 'Der Bereich, der vor, während und nach den Läufen ausgetauscht wird. Aufzählungen mit einem Bindestrich am Zeilenanfang, Links als [Text](Adresse).'
 
+        rekorde:
+          type: tab
+          title: Rekorde
+          fields:
+            header.rekordeaktiv:
+              type: toggle
+              label: Bereich anzeigen
+              highlight: 1
+              default: true
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.rekordetitel:
+              type: text
+              label: Überschrift
+              default: Streckenrekorde
+            header.rekordehinweis:
+              type: text
+              label: Hinweis zur Datenbasis
+              help: Sollte sagen, worauf sich die Zeiten beziehen — sonst ist ein Rekord eine Behauptung.
+            header.rekorde:
+              type: list
+              label: Rekorde
+              style: vertical
+              help: 'Neu auswerten nach einem Jahrgang: siehe werkzeuge/rekorde-auswerten.md'
+              fields:
+                .kategorie:
+                  type: text
+                  label: Kategorie
+                .zeit:
+                  type: text
+                  label: Zeit
+                  placeholder: '21:15,1'
+                .name:
+                  type: text
+                  label: Name
+                .jahr:
+                  type: number
+                  label: Jahr
+                  validate:
+                    min: 1995
+                    max: 2100
+                .distanz:
+                  type: text
+                  label: Distanz
+                  placeholder: 6700 m
+
         termine:
           type: tab
           title: Laufabende

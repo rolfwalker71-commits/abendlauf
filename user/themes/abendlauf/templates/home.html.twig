@@ -188,13 +188,35 @@
   </section>
 {% endif %}
 
+{% if h.rekordeaktiv and h.rekorde %}
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <h2><span class="section__num">04</span> {{ h.rekordetitel|default('Streckenrekorde') }}</h2>
+        {% if h.rekordehinweis %}<p class="section__aside">{{ h.rekordehinweis }}</p>{% endif %}
+      </div>
+
+      <div class="records reveal">
+        {% for r in h.rekorde %}
+          <article class="record">
+            <p class="record__kat">{{ r.kategorie }}</p>
+            <p class="record__time">{{ r.zeit }}</p>
+            <p class="record__who">{{ r.name }}</p>
+            <p class="record__meta">{{ r.jahr }} · {{ r.distanz }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
 {% include 'partials/fotostreifen.html.twig' with { bilder: streifenA, hoehe: 210 } %}
 
 {% if alben is not empty %}
   <section class="section">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">04</span> Aus den Alben</h2>
+        <h2><span class="section__num">05</span> Aus den Alben</h2>
         <p class="section__aside"><a href="{{ fotoSeite.url }}">Alle Alben</a></p>
       </div>
       <div class="bleed-strip">
@@ -219,7 +241,7 @@
       <div class="offer">
         <div class="offer__text">
           {% if h.aktionpartner %}<p class="eyebrow">{{ h.aktionpartner }}</p>{% endif %}
-          <h2><span class="section__num">05</span> {{ h.aktiontitel|default('Aktion') }}</h2>
+          <h2><span class="section__num">06</span> {{ h.aktiontitel|default('Aktion') }}</h2>
           <div class="prose">{{ h.aktiontext|markdown|externe_links|raw }}</div>
           {% if h.aktionlink %}
             <p style="margin-top:1.4rem;">
@@ -253,7 +275,7 @@
   <section class="section section--tint">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">06</span> Patronat</h2>
+        <h2><span class="section__num">07</span> Patronat</h2>
         {% if sponsorenSeite %}
           <p class="section__aside">
             <a href="{{ sponsorenSeite.url }}">Alle {{ (alleSponsoren|filter(s => s.aktiv))|length }} Sponsoren ansehen</a>
