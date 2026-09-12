@@ -39,6 +39,33 @@
 {% set fotoSeite = pages.find('/fotos') %}
 {% set alben = fotoSeite ? fotoSeite.children.visible|slice(0, 3) : [] %}
 
+{# Streckenkarten von der Streckenseite holen — sie lagen bisher nur dort. #}
+{% set streckenSeite = pages.find('/strecke') %}
+{% set karten = [] %}
+{% if streckenSeite %}
+  {% for runde in streckenSeite.header.runden|default([]) %}
+    {% if runde.karte %}
+      {% set k = streckenSeite.media[runde.karte|first] %}
+      {% if k %}{% set karten = karten|merge([{ bild: k, titel: runde.titel, distanz: runde.distanz }]) %}{% endif %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{# Bilder für die Fotostreifen: gleichmässig über das neueste Album
+   verteilt, damit die Streifen nicht dreimal dieselbe Szene zeigen. #}
+{% set streifenA = [] %}
+{% set streifenB = [] %}
+{% if alben|length > 0 %}
+  {% set quelle = (alben|first).media.images %}
+  {% set namen = quelle|keys %}
+  {% if namen|length > 12 %}
+    {% for i in 0..4 %}
+      {% set streifenA = streifenA|merge([ quelle[ namen[ (namen|length / 6 * i)|round(0, 'floor') ] ] ]) %}
+      {% set streifenB = streifenB|merge([ quelle[ namen[ (namen|length - 1 - (namen|length / 7 * i))|round(0, 'floor') ] ] ]) %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
 <section class="hero {{ hero ? '' : 'hero--plain' }}">
   <div class="hero__text">
     {% include 'partials/runlogo.html.twig' %}
@@ -110,24 +137,58 @@
 {% endif %}
 
 {% if kennzahlen is not empty %}
-  <section class="section">
+  <section class="band">
+    {# Die Läufergruppe als blasser Fries — mehrfach, damit sie das
+       ganze Band trägt. Eigenes Motiv, als Vektor beliebig gross. #}
+    <div class="band__frieze" aria-hidden="true">
+      {% for i in 1..7 %}{{ svg_image('theme://img/logo.svg')|raw }}{% endfor %}
+    </div>
+
     <div class="wrap">
-      <div class="section__head">
-        <h2><span class="section__num">03</span> Strecke und Kategorien</h2>
-        {% if ausschreibung %}<p class="section__aside"><a href="{{ ausschreibung.url }}">Ganze Ausschreibung</a></p>{% endif %}
+      <div class="band__head">
+        <h2><span class="section__num">03</span> Die Abendläufe in Zahlen</h2>
+        {% if ausschreibung %}
+          <p class="band__aside"><a href="{{ ausschreibung.url }}">Ganze Ausschreibung</a></p>
+        {% endif %}
       </div>
-      <div class="grid grid--4 reveal">
+
+      <div class="bignums reveal">
+        <div class="bignum">
+          <p class="bignum__value">1995</p>
+          <p class="bignum__label">Seit</p>
+          {% if nummer %}<p class="bignum__note">{{ nummer }}. Austragung</p>{% endif %}
+        </div>
+        <div class="bignum">
+          <p class="bignum__value">3<small>Abende</small></p>
+          <p class="bignum__label">Jeden Sommer</p>
+          <p class="bignum__note">Mittwochs, August und September</p>
+        </div>
         {% for k in kennzahlen %}
-          <div class="fact">
-            <p class="eyebrow" style="margin-bottom:.5rem;">{{ k.label }}</p>
-            <p class="fact__value">{{ k.wert }}</p>
-            <p class="fact__note">{{ k.notiz }}</p>
+          <div class="bignum">
+            <p class="bignum__value">{{ k.wert|replace({' m': '', 'CHF ': ''}) }}<small>{{ ' m' in k.wert ? 'm' : ('CHF' in k.wert ? 'CHF' : '') }}</small></p>
+            <p class="bignum__label">{{ k.label }}</p>
+            <p class="bignum__note">{{ k.notiz }}</p>
           </div>
         {% endfor %}
       </div>
+
+      {% if karten is not empty %}
+        <div class="band__maps">
+          {% for k in karten %}
+            <figure class="band__map">
+              <a href="{{ k.bild.url }}" data-lightbox data-caption="{{ k.titel }} · {{ k.distanz }}">
+                {{ k.bild.cropZoom(560, 380).loading('lazy').html()|raw }}
+              </a>
+              <figcaption>{{ k.titel }} · {{ k.distanz }}</figcaption>
+            </figure>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </section>
 {% endif %}
+
+{% include 'partials/fotostreifen.html.twig' with { bilder: streifenA, hoehe: 210 } %}
 
 {% if alben is not empty %}
   <section class="section">
@@ -185,6 +246,8 @@
     </div>
   </section>
 {% endif %}
+
+{% include 'partials/fotostreifen.html.twig' with { bilder: streifenB, hoehe: 170 } %}
 
 {% if patronat is not empty %}
   <section class="section section--tint">

@@ -1,0 +1,11 @@
+{# Randloses Bildband als Abschnittstrenner.
+   Erwartet: bilder (Liste von Medien), optional hoehe
+   Nutzt das vorhandene Archiv — keine neuen Dateien nötig. #}
+{% set hoehe = hoehe|default(200) %}
+{% if bilder is not empty %}
+  <div class="photostrip" aria-hidden="true" style="--strip-h: {{ hoehe }}px;">
+    {% for bild in bilder %}
+      <span class="photostrip__cell">{{ bild.cropZoom(520, hoehe * 2).loading('lazy').html()|raw }}</span>
+    {% endfor %}
+  </div>
+{% endif %}

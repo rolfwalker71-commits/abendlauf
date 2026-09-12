@@ -21,10 +21,15 @@
   <div>
     {% if termin.ort %}<p class="event__meta">{{ termin.ort }}</p>{% endif %}
     <h3 class="event__title">{{ termin.titel }}</h3>
+    {# Der Hinweis erscheint auch bei einem normalen Termin — beim
+       dritten Abend steht dort die Rangverkündigung, die vorher
+       stillschweigend unter den Tisch fiel. #}
     {% if abgesagt %}
-      <p class="event__status">
+      <p class="event__status event__status--warn">
         {{ status == 'abgesagt' ? 'Abgesagt' : 'Verschoben' }}{{ termin.statushinweis ? ' · ' ~ termin.statushinweis : '' }}
       </p>
+    {% elseif termin.statushinweis %}
+      <p class="event__status">{{ termin.statushinweis }}</p>
     {% endif %}
   </div>
 </article>

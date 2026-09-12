@@ -88,6 +88,19 @@
   --accent-text:  #0070A2;   /* Leitfarbe als Schriftfarbe: 5,5:1 auf Weiss,
                                 5,0:1 auf den getönten Flächen */
 
+  /* Neongelb der Leibchen als zweite Akzentfarbe. NUR als Fläche mit
+     dunkler Schrift (14,5:1) — als Schriftfarbe auf Weiss unbrauchbar
+     (1,26:1). */
+  --signal:       #D9F224;
+  --signal-ink:   #0C1524;
+
+  /* Das dunkle Band bleibt in beiden Farbschemata gleich, damit es
+     als Unterbruch wirkt. */
+  --band-bg:      #0C1524;
+  --band-text:    #EAF1F8;
+  --band-muted:   #94A7C0;
+  --band-accent:  #2BB2F0;
+
   --warn:        #C2410C;
 
   --font-display: 'Oswald', 'Oswald Fallback', 'Arial Narrow', sans-serif;
@@ -1387,4 +1400,163 @@ a:hover { color: var(--accent); }
 
 @media (prefers-reduced-motion: reduce) {
   .startcard:hover { transform: none; }
+}
+
+/* ===================================================================
+   Dunkles Band — „in Zahlen"
+
+   Ein nachtblauer Unterbruch zwischen hellen Abschnitten. Gibt der
+   Seite Rhythmus, ohne ein einziges Bild. Die Werte stehen fest und
+   nicht an den Farbschema-Tokens, damit das Band im Hellmodus
+   genauso wirkt wie im Dunkelmodus.
+   =================================================================== */
+
+.band {
+  position: relative; isolation: isolate; overflow: hidden;
+  background: var(--band-bg);
+  color: var(--band-text);
+  padding-block: clamp(2.8rem, 6vw, 4.5rem);
+}
+
+/* Die Läufergruppe als blasser Fries am unteren Rand — eigenes Motiv
+   statt Fremdgrafik, und als Vektor beliebig gross. */
+.band__frieze {
+  position: absolute; inset-inline: 0; bottom: -6%;
+  display: flex; gap: 2.5rem;
+  z-index: -1;
+  opacity: .07;
+  color: var(--band-accent);
+  pointer-events: none;
+}
+.band__frieze svg { height: clamp(120px, 18vw, 210px); width: auto; flex: none; }
+
+.band__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 2rem; }
+.band__head h2 { margin: 0; }
+.band__head .section__num { color: var(--band-accent); }
+.band__aside { color: var(--band-muted); font-size: .95rem; }
+.band__aside a { color: var(--band-accent); }
+
+/* ---------- Grosse Zahlen ---------- */
+
+.bignums {
+  display: grid; gap: 1.6rem 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.bignum__value {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(2.4rem, 5vw, 3.6rem); line-height: .95;
+  color: var(--band-accent);
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.bignum__value small {
+  font-size: .32em; font-weight: 400; color: var(--band-text);
+  margin-left: .15em; letter-spacing: .02em;
+}
+.bignum__label {
+  font-family: var(--font-display); font-size: .74rem;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--band-muted); margin: .6rem 0 0;
+}
+.bignum__note { color: var(--band-muted); font-size: .85rem; margin: .25rem 0 0; }
+
+/* ---------- Streckenkarten im Band ---------- */
+
+.band__maps {
+  display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-top: 2.4rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(148, 167, 192, .25);
+}
+.band__map { margin: 0; }
+.band__map a {
+  display: block; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid rgba(148, 167, 192, .3);
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), border-color .2s ease;
+}
+.band__map a:hover { transform: translateY(-3px); border-color: var(--band-accent); }
+.band__map img { width: 100%; height: auto; display: block; }
+.band__map figcaption {
+  font-family: var(--font-display); font-size: .8rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--band-muted); margin-top: .6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .band__map a:hover { transform: none; }
+}
+
+/* ---------- Fotostreifen als Abschnittstrenner ---------- */
+
+/* Ein randloses Bildband über die ganze Breite. Rein dekorativ, daher
+   aria-hidden — der Inhalt steht in den Alben. */
+.photostrip {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  height: var(--strip-h, 200px);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.photostrip__cell { overflow: hidden; }
+.photostrip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* Auf schmalen Bildschirmen nur die ersten drei Bilder — sonst wird
+   jedes zu einem Streifen von 60 Pixeln Breite. */
+@media (max-width: 760px) {
+  .photostrip { height: calc(var(--strip-h, 200px) * .7); }
+  .photostrip__cell:nth-child(n+4) { display: none; }
+}
+@media (max-width: 480px) {
+  .photostrip__cell:nth-child(n+3) { display: none; }
+}
+
+/* ===================================================================
+   Neongelb — die Farbe der Leibchen
+
+   Sparsam und nur als Fläche mit dunkler Schrift (14,5:1). Als
+   Schriftfarbe auf Weiss unbrauchbar (1,26:1), deshalb steht sie
+   nirgends als color.
+   =================================================================== */
+
+/* Gleichzeitiger Massenstart um 18.50 Uhr — der auffälligste Moment
+   des Abends bekommt die auffälligste Farbe. */
+.startlist__count {
+  display: inline-block;
+  background: var(--signal);
+  color: var(--signal-ink);
+  font-family: var(--font-display);
+  font-size: .72rem; letter-spacing: .08em; text-transform: uppercase;
+  padding: .18rem .45rem; border-radius: 5px;
+  margin-top: .55rem;
+}
+
+/* Der aktuelle Jahrgang in der Ranglisten-Tabelle */
+.results tbody tr.is-current { background: color-mix(in srgb, var(--signal) 22%, transparent); }
+.results tbody tr.is-current:hover { background: color-mix(in srgb, var(--signal) 34%, transparent); }
+.results tbody tr.is-current .results__year::after {
+  content: "neu";
+  display: inline-block; margin-left: .5rem; vertical-align: .15em;
+  background: var(--signal); color: var(--signal-ink);
+  font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: .1rem .35rem; border-radius: 4px;
+}
+
+/* Die Tage im Countdown — die Zahl, auf die alle schauen */
+.countdown__unit:first-child {
+  background: var(--signal);
+  border-color: var(--signal);
+}
+.countdown__unit:first-child .countdown__value { color: var(--signal-ink); }
+.countdown__unit:first-child .countdown__label { color: color-mix(in srgb, var(--signal-ink) 75%, transparent); }
+
+/* Der dritte Abend mit Rangverkündigung sticht heraus */
+.event__status { background: var(--signal); color: var(--signal-ink); }
+/* Abgesagt oder verschoben ist eine Warnung, nicht ein Hinweis —
+   dafür bleibt das Orange. */
+.event__status--warn { background: var(--warn); color: #fff; }
+
+@media (max-width: 700px) {
+  .results tbody tr.is-current .results__year::after { display: none; }
 }
