@@ -22,5 +22,19 @@ form:
               size: large
               markdown: true
               content: |
-                Die Alben sind **Unterseiten** dieser Seite. Ein neues Album
-                anlegen: oben auf „Neu" und als Vorlage *Fotoalbum* wählen.
+                **Auf dieser Seite gibt es keine Bilder — die liegen in den Alben.**
+
+                Jedes Album ist eine Unterseite. So legst du eines an:
+
+                1. Links im Seitenbaum diese Seite („Fotos") auswählen
+                2. Oben auf **Hinzufügen → Seite**
+                3. Titel eingeben, zum Beispiel „1. Abend 2027"
+                4. Als Vorlage **Fotoalbum** wählen
+                5. Im neuen Album **Jahr** und **Lauf** setzen — danach
+                   sortiert sich das Archiv von selbst
+                6. Im Reiter **Bilder** die Fotos hineinziehen, auch
+                   mehrere hundert auf einmal
+
+                Die Reihenfolge änderst du dort per Ziehen. Ohne Eingriff
+                stehen die Bilder alphabetisch nach Dateiname — bei
+                Kameranamen wie `THG0042.jpg` ist das die Aufnahmereihenfolge.

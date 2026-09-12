@@ -53,8 +53,11 @@ form:
               size: large
               markdown: true
               content: |
-                Mehrere Dateien auf einmal hineinziehen. Die Reihenfolge lässt
-                sich durch Verschieben ändern.
+                Mehrere Dateien auf einmal hineinziehen — auch mehrere hundert.
+
+                Ohne Eingriff stehen die Bilder alphabetisch nach Dateiname;
+                bei Kameranamen entspricht das der Aufnahmereihenfolge. Durch
+                Verschieben legst du eine eigene Reihenfolge fest.
             media:
               type: file
               destination: self@
