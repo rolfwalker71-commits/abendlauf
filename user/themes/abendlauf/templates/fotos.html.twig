@@ -40,7 +40,7 @@
               {% set cover = album.header.cover ? album.media[album.header.cover|first] : album.media.images|first %}
               <a class="album-card" href="{{ album.url }}">
                 <div class="album-card__img">
-                  {% if cover %}{{ cover.cropZoom(800, 534).html('', '', '', 'lazy')|raw }}{% endif %}
+                  {% if cover %}{{ cover.cropZoom(800, 534).loading('lazy').html('')|raw }}{% endif %}
                   <span class="album-card__count">{{ album.media.images|length }}</span>
                 </div>
                 <h3 class="album-card__title">{{ album.title }}</h3>

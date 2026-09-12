@@ -37,7 +37,7 @@
       {% if karte %}
         <figure class="route__map">
           <a href="{{ karte.url }}" data-lightbox data-caption="{{ runde.titel }} · {{ runde.distanz }}">
-            {{ karte.resize(900).html(karte.meta.alt|default(runde.titel), '', '', 'lazy')|raw }}
+            {{ karte.resize(900).loading('lazy').html(karte.meta.alt|default(runde.titel))|raw }}
           </a>
           <figcaption>Karte anklicken für die grosse Ansicht</figcaption>
         </figure>

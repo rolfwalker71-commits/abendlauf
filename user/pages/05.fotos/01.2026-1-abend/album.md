@@ -5,6 +5,6 @@ lauf: 1
 datum: ""
 beschreibung: ""
 fotograf: ""
-cover: '[]'
+cover: ""
 ---
 

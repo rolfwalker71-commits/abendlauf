@@ -35,7 +35,7 @@
       <div class="gallery">
         {% for name, bild in bilder %}
           <a href="{{ bild.url }}" data-lightbox data-caption="{{ bild.meta.bildtext|default('') }}">
-            {{ bild.cropZoom(500, 500).html(bild.meta.alt|default(bild.meta.bildtext|default('')), '', '', 'lazy')|raw }}
+            {{ bild.cropZoom(500, 500).loading('lazy').html(bild.meta.alt|default(bild.meta.bildtext|default('')))|raw }}
           </a>
         {% endfor %}
       </div>

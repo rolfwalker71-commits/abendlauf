@@ -5,7 +5,7 @@
 <section class="hero hero--compact {{ bild ? '' : 'hero--plain' }} {{ hintergrund ? 'hero--backdrop' : '' }}">
   {% if hintergrund %}
     <div class="hero__backdrop" aria-hidden="true">
-      {{ hintergrund.cropZoom(1600, 700).html('', '', 'hintergrund')|raw }}
+      {{ hintergrund.cropZoom(1600, 700).html()|raw }}
     </div>
   {% endif %}
 
@@ -17,6 +17,6 @@
   </div>
 
   {% if bild %}
-    <div class="hero__media">{{ bild.cropZoom(1100, 760).html('', '', 'kopfbild')|raw }}</div>
+    <div class="hero__media">{{ bild.cropZoom(1100, 760).html()|raw }}</div>
   {% endif %}
 </section>

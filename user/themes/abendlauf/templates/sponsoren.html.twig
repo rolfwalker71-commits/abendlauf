@@ -15,19 +15,36 @@
   {% set teil = alle|filter(s => s.kategorie|default('sponsor') == schluessel) %}
   {% if teil is not empty %}
     <section class="section{{ schluessel == 'haupt' ? '' : ' section--tint' }}">
-      <div class="wrap"><h2>{{ titel }}</h2></div>
-      {% if schluessel == 'sponsor' and teil|length > 8 %}
-        {# Viele kleine Logos laufen als Band durch, statt ein Raster zu füllen. #}
-        <div class="marquee" data-marquee>
-          <div class="marquee__track">
-            {% include 'partials/sponsors.html.twig' with { sponsoren: teil, medien: page } %}
-          </div>
+      <div class="wrap">
+        <div class="section__head">
+          <h2>{{ titel }}</h2>
+          <p class="section__aside">{{ teil|length }}</p>
         </div>
-      {% else %}
-        <div class="wrap">
+        {# Vollständige Auflistung als Raster — jeder Sponsor mit Namen,
+           damit die Seite auch ohne erkennbares Logo lesbar bleibt. #}
+        {% if schluessel in ['haupt', 'co'] %}
           {% include 'partials/sponsors.html.twig' with { sponsoren: teil, medien: page } %}
-        </div>
-      {% endif %}
+        {% else %}
+          <div class="sponsor-grid reveal">
+            {% for s in teil %}
+              {% set logo = s.logo ? page.media[s.logo|first] : null %}
+              {% set inhalt %}
+                <span class="sponsor-grid__logo">
+                  {% if logo %}
+                    <img src="{{ logo.url }}" alt="" loading="lazy">
+                  {% endif %}
+                </span>
+                <span class="sponsor-grid__name">{{ s.name }}</span>
+              {% endset %}
+              {% if s.url %}
+                <a class="sponsor-grid__item" href="{{ s.url }}" rel="noopener">{{ inhalt }}</a>
+              {% else %}
+                <div class="sponsor-grid__item">{{ inhalt }}</div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
     </section>
   {% endif %}
 {% endfor %}

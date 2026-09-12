@@ -5,7 +5,7 @@
 {% set abgesagt = status != 'findet-statt' %}
 <article class="event {{ bild ? '' : 'event--plain' }} {{ abgesagt ? 'event--abgesagt' : '' }}">
   {% if bild %}
-    <div class="event__media">{{ bild.cropZoom(800, 600).html('', '', '', 'lazy')|raw }}</div>
+    <div class="event__media">{{ bild.cropZoom(800, 600).loading('lazy').html('')|raw }}</div>
   {% endif %}
 
   <div class="event__top">

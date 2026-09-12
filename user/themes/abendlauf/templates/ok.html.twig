@@ -17,7 +17,7 @@
         {% set foto = m.portrait ? page.media[m.portrait|first] : null %}
         <div class="person">
           <div class="person__img">
-            {% if foto %}{{ foto.cropZoom(440, 440).html(m.name, '', '', 'lazy')|raw }}{% endif %}
+            {% if foto %}{{ foto.cropZoom(440, 440).loading('lazy').html(m.name)|raw }}{% endif %}
           </div>
           <p class="person__name">{{ m.name }}</p>
           <p class="person__role">{{ m.funktion }}</p>

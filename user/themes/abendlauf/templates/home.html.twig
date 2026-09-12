@@ -72,7 +72,7 @@
   </div>
 
   {% if hero %}
-    <div class="hero__media">{{ hero.cropZoom(1100, 900).html('', '', 'kopfbild')|raw }}</div>
+    <div class="hero__media">{{ hero.cropZoom(1100, 900).html()|raw }}</div>
   {% endif %}
 </section>
 
@@ -141,7 +141,7 @@
           {% set cover = album.header.cover ? album.media[album.header.cover|first] : album.media.images|first %}
           <a class="album-card" href="{{ album.url }}">
             <div class="album-card__img">
-              {% if cover %}{{ cover.cropZoom(800, 534).html('', '', '', 'lazy')|raw }}{% endif %}
+              {% if cover %}{{ cover.cropZoom(800, 534).loading('lazy').html('')|raw }}{% endif %}
             </div>
             <h3 class="album-card__title">{{ album.title }}</h3>
             <p class="album-card__meta">{{ album.media.images|length }} Bilder</p>
@@ -175,7 +175,7 @@
               {% set bild = page.media[name] %}
               {% if bild %}
                 <a href="{{ bild.url }}" data-lightbox data-caption="{{ bild.meta.alt|default('') }}">
-                  {{ bild.resize(700).html(bild.meta.alt|default(''), '', '', 'lazy')|raw }}
+                  {{ bild.resize(700).loading('lazy').html(bild.meta.alt|default(''))|raw }}
                 </a>
               {% endif %}
             {% endfor %}

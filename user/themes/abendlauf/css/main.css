@@ -1239,3 +1239,46 @@ a:hover { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .offer__media a:hover { transform: none; }
 }
+
+/* ---------- Sponsorenliste ---------- */
+
+/* Vollständige Auflistung: gleich grosse Felder, Logo oben, Name
+   darunter. Die Logos sind qualitativ gemischt — mit Namen bleibt die
+   Seite auch dort lesbar, wo ein Logo nichts hergibt. */
+.sponsor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.sponsor-grid__item {
+  display: flex; flex-direction: column; align-items: center; gap: .8rem;
+  padding: 1.2rem 1rem;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  text-decoration: none; color: inherit;
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease, border-color .25s ease;
+}
+.sponsor-grid__item:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--accent); }
+
+.sponsor-grid__logo {
+  display: grid; place-items: center;
+  width: 100%; height: 64px;
+}
+.sponsor-grid__logo img { max-height: 64px; max-width: 100%; width: auto; object-fit: contain; }
+
+.sponsor-grid__name {
+  font-size: .88rem; font-weight: 600; text-align: center;
+  color: var(--muted); line-height: 1.3;
+}
+
+/* Logos sind meist für hellen Grund gemacht — im Dunkelmodus aufhellen */
+:root[data-theme="dark"] .sponsor-grid__logo img { background: #fff; padding: .35rem; border-radius: 5px; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .sponsor-grid__logo img { background: #fff; padding: .35rem; border-radius: 5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sponsor-grid__item:hover { transform: none; }
+}
