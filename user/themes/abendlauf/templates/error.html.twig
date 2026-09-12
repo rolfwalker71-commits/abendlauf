@@ -1,0 +1,38 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'Fehler 404',
+  titel: page.title|default('Seite nicht gefunden'),
+  lead: page.header.intro
+} %}
+
+<section class="section">
+  <div class="wrap">
+    <div class="section__head"><h2>Vielleicht suchst du das</h2></div>
+
+    {# Die Wege, die am häufigsten gemeint sind. #}
+    <div class="grid grid--3">
+      {% for route, text in {
+        '/ranglisten': 'Alle Ranglisten seit 2008, nach Jahrgang geordnet.',
+        '/fotos': 'Die Fotoalben der vergangenen Abende.',
+        '/ausschreibung': 'Kategorien, Startzeiten und Startgelder.'
+      } %}
+        {% set ziel = pages.find(route) %}
+        {% if ziel %}
+          <a class="album-card" href="{{ ziel.url }}">
+            <h3 class="album-card__title">{{ ziel.title }}</h3>
+            <p class="album-card__meta">{{ text }}</p>
+          </a>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <p style="margin-top:2.5rem;">
+      <a class="btn btn--primary" href="{{ base_url == '' ? '/' : base_url }}">Zur Startseite</a>
+      {% set kontakt = pages.find('/kontakt') %}
+      {% if kontakt %}<a class="btn btn--ghost" href="{{ kontakt.url }}">Fehler melden</a>{% endif %}
+    </p>
+  </div>
+</section>
+{% endblock %}
