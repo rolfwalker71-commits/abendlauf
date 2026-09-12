@@ -280,12 +280,13 @@ a:hover { color: var(--accent); }
   font-size: .85rem;
 }
 /* Im waagrechten Menü ist die Hauptaktion der Knopf rechts —
-   der Eintrag in der Liste wäre eine Dopplung. */
-.nav__cta-mobil { display: none; }
+   der Eintrag in der Liste wäre eine Dopplung. Der Selektor braucht
+   dieselbe Spezifität wie `.nav a`, sonst gewinnt dessen display. */
+.nav a.nav__cta-mobil { display: none; }
 
 @media (max-width: 950px) {
   .nav__cta { display: none; }
-  .nav__cta-mobil { display: block; }
+  .nav a.nav__cta-mobil { display: block; }
 }
 
 .theme-toggle {
