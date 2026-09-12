@@ -6,7 +6,7 @@ Intro: Alle Angaben zu Kategorien, Startzeiten und Ablauf der 33. Urner Abendlä
 
 ----
 
-Punkte: 
+Punkte:
 
 -
   stichwort: Durchführung
@@ -50,7 +50,7 @@ Punkte:
 
 ----
 
-Kategorien: 
+Kategorien:
 
 -
   bezeichnung: Piccolo Knaben
@@ -171,6 +171,8 @@ Kategorien:
 
 ----
 
-Kopfhintergrund:
+Kopfhintergrund: - kopfbild.jpg
 
-- kopfbild.jpg
+----
+
+Uuid: 7suo8r7yuzduipdt

@@ -6,6 +6,8 @@ Intro: Jeden Abend wird eine Rangliste erstellt und noch am selben Abend hier au
 
 ----
 
-Kopfhintergrund:
+Kopfhintergrund: - kopfbild.jpg
 
-- kopfbild.jpg
+----
+
+Uuid: ebs4wvs1rpitdgo5

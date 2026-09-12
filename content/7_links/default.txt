@@ -6,11 +6,15 @@ Intro:
 
 ----
 
-Text: - [TV Altdorf](https://www.tvaltdorf.ch)
+Text:
+
+- [TV Altdorf](https://www.tvaltdorf.ch)
 - [STV Altdorf](https://www.stv-altdorf.ch)
 
 ----
 
-Kopfhintergrund:
+Kopfhintergrund: - kopfbild.jpg
 
-- kopfbild.jpg
+----
+
+Uuid: ff0hs124heojpi4o

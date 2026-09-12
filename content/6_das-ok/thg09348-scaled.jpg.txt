@@ -1,5 +1,13 @@
+Alt: Niels Chab
+
+----
+
 Template: bild
 
 ----
 
-Alt: Niels Chab
+Uuid: ehxbk61xhqzp6ckd
+
+----
+
+Focus: 50.1% 43.3%

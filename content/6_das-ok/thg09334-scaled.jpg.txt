@@ -1,5 +1,13 @@
+Alt: Pirmin Walker
+
+----
+
 Template: bild
 
 ----
 
-Alt: Pirmin Walker
+Uuid: ynnviuwhcrt4wvgz
+
+----
+
+Focus: 45.2% 68.3%

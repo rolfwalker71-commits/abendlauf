@@ -6,7 +6,7 @@ Intro: Das Organisationskomitee der Urner Abendläufe.
 
 ----
 
-Mitglieder: 
+Mitglieder:
 
 -
   name: Pirmin Walker
@@ -74,6 +74,8 @@ Mitglieder:
 
 ----
 
-Kopfhintergrund:
+Kopfhintergrund: - kopfbild.jpg
 
-- kopfbild.jpg
+----
+
+Uuid: xqrxmuewwknzt5ld
