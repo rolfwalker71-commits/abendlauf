@@ -1923,3 +1923,52 @@ a:hover { color: var(--accent); }
 @media (max-width: 950px) {
   .nav a.nav__start { display: flex; }
 }
+
+/* ===================================================================
+   Durchgehender Hintergrund: Reussdelta bei Seedorf
+
+   Das Bild liegt fest hinter der ganzen Seite und scheint dort durch,
+   wo ein Abschnitt keine eigene Fläche hat. Getönte und dunkle
+   Abschnitte bleiben deckend — sonst stünde Text auf einem bewegten
+   Motiv statt auf ruhigem Grund.
+
+   Deckkraft und Entsättigung stehen als Tokens: Wer es kräftiger
+   will, ändert zwei Zahlen.
+   =================================================================== */
+
+:root {
+  --grund-deckkraft: .16;
+  --grund-saettigung: .75;
+}
+
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: -10;
+  background-image: url('../img/reussdelta.jpg');
+  background-size: cover;
+  /* Oben liegt der Himmel, unten der See — der Talkessel
+     soll in der Mitte stehen. */
+  background-position: center 45%;
+  opacity: var(--grund-deckkraft);
+  filter: saturate(var(--grund-saettigung));
+  pointer-events: none;
+}
+
+/* Im Dunkelmodus tritt das Bild stärker zurück — auf Nachtblau wirkt
+   ein türkiser See sonst wie ein Fremdkörper. */
+:root[data-theme="dark"] { --grund-deckkraft: .08; --grund-saettigung: .5; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --grund-deckkraft: .08; --grund-saettigung: .5; }
+}
+
+/* Die getönten Abschnitte lassen etwas durch, bleiben aber tragfähig. */
+.section--tint { background: color-mix(in srgb, var(--surface) 88%, transparent); }
+
+/* Kopfzeile und Fusszeile bleiben deckend, damit die Navigation ruhig
+   bleibt und die Fusszeile den Abschluss macht. */
+.site-header { background: color-mix(in srgb, var(--bg) 94%, transparent); }
+.site-footer { background: var(--surface); }
+
+@media (prefers-reduced-motion: reduce) {
+  body::before { background-attachment: scroll; }
+}

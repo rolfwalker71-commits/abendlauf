@@ -58,6 +58,8 @@
 .DS_Store
 Icon
 Thumbs.db
+# Windows hängt an heruntergeladene Dateien eine Begleitdatei an
+*:Zone.Identifier
 *.tmp
 *.bak
 *.sublime-workspace
