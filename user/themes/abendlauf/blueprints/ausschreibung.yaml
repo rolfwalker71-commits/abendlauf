@@ -58,10 +58,20 @@ form:
                   type: text
                   label: Kategorie
                   placeholder: A
-                .jahrgang:
-                  type: text
-                  label: Jahrgang
-                  placeholder: 2016 – 2017
+                .alter_min:
+                  type: number
+                  label: Alter ab
+                  help: Jüngstes Alter in dieser Kategorie. Der Jahrgang wird daraus berechnet.
+                  validate:
+                    min: 1
+                    max: 120
+                .alter_max:
+                  type: number
+                  label: Alter bis
+                  help: Leer lassen für „und älter" — so bei den Volksläufern.
+                  validate:
+                    min: 1
+                    max: 120
                 .startzeit:
                   type: text
                   label: Startzeit

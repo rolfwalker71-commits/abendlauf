@@ -1294,3 +1294,97 @@ a:hover { color: var(--accent); }
   color: var(--muted);
   margin-left: .2em;
 }
+
+/* ---------- Startliste als Zeitstrahl ---------- */
+
+/* Die Kategorien folgen der Uhr, nicht einer Tabelle. Gleichzeitige
+   Starts stehen dadurch sichtbar beieinander — um 18.50 Uhr sind das
+   sechs Kategorien, was in einer Zeilenliste unterging. */
+.startlist { list-style: none; margin: 0; padding: 0; position: relative; }
+
+/* Die Linie, an der die Zeiten hängen */
+.startlist::before {
+  content: ""; position: absolute; top: .6rem; bottom: .6rem; left: 4.6rem;
+  width: 2px; background: var(--line);
+}
+
+.startlist__slot {
+  display: grid;
+  grid-template-columns: 9.5rem minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.5rem);
+  padding-block: 1.4rem;
+}
+
+.startlist__time { position: relative; padding-top: .15rem; }
+.startlist__clock {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.55rem; line-height: 1;
+  font-variant-numeric: tabular-nums;
+  background: var(--bg);
+  padding: .35rem .55rem;
+  border: 2px solid var(--accent);
+  border-radius: 9px;
+  position: relative; z-index: 1;
+}
+.startlist__count {
+  display: block; margin-top: .5rem;
+  font-size: .78rem; color: var(--muted);
+}
+
+.startlist__cards {
+  display: grid; gap: .8rem;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+/* ---------- Einzelne Kategorie ---------- */
+
+.startcard {
+  display: flex; flex-direction: column; gap: .7rem;
+  padding: 1rem 1.1rem;
+  background: var(--surface);
+  border-radius: var(--radius);
+  border-left: 3px solid transparent;
+  transition: border-color .2s ease, transform .2s cubic-bezier(.2,.7,.3,1);
+}
+.startcard:hover { border-left-color: var(--accent); transform: translateX(3px); }
+
+.startcard__head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; }
+.startcard__name {
+  font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase;
+  margin: 0; line-height: 1.1;
+}
+.startcard__kat {
+  flex: none;
+  font-family: var(--font-display); font-size: .82rem;
+  background: var(--surface-2); color: var(--muted);
+  padding: .1rem .45rem; border-radius: 5px;
+}
+
+.startcard__facts { margin: 0; display: grid; gap: .3rem; }
+.startcard__facts > div { display: flex; gap: .6rem; align-items: baseline; }
+.startcard__facts dt {
+  flex: 0 0 5.2rem;
+  font-size: .72rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); font-family: var(--font-display);
+}
+.startcard__facts dd { margin: 0; font-size: .92rem; font-weight: 600; }
+.startcard__runden { font-weight: 400; color: var(--muted); font-size: .85em; }
+
+.startcard__preis {
+  margin: 0; padding-top: .55rem;
+  border-top: 1px solid var(--line);
+  font-family: var(--font-display); font-size: 1rem;
+}
+
+@media (max-width: 700px) {
+  .startlist::before { display: none; }
+  .startlist__slot { grid-template-columns: 1fr; gap: .8rem; padding-block: 1rem; }
+  .startlist__time { display: flex; align-items: baseline; gap: .8rem; }
+  .startlist__count { margin: 0; }
+  .startlist__cards { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .startcard:hover { transform: none; }
+}

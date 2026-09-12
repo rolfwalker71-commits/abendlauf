@@ -19,48 +19,84 @@
 } %}
 
 {% if kategorien is not empty %}
+  {% set jahr = page.header.kategorienjahr %}
+
+  {# Nach Startzeit gruppieren: um 18:50 starten sechs Kategorien
+     gleichzeitig — als Tabellenzeilen war das nicht erkennbar.
+     Schlüssel mit Präfix, weil PHP "1725" sonst zur Ganzzahl macht
+     und array_merge Ganzzahl-Schlüssel neu durchnummeriert. #}
+  {% set bloecke = {} %}
+  {% for k in kategorien %}
+    {% set zk = 'z' ~ k.startzeit %}
+    {% set bisher = bloecke[zk]|default({ zeit: k.startzeit, kategorien: [] }) %}
+    {% set bloecke = bloecke|merge({ (zk): {
+         zeit: k.startzeit,
+         kategorien: bisher.kategorien|merge([k])
+       } }) %}
+  {% endfor %}
+
   <section class="section">
     <div class="wrap">
       <div class="section__head">
         <h2>
           <span class="section__num">01</span> Kategorien und Startzeiten
-          {% if page.header.kategorienjahr %}
-            <small class="section__jahr">({{ page.header.kategorienjahr }})</small>
-          {% endif %}
+          {% if jahr %}<small class="section__jahr">({{ jahr }})</small>{% endif %}
         </h2>
         <p class="section__aside">An allen drei Abenden identisch</p>
       </div>
-      <div class="results">
-        <table>
-          <thead>
-            <tr>
-              <th scope="col">Kategorie</th>
-              <th scope="col">Zeit</th>
-              <th scope="col">Kat.</th>
-              <th scope="col">Jahrgang</th>
-              <th scope="col">Runden</th>
-              <th scope="col">Distanz</th>
-              <th scope="col">Startgeld</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for k in kategorien|sort((a, b) => a.startzeit <=> b.startzeit) %}
-              <tr>
-                {# Auf schmalen Bildschirmen wird jede Zeile zur Karte:
-                   die Bezeichnung ist die Überschrift, die übrigen Werte
-                   tragen ihre Spaltenbeschriftung selbst. #}
-                <th scope="row" class="results__rowhead">{{ k.bezeichnung }}</th>
-                <td data-label="Startzeit"><strong>{{ k.startzeit }}</strong></td>
-                <td data-label="Kategorie">{{ k.kuerzel }}</td>
-                <td data-label="Jahrgang">{{ k.jahrgang }}</td>
-                <td data-label="Runden">{{ k.runden }}</td>
-                <td data-label="Distanz">{{ k.distanz }}</td>
-                <td data-label="Startgeld">{{ k.startgeld }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+
+      <ol class="startlist">
+        {% for zk, block in bloecke %}
+          <li class="startlist__slot">
+            <div class="startlist__time">
+              <span class="startlist__clock">{{ block.zeit }}</span>
+              {% if block.kategorien|length > 1 %}
+                <span class="startlist__count">{{ block.kategorien|length }} Kategorien</span>
+              {% endif %}
+            </div>
+
+            <div class="startlist__cards">
+              {% for k in block.kategorien %}
+                {# Jahrgang aus dem Alter berechnen — so genügt nächstes
+                   Jahr eine neue Zahl im Feld „gelten für das Jahr". #}
+                {% set jg = null %}
+                {% if jahr and k.alter_min %}
+                  {% if k.alter_max %}
+                    {% set von = jahr - k.alter_max %}
+                    {% set bis = jahr - k.alter_min %}
+                    {% set jg = von == bis ? von|string : von ~ ' – ' ~ bis %}
+                  {% else %}
+                    {% set jg = (jahr - k.alter_min) ~ ' und älter' %}
+                  {% endif %}
+                {% endif %}
+
+                <article class="startcard">
+                  <header class="startcard__head">
+                    <h3 class="startcard__name">{{ k.bezeichnung }}</h3>
+                    {% if k.kuerzel %}<span class="startcard__kat">{{ k.kuerzel }}</span>{% endif %}
+                  </header>
+
+                  <dl class="startcard__facts">
+                    {% if jg %}
+                      <div><dt>Jahrgang</dt><dd>{{ jg }}</dd></div>
+                    {% endif %}
+                    {% if k.alter_min %}
+                      <div><dt>Alter</dt><dd>{{ k.alter_max ? (k.alter_min == k.alter_max ? k.alter_min ~ ' Jahre' : k.alter_min ~ '–' ~ k.alter_max ~ ' Jahre') : 'ab ' ~ k.alter_min ~ ' Jahren' }}</dd></div>
+                    {% endif %}
+                    {% if k.distanz %}
+                      <div><dt>Distanz</dt><dd>{{ k.distanz }}{% if k.runden %} <span class="startcard__runden">{{ k.runden }}</span>{% endif %}</dd></div>
+                    {% endif %}
+                  </dl>
+
+                  {% if k.startgeld %}
+                    <p class="startcard__preis">{{ k.startgeld }}</p>
+                  {% endif %}
+                </article>
+              {% endfor %}
+            </div>
+          </li>
+        {% endfor %}
+      </ol>
     </div>
   </section>
 {% endif %}
