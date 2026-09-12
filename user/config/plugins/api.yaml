@@ -1,0 +1,15 @@
+# Felder, die im Panel je Datei bearbeitbar sind. Der Schlüssel wird
+# unverändert in die <dateiname>.meta.yaml neben der Datei geschrieben.
+#
+# Die vier unteren steuern die Ranglisten-Tabelle: Aus jahr und lauf
+# baut die Seite die Matrix, art trennt Ranglisten von anderen
+# Dokumenten. Ohne diese Einträge liessen sich die Angaben nur direkt
+# in den Dateien ändern.
+media_metadata:
+  fields:
+    - { key: titel,  label: 'Titel',              type: text }
+    - { key: art,    label: 'Art (rangliste, ausschreibung, strecke, sonstiges)', type: text }
+    - { key: jahr,   label: 'Jahr',               type: text }
+    - { key: lauf,   label: 'Lauf (1, 2, 3 oder gesamt)', type: text }
+    - { key: alt,    label: 'Bildbeschreibung',   type: text }
+    - { key: bildtext, label: 'Bildunterschrift', type: text }

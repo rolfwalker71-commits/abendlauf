@@ -30,13 +30,27 @@ form:
               size: large
               markdown: true
               content: |
-                **PDF hochladen, dann Jahr und Lauf setzen.** Die Tabelle auf der
-                Website ordnet sich danach automatisch — eine Zeile pro Jahrgang,
-                eine Spalte pro Abend.
+                **Anders als bei den Fotos gibt es hier keine Unterseiten —
+                alle PDFs hängen an dieser einen Seite.**
 
-                Die Angaben zu jeder Datei stehen in einer gleichnamigen
-                `.meta.yaml` daneben. Im Panel bearbeitest du sie über das
-                Stift-Symbol an der Datei.
+                So kommt eine neue Rangliste dazu:
+
+                1. Unten im Feld **Dateien** die PDF hineinziehen
+                2. Auf das **Stift-Symbol** an der Datei klicken
+                3. Ausfüllen:
+                   **Titel** — was auf der Website steht, etwa „Gesamtrangliste"
+                   **Art** — `rangliste` (oder `ausschreibung`, `strecke`, `sonstiges`)
+                   **Jahr** — etwa `2027`
+                   **Lauf** — `1`, `2`, `3` oder `gesamt`
+                4. Speichern
+
+                Die Tabelle ordnet sich danach von selbst: eine Zeile pro
+                Jahrgang, eine Spalte pro Abend. Auch die Zahlen im Kopfbereich
+                — Jahrgänge, Anzahl Ranglisten, ältester und neuester Jahrgang —
+                zählen sich neu.
+
+                Ein Dateiname wie `2027-gesamt.pdf` hilft der Übersicht, ist
+                aber nicht nötig: Massgebend sind allein die Angaben oben.
             media:
               type: file
               destination: self@
