@@ -78,7 +78,12 @@
 <header class="site-header">
   <div class="wrap site-header__inner">
 
-    <a class="brand" href="{{ base_url == '' ? '/' : base_url }}">
+    {# Dass das Logo zur Startseite führt, ist Konvention — aber nichts
+       zeigt es an, und auf Touchgeräten hilft kein Hover. Deshalb
+       zusätzlich ein beschrifteter Eintrag im Menü. #}
+    <a class="brand" href="{{ base_url == '' ? '/' : base_url }}"
+       title="Zur Startseite" aria-label="Zur Startseite"
+       {% if page.template == 'home' %}aria-current="page"{% endif %}>
       <span class="brand__logo">{{ svg_image('theme://img/logo.svg')|raw }}</span>
       <span class="brand__name">
         {{ verein.titel }}
@@ -92,6 +97,13 @@
     {% set hauptaktion = verein.hauptaktion ? pages.find(verein.hauptaktion) : null %}
 
     <nav class="nav" id="nav" aria-label="Hauptnavigation">
+      <a class="nav__start" href="{{ base_url == '' ? '/' : base_url }}"{% if page.template == 'home' %} aria-current="page"{% endif %}>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M4 11.5 12 4l8 7.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6.5 10.5V20h11v-9.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Start
+      </a>
       {% for eintrag in pages.children.visible %}
         {% if not hauptaktion or eintrag.url != hauptaktion.url %}
           <a href="{{ eintrag.url }}"{% if page.url starts with eintrag.url %} aria-current="page"{% endif %}>{{ eintrag.menu }}</a>

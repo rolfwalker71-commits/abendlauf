@@ -1894,3 +1894,24 @@ a:hover { color: var(--accent); }
 @media (max-width: 860px) {
   .opener { min-height: clamp(460px, 70vh, 640px); }
 }
+
+/* ---------- Weg zur Startseite kenntlich machen ---------- */
+
+/* Das Logo als Verweis erkennbar: beim Überfahren färbt sich der
+   Schriftzug und bekommt eine Unterlinie. */
+.brand { border-radius: 8px; transition: color .15s ease; }
+.brand:hover .brand__name { color: var(--accent-text); }
+.brand:hover .brand__name::after {
+  content: ""; display: block; height: 2px; margin-top: 2px;
+  background: var(--accent);
+}
+.brand:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Beschrifteter Eintrag im Menü — wirkt auch dort, wo es kein
+   Überfahren gibt. */
+.nav__start { display: flex; align-items: center; gap: .35rem; }
+.nav__start svg { width: 15px; height: 15px; flex: none; }
+
+@media (max-width: 950px) {
+  .nav a.nav__start { display: flex; }
+}
