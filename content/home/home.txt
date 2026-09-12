@@ -86,3 +86,34 @@ Die 33. Urner Abendläufe finden 2027 an diesen drei Mittwochabenden statt: 18.8
 - [Gemeinde Seedorf](http://seedorf-uri.ch)
 - Stiftung Breitensport
 - [CONCORDIA Versicherung](https://www.concordia.ch)
+
+----
+
+Aktionaktiv: true
+
+----
+
+Aktionpartner: Verofit · Verpflegungssponsor
+
+----
+
+Aktiontitel: 10 % auf deinen nächsten Einkauf
+
+----
+
+Aktiontext: Sollte dir die Verpflegung an den Abendläufen gefallen haben: Mit dem QR-Code oder dem Gutschein-Code «lisi10» bekommst du bei deinem nächsten Einkauf bei Verofit 10 % Rabatt.
+
+----
+
+Aktionbilder:
+
+- aktion-gutschein.jpg
+- aktion-berater.jpg
+
+----
+
+Aktionlink: https://www.verofit.ch
+
+----
+
+Aktionlinktext: Zum Shop

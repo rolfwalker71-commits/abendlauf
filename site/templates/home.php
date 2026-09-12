@@ -177,11 +177,46 @@ $alben = ($fo = $site->find('fotos')) ? $fo->children()->listed()->sortBy('jahr'
   </section>
 <?php endif ?>
 
+<?php if ($page->aktionAktiv()->toBool(true) && $page->aktionText()->isNotEmpty()):
+  $aktionBilder = $page->aktionBilder()->toFiles();
+?>
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="offer">
+        <div class="offer__text">
+          <?php if ($page->aktionPartner()->isNotEmpty()): ?>
+            <p class="eyebrow"><?= $page->aktionPartner() ?></p>
+          <?php endif ?>
+          <h2><span class="section__num">05</span> <?= $page->aktionTitel()->or('Aktion') ?></h2>
+          <div class="prose"><?= $page->aktionText()->kirbytextExtern() ?></div>
+          <?php if ($page->aktionLink()->isNotEmpty()): ?>
+            <p style="margin-top:1.4rem;">
+              <a class="btn btn--primary" href="<?= $page->aktionLink() ?>" target="_blank" rel="noopener">
+                <?= $page->aktionLinkText()->or('Mehr erfahren') ?>
+              </a>
+            </p>
+          <?php endif ?>
+        </div>
+
+        <?php if ($aktionBilder->isNotEmpty()): ?>
+          <div class="offer__media">
+            <?php foreach ($aktionBilder as $bild): ?>
+              <a href="<?= $bild->url() ?>" data-lightbox data-caption="<?= $bild->alt()->escape('attr') ?>">
+                <?= $bild->resize(700)->html(['alt' => $bild->alt()->escape('attr'), 'loading' => 'lazy']) ?>
+              </a>
+            <?php endforeach ?>
+          </div>
+        <?php endif ?>
+      </div>
+    </div>
+  </section>
+<?php endif ?>
+
 <?php if ($patronat && $patronat->isNotEmpty()): ?>
   <section class="section section--tint">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">05</span> Patronat</h2>
+        <h2><span class="section__num">06</span> Patronat</h2>
         <?php if ($sp): ?>
           <p class="section__aside">
             <a href="<?= $sp->url() ?>">Alle <?= $sponsoren->filterBy('aktiv', true)->count() ?> Sponsoren ansehen</a>

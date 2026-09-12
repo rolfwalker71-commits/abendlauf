@@ -108,6 +108,59 @@ tabs:
                   Der Bereich, der vor, während und nach den Läufen ausgetauscht wird.
                   Aufzählungen mit einem Bindestrich am Zeilenanfang, Links als [Text](Adresse).
 
+  aktion:
+    label: Aktion
+    icon: gift
+    columns:
+      - width: 1/3
+        sections:
+          steuerung:
+            type: fields
+            fields:
+              aktionAktiv:
+                label: Bereich anzeigen
+                type: toggle
+                default: true
+                text:
+                  - ausgeblendet
+                  - wird angezeigt
+                help: Zum Abschalten reicht dieser Schalter — der Inhalt bleibt erhalten.
+              aktionTitel:
+                label: Überschrift
+                type: text
+                default: Gutschein unserer Verpflegung
+              aktionPartner:
+                label: Partner
+                type: text
+                help: Erscheint klein über der Überschrift.
+      - width: 2/3
+        sections:
+          inhalt:
+            type: fields
+            fields:
+              aktionText:
+                label: Text
+                type: textarea
+                size: medium
+              aktionBilder:
+                label: Bilder
+                type: files
+                query: page.images
+                uploads:
+                  template: bild
+                max: 3
+                layout: cards
+                help: Ein bis drei Bilder, zum Beispiel Gutschein und Kontaktkarte.
+              aktionLink:
+                label: Link (optional)
+                type: url
+              aktionLinkText:
+                label: Beschriftung des Links
+                type: text
+                default: Zum Shop
+                when:
+                  aktionLink: "*"
+
   termine:
     label: Laufabende
     icon: calendar

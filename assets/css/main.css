@@ -1178,3 +1178,30 @@ a:hover { color: var(--accent-hover); }
   .section--tint .route__map  { order: 2; }
   .route__facts dt { flex-basis: 7rem; }
 }
+
+/* ---------- Aktion eines Partners ---------- */
+
+/* Ein abschaltbarer Werbeblock — klar als solcher erkennbar, aber im
+   Erscheinungsbild der Seite statt als eingeklebtes Banner. */
+.offer {
+  display: grid; gap: clamp(1.5rem, 4vw, 3rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: center;
+}
+.offer__text h2 { margin-top: .3rem; }
+
+.offer__media { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+.offer__media a {
+  display: block; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line); background: var(--bg);
+  transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease;
+}
+.offer__media a:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.offer__media img { width: 100%; height: auto; display: block; }
+
+@media (max-width: 820px) {
+  .offer { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer__media a:hover { transform: none; }
+}
