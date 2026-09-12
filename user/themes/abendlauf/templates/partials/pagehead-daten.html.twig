@@ -22,14 +22,18 @@
     {% endif %}
 
     {% if daten is defined and daten is not empty %}
-      <dl class="pagehead__data">
-        {% for d in daten %}
-          <div class="pagehead__datum">
-            <dt class="pagehead__label">{{ d.label }}</dt>
-            <dd class="pagehead__value">{{ d.wert }}{% if d.einheit %}<small>{{ d.einheit }}</small>{% endif %}</dd>
-          </div>
-        {% endfor %}
-      </dl>
+      {# Gleicher Baustein wie das Zahlenband der Startseite. #}
+      <div class="pagehead__data">
+        <div class="bignums">
+          {% for d in daten %}
+            <div class="bignum">
+              <p class="bignum__value">{{ d.wert }}{% if d.einheit %}<small>{{ d.einheit }}</small>{% endif %}</p>
+              <p class="bignum__label">{{ d.label }}</p>
+              {% if d.notiz %}<p class="bignum__note">{{ d.notiz }}</p>{% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
     {% endif %}
   </div>
 </section>

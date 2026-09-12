@@ -9,9 +9,9 @@
   titel: page.title,
   lead: page.header.intro,
   daten: [
-    { wert: alle|length, label: 'Unterstützen uns' },
-    { wert: alle|filter(s => s.kategorie in ['haupt','co'])|length, label: 'Patronat' },
-    { wert: '1995', label: 'Seit' }
+    { wert: alle|length, label: 'Unterstützen uns', notiz: 'Firmen und Institutionen' },
+    { wert: alle|filter(s => s.kategorie in ['haupt','co'])|length, label: 'Patronat', notiz: 'Hauptsponsor und Partner' },
+    { wert: '1995', label: 'Seit', notiz: 'Jahr für Jahr dabei' }
   ]
 } %}
 

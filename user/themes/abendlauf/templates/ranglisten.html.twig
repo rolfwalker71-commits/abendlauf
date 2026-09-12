@@ -37,10 +37,10 @@
   titel: page.title,
   lead: page.header.intro,
   daten: [
-    { wert: jahrgaenge|length, label: 'Jahrgänge' },
-    { wert: listen|length,     label: 'Ranglisten' },
-    { wert: jahrgaenge|last,   label: 'Ältester Jahrgang' },
-    { wert: aktuell,           label: 'Neuester Jahrgang' }
+    { wert: jahrgaenge|length, label: 'Jahrgänge', notiz: 'lückenlos seit ' ~ jahrgaenge|last },
+    { wert: listen|length,     label: 'Ranglisten', notiz: 'drei Abende plus Gesamt' },
+    { wert: jahrgaenge|last,   label: 'Ältester Jahrgang', notiz: 'im Archiv abrufbar' },
+    { wert: aktuell,           label: 'Neuester Jahrgang', notiz: (aktuell - 1994) ~ '. Austragung' }
   ]
 } %}
 

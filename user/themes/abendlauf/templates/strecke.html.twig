@@ -7,7 +7,7 @@
   eyebrow: 'Informationen · Seedorf am Urnersee',
   titel: page.title,
   lead: page.header.intro,
-  daten: runden|map(r => { wert: r.distanz|replace({' m': ''}), einheit: 'm', label: r.titel })
+  daten: runden|map(r => { wert: r.distanz|replace({' m': ''}), einheit: 'm', label: r.titel, notiz: r.untergrund })
 } %}
 
 {% for runde in runden %}
