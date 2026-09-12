@@ -64,6 +64,11 @@ Icon
 /content/4_fotos/*/*.jpeg
 /content/**/*.pdf
 
+# Ungespeicherte Panel-Änderungen: Kirby legt Entwürfe unter
+# _changes/ ab, bis jemand im Panel auf Speichern klickt. Das ist
+# Arbeitsstand einer einzelnen Person, kein Inhalt.
+_changes/
+
 # Zwischenergebnisse
 *.tmp
 *.bak
