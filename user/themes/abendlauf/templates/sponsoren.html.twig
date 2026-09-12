@@ -4,11 +4,15 @@
 {% set alle = page.header.sponsoren|default([])|filter(s => s.aktiv) %}
 {% set gruppen = { 'haupt': 'Hauptsponsoren', 'co': 'Co-Sponsoren', 'sponsor': 'Sponsoren', 'goenner': 'Gönner' } %}
 
-{% include 'partials/pagehead.html.twig' with {
-  eyebrow: alle|length ~ ' Firmen und Institutionen',
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'Patronat und Partner',
   titel: page.title,
   lead: page.header.intro,
-  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+  daten: [
+    { wert: alle|length, label: 'Unterstützen uns' },
+    { wert: alle|filter(s => s.kategorie in ['haupt','co'])|length, label: 'Patronat' },
+    { wert: '1995', label: 'Seit' }
+  ]
 } %}
 
 {% for schluessel, titel in gruppen %}

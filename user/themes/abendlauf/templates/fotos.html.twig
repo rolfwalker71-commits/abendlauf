@@ -7,8 +7,8 @@
 {% set erstes = alben|first %}
 {% set titelbild = erstes ? (erstes.header.cover ? erstes.media[erstes.header.cover|first] : erstes.media.images|first) : null %}
 
-{% include 'partials/pagehead.html.twig' with {
-  eyebrow: alben is not empty ? alben|length ~ ' Alben · ' ~ bilderGesamt ~ ' Bilder' : null,
+{% include 'partials/pagehead-bild.html.twig' with {
+  eyebrow: alben is not empty ? alben|length ~ ' Alben · ' ~ bilderGesamt ~ ' Bilder' : 'Medien',
   titel: page.title,
   lead: page.header.intro,
   bild: titelbild

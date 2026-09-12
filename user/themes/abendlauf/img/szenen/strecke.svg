@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Rundkurs am Urnersee">
+  <!-- Abendhimmel -->
+  <rect width="1600" height="700" fill="#DCEAF5"/>
+  <circle cx="1240" cy="190" r="78" fill="#FFD9A3"/>
+
+  <!-- Bergketten, hinten nach vorn -->
+  <path d="M0 300 L210 150 L360 260 L520 130 L700 290 L860 180 L1040 300 L1220 200 L1420 310 L1600 210 V700 H0 Z" fill="#9DBFD6"/>
+  <path d="M0 380 L180 260 L330 350 L520 240 L690 370 L900 280 L1120 390 L1330 300 L1600 400 V700 H0 Z" fill="#6E9DBC"/>
+
+  <!-- Urnersee -->
+  <path d="M0 430 H1600 V700 H0 Z" fill="#00A0E8"/>
+  <path d="M120 470 h240 M420 470 h160 M700 500 h300 M1080 480 h220 M260 530 h180 M900 560 h260"
+        stroke="#7ACBF2" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+  <!-- Ufer mit dem Rundkurs -->
+  <path d="M0 560 C 240 520, 420 620, 700 585 C 980 550, 1180 640, 1600 600 V700 H0 Z" fill="#3E6B4E"/>
+  <path d="M-40 640 C 260 585, 470 690, 760 645 C 1060 600, 1260 700, 1660 660"
+        stroke="#D9F224" stroke-width="14" fill="none" stroke-linecap="round"/>
+</svg>

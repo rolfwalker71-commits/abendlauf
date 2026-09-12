@@ -10,12 +10,17 @@
   {% set aktionen = aktionen ~ '<a class="btn btn--primary" href="' ~ d.url ~ '" download>' ~ (d.meta.titel|default('Als PDF')) ~ '</a>' %}
 {% endfor %}
 
-{% include 'partials/pagehead.html.twig' with {
-  eyebrow: kategorien is not empty ? kategorien|length ~ ' Kategorien · Start ab ' ~ (kategorien|first).startzeit ~ ' Uhr' : null,
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'Informationen · ' ~ (page.header.kategorienjahr ?: ''),
   titel: page.title,
   lead: page.header.intro,
   aktionen: aktionen,
-  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+  daten: [
+    { wert: kategorien|length, label: 'Kategorien' },
+    { wert: (kategorien|first).startzeit, label: 'Erster Start' },
+    { wert: '1210', einheit: 'm', label: 'Kleine Runde' },
+    { wert: '2260', einheit: 'm', label: 'Grosse Runde' }
+  ]
 } %}
 
 {% if kategorien is not empty %}

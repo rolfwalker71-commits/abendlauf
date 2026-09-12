@@ -1,0 +1,19 @@
+{# Randloses, SCHARFES Bild über die volle Breite, Titel unten darauf.
+   Nur für Seiten, auf denen ein Bild zum Inhalt gehört — Fotos und
+   Alben. Abgedunkelt wird nur das untere Drittel, damit das Bild
+   oben unangetastet bleibt und der Text trotzdem trägt. #}
+<section class="coverhead">
+  {% if bild %}
+    <div class="coverhead__media">{{ bild.cropZoom(1920, 900).html()|raw }}</div>
+  {% endif %}
+
+  <div class="coverhead__inner wrap">
+    {% if eyebrow is defined and eyebrow %}
+      <p class="coverhead__eyebrow">{{ eyebrow }}</p>
+    {% endif %}
+    <h1 class="coverhead__title">{{ titel }}</h1>
+    {% if lead is defined and lead %}
+      <p class="coverhead__lead">{{ lead|raw }}</p>
+    {% endif %}
+  </div>
+</section>

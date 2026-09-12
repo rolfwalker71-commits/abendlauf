@@ -3,11 +3,15 @@
 {% block content %}
 {% set mitglieder = page.header.mitglieder|default([]) %}
 
-{% include 'partials/pagehead.html.twig' with {
-  eyebrow: mitglieder|length ~ ' Personen',
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'Der Verein',
   titel: page.title,
   lead: page.header.intro,
-  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+  daten: [
+    { wert: mitglieder|length, label: 'Im Komitee' },
+    { wert: '1995', label: 'Seit' },
+    { wert: 'STV', einheit: 'Altdorf', label: 'Organisator' }
+  ]
 } %}
 
 <section class="section">

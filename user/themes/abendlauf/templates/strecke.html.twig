@@ -3,11 +3,11 @@
 {% block content %}
 {% set runden = page.header.runden|default([]) %}
 
-{% include 'partials/pagehead.html.twig' with {
-  eyebrow: runden is not empty ? runden|length ~ ' Runden · ' ~ runden|map(r => r.distanz)|join(' und ') : null,
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'Informationen · Seedorf am Urnersee',
   titel: page.title,
   lead: page.header.intro,
-  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+  daten: runden|map(r => { wert: r.distanz|replace({' m': ''}), einheit: 'm', label: r.titel })
 } %}
 
 {% for runde in runden %}

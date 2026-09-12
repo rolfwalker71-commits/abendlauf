@@ -1615,3 +1615,132 @@ a:hover { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .record:hover { transform: none; }
 }
+
+/* ===================================================================
+   Typografischer Seitenkopf mit Datenzeile
+
+   Ersetzt das unscharfe Foto hinter dem Text. Der Kopf trägt Zahlen
+   zur Seite statt Dekoration; die Bilder stehen darunter als Inhalt.
+   =================================================================== */
+
+.pagehead {
+  border-bottom: 1px solid var(--line);
+  padding-block: clamp(2.4rem, 5vw, 3.8rem) 0;
+}
+
+.pagehead__eyebrow {
+  font-family: var(--font-display);
+  font-size: .76rem; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--accent-text);
+  margin: 0 0 1rem;
+}
+
+.pagehead__title {
+  font-size: clamp(2.4rem, 6vw, 4.2rem);
+  line-height: .96;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.pagehead__lead {
+  font-size: 1.12rem; line-height: 1.55; color: var(--muted);
+  max-width: 52ch; margin: 1.1rem 0 0;
+}
+
+.pagehead .hero__actions { margin-top: 1.6rem; }
+
+/* ---------- Datenzeile ---------- */
+
+.pagehead__data {
+  display: flex; flex-wrap: wrap;
+  gap: 0;
+  margin: clamp(1.8rem, 4vw, 2.8rem) 0 0;
+  border-top: 1px solid var(--line);
+}
+
+.pagehead__datum {
+  padding: 1.1rem clamp(1.2rem, 3vw, 2.4rem) 1.3rem;
+  border-right: 1px solid var(--line);
+}
+.pagehead__datum:first-child { padding-left: 0; }
+.pagehead__datum:last-child  { border-right: 0; }
+
+.pagehead__label {
+  font-family: var(--font-display);
+  font-size: .7rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--muted); margin: 0 0 .4rem;
+}
+
+.pagehead__value {
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(1.9rem, 3.6vw, 2.6rem); line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent-text);
+  margin: 0;
+}
+.pagehead__value small {
+  font-size: .38em; font-weight: 400; color: var(--text);
+  margin-left: .2em;
+}
+
+@media (max-width: 620px) {
+  .pagehead__datum {
+    flex: 1 1 45%;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    padding-inline: 0 1rem;
+  }
+}
+
+/* ===================================================================
+   Randloser Bildkopf (Fotos und Alben)
+
+   Das Bild bleibt scharf und ungetrübt; abgedunkelt wird nur das
+   untere Drittel, wo der Text sitzt. Die Schrift ist dort immer hell,
+   unabhängig vom Farbschema — sie liegt ja auf dem Bild.
+   =================================================================== */
+
+.coverhead {
+  position: relative; isolation: isolate;
+  display: flex; align-items: flex-end;
+  min-height: clamp(340px, 52vh, 540px);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+
+.coverhead__media { position: absolute; inset: 0; z-index: -2; }
+.coverhead__media img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Nur unten abdunkeln — oben bleibt das Bild, wie es ist. */
+.coverhead::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(8, 16, 28, 0) 38%,
+    rgba(8, 16, 28, .55) 68%,
+    rgba(8, 16, 28, .88) 100%);
+}
+
+.coverhead__inner { padding-block: clamp(2rem, 5vw, 3.4rem); color: #F4F8FC; }
+
+.coverhead__eyebrow {
+  font-family: var(--font-display);
+  font-size: .76rem; letter-spacing: .22em; text-transform: uppercase;
+  color: #9FD8F5; margin: 0 0 .8rem;
+}
+
+.coverhead__title {
+  font-size: clamp(2.2rem, 5.5vw, 4rem); line-height: .98;
+  margin: 0; text-wrap: balance;
+}
+
+.coverhead__lead {
+  font-size: 1.05rem; line-height: 1.5; margin: .9rem 0 0;
+  max-width: 54ch; color: rgba(244, 248, 252, .88);
+}
+
+/* Ohne Bild bleibt ein ruhiger Kopf statt einer leeren dunklen Fläche */
+.coverhead:not(:has(.coverhead__media)) { background: var(--surface); }
+.coverhead:not(:has(.coverhead__media))::after { display: none; }
+.coverhead:not(:has(.coverhead__media)) .coverhead__inner { color: var(--text); }
+.coverhead:not(:has(.coverhead__media)) .coverhead__eyebrow { color: var(--accent-text); }
+.coverhead:not(:has(.coverhead__media)) .coverhead__lead { color: var(--muted); }

@@ -1,0 +1,35 @@
+{# Typografischer Seitenkopf ohne Hintergrundbild.
+   Erwartet: titel; optional eyebrow, lead, aktionen,
+             daten (Liste aus { wert, einheit, label })
+
+   Kein Bild hinter dem Text: Der Kopf informiert, statt zu schmücken.
+   Die Bilder erscheinen darunter als Inhalt. Nebeneffekt — die
+   Gratwanderung mit dem Textkontrast auf Fotos entfällt. #}
+<section class="pagehead">
+  <div class="wrap">
+    {% if eyebrow is defined and eyebrow %}
+      <p class="pagehead__eyebrow">{{ eyebrow }}</p>
+    {% endif %}
+
+    <h1 class="pagehead__title">{{ titel }}</h1>
+
+    {% if lead is defined and lead %}
+      <p class="pagehead__lead">{{ lead|raw }}</p>
+    {% endif %}
+
+    {% if aktionen is defined and aktionen %}
+      <div class="hero__actions">{{ aktionen|raw }}</div>
+    {% endif %}
+
+    {% if daten is defined and daten is not empty %}
+      <dl class="pagehead__data">
+        {% for d in daten %}
+          <div class="pagehead__datum">
+            <dt class="pagehead__label">{{ d.label }}</dt>
+            <dd class="pagehead__value">{{ d.wert }}{% if d.einheit %}<small>{{ d.einheit }}</small>{% endif %}</dd>
+          </div>
+        {% endfor %}
+      </dl>
+    {% endif %}
+  </div>
+</section>

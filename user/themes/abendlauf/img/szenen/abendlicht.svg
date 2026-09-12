@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Läufer im Abendlicht">
+  <defs>
+    <linearGradient id="himmel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3A5C"/>
+      <stop offset="1" stop-color="#F2A65A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="700" fill="url(#himmel)"/>
+  <circle cx="1180" cy="430" r="110" fill="#FFD9A3"/>
+
+  <!-- Bergsilhouetten -->
+  <path d="M0 330 L230 180 L400 320 L620 160 L840 340 L1080 200 L1330 330 L1600 230 V700 H0 Z" fill="#16304A" opacity=".55"/>
+  <path d="M0 430 L200 330 L420 440 L680 320 L920 450 L1200 350 L1600 460 V700 H0 Z" fill="#0E2138"/>
+
+  <!-- See mit Spiegelung -->
+  <rect y="470" width="1600" height="230" fill="#123css"/>
+  <rect y="470" width="1600" height="230" fill="#12345A"/>
+  <g stroke="#F2A65A" stroke-width="8" stroke-linecap="round" opacity=".55">
+    <path d="M1120 520 h120 M1100 560 h160 M1140 600 h100 M1090 640 h180"/>
+  </g>
+
+  <!-- Läufer auf dem Uferweg, kräftige Silhouetten -->
+  <g fill="#08192B">
+    <ellipse cx="260" cy="500" rx="30" ry="74"/><circle cx="260" cy="412" r="24"/>
+    <path d="M232 460 L182 420 M288 460 L338 424" stroke="#08192B" stroke-width="16" stroke-linecap="round"/>
+    <ellipse cx="430" cy="520" rx="26" ry="62"/><circle cx="430" cy="447" r="21"/>
+    <ellipse cx="580" cy="508" rx="29" ry="70"/><circle cx="580" cy="424" r="23"/>
+  </g>
+  <path d="M0 590 C 300 560, 700 615, 1600 580 V700 H0 Z" fill="#08192B"/>
+</svg>

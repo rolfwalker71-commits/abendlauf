@@ -30,11 +30,18 @@
 
 {% set spalten = { '1': '1. Abend', '2': '2. Abend', '3': '3. Abend', 'gesamt': 'Gesamt' } %}
 
-{% include 'partials/pagehead.html.twig' with {
-  eyebrow: jahrgaenge is not empty ? 'Resultate ' ~ (jahrgaenge|last) ~ ' bis ' ~ aktuell : 'Resultate',
+{# Zahlen zur Seite statt Dekoration — sie stehen ohnehin in den
+   Daten und sagen mehr als ein unscharfes Foto. #}
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'Medien · Resultate',
   titel: page.title,
   lead: page.header.intro,
-  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+  daten: [
+    { wert: jahrgaenge|length, label: 'Jahrgänge' },
+    { wert: listen|length,     label: 'Ranglisten' },
+    { wert: jahrgaenge|last,   label: 'Ältester Jahrgang' },
+    { wert: aktuell,           label: 'Neuester Jahrgang' }
+  ]
 } %}
 
 {% set gesamt = aktuell ? jahre['j' ~ aktuell].dateien['lgesamt']|default(null) : null %}

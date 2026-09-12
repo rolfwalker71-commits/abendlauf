@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 700" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Startaufstellung">
+  <rect width="1600" height="700" fill="#E4EDF4"/>
+  <path d="M0 250 L260 120 L470 250 L720 110 L980 260 L1240 140 L1600 270 V700 H0 Z" fill="#A9C6D9"/>
+
+  <!-- Wiese -->
+  <path d="M0 420 H1600 V700 H0 Z" fill="#4C7A57"/>
+  <path d="M0 420 C 300 400, 600 445, 900 420 C 1200 395, 1400 440, 1600 420 V470 H0 Z" fill="#5E8E68"/>
+
+  <!-- Startbogen -->
+  <path d="M300 430 V190 Q800 90 1300 190 V430" stroke="#00A0E8" stroke-width="26" fill="none"/>
+  <rect x="620" y="120" width="360" height="86" rx="10" fill="#D9F224"/>
+
+  <!-- Startlinie -->
+  <rect x="0" y="560" width="1600" height="22" fill="#FFFFFF"/>
+
+  <!-- Läuferfeld als kräftige Silhouetten -->
+  <g fill="#12314A">
+    <ellipse cx="300" cy="530" rx="34" ry="86"/><circle cx="300" cy="428" r="26"/>
+    <ellipse cx="420" cy="540" rx="30" ry="76"/><circle cx="420" cy="450" r="23"/>
+    <ellipse cx="540" cy="525" rx="36" ry="92"/><circle cx="540" cy="415" r="28"/>
+    <ellipse cx="680" cy="545" rx="28" ry="70"/><circle cx="680" cy="459" r="21"/>
+    <ellipse cx="800" cy="528" rx="34" ry="88"/><circle cx="800" cy="424" r="26"/>
+    <ellipse cx="930" cy="542" rx="30" ry="74"/><circle cx="930" cy="454" r="23"/>
+    <ellipse cx="1060" cy="526" rx="36" ry="90"/><circle cx="1060" cy="418" r="28"/>
+    <ellipse cx="1200" cy="544" rx="29" ry="72"/><circle cx="1200" cy="456" r="22"/>
+  </g>
+</svg>

@@ -1,10 +1,10 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-{% include 'partials/pagehead.html.twig' with {
+{% include 'partials/pagehead-daten.html.twig' with {
+  eyebrow: 'OK Urner Abendläufe',
   titel: page.title,
-  lead: page.header.intro,
-  hintergrund: page.header.kopfhintergrund ? page.media[page.header.kopfhintergrund|first] : null
+  lead: page.header.intro
 } %}
 
 <section class="section">

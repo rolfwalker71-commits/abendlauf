@@ -10,7 +10,7 @@
 {% if h.datum %}{% set meta = meta|merge([h.datum|date('d.m.Y')]) %}{% endif %}
 {% if h.fotograf %}{% set meta = meta|merge(['Fotos: ' ~ h.fotograf]) %}{% endif %}
 
-{% include 'partials/pagehead.html.twig' with {
+{% include 'partials/pagehead-bild.html.twig' with {
   eyebrow: 'Album · ' ~ h.jahr ~ (h.lauf ? ' · ' ~ laufTitel[h.lauf]|default('') : ''),
   titel: page.title,
   lead: meta|join(' · ') ~ (h.beschreibung ? '<br>' ~ h.beschreibung : ''),
