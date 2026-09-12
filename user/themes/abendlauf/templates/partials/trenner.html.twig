@@ -1,0 +1,23 @@
+{# Übergang zwischen zwei Flächen: Bergkontur oder Seespiegel.
+   Erwartet: art ('berge' oder 'see'), farbe (CSS-Variable der Fläche,
+   in die der Abschnitt übergeht).
+
+   Die Form ist in der Farbe der FOLGENDEN Fläche gefüllt und schneidet
+   damit in die aktuelle hinein — deshalb steht der Trenner am Ende
+   eines Abschnitts, nicht am Anfang des nächsten. #}
+{% set art = art|default('berge') %}
+<div class="trenner trenner--{{ art }}" aria-hidden="true" style="color: var({{ farbe|default('--bg') }});">
+  {% if art == 'berge' %}
+    {# Bergkette, die Silhouette der Urner Alpen nachempfunden #}
+    <svg viewBox="0 0 1440 110" preserveAspectRatio="none">
+      <path fill="currentColor"
+            d="M0 110V78l96-34 78 26 84-52 92 44 76-58 104 62 88-30 96 46 82-36 98 30 76-44 110 52 84-28 96 34 80-18v72z"/>
+    </svg>
+  {% else %}
+    {# Ruhiger Seespiegel #}
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+      <path fill="currentColor"
+            d="M0 70V34c120-22 240-30 360-16s240 34 360 26 240-36 360-30 240 26 360 20v36z"/>
+    </svg>
+  {% endif %}
+</div>

@@ -72,21 +72,25 @@
   {% endif %}
 {% endif %}
 
-<section class="hero {{ hero ? '' : 'hero--plain' }}">
-  <div class="hero__text">
+{# Randloser Auftakt: das Bild über die volle Breite, der Text davor.
+   Abgedunkelt wird nur die untere Hälfte, wo der Text sitzt — oben
+   bleibt das Bild unangetastet. Die Schrift ist hier immer hell,
+   unabhängig vom Farbschema, weil sie auf dem Bild liegt. #}
+<section class="opener {{ hero ? '' : 'opener--plain' }}">
+  {% if hero %}
+    <div class="opener__media">{{ hero.cropZoom(1920, 1080).html()|raw }}</div>
+  {% endif %}
+
+  <div class="wrap opener__inner">
     {% include 'partials/runlogo.html.twig' %}
-    <p class="eyebrow">{{ config.site.verein.untertitel }} · Seedorf am Urnersee</p>
 
-    {% if nummer %}
-      <p class="hero__edition">{{ nummer }}<span class="hero__dot">.</span></p>
-    {% endif %}
-    {# Das Jahr kommt aus dem nächsten Termin, nicht aus der Überschrift —
-       so stimmt es auch, wenn jemand die Termine pflegt und den Titel
-       vergisst. #}
+    <p class="opener__eyebrow">{{ config.site.verein.untertitel }} · Seedorf am Urnersee</p>
+
+    <p class="opener__edition">{{ nummer }}<span class="hero__dot">.</span></p>
     {% set anlassJahr = naechste is not empty ? (naechste|first).datum|date('Y') : null %}
-    <h1>{{ restTitel }}{% if anlassJahr %} <span class="hero__jahr">{{ anlassJahr }}</span>{% endif %}</h1>
+    <h1 class="opener__title">{{ restTitel }}{% if anlassJahr %} <span class="opener__jahr">{{ anlassJahr }}</span>{% endif %}</h1>
 
-    {% if h.subline %}<p class="hero__lead">{{ h.subline }}</p>{% endif %}
+    {% if h.subline %}<p class="opener__lead">{{ h.subline }}</p>{% endif %}
 
     {% if naechste is not empty %}
       {% set naechster = naechste|first %}
@@ -96,7 +100,7 @@
         <div class="countdown__unit"><span class="countdown__value" data-unit="stunden">–</span><span class="countdown__label">Stunden</span></div>
         <div class="countdown__unit"><span class="countdown__value" data-unit="minuten">–</span><span class="countdown__label">Minuten</span></div>
       </div>
-      <p class="countdown__note">
+      <p class="opener__note">
         bis zum Start: {{ naechster.titel }}, {{ ziel|date('d.m.Y') }} um {{ ziel|date('H:i') }} Uhr
       </p>
     {% endif %}
@@ -104,13 +108,9 @@
     <div class="hero__actions">
       {% if ausschreibung %}<a class="btn btn--primary" href="{{ ausschreibung.url }}">Ausschreibung</a>{% endif %}
       {% set ranglisten = pages.find('/ranglisten') %}
-      {% if ranglisten %}<a class="btn btn--ghost" href="{{ ranglisten.url }}">Ranglisten</a>{% endif %}
+      {% if ranglisten %}<a class="btn btn--hell" href="{{ ranglisten.url }}">Ranglisten</a>{% endif %}
     </div>
   </div>
-
-  {% if hero %}
-    <div class="hero__media">{{ hero.cropZoom(1100, 900).html()|raw }}</div>
-  {% endif %}
 </section>
 
 {% if h.aktuellaktiv and h.aktuelltext %}
@@ -133,7 +133,7 @@
 {% endif %}
 
 {% if naechste is not empty %}
-  <section class="section">
+  <section class="section section--tint">
     <div class="wrap">
       <div class="section__head">
         <h2><span class="section__num">02</span> Die nächsten Laufabende</h2>
@@ -143,6 +143,7 @@
         {% for termin in naechste %}{% include 'partials/event.html.twig' %}{% endfor %}
       </div>
     </div>
+    {% include 'partials/trenner.html.twig' with { art: 'berge', farbe: '--band-bg' } %}
   </section>
 {% endif %}
 
@@ -213,6 +214,7 @@
         </div>
       {% endif %}
     </div>
+    {% include 'partials/trenner.html.twig' with { art: 'see', farbe: '--bg' } %}
   </section>
 {% endif %}
 
@@ -241,7 +243,7 @@
 {% include 'partials/fotostreifen.html.twig' with { bilder: streifenA, hoehe: 210 } %}
 
 {% if alben is not empty %}
-  <section class="section">
+  <section class="section section--tint">
     <div class="wrap">
       <div class="section__head">
         <h2><span class="section__num">05</span> Aus den Alben</h2>
@@ -264,7 +266,7 @@
 {% endif %}
 
 {% if h.aktionaktiv and h.aktiontext %}
-  <section class="section section--tint">
+  <section class="section">
     <div class="wrap">
       <div class="offer">
         <div class="offer__text">

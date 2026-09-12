@@ -335,85 +335,10 @@ a:hover { color: var(--accent); }
 }
 .notice a { color: inherit; }
 
-/* ---------- Kopfbereich ---------- */
+/* ---------- Reste des alten Kopfbereichs ---------- */
 
-/* Geteilter Aufbau: Text auf ruhigem Grund, Bild randlos daneben.
-   Dadurch ist der Text in beiden Farbschemata sicher lesbar —
-   kein Ratespiel mit dem Kontrast auf dem Foto. */
-.hero {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  align-items: stretch;
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
-}
-
-.hero__text {
-  display: flex; flex-direction: column; justify-content: center;
-  padding: clamp(2.5rem, 5vw, 4.5rem) clamp(1.25rem, 4vw, 3.5rem);
-  padding-left: max(1.25rem, calc((100vw - var(--wrap)) / 2 + 1.25rem));
-  min-height: min(74vh, 620px);
-}
-
-.hero__media { position: relative; overflow: hidden; min-height: 320px; }
-.hero__media img { width: 100%; height: 100%; object-fit: cover; }
-/* Weiche Kante zum Textbereich, damit das Bild nicht abgeschnitten wirkt */
-.hero__media::before {
-  content: ""; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(90deg, var(--surface) 0%, transparent 22%);
-}
-
-.hero__edition {
-  font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(4rem, 9vw, 8.5rem); line-height: .8;
-  color: var(--accent); margin: 0 0 .1em; letter-spacing: -.03em;
-}
-/* Der Ordnungspunkt sitzt auf der Grundlinie, nicht hochgestellt —
-   sonst liest er sich wie ein Malzeichen. Etwas kleiner als die
-   Ziffern, damit er sie nicht erschlägt. */
-.hero__dot {
-  font-size: .55em;
-  vertical-align: baseline;
-  margin-left: .02em;
-}
-
-.hero h1 {
-  font-size: clamp(1.9rem, 3.6vw, 3rem);
-  margin: 0 0 .5em; text-wrap: balance;
-}
-.hero__lead { font-size: 1.1rem; color: var(--muted); max-width: 38ch; margin: 0; }
+/* .hero__actions wird von den Seitenköpfen und vom Auftakt genutzt. */
 .hero__actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 2rem; }
-
-/* Auf der Startseite ragt der Mitteilungsbereich in den Kopfbereich
-   hinein. Ohne zusätzlichen Fussraum kleben die Knöpfe daran — der
-   Zuschlag entspricht der Überlappung plus Luft. */
-.hero:not(.hero--compact) .hero__text {
-  padding-bottom: clamp(6rem, 9vw, 8.5rem);
-}
-
-@media (max-width: 860px) {
-  /* Schmal wird nicht überlappt, also braucht es den Zuschlag nicht. */
-  .hero:not(.hero--compact) .hero__text {
-    padding-bottom: clamp(2.5rem, 5vw, 4.5rem);
-  }
-}
-
-/* Ohne Bild: einspaltig */
-.hero--plain { grid-template-columns: 1fr; }
-.hero--plain .hero__text { padding-inline: max(1.25rem, calc((100vw - var(--wrap)) / 2 + 1.25rem)); min-height: auto; }
-
-@media (max-width: 860px) {
-  .hero { grid-template-columns: 1fr; }
-  /* Gestapelt bestimmt das Seitenverhältnis die Höhe, nicht die
-     feste Kopfhöhe der zweispaltigen Darstellung. */
-  .hero__media,
-  .hero--compact .hero__media { order: -1; aspect-ratio: 16 / 10; min-height: 0; height: auto; }
-  .hero--compact .hero__media img { position: static; }
-  .hero--compact .hero__text { min-height: auto; }
-  .hero__media::before { background: linear-gradient(180deg, transparent 60%, var(--surface) 100%); }
-  .hero__text { min-height: auto; padding-inline: 1.25rem; }
-}
 
 /* ---------- Countdown ---------- */
 
@@ -1862,3 +1787,110 @@ a:hover { color: var(--accent); }
 .loyal__who { display: flex; flex-direction: column; min-width: 0; }
 .loyal__who strong { font-size: 1rem; }
 .loyal__who small { color: var(--muted); font-size: .82rem; }
+
+/* ---------- Übergänge zwischen den Flächen ---------- */
+
+/* Statt harter Kanten läuft eine Fläche in Gipfeln oder in einem
+   Seespiegel aus. Bergsilhouette und Urnersee sind das naheliegendste
+   Motiv für einen Anlass am Fuss der Urner Alpen — und es gehört
+   euch, nicht einem Baukasten. */
+.trenner {
+  display: block;
+  line-height: 0;
+  margin-bottom: -1px;   /* Haarlinie zwischen Fläche und Form vermeiden */
+}
+.trenner svg { display: block; width: 100%; }
+.trenner--berge svg { height: clamp(44px, 6vw, 86px); }
+.trenner--see svg   { height: clamp(30px, 4vw, 56px); }
+
+/* Der Trenner sitzt im Abschnitt, dessen Fläche er verlässt —
+   deshalb darf dessen unterer Innenabstand entfallen. */
+.section:has(> .trenner),
+.band:has(> .trenner) { padding-bottom: 0; }
+
+/* ===================================================================
+   Randloser Auftakt der Startseite
+
+   Das Bild über die volle Breite, der Text davor. Abgedunkelt wird nur
+   die untere Hälfte — oben bleibt das Foto unangetastet. Die Schrift
+   ist hier fest hell, unabhängig vom Farbschema, weil sie auf dem Bild
+   liegt und nicht auf der Seitenfläche.
+   =================================================================== */
+
+.opener {
+  position: relative; isolation: isolate;
+  display: flex; align-items: flex-end;
+  min-height: clamp(560px, 82vh, 820px);
+  background: var(--band-bg);
+  overflow: hidden;
+}
+
+.opener__media { position: absolute; inset: 0; z-index: -2; }
+.opener__media img { width: 100%; height: 100%; object-fit: cover; }
+
+.opener::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg,
+    rgba(8, 16, 28, .30) 0%,
+    rgba(8, 16, 28, .18) 30%,
+    rgba(8, 16, 28, .72) 68%,
+    rgba(8, 16, 28, .94) 100%);
+}
+
+.opener--plain { background: linear-gradient(160deg, var(--band-bg), #17304C); }
+.opener--plain::after { display: none; }
+
+.opener__inner {
+  padding-block: clamp(2.5rem, 6vw, 4.5rem);
+  color: #F4F8FC;
+  max-width: min(var(--wrap), 100%);
+}
+
+.opener .runlogo { color: #FFFFFF; }
+
+.opener__eyebrow {
+  font-family: var(--font-display);
+  font-size: .78rem; letter-spacing: .22em; text-transform: uppercase;
+  color: #9FD8F5; margin: 0 0 .9rem;
+}
+
+.opener__edition {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(3.4rem, 8vw, 7rem); line-height: .8;
+  color: #2BB2F0; margin: 0 0 .1em; letter-spacing: -.03em;
+}
+
+.opener__title {
+  font-size: clamp(1.9rem, 4vw, 3.2rem);
+  margin: 0 0 .4em; text-wrap: balance;
+}
+.opener__jahr { color: #2BB2F0; }
+
+.opener__lead {
+  font-size: 1.12rem; line-height: 1.5;
+  color: rgba(244, 248, 252, .9);
+  max-width: 46ch; margin: 0;
+}
+
+.opener__note { font-size: .85rem; color: rgba(244, 248, 252, .75); margin: .7rem 0 0; }
+
+/* Der Countdown steht hier auf dunklem Grund */
+.opener .countdown { margin-top: 1.8rem; }
+.opener .countdown__unit {
+  background: rgba(244, 248, 252, .1);
+  border-color: rgba(244, 248, 252, .25);
+}
+.opener .countdown__value { color: #F4F8FC; }
+.opener .countdown__label { color: rgba(244, 248, 252, .7); }
+/* Die Tage bleiben in Signalgelb */
+.opener .countdown__unit:first-child { background: var(--signal); border-color: var(--signal); }
+.opener .countdown__unit:first-child .countdown__value { color: var(--signal-ink); }
+.opener .countdown__unit:first-child .countdown__label { color: color-mix(in srgb, var(--signal-ink) 75%, transparent); }
+
+/* Zweiter Knopf auf dunklem Grund */
+.btn--hell { border-color: rgba(244, 248, 252, .4); color: #F4F8FC; }
+.btn--hell:hover { background: rgba(244, 248, 252, .14); color: #F4F8FC; }
+
+@media (max-width: 860px) {
+  .opener { min-height: clamp(460px, 70vh, 640px); }
+}
