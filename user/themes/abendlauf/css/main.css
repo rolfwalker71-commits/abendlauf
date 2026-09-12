@@ -1282,3 +1282,15 @@ a:hover { color: var(--accent); }
 @media (prefers-reduced-motion: reduce) {
   .sponsor-grid__item:hover { transform: none; }
 }
+
+/* Jahresangabe hinter einer Abschnittsüberschrift — zeigt an, auf
+   welchen Anlass sich die Daten beziehen. */
+.section__jahr {
+  font-family: var(--font-body);
+  font-size: .5em;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-left: .2em;
+}

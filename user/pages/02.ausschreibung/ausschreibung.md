@@ -1,5 +1,6 @@
 ---
 title: 'Ausschreibung'
+kategorienjahr: 2027
 intro: 'Alle Angaben zu Kategorien, Startzeiten und Ablauf der 33. Urner Abendläufe.'
 punkte:
   -
@@ -45,7 +46,7 @@ kategorien:
   -
     bezeichnung: Piccolo Knaben
     kuerzel: A
-    jahrgang: 2016 – 2017
+    jahrgang: 2017 – 2018
     startzeit: "17:25"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -54,7 +55,7 @@ kategorien:
   -
     bezeichnung: Piccolo Mädchen
     kuerzel: B
-    jahrgang: 2016 – 2017
+    jahrgang: 2017 – 2018
     startzeit: "17:35"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -63,7 +64,7 @@ kategorien:
   -
     bezeichnung: Kids Knaben
     kuerzel: L
-    jahrgang: 2018 – 2019
+    jahrgang: 2019 – 2020
     startzeit: "17:45"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -72,7 +73,7 @@ kategorien:
   -
     bezeichnung: Kids Mädchen
     kuerzel: M
-    jahrgang: 2018 – 2019
+    jahrgang: 2019 – 2020
     startzeit: "17:55"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -81,7 +82,7 @@ kategorien:
   -
     bezeichnung: Eltern mit Pfüderi
     kuerzel: C
-    jahrgang: 2022 – 2024
+    jahrgang: 2023 – 2025
     startzeit: "18:05"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -90,7 +91,7 @@ kategorien:
   -
     bezeichnung: Eltern mit Höseler
     kuerzel: X
-    jahrgang: 2021
+    jahrgang: 2022
     startzeit: "18:20"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -99,7 +100,7 @@ kategorien:
   -
     bezeichnung: Kind mit Eltern
     kuerzel: D
-    jahrgang: 2020
+    jahrgang: 2021
     startzeit: "18:35"
     runden: 1 kleine Runde
     distanz: 1210 m
@@ -108,7 +109,7 @@ kategorien:
   -
     bezeichnung: Schüler Knaben
     kuerzel: F
-    jahrgang: 2013 – 2015
+    jahrgang: 2014 – 2016
     startzeit: "18:50"
     runden: 1 grosse Runde
     distanz: 2260 m
@@ -117,7 +118,7 @@ kategorien:
   -
     bezeichnung: Schülerinnen
     kuerzel: E
-    jahrgang: 2013 – 2015
+    jahrgang: 2014 – 2016
     startzeit: "18:50"
     runden: 1 grosse Runde
     distanz: 2260 m
@@ -126,7 +127,7 @@ kategorien:
   -
     bezeichnung: Jugend Knaben
     kuerzel: H
-    jahrgang: 2009 – 2012
+    jahrgang: 2010 – 2013
     startzeit: "18:50"
     runden: 2 grosse Runden
     distanz: 4440 m
@@ -135,7 +136,7 @@ kategorien:
   -
     bezeichnung: Jugend Mädchen
     kuerzel: G
-    jahrgang: 2009 – 2012
+    jahrgang: 2010 – 2013
     startzeit: "18:50"
     runden: 1 grosse Runde
     distanz: 2260 m
@@ -144,7 +145,7 @@ kategorien:
   -
     bezeichnung: Volksläufer Männer
     kuerzel: J
-    jahrgang: 2008 und älter
+    jahrgang: 2009 und älter
     startzeit: "18:50"
     runden: 3 grosse Runden
     distanz: 6700 m
@@ -153,7 +154,7 @@ kategorien:
   -
     bezeichnung: Volksläuferinnen
     kuerzel: K
-    jahrgang: 2008 und älter
+    jahrgang: 2009 und älter
     startzeit: "18:50"
     runden: 2 grosse Runden
     distanz: 4440 m

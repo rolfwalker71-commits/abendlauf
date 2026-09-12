@@ -22,7 +22,12 @@
   <section class="section">
     <div class="wrap">
       <div class="section__head">
-        <h2><span class="section__num">01</span> Kategorien und Startzeiten</h2>
+        <h2>
+          <span class="section__num">01</span> Kategorien und Startzeiten
+          {% if page.header.kategorienjahr %}
+            <small class="section__jahr">({{ page.header.kategorienjahr }})</small>
+          {% endif %}
+        </h2>
         <p class="section__aside">An allen drei Abenden identisch</p>
       </div>
       <div class="results">

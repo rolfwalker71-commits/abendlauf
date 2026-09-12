@@ -37,6 +37,13 @@ form:
           type: tab
           title: Kategorien
           fields:
+            header.kategorienjahr:
+              type: number
+              label: Kategorien gelten für das Jahr
+              help: Erscheint klein hinter der Überschrift, damit Besucher sehen, dass die Angaben aktuell sind.
+              validate:
+                min: 1995
+                max: 2100
             header.kategorien:
               type: list
               label: Kategorien und Startzeiten
