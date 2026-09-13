@@ -5,6 +5,6 @@ lauf: 3
 datum: '2026-09-02'
 beschreibung: ''
 fotograf: 'Thomas Gasser'
-cover: thg0064-1-rotated.jpg
+cover: thg0088-1.jpg
 ---
 
