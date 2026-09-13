@@ -21,6 +21,44 @@ form:
               type: pagemedia
               label: Hintergrundbild des Kopfbereichs
 
+        treue:
+          type: tab
+          title: Jahr für Jahr dabei
+          fields:
+            header.treueaktiv:
+              type: toggle
+              label: Bereich anzeigen
+              highlight: 1
+              default: true
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.treuetitel:
+              type: text
+              label: Überschrift
+            header.treuehinweis:
+              type: text
+              label: Hinweis zur Datenbasis
+            header.treue:
+              type: list
+              label: Teilnehmende
+              style: vertical
+              fields:
+                .name:
+                  type: text
+                  label: Name
+                .jahrgang:
+                  type: number
+                  label: Jahrgang
+                .jahre:
+                  type: number
+                  label: Jahre dabei
+                .von:
+                  type: number
+                  label: von wie vielen ausgewerteten Jahren
+
         dateien:
           type: tab
           title: Ranglisten

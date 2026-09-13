@@ -1,0 +1,24 @@
+title: Fehlerseite
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+        inhalt:
+          type: tab
+          title: Inhalt
+          fields:
+            header.intro:
+              type: textarea
+              label: Text
+              rows: 3
+              help: Erscheint, wenn eine Adresse ins Leere führt.
+            header.http_response_code:
+              type: number
+              label: HTTP-Status
+              help: Muss 404 bleiben — sonst behandeln Suchmaschinen die Seite als gültig.
