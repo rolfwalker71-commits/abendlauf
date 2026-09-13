@@ -130,7 +130,6 @@ kategorien:
   startgeld: CHF 10
   alter_min: 18
   alter_max: null
-kopfhintergrund:
-- kopfbild.jpg
+kopfhintergrund: kopfbild.jpg
 ---
 

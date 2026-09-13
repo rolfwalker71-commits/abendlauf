@@ -3,8 +3,7 @@ title: 'Links'
 # Gehört in die Fusszeile, nicht in die Hauptnavigation.
 visible: false
 intro: ""
-kopfhintergrund:
-  - kopfbild.jpg
+kopfhintergrund: kopfbild.jpg
 # aus Kirby übernommen: ff0hs124heojpi4o
 ---
 

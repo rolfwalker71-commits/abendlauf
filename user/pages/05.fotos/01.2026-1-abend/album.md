@@ -2,9 +2,9 @@
 title: '1. Abend 2026'
 jahr: 2026
 lauf: 1
-datum: ""
-beschreibung: ""
-fotograf: ""
-cover: ""
+datum: '2026-08-19'
+beschreibung: ''
+fotograf: ''
+cover: thg0030.jpg
 ---
 

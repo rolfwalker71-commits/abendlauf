@@ -2,8 +2,7 @@
 title: Kontakt
 intro: Fragen zum Anlass? Wir melden uns.
 formularaktiv: true
-kopfhintergrund:
-- kopfbild.jpg
+kopfhintergrund: kopfbild.jpg
 form:
   name: kontakt
   fields:

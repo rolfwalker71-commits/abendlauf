@@ -7,8 +7,7 @@ runden:
         distanz: '1210 m'
         hoehenmeter: flach
         untergrund: Naturweg
-        karte:
-            - kleine-runde.jpg
+        karte: kleine-runde.jpg
         beschreibung: 'Rund ums Schloss A Pro. Start und Ziel liegen beim Seerestaurant, die Runde führt über Naturwege durch das Riedgebiet.'
         kategorien: 'Alle Kinder- und Elternkategorien'
     -
@@ -16,12 +15,10 @@ runden:
         distanz: '2260 m'
         hoehenmeter: flach
         untergrund: Naturweg
-        karte:
-            - grosse-runde.jpg
+        karte: grosse-runde.jpg
         beschreibung: 'Über den Weg der Schweiz Richtung Wijer und zurück. Je nach Kategorie eine, zwei oder drei Runden.'
         kategorien: 'Schüler, Jugend und Volksläufer'
-kopfhintergrund:
-    - kopfbild.jpg
+kopfhintergrund: kopfbild.jpg
 media_order: 'grosse-runde.jpg, kleine-runde.jpg, kopfbild.jpg'
 ---
 

@@ -1,8 +1,7 @@
 ---
 title: Ranglisten
 intro: Jeden Abend wird eine Rangliste erstellt und noch am selben Abend hier aufgeschaltet. Wer an mindestens zwei Läufen teilgenommen hat, steht zusätzlich in der Gesamtrangliste.
-kopfhintergrund:
-- kopfbild.jpg
+kopfhintergrund: kopfbild.jpg
 treueaktiv: true
 treuetitel: Jahr für Jahr dabei
 treuehinweis: Wer in den auswertbaren Jahrgängen am häufigsten in der Gesamtwertung stand. Grundlage sind 10 Jahre zwischen 2013 und 2026.

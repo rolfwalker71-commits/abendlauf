@@ -4,301 +4,263 @@ intro: 'Die Urner Abendläufe gibt es nur dank der Unterstützung dieser Firmen 
 sponsoren:
   -
     name: Urner Kantonalbank
-    logo:
-      - ukb-logo.png
+    logo: ukb-logo.png
     url: https://www.ukb.ch/
     kategorie: haupt
     aktiv: true
 
   -
     name: Imholz Sport Bürglen
-    logo:
-      - imholz-logo.png
+    logo: imholz-logo.png
     url: http://www.imholzsport.ch/
     kategorie: co
     aktiv: true
 
   -
     name: Gasthaus Reiser
-    logo:
-      - screenshot-2026-08-19-113906.png
+    logo: screenshot-2026-08-19-113906.png
     url: https://gasthaus-reiser.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Bless AG
-    logo:
-      - bless-logo.png
+    logo: bless-logo.png
     url: https://blessag.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Bistro & Lounge Baggenstos
-    logo:
-      - screenshot-2025-06-15-110057.png
+    logo: screenshot-2025-06-15-110057.png
     url: https://www.bistrobaggenstos.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Arnold Zentrum Markt
-    logo:
-      - screenshot-2025-06-15-103420.png
+    logo: screenshot-2025-06-15-103420.png
     url: 
     kategorie: sponsor
     aktiv: true
 
   -
     name: Restaurant Grund
-    logo:
-      - restaurantgrund-logo-cmyk.jpg
+    logo: restaurantgrund-logo-cmyk.jpg
     url: 
     kategorie: sponsor
     aktiv: true
 
   -
     name: Verofit (Läufer Verpflegungspartner)
-    logo:
-      - verofit.png
+    logo: verofit.png
     url: http://www.verofit.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Gisler Service
-    logo:
-      - gislerservice2026.png
+    logo: gislerservice2026.png
     url: http://www.gislerservice.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Feinbäckerei Hauger (Verpflegungssponsor)
-    logo:
-      - feinbaeckereihaugerlogo.png
+    logo: feinbaeckereihaugerlogo.png
     url: https://hauger.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Steve Events
-    logo:
-      - steveevent2026.png
+    logo: steveevent2026.png
     url: https://www.steve-events.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Gemeindeverwaltung Seedorf
-    logo:
-      - seedorf-logo-farbig-1.jpg
+    logo: seedorf-logo-farbig-1.jpg
     url: http://seedorf-uri.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Gemeindeverwaltung Altdorf
-    logo:
-      - cd-altdorf-1-1b-1.jpg
+    logo: cd-altdorf-1-1b-1.jpg
     url: http://altdorf.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Brand Metallbau AG
-    logo:
-      - brandmission-metall-logo2x.png
+    logo: brandmission-metall-logo2x.png
     url: https://www.brand.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: collab print
-    logo:
-      - collab-logo-209.png
+    logo: collab-logo-209.png
     url: https://www.collab-print.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Rofina
-    logo:
-      - logo-rofina.png
+    logo: logo-rofina.png
     url: https://www.rofina.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Jauch Optik
-    logo:
-      - jo-logo-wei-1.jpg
+    logo: jo-logo-wei-1.jpg
     url: http://www.jauchoptik.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Aschwanden Persi
-    logo:
-      - aschwandenpersi-1.png
+    logo: aschwandenpersi-1.png
     url: http://apwein.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Gebr. Gisler
-    logo:
-      - gebrgisler.png
+    logo: gebrgisler.png
     url: http://gebr-gisler.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Bissig Küchenbau
-    logo:
-      - image001.png
+    logo: image001.png
     url: http://bissig-ag.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Christen Automobile
-    logo:
-      - christen-automobile-logo2024-schwarz.jpg
+    logo: christen-automobile-logo2024-schwarz.jpg
     url: http://christen-automobile.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Gamma AG Holding
-    logo:
-      - gamma-4in1-cmyk.jpg
+    logo: gamma-4in1-cmyk.jpg
     url: http://gamma-holding.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: GIPO
-    logo:
-      - gipo.png
+    logo: gipo.png
     url: http://gipo.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Druckerei Gasser
-    logo:
-      - druckereigasser.jpg
+    logo: druckereigasser.jpg
     url: http://gasserdruck.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Die Mobiliar
-    logo:
-      - diemobililar.png
+    logo: diemobililar.png
     url: http://mobiliar.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Schwimmbad Altdorf
-    logo:
-      - schwimmbad-altdorf.png
+    logo: schwimmbad-altdorf.png
     url: https://www.schwimmbad-altdorf.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Seerestaurant
-    logo:
-      - screenshot-2025-06-15-102836.png
+    logo: screenshot-2025-06-15-102836.png
     url: https://www.seerestaurant-seedorf.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Swiss City Marathon
-    logo:
-      - swisscity2026.png
+    logo: swisscity2026.png
     url: https://www.swisscitymarathon.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Concordia Versicherung
-    logo:
-      - concordia.jpg
+    logo: concordia.jpg
     url: https://www.concordia.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Stiftung Carl und Elise Elsener
-    logo:
-      - carl-und-elise-elsener-gut-stiftung-300x270-1.png
+    logo: carl-und-elise-elsener-gut-stiftung-300x270-1.png
     url: 
     kategorie: sponsor
     aktiv: true
 
   -
     name: Korporation Uri
-    logo:
-      - logo-korporation-uri.png
+    logo: logo-korporation-uri.png
     url: http://www.korporation.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Schuler Holzbau
-    logo:
-      - screenshot-2026-08-11-182950.png
+    logo: screenshot-2026-08-11-182950.png
     url: https://www.schulerholzbau.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: Arnold & Co.
-    logo:
-      - arnold-logo.png
+    logo: arnold-logo.png
     url: https://www.arnold-coag.ch/
     kategorie: sponsor
     aktiv: true
 
   -
     name: ComDataNet
-    logo:
-      - comdatanet-logo.png
+    logo: comdatanet-logo.png
     url: https://www.comdatanet.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Dätwyler Stiftung
-    logo:
-      - daetwyler-logo.png
+    logo: daetwyler-logo.png
     url: 
     kategorie: sponsor
     aktiv: true
 
   -
     name: Pouletburg Attinghausen
-    logo:
-      - pouletburg.gif
+    logo: pouletburg.gif
     url: https://www.pouletburg.ch
     kategorie: sponsor
     aktiv: true
 
   -
     name: Sisag
-    logo:
-      - sisag-neu-pdf.jpg
+    logo: sisag-neu-pdf.jpg
     url: https://www.sisag.ch
     kategorie: sponsor
     aktiv: true
-kopfhintergrund:
-  - kopfbild.jpg
+kopfhintergrund: kopfbild.jpg
 # aus Kirby übernommen: pkshltjqe7rupphx
 ---
 

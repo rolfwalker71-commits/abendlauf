@@ -13,24 +13,20 @@ laufabende:
   ort: Seerestaurant Seedorf
   status: findet-statt
   statushinweis: ''
-  bild:
-  - abend-1.jpg
+  bild: abend-1.jpg
 - titel: Zweiter Abend
   datum: 2027-08-25 17:25:00
   ort: Seerestaurant Seedorf
   status: findet-statt
   statushinweis: ''
-  bild:
-  - abend-2.jpg
+  bild: abend-2.jpg
 - titel: Dritter Abend
   datum: 2027-09-01 17:25:00
   ort: Seerestaurant Seedorf
   status: findet-statt
   statushinweis: Mit Rangverkündigung um 20 Uhr
-  bild:
-  - abend-3.jpg
-herobild:
-- hero-feld.jpg
+  bild: abend-3.jpg
+herobild: hero-feld.jpg
 aktuellaktiv: true
 aktuelltitel: Aktuell
 aktuellstand: '2026-09-03'
