@@ -166,6 +166,16 @@ form:
                 .kategorie:
                   type: text
                   label: Kategorie
+                .gruppe:
+                  type: select
+                  label: Gruppe
+                  help: Bestimmt Symbol und Farbe der Kachel.
+                  default: maenner
+                  options:
+                    maenner: Männer
+                    frauen: Frauen
+                    knaben: Knaben
+                    maedchen: Mädchen
                 .zeit:
                   type: text
                   label: Zeit

@@ -91,6 +91,11 @@
   /* Neongelb der Leibchen als zweite Akzentfarbe. NUR als Fläche mit
      dunkler Schrift (14,5:1) — als Schriftfarbe auf Weiss unbrauchbar
      (1,26:1). */
+  /* Zweite Kennfarbe nur für die Rekordkacheln: Frauen und Mädchen.
+     Männer und Knaben tragen das Logo-Cyan. Himbeer statt Rosa, damit
+     sie neben Cyan und Signalgelb besteht. 5,2:1 auf --surface. */
+  --frauen:       #C2255C;
+
   --signal:       #D9F224;
   --signal-ink:   #0C1524;
 
@@ -136,6 +141,7 @@
     --accent-hover: #57C5F6;
     --accent-ink:   #06121F;
     --accent-text:  #2BB2F0;   /* auf dunklem Grund tragen 7,6:1 */
+    --frauen:       #F06595;   /* 5,5:1 auf --surface */
 
     --warn:      #FB923C;
 
@@ -158,6 +164,7 @@
   --accent-hover: #57C5F6;
   --accent-ink:   #06121F;
   --accent-text:  #2BB2F0;
+  --frauen:       #F06595;
 
   --warn:      #FB923C;
 
@@ -1638,11 +1645,13 @@ a:hover { color: var(--accent); }
 }
 
 .record {
+  --rec: var(--accent);          /* Kante */
+  --rec-text: var(--accent-text); /* Zeit und Symbol, schrifttauglich */
   position: relative;
   padding: 1.3rem 1.4rem 1.2rem;
   background: var(--surface);
   border-radius: var(--radius);
-  border-top: 3px solid var(--accent);
+  border-top: 3px solid var(--rec);
   overflow: hidden;
   transition: transform .25s cubic-bezier(.2,.7,.3,1), box-shadow .25s ease;
 }
@@ -1653,21 +1662,30 @@ a:hover { color: var(--accent); }
 .record::after {
   content: ""; position: absolute; right: -30%; bottom: -60%;
   width: 150px; height: 150px; border-radius: 50%;
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  background: color-mix(in srgb, var(--rec) 8%, transparent);
   pointer-events: none;
 }
 
 .record__kat {
   font-family: var(--font-display); font-size: .74rem;
   letter-spacing: .16em; text-transform: uppercase;
-  color: var(--muted); margin: 0;
+  color: var(--muted); margin: 0; padding-right: 2.2rem;
+}
+
+.record--w { --rec: var(--frauen); --rec-text: var(--frauen); }
+
+/* Symbol oben rechts. Die Farbe allein unterscheidet nicht — erst das
+   Piktogramm macht es auch ohne Farbsehen eindeutig. */
+.record__icon {
+  position: absolute; top: .95rem; right: .95rem;
+  width: 30px; height: 30px; color: var(--rec-text);
 }
 
 .record__time {
   font-family: var(--font-display); font-weight: 600;
   font-size: clamp(2.1rem, 4.4vw, 2.9rem); line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--accent-text);
+  color: var(--rec-text);
   margin: .5rem 0 .6rem;
 }
 

@@ -256,7 +256,9 @@
 
       <div class="records reveal">
         {% for r in h.rekorde %}
-          <article class="record">
+          {% set weiblich = r.gruppe in ['frauen', 'maedchen'] %}
+          <article class="record{{ weiblich ? ' record--w' : '' }}">
+            {% include 'partials/gruppe-icon.html.twig' with { gruppe: r.gruppe|default('') } %}
             <p class="record__kat">{{ r.kategorie }}</p>
             <p class="record__time">{{ r.zeit }}</p>
             <p class="record__who">{{ r.name }}{% if r.ort %}<small>{{ r.ort }}</small>{% endif %}</p>
