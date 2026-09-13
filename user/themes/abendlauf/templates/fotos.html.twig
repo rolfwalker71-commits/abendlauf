@@ -5,7 +5,7 @@
 {% set bilderGesamt = 0 %}
 {% for a in alben %}{% set bilderGesamt = bilderGesamt + a.media.images|length %}{% endfor %}
 {% set erstes = alben|first %}
-{% set titelbild = erstes ? (erstes.header.cover ? erstes.media[erstes.header.cover|first] : erstes.media.images|first) : null %}
+{% set titelbild = erstes ? (erstes.header.cover ? erstes.media[(erstes.header.cover is iterable ? erstes.header.cover|first : erstes.header.cover)] : erstes.media.images|first) : null %}
 
 {% include 'partials/pagehead-bild.html.twig' with {
   eyebrow: alben is not empty ? alben|length ~ ' Alben · ' ~ bilderGesamt ~ ' Bilder' : 'Medien',
@@ -37,7 +37,7 @@
           </div>
           <div class="grid grid--3 reveal">
             {% for album in gruppe %}
-              {% set cover = album.header.cover ? album.media[album.header.cover|first] : album.media.images|first %}
+              {% set cover = album.header.cover ? album.media[(album.header.cover is iterable ? album.header.cover|first : album.header.cover)] : album.media.images|first %}
               <a class="album-card" href="{{ album.url }}">
                 <div class="album-card__img">
                   {% if cover %}{{ cover.cropZoom(800, 534).loading('lazy').html('')|raw }}{% endif %}

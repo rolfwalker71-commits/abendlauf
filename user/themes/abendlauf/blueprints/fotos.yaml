@@ -9,6 +9,14 @@ form:
       type: tabs
       active: 1
       fields:
+
+        # Die Bilder liegen in den Alben, nicht auf dieser Seite.
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              type: hidden
+
         angaben:
           type: tab
           title: Angaben

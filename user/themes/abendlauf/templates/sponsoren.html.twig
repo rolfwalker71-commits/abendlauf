@@ -31,7 +31,7 @@
         {% else %}
           <div class="sponsor-grid reveal">
             {% for s in teil %}
-              {% set logo = s.logo ? page.media[s.logo|first] : null %}
+              {% set logo = s.logo ? page.media[(s.logo is iterable ? s.logo|first : s.logo)] : null %}
               {% set inhalt %}
                 <span class="sponsor-grid__logo">
                   {% if logo %}

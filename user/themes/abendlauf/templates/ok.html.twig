@@ -18,7 +18,7 @@
   <div class="wrap">
     <div class="grid grid--personen">
       {% for m in mitglieder %}
-        {% set foto = m.portrait ? page.media[m.portrait|first] : null %}
+        {% set foto = m.portrait ? page.media[(m.portrait is iterable ? m.portrait|first : m.portrait)] : null %}
         <div class="person">
           <div class="person__img">
             {% if foto %}{{ foto.cropZoom(440, 440).loading('lazy').html(m.name)|raw }}{% endif %}

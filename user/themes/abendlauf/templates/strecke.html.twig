@@ -11,7 +11,7 @@
 } %}
 
 {% for runde in runden %}
-  {% set karte = runde.karte ? page.media[runde.karte|first] : null %}
+  {% set karte = runde.karte ? page.media[(runde.karte is iterable ? runde.karte|first : runde.karte)] : null %}
   <section class="section{{ loop.index0 is odd ? ' section--tint' : '' }}">
     <div class="wrap route">
 

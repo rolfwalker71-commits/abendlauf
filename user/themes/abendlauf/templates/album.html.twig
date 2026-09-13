@@ -3,7 +3,7 @@
 {% block content %}
 {% set h = page.header %}
 {% set bilder = page.media.images %}
-{% set cover = h.cover ? page.media[h.cover|first] : bilder|first %}
+{% set cover = h.cover ? page.media[(h.cover is iterable ? h.cover|first : h.cover)] : bilder|first %}
 {% set laufTitel = { '1': '1. Abend', '2': '2. Abend', '3': '3. Abend', 'gesamt': 'Schlussfeier' } %}
 
 {% set meta = [bilder|length ~ ' Bilder'] %}

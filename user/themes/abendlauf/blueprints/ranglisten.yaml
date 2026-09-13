@@ -28,8 +28,11 @@ form:
               label: Einleitungstext
               rows: 3
             header.kopfhintergrund:
-              type: pagemedia
-              label: Hintergrundbild des Kopfbereichs
+              type: pagemediaselect
+              label: Vorschaubild beim Teilen
+              help: Wird auf der Seite selbst nicht gezeigt. Erscheint nur, wenn jemand den Link auf Facebook, WhatsApp oder Instagram teilt.
+              accept:
+                - image/*
 
         treue:
           type: tab
@@ -99,11 +102,6 @@ form:
 
                 Ein Dateiname wie `2027-gesamt.pdf` hilft der Übersicht, ist
                 aber nicht nötig: Massgebend sind allein die Angaben oben.
-            media:
-              type: file
-              destination: self@
-              multiple: true
+            header.media_order:
+              type: pagemedia
               label: Dateien
-              accept:
-                - application/pdf
-                - image/*

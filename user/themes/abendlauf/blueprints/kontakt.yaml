@@ -9,6 +9,16 @@ form:
       type: tabs
       active: 1
       fields:
+
+        # Gravs Reiter „Inhalt“ zeigt dieselben Dateien wie unser
+        # eigener Dateien-Reiter. Einmal reicht - sonst weiss niemand,
+        # welcher der richtige ist.
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              type: hidden
+
         angaben:
           type: tab
           title: Angaben
@@ -35,8 +45,11 @@ form:
                 An welche Adresse die Nachrichten gehen, steht unter
                 **Konfiguration → Site → Urner Abendläufe**.
             header.kopfhintergrund:
-              type: pagemedia
-              label: Hintergrundbild des Kopfbereichs
+              type: pagemediaselect
+              label: Vorschaubild beim Teilen
+              help: Wird auf der Seite selbst nicht gezeigt. Erscheint nur, wenn jemand den Link auf Facebook, WhatsApp oder Instagram teilt.
+              accept:
+                - image/*
 
         text:
           type: tab
@@ -45,3 +58,11 @@ form:
             content:
               type: markdown
               label: Inhalt
+
+        bilder:
+          type: tab
+          title: Bilder
+          fields:
+            header.media_order:
+              type: pagemedia
+              label: Bilder

@@ -4,7 +4,7 @@
 {% if liste is not empty %}
   <div class="sponsors">
     {% for s in liste %}
-      {% set logo = s.logo ? medien.media[s.logo|first] : null %}
+      {% set logo = s.logo ? medien.media[(s.logo is iterable ? s.logo|first : s.logo)] : null %}
       {% set klasse = 'sponsor sponsor--' ~ (s.kategorie|default('sponsor')) %}
       {% if s.url %}
         <a class="{{ klasse }}" href="{{ s.url }}" rel="noopener">

@@ -2,7 +2,7 @@
 
 {% block content %}
 {% set h = page.header %}
-{% set hero = h.herobild ? page.media[h.herobild|first] : null %}
+{% set hero = h.herobild ? page.media[(h.herobild is iterable ? h.herobild|first : h.herobild)] : null %}
 
 {# Die Austragungsnummer wird als eigenes Gestaltungselement gesetzt. #}
 {% set teile = h.headline|default(page.title)|split('. ', 2) %}
@@ -51,7 +51,7 @@
 {% if streckenSeite %}
   {% for runde in streckenSeite.header.runden|default([]) %}
     {% if runde.karte %}
-      {% set k = streckenSeite.media[runde.karte|first] %}
+      {% set k = streckenSeite.media[(runde.karte is iterable ? runde.karte|first : runde.karte)] %}
       {% if k %}{% set karten = karten|merge([{ bild: k, titel: runde.titel, distanz: runde.distanz }]) %}{% endif %}
     {% endif %}
   {% endfor %}
@@ -251,7 +251,7 @@
       </div>
       <div class="bleed-strip">
         {% for album in alben %}
-          {% set cover = album.header.cover ? album.media[album.header.cover|first] : album.media.images|first %}
+          {% set cover = album.header.cover ? album.media[(album.header.cover is iterable ? album.header.cover|first : album.header.cover)] : album.media.images|first %}
           <a class="album-card" href="{{ album.url }}">
             <div class="album-card__img">
               {% if cover %}{{ cover.cropZoom(800, 534).loading('lazy').html('')|raw }}{% endif %}

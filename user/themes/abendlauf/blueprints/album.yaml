@@ -50,9 +50,11 @@ form:
               label: Beschreibung
               rows: 3
             header.cover:
-              type: pagemedia
+              type: pagemediaselect
               label: Titelbild
               help: Leer lassen = erstes Bild des Albums.
+              accept:
+                - image/*
 
         bilder:
           type: tab
@@ -68,10 +70,6 @@ form:
                 Ohne Eingriff stehen die Bilder alphabetisch nach Dateiname;
                 bei Kameranamen entspricht das der Aufnahmereihenfolge. Durch
                 Verschieben legst du eine eigene Reihenfolge fest.
-            media:
-              type: file
-              destination: self@
-              multiple: true
+            header.media_order:
+              type: pagemedia
               label: Bilder
-              accept:
-                - image/*

@@ -38,8 +38,10 @@ form:
                   type: text
                   label: Name
                 .logo:
-                  type: pagemedia
+                  type: pagemediaselect
                   label: Logo
+                  accept:
+                    - image/*
                 .url:
                   type: text
                   label: Website
@@ -65,20 +67,19 @@ form:
 
         kopfbild:
           type: tab
-          title: Kopfbild
+          title: Teilen
           fields:
             header.kopfhintergrund:
-              type: pagemedia
-              label: Hintergrundbild des Kopfbereichs
+              type: pagemediaselect
+              label: Vorschaubild beim Teilen
+              help: Wird auf der Seite selbst nicht gezeigt. Erscheint nur, wenn jemand den Link auf Facebook, WhatsApp oder Instagram teilt.
+              accept:
+                - image/*
 
         logos:
           type: tab
           title: Logos
           fields:
-            media:
-              type: file
-              destination: self@
-              multiple: true
+            header.media_order:
+              type: pagemedia
               label: Logos
-              accept:
-                - image/*

@@ -11,6 +11,15 @@ form:
 
       fields:
 
+        # Gravs Reiter „Inhalt“ zeigt dieselben Dateien wie unser
+        # eigener Dateien-Reiter. Einmal reicht - sonst weiss niemand,
+        # welcher der richtige ist.
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              type: hidden
+
         kopf:
           type: tab
           title: Kopfbereich
@@ -27,9 +36,11 @@ form:
               label: Einleitungstext
               rows: 4
             header.herobild:
-              type: pagemedia
+              type: pagemediaselect
               label: Hintergrundbild
               help: Grosses Bild rechts neben der Überschrift.
+              accept:
+                - image/*
 
         aktuelles:
           type: tab
@@ -168,8 +179,10 @@ form:
                   label: Hinweis zum Status
                   help: Wird bei „abgesagt" oder „verschoben" auf der Kachel gezeigt.
                 .bild:
-                  type: pagemedia
+                  type: pagemediaselect
                   label: Bild
+                  accept:
+                    - image/*
 
         aktion:
           type: tab
@@ -197,9 +210,12 @@ form:
               label: Text
               rows: 6
             header.aktionbilder:
-              type: pagemedia
+              type: pagemediaselect
               label: Bilder
               help: Ein bis drei Bilder, zum Beispiel Gutschein und Kontaktkarte.
+              multiple: true
+              accept:
+                - image/*
             header.aktionlink:
               type: text
               label: Link
@@ -240,9 +256,6 @@ form:
               title: Bilder dieser Seite
               underline: false
               fields:
-                media:
-                  type: file
-                  destination: self@
-                  multiple: true
-                  accept:
-                    - image/*
+                header.media_order:
+                  type: pagemedia
+                  label: Bilder

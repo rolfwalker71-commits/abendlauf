@@ -14,10 +14,10 @@
      Kopfbild der Startseite. Ohne diese Angaben zeigen Facebook und
      Instagram beim Teilen nur einen nackten Link. #}
   {% set teilbild = null %}
-  {% if page.header.herobild %}{% set teilbild = page.media[page.header.herobild|first] %}
-  {% elseif page.header.kopfhintergrund %}{% set teilbild = page.media[page.header.kopfhintergrund|first] %}
+  {% if page.header.herobild %}{% set teilbild = page.media[(page.header.herobild is iterable ? page.header.herobild|first : page.header.herobild)] %}
+  {% elseif page.header.kopfhintergrund %}{% set teilbild = page.media[(page.header.kopfhintergrund is iterable ? page.header.kopfhintergrund|first : page.header.kopfhintergrund)] %}
   {% elseif page.media.images|length %}{% set teilbild = page.media.images|first %}
-  {% elseif startseite.header.herobild %}{% set teilbild = startseite.media[startseite.header.herobild|first] %}
+  {% elseif startseite.header.herobild %}{% set teilbild = startseite.media[(startseite.header.herobild is iterable ? startseite.header.herobild|first : startseite.header.herobild)] %}
   {% endif %}
 
   <meta name="description" content="{{ beschreibung }}">

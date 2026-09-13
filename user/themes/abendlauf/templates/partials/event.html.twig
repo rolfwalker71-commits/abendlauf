@@ -1,6 +1,6 @@
 {# Eine Laufabend-Kachel. Erwartet: termin (Zeile aus dem Feld laufabende) #}
 {% set datum    = termin.datum|date('U') %}
-{% set bild     = termin.bild ? page.media[termin.bild|first] : null %}
+{% set bild     = termin.bild ? page.media[(termin.bild is iterable ? termin.bild|first : termin.bild)] : null %}
 {% set status   = termin.status|default('findet-statt') %}
 {% set abgesagt = status != 'findet-statt' %}
 <article class="event {{ bild ? '' : 'event--plain' }} {{ abgesagt ? 'event--abgesagt' : '' }}">

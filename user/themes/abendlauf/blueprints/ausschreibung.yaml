@@ -101,19 +101,19 @@ form:
 
         kopfbild:
           type: tab
-          title: Kopfbild
+          title: Teilen
           fields:
             header.kopfhintergrund:
-              type: pagemedia
-              label: Hintergrundbild des Kopfbereichs
-              help: Wird stark weichgezeichnet hinter dem Titel angezeigt.
+              type: pagemediaselect
+              label: Vorschaubild beim Teilen
+              help: Wird auf der Seite selbst nicht gezeigt. Erscheint nur, wenn jemand den Link auf Facebook, WhatsApp oder Instagram teilt.
+              accept:
+                - image/*
 
         dateien:
           type: tab
           title: Dateien
           fields:
-            media:
-              type: file
-              destination: self@
-              multiple: true
+            header.media_order:
+              type: pagemedia
               label: Ausschreibung als PDF

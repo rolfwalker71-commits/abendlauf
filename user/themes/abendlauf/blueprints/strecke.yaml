@@ -10,6 +10,15 @@ form:
       active: 1
       fields:
 
+        # Gravs Reiter „Inhalt“ zeigt dieselben Dateien wie unser
+        # eigener Dateien-Reiter. Einmal reicht - sonst weiss niemand,
+        # welcher der richtige ist.
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              type: hidden
+
         angaben:
           type: tab
           title: Runden
@@ -48,23 +57,26 @@ form:
                   label: Beschreibung
                   rows: 3
                 .karte:
-                  type: pagemedia
+                  type: pagemediaselect
                   label: Streckenkarte
+                  accept:
+                    - image/*
 
         kopfbild:
           type: tab
-          title: Kopfbild
+          title: Teilen
           fields:
             header.kopfhintergrund:
-              type: pagemedia
-              label: Hintergrundbild des Kopfbereichs
+              type: pagemediaselect
+              label: Vorschaubild beim Teilen
+              help: Wird auf der Seite selbst nicht gezeigt. Erscheint nur, wenn jemand den Link auf Facebook, WhatsApp oder Instagram teilt.
+              accept:
+                - image/*
 
         dateien:
           type: tab
           title: Dateien
           fields:
-            media:
-              type: file
-              destination: self@
-              multiple: true
+            header.media_order:
+              type: pagemedia
               label: Karten und Bilder
