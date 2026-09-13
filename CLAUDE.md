@@ -66,6 +66,10 @@ Alle Farben/Grössen als Tokens am Anfang von `css/main.css`, Hell/Dunkel über 
 - Lokal ist `upload_max_filesize` 2 MB – grössere Dateien (Ausschreibung 8,4 MB) scheitern nur hier.
 - `pkill -f` mit Mustern, die auf die eigene Shell passen, beendet die eigene Sitzung.
 
+## Handbuch
+
+`docs/handbuch.html` ist das Betriebshandbuch für den Nutzer (Jahresablauf, Panel-Übersicht, Automatik, Hosting, Pflege per Claude, offene Punkte), als Claude-Artefakt veröffentlicht. Bei Änderungen an Abläufen, Panel oder offenen Punkten mitführen und dasselbe Artefakt aktualisieren (Artifact-Tool mit `url`, nicht neu anlegen).
+
 ## Betrieb
 
 Ziel-Hosting voraussichtlich Hostpoint: PHP 8.3 mit gd, curl, zip, exif, fileinfo, intl, mbstring, OPcache; `upload_max_filesize` 32M, `post_max_size` 64M, `memory_limit` 256M; Apache mit `.htaccess`; SSH und Cron wünschenswert. Vor dem Livegang: SMTP-Zugang in `user/config/plugins/email.yaml` (Platzhalter `REPLACE-…`), Cache einschalten, Medien per SFTP hochladen. Für Pflege per Claude ist **grav-mcp** (`npx -y grav-mcp`, `GRAV_API_URL`, `GRAV_API_KEY`) vorgesehen – Schlüssel für einen eingeschränkten Benutzer, nie im Repository.

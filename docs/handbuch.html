@@ -1,0 +1,508 @@
+<title>Abendlauf-Handbuch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #F6F9FC;
+    --surface: #FFFFFF;
+    --surface-2: #EAF0F6;
+    --text: #16222E;
+    --muted: #56677A;
+    --line: #D8E1EA;
+    --accent: #00A0E8;
+    --accent-text: #0070A2;
+    --signal: #D9F224;
+    --signal-ink: #0C1524;
+    --warn: #B4400E;
+    --warn-soft: #FCE9DF;
+    --band-bg: #0C1524;
+    --band-text: #EAF1F8;
+    --band-muted: #94A7C0;
+    --band-line: #243552;
+    --band-accent: #2BB2F0;
+
+    --display: 'Oswald', 'Arial Narrow', 'Helvetica Neue', sans-serif;
+    --body: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0C1524; --surface: #121D30; --surface-2: #1A2940;
+      --text: #EAF1F8; --muted: #9AAEC6; --line: #243552;
+      --accent: #2BB2F0; --accent-text: #45BDF3;
+      --warn: #FB923C; --warn-soft: #3A2418;
+      --band-bg: #070D18; --band-line: #1E2C44;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0C1524; --surface: #121D30; --surface-2: #1A2940;
+    --text: #EAF1F8; --muted: #9AAEC6; --line: #243552;
+    --accent: #2BB2F0; --accent-text: #45BDF3;
+    --warn: #FB923C; --warn-soft: #3A2418;
+    --band-bg: #070D18; --band-line: #1E2C44;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--body); font-size: 16.5px; line-height: 1.6;
+  }
+  a { color: var(--accent-text); text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+  code, .mono { font-family: var(--mono); font-size: .86em; }
+  code { background: var(--surface-2); padding: .08em .35em; border-radius: 4px; overflow-wrap: anywhere; }
+  pre {
+    margin: 0; padding: 1rem 1.1rem; overflow-x: auto;
+    background: var(--band-bg); color: var(--band-text); border-radius: 8px;
+    font-family: var(--mono); font-size: .82rem; line-height: 1.55;
+  }
+  pre code { background: none; padding: 0; font-size: inherit; color: inherit; }
+
+  /* ---------- Kopf ---------- */
+  .kopf { border-bottom: 1px solid var(--line); background: var(--surface); }
+  .kopf__inner {
+    max-width: 1180px; margin: 0 auto; padding: 2.2rem 1.5rem 1.8rem;
+    display: grid; gap: .6rem;
+  }
+  .kopf__label {
+    font-family: var(--display); font-size: .78rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--muted); margin: 0;
+  }
+  .kopf h1 {
+    font-family: var(--display); font-weight: 600; text-transform: uppercase;
+    font-size: clamp(2rem, 4.5vw, 3.1rem); line-height: 1; margin: 0; letter-spacing: .01em;
+    text-wrap: balance;
+  }
+  .kopf h1 span { color: var(--accent-text); }
+  .kopf__lead { margin: .3rem 0 0; max-width: 64ch; color: var(--muted); font-size: 1.05rem; }
+  .fakten {
+    display: flex; flex-wrap: wrap; gap: .4rem 1.6rem; margin: 1rem 0 0; padding: 0; list-style: none;
+    font-size: .9rem;
+  }
+  .fakten li { display: flex; gap: .45rem; align-items: baseline; }
+  .fakten b { font-family: var(--display); font-weight: 400; letter-spacing: .08em; text-transform: uppercase; font-size: .74rem; color: var(--muted); }
+
+  /* ---------- Gerüst ---------- */
+  .geruest {
+    max-width: 1180px; margin: 0 auto; padding: 0 1.5rem 5rem;
+    display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 3rem;
+  }
+  .toc {
+    position: sticky; top: 1.5rem; align-self: start; padding-top: 2.4rem;
+    font-size: .9rem;
+  }
+  .toc p { font-family: var(--display); letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; color: var(--muted); margin: 0 0 .6rem; }
+  .toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .15rem; }
+  .toc a { display: block; padding: .25rem .6rem; color: var(--text); text-decoration: none; border-left: 2px solid var(--line); }
+  .toc a:hover { border-left-color: var(--accent); color: var(--accent-text); }
+  main { min-width: 0; }
+
+  section { padding-top: 2.6rem; scroll-margin-top: 1rem; }
+  h2 {
+    font-family: var(--display); font-weight: 600; text-transform: uppercase;
+    font-size: 1.55rem; letter-spacing: .01em; line-height: 1.1; margin: 0 0 .35rem;
+    text-wrap: balance;
+  }
+  h2 + .intro { margin: 0 0 1.3rem; color: var(--muted); max-width: 66ch; }
+  h3 { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: .04em; font-size: 1.05rem; margin: 1.8rem 0 .6rem; }
+  p, li { max-width: 70ch; }
+
+  /* ---------- Chips ---------- */
+  .chip {
+    display: inline-block; white-space: nowrap; vertical-align: .08em;
+    font-family: var(--display); font-weight: 600; font-size: .7rem; letter-spacing: .08em;
+    text-transform: uppercase; padding: .12rem .45rem; border-radius: 5px; line-height: 1.35;
+  }
+  .chip--auto { color: var(--accent-text); border: 1px solid var(--accent-text); }
+  .chip--hand { background: var(--signal); color: var(--signal-ink); }
+  .chip--offen { background: var(--warn-soft); color: var(--warn); }
+
+  /* ---------- Saisonkalender (dunkles Band) ---------- */
+  .saison {
+    margin-top: 1.2rem; background: var(--band-bg); color: var(--band-text);
+    border-radius: 12px; padding: 1.6rem 1.5rem 1.4rem; overflow-x: auto;
+  }
+  .saison__zeile {
+    display: grid; grid-template-columns: repeat(4, minmax(12.5rem, 1fr)); gap: 0;
+    min-width: 50rem; position: relative;
+  }
+  .saison__zeile::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 2.05rem;
+    height: 2px; background: var(--band-line);
+  }
+  .etappe { padding-right: 1.2rem; position: relative; }
+  .etappe__zeit {
+    font-family: var(--display); letter-spacing: .14em; text-transform: uppercase;
+    font-size: .72rem; color: var(--band-muted); margin: 0 0 .55rem; height: 1.1rem;
+  }
+  .etappe__punkt {
+    width: 12px; height: 12px; border-radius: 50%; background: var(--band-bg);
+    border: 2px solid var(--band-accent); margin: 0 0 .9rem; position: relative;
+  }
+  .etappe--abend .etappe__punkt { background: var(--signal); border-color: var(--signal); }
+  .etappe h4 {
+    font-family: var(--display); font-weight: 600; text-transform: uppercase;
+    font-size: 1.05rem; margin: 0 0 .15rem; letter-spacing: .02em;
+  }
+  .etappe__datum {
+    display: inline-block; font-family: var(--display); font-weight: 600; font-size: .78rem;
+    background: var(--signal); color: var(--signal-ink); padding: .08rem .42rem; border-radius: 5px;
+    margin-bottom: .6rem; font-variant-numeric: tabular-nums;
+  }
+  .etappe ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; font-size: .88rem; line-height: 1.4; }
+  .etappe li { position: relative; padding-left: 1.1rem; }
+  .etappe li::before { content: ""; position: absolute; left: 0; top: .42rem; width: .55rem; height: .55rem; border-radius: 2px; box-sizing: border-box; }
+  .etappe li.a::before { border: 1.5px solid var(--band-accent); }
+  .etappe li.h::before { background: var(--signal); }
+  .etappe li span { color: var(--band-muted); }
+  .saison__legende {
+    display: flex; flex-wrap: wrap; gap: .4rem 1.4rem; margin: 1.3rem 0 0; padding-top: .9rem;
+    border-top: 1px solid var(--band-line); font-size: .82rem; color: var(--band-muted); min-width: 50rem;
+  }
+  .saison__legende span { display: inline-flex; align-items: center; gap: .45rem; }
+  .saison__legende i { width: .6rem; height: .6rem; border-radius: 2px; display: inline-block; }
+  .saison__legende i.a { border: 1.5px solid var(--band-accent); }
+  .saison__legende i.h { background: var(--signal); }
+
+  /* ---------- Tabellen ---------- */
+  .tabelle { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+  table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+  th, td { text-align: left; vertical-align: top; padding: .62rem .85rem; border-bottom: 1px solid var(--line); }
+  tr:last-child td { border-bottom: 0; }
+  th {
+    font-family: var(--display); font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+    font-size: .72rem; color: var(--muted); background: var(--surface-2); white-space: nowrap;
+  }
+  td:first-child { font-weight: 600; white-space: nowrap; }
+  td.num, th.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---------- Regel-Liste ---------- */
+  .regeln { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .regel { background: var(--surface); padding: 1rem 1.15rem; display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.2rem; }
+  .regel h4 { margin: 0; font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: .95rem; letter-spacing: .02em; }
+  .regel h4 small { display: block; font-family: var(--body); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: .8rem; margin-top: .15rem; }
+  .regel p, .regel ul { margin: 0; }
+  .regel ul { padding-left: 1.1rem; display: grid; gap: .25rem; }
+
+  /* ---------- Zwei Wege ---------- */
+  .wege { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .weg { border: 1px solid var(--line); border-radius: 10px; padding: 1.1rem 1.2rem; background: var(--surface); display: grid; gap: .5rem; align-content: start; }
+  .weg h4 { margin: 0; font-family: var(--display); font-weight: 600; text-transform: uppercase; font-size: 1rem; }
+  .weg p { margin: 0; }
+  .weg ol { margin: 0; padding-left: 1.2rem; display: grid; gap: .2rem; }
+  .weg__was { font-size: .85rem; color: var(--muted); }
+
+  .hinweis {
+    margin: 1rem 0 0; padding: .8rem 1rem; border-radius: 8px;
+    background: var(--warn-soft); color: var(--text); font-size: .93rem;
+  }
+  .hinweis strong { color: var(--warn); }
+
+  /* ---------- Offene Punkte ---------- */
+  .offen { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+  .offen li { display: grid; grid-template-columns: 7.5rem minmax(0, 1fr); gap: 1rem; padding: .7rem 0; border-bottom: 1px solid var(--line); max-width: none; }
+  .offen li p { margin: 0; }
+  .offen li .wann { font-family: var(--display); letter-spacing: .06em; text-transform: uppercase; font-size: .78rem; color: var(--muted); padding-top: .15rem; }
+
+  .fuss { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+
+  @media (max-width: 900px) {
+    .geruest { grid-template-columns: 1fr; gap: 0; }
+    .toc { position: static; padding-top: 1.6rem; }
+    .toc ol { grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr)); }
+    .regel { grid-template-columns: 1fr; gap: .4rem; }
+    .wege { grid-template-columns: 1fr; }
+    .offen li { grid-template-columns: 1fr; gap: .2rem; }
+  }
+</style>
+
+<header class="kopf">
+  <div class="kopf__inner">
+    <p class="kopf__label">Urner Abendläufe · STV Altdorf · Website</p>
+    <h1>Abendlauf-<span>Handbuch</span></h1>
+    <p class="kopf__lead">Was auf abendlauf.ch jedes Jahr zu tun ist, was die Seite selbst erledigt, wo im Panel was steht – und was vor dem Livegang noch fehlt.</p>
+    <ul class="fakten">
+      <li><b>System</b> Grav 2.1 · Admin2 · ohne Datenbank</li>
+      <li><b>Repository</b> <a href="https://github.com/rolfwalker71-commits/abendlauf">rolfwalker71-commits/abendlauf</a> (öffentlich)</li>
+      <li><b>Lokal</b> <span class="mono">localhost:8100</span> · Panel <span class="mono">/admin</span></li>
+      <li><b>Stand</b> 13.09.2026</li>
+    </ul>
+  </div>
+</header>
+
+<div class="geruest">
+  <nav class="toc" aria-label="Inhalt">
+    <p>Inhalt</p>
+    <ol>
+      <li><a href="#saison">Das Jahr auf der Website</a></li>
+      <li><a href="#panel">Wo im Panel was steht</a></li>
+      <li><a href="#automatik">Regeln der Automatik</a></li>
+      <li><a href="#fakten">Fakten &amp; Zahlen</a></li>
+      <li><a href="#hosting">Anforderungen ans Hosting</a></li>
+      <li><a href="#claude">Pflege mit Claude</a></li>
+      <li><a href="#entwicklung">Für Entwicklung</a></li>
+      <li><a href="#offen">Offene Punkte</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="saison">
+      <h2>Das Jahr auf der Website</h2>
+      <p class="intro">Am Beispiel der 33. Austragung 2027. <span class="chip chip--auto">automatisch</span> erledigt die Seite selbst, <span class="chip chip--hand">von Hand</span> bleibt bei dir.</p>
+
+      <div class="saison" role="group" aria-label="Saisonkalender 2027">
+        <div class="saison__zeile">
+          <div class="etappe">
+            <p class="etappe__zeit">Vor der Saison</p>
+            <div class="etappe__punkt"></div>
+            <h4>Vorbereiten</h4>
+            <ul>
+              <li class="h">Laufabende eintragen <span>– Startseite › Laufabende</span></li>
+              <li class="a">Vier Alben entstehen beim Speichern <span>– unsichtbar bis zum ersten Bild</span></li>
+              <li class="h">Ausschreibung: Kategorienjahr, PDF, Startzeiten</li>
+              <li class="h">Sponsoren und Aktion prüfen</li>
+              <li class="h">Dankestext „nach der Rangverkündigung" gegenlesen</li>
+            </ul>
+          </div>
+          <div class="etappe etappe--abend">
+            <p class="etappe__zeit">1. und 2. Abend</p>
+            <div class="etappe__punkt"></div>
+            <h4>Laufabend</h4>
+            <span class="etappe__datum">18.08. · 25.08.2027</span>
+            <ul>
+              <li class="h">Rangliste als PDF hineinziehen <span>– Ranglisten</span></li>
+              <li class="a">Jahr und Lauf werden zugeordnet</li>
+              <li class="a">Hinweis „Neu online: 1. Abend 2027" für drei Tage</li>
+              <li class="h">Fotos ins bereitliegende Album ziehen</li>
+            </ul>
+          </div>
+          <div class="etappe etappe--abend">
+            <p class="etappe__zeit">3. Abend</p>
+            <div class="etappe__punkt"></div>
+            <h4>Letzter Abend</h4>
+            <span class="etappe__datum">01.09.2027</span>
+            <ul>
+              <li class="h">PDF 3. Abend, danach Gesamtrangliste hochladen</li>
+              <li class="a">Zweite PDF gilt als Gesamtrangliste</li>
+              <li class="a">21:00 Uhr: Aktuell-Text wechselt auf den Dank</li>
+              <li class="h">Fotos 3. Abend und Siegerehrung</li>
+            </ul>
+          </div>
+          <div class="etappe">
+            <p class="etappe__zeit">Nach der Saison</p>
+            <div class="etappe__punkt"></div>
+            <h4>Abschliessen</h4>
+            <ul>
+              <li class="h">Rekorde nachführen, falls gefallen <span>– Startseite › Rekorde</span></li>
+              <li class="h">Daten 2028 eintragen, sobald bekannt</li>
+              <li class="a">Texte zählen weiter: 34., 2028, neue Termine</li>
+              <li class="a">Austragungsnummer, Jahrgänge, Zahlen rechnen neu</li>
+            </ul>
+          </div>
+        </div>
+        <div class="saison__legende">
+          <span><i class="h"></i> von Hand</span>
+          <span><i class="a"></i> automatisch</span>
+          <span>Zuordnung per Datum nur bis eine Woche nach dem Abend – später Jahr und Lauf in den Dateinamen schreiben.</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="panel">
+      <h2>Wo im Panel was steht</h2>
+      <p class="intro">Jede Seite hat genau einen Reiter mit ihren Dateien. Dort wird hochgeladen; in den übrigen Reitern wird nur ausgewählt. Die Reiter Inhalt, Optionen, Erweitert und Sicherheit gehören zu Grav und bleiben unberührt.</p>
+      <div class="tabelle">
+        <table>
+          <thead><tr><th>Seite</th><th>Reiter</th><th>Was du dort pflegst</th></tr></thead>
+          <tbody>
+            <tr><td>Startseite</td><td>Kopfbereich</td><td>Überschrift (ohne Zahl rechnet sich die Austragungsnummer selbst), Hintergrundbild</td></tr>
+            <tr><td></td><td>In eigener Sache</td><td>Mitteilung auf Zeit, mit <em>Anzeigen bis</em> – verschwindet danach von selbst</td></tr>
+            <tr><td></td><td>Aktuelles</td><td>Text vor/während der Läufe, Text nach der Rangverkündigung, optional Wechselzeitpunkt</td></tr>
+            <tr><td></td><td>Rekorde</td><td>Zehn Bestzeiten; <em>Gruppe</em> wählt Symbol und Farbe, <em>Kategorie in der Ausschreibung</em> liefert das Alter</td></tr>
+            <tr><td></td><td>Laufabende</td><td>Datum und Startzeit – steuert fast die ganze Jahresautomatik</td></tr>
+            <tr><td></td><td>Aktion · Hinweisbanner · Bilder</td><td>Partnerangebot, Kurzmeldung zuoberst, Bildablage</td></tr>
+            <tr><td>Ausschreibung</td><td>Kategorien</td><td>Bezeichnung, Kürzel, Gruppe, Alter von/bis, Startzeit, Distanz, Startgeld</td></tr>
+            <tr><td></td><td>Dateien</td><td>Ausschreibung als PDF</td></tr>
+            <tr><td>Strecke</td><td>Runden · Dateien</td><td>Angaben je Runde mit Streckenkarte</td></tr>
+            <tr><td>Ranglisten</td><td>Ranglisten</td><td>PDFs; Stift-Symbol zeigt Titel, Art, Jahr, Lauf</td></tr>
+            <tr><td>Fotos › Album</td><td>Angaben · Bilder</td><td>Jahr, Lauf, Datum, Fotograf/in, Titelbild · die Fotos selbst</td></tr>
+            <tr><td>Sponsoren</td><td>Sponsoren · Logos</td><td>Name, Logo, Website, Kategorie, <em>Aktiv</em> zum Pausieren · Logodateien</td></tr>
+            <tr><td>Das OK</td><td>Mitglieder · Portraits</td><td>Personen mit Funktion und Kontakt · Fotos</td></tr>
+            <tr><td>Konfiguration › Site</td><td>Urner Abendläufe</td><td>Adresse, Formular-Empfänger, Social Media, Fusszeile, erste Austragung, ausgefallene Jahre</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="hinweis"><strong>Teilen</strong> heisst der Reiter mit dem Bild, das beim Teilen eines Links auf WhatsApp oder Facebook erscheint. Auf der Seite selbst ist es nicht zu sehen.</p>
+    </section>
+
+    <section id="automatik">
+      <h2>Regeln der Automatik</h2>
+      <p class="intro">Was die Seite selbst entscheidet – damit sich Überraschungen erklären lassen. Was von Hand eingetragen ist, wird nie überschrieben.</p>
+      <div class="regeln">
+        <div class="regel">
+          <h4>Rangliste<small>beim Hochladen</small></h4>
+          <ul>
+            <li>Nennt der Dateiname Jahr und Lauf (<code>2027-2-abend.pdf</code>, <code>Rangliste Lauf 2 2027.pdf</code>, <code>Gesamtrangliste 2027.pdf</code>), gilt der Name.</li>
+            <li>Sonst zählt der Upload-Zeitpunkt: am Abend oder bis sieben Tage danach → dieser Lauf.</li>
+            <li>Am letzten Abend ist die erste PDF der 3. Abend, die zweite die Gesamtrangliste.</li>
+            <li>Nichts erkannt → Stift-Symbol, von Hand zuordnen.</li>
+          </ul>
+        </div>
+        <div class="regel">
+          <h4>Fotoalben<small>beim Speichern der Startseite</small></h4>
+          <ul>
+            <li>Je Laufabend ein Album plus Siegerehrung, mit Titel, Datum und dem Fotografen des jüngsten Albums.</li>
+            <li>Leere Alben erscheinen nirgends auf der Website.</li>
+            <li>Bestehende Alben – auch umbenannte – bleiben unberührt; erkannt an Jahr und Lauf.</li>
+          </ul>
+        </div>
+        <div class="regel">
+          <h4>Aktuell-Text<small>Startseite</small></h4>
+          <p>Am letzten Laufabend um 21:00 übernimmt der Text „nach der Rangverkündigung", falls ausgefüllt. Platzhalter füllen sich selbst: <code>{nummer}</code> 33 · <code>{jahr}</code> 2027 · <code>{termine}</code> 18.8. / 25.8. / 1.9. · <code>{vorige_nummer}</code> 32 · <code>{naechste_nummer}</code> 34 · <code>{naechstes_jahr}</code> 2028.</p>
+        </div>
+        <div class="regel">
+          <h4>Hinweis „Neu online"<small>zuoberst auf jeder Seite</small></h4>
+          <p>Vom ersten Laufabend bis eine Woche nach dem letzten: drei Tage lang für jede neue Rangliste des Jahrgangs. Ein von Hand gesetzter Hinweisbanner hat Vorrang.</p>
+        </div>
+        <div class="regel">
+          <h4>Austragungsnummer<small>überall gleich gerechnet</small></h4>
+          <p>Jahr − 1994 + 1 − ausgefallene Jahre. 2019 → 26., 2026 → 32., 2027 → 33. Ausgefallene Jahre stehen unter Konfiguration › Site.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="fakten">
+      <h2>Fakten &amp; Zahlen</h2>
+      <p class="intro">Festgehalten, weil sie sich aus den Unterlagen nicht von selbst ergeben.</p>
+      <div class="tabelle">
+        <table>
+          <tbody>
+            <tr><td>Erste Austragung</td><td>1994</td></tr>
+            <tr><td>Ausgefallen</td><td>2020 (Corona) – zählt nicht mit</td></tr>
+            <tr><td>Streckenlängen heute</td><td class="num">1210 m (kleine Runde) · 2260 m (grosse Runde) · 4440 m · 6700 m</td></tr>
+            <tr><td>Rangliste im Archiv</td><td>2008–2026 ohne 2020, 69 PDFs</td></tr>
+            <tr><td>Fotoalben</td><td>2025 (4) und 2026 (3), Fotograf Thomas Gasser; 2027 liegt bereit</td></tr>
+            <tr><td>Rekorde</td><td>Aus der Tabelle des OK, verglichen nur auf heutiger Streckenlänge. Schüler: 7:42,9 Niklas Christen, 01.09.2021 – in der Excel-Tabelle des OK noch 7:43,4 (Zurfluh 2014)</td></tr>
+            <tr><td>Laufabende-Regel</td><td>In den Ranglisten seit 2009 ist der letzte Abend fast immer der erste Mittwoch am oder nach dem 31. August, die beiden anderen die zwei Mittwoche davor. 2018 wich ab (Abende am 22.08., 05.09. und 12.09.). Nur Beobachtung – Daten immer vom OK.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="hosting">
+      <h2>Anforderungen ans Hosting</h2>
+      <p class="intro">Voraussichtlich Hostpoint. PHP-Werte dort unter Websites › Web-Einstellungen › PHP-Konfiguration.</p>
+      <div class="tabelle">
+        <table>
+          <thead><tr><th>Punkt</th><th>Wert</th><th>Warum</th></tr></thead>
+          <tbody>
+            <tr><td>PHP</td><td class="num">8.3 oder neuer</td><td>Grav 2.1 startet darunter nicht</td></tr>
+            <tr><td>Erweiterungen · Pflicht</td><td><code>gd curl zip openssl dom libxml json ctype session</code></td><td>Bilder, Updates, Anmeldung</td></tr>
+            <tr><td>Erweiterungen · empfohlen</td><td><code>exif fileinfo simplexml mbstring intl</code> OPcache</td><td>Hochformatfotos richtig drehen, SVG-Logos, Tempo</td></tr>
+            <tr><td>upload_max_filesize</td><td class="num">32M</td><td>Ausschreibung 8,4 MB, Kamerafotos 10–15 MB</td></tr>
+            <tr><td>post_max_size</td><td class="num">64M</td><td>muss grösser sein als der Upload</td></tr>
+            <tr><td>memory_limit</td><td class="num">256M</td><td>6000×4000-Foto braucht beim Verkleinern ~100 MB</td></tr>
+            <tr><td>max_execution_time</td><td class="num">120</td><td>erste Vorschaubilder eines Albums</td></tr>
+            <tr><td>max_file_uploads</td><td class="num">50</td><td>viele Fotos auf einmal</td></tr>
+            <tr><td>Speicher</td><td class="num">≥ 2 GB, besser 5</td><td>heute 480 MB, pro Jahr ~150 MB Fotos plus Cache</td></tr>
+            <tr><td>Webserver</td><td>Apache mit <code>.htaccess</code>, <code>mod_rewrite</code>, HTTPS</td><td>Adressen wie <code>/ranglisten</code>, sichere Anmeldung</td></tr>
+            <tr><td>Wünschenswert</td><td>SSH (PHP 8.3 auch auf der Kommandozeile), Cronjob, SMTP-Postfach</td><td>Deployment, Backups, Kontaktformular</td></tr>
+            <tr><td>Nicht nötig</td><td>Datenbank, Node.js, Git</td><td>Grav arbeitet mit Dateien; grav-mcp läuft auf deinem Rechner</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="claude">
+      <h2>Pflege mit Claude</h2>
+      <p class="intro">Mit dem offiziellen MCP-Server <a href="https://github.com/getgrav/grav-mcp">grav-mcp</a> (70 Werkzeuge, lokal getestet) bedient Claude dieselbe Schnittstelle wie das Panel. Nach dem Livegang gibt es zwei getrennte Wege.</p>
+      <div class="wege">
+        <div class="weg">
+          <span class="chip chip--auto" style="justify-self:start">direkt live</span>
+          <h4>Inhalte</h4>
+          <p class="weg__was">Texte, Fotos, Ranglisten, Sponsoren, Laufabende</p>
+          <p>Claude arbeitet per grav-mcp auf der Liveseite, genau wie im Panel. Die Jahresautomatik greift auch dort – ein Upload per Claude wird zugeordnet wie einer von Hand.</p>
+        </div>
+        <div class="weg">
+          <span class="chip chip--hand" style="justify-self:start">über Git</span>
+          <h4>Aussehen &amp; Funktionen</h4>
+          <p class="weg__was">Vorlagen, CSS, Panel-Masken, Automatik</p>
+          <ol>
+            <li>lokal ändern, auf localhost:8100 prüfen</li>
+            <li>auf GitHub pushen (<code>grav</code>, dann <code>main</code>)</li>
+            <li>GitHub Action spielt nur das Theme auf den Server</li>
+          </ol>
+        </div>
+      </div>
+      <p class="hinweis"><strong>Nie <code>user/pages/</code> deployen.</strong> Ab dem Livegang sind die Inhalte auf dem Server aktueller als im Repository. Sicherung über Grav-Backups oder regelmässiges Zurückholen.</p>
+
+      <h3>Einrichtung</h3>
+      <ol>
+        <li>Auf dem Server einen eigenen Benutzer <code>claude</code> anlegen – nur Seiten und Medien.</li>
+        <li>Schlüssel erzeugen: <code>bin/plugin api keys:generate --user=claude --name="Laptop Rolf"</code> – einer pro Gerät.</li>
+        <li>In Claude Code eintragen; der Schlüssel liegt nur in der Umgebungsvariable, nie im Repository:</li>
+      </ol>
+<pre><code>{
+  "mcpServers": {
+    "abendlauf": {
+      "command": "npx",
+      "args": ["-y", "grav-mcp"],
+      "env": {
+        "GRAV_API_URL": "https://www.abendlauf.ch/api",
+        "GRAV_API_KEY": "${ABENDLAUF_API_KEY}"
+      }
+    }
+  }
+}</code></pre>
+    </section>
+
+    <section id="entwicklung">
+      <h2>Für Entwicklung</h2>
+      <p class="intro">Die ausführliche Fassung für Claude-Sitzungen steht in <code>CLAUDE.md</code> im Repository.</p>
+<pre><code>werkzeuge/grav-einrichten.sh                 # Grav-Kern holen (nicht versioniert)
+php -S localhost:8100 system/router.php      # starten
+rm -rf cache/twig cache/compiled             # nach Template-Änderungen
+
+php werkzeuge/pruefe-saison.php              # Regeln der Jahresautomatik
+python3 werkzeuge/pruefe-backend.py          # jedes Feld im Panel bearbeitbar?
+GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py
+python3 werkzeuge/fotos-holen.py 2024        # Alben von der alten Seite</code></pre>
+      <div class="regeln" style="margin-top:1rem">
+        <div class="regel">
+          <h4>Medienfelder</h4>
+          <p>Genau ein <code>pagemedia</code> pro Seite (die ganze Medienverwaltung), alles Auswählende ist <code>pagemediaselect</code> und speichert einen Text.</p>
+        </div>
+        <div class="regel">
+          <h4>Farben</h4>
+          <p>Tokens am Anfang von <code>css/main.css</code>, hell und dunkel. Signalgelb nur als Fläche mit dunkler Schrift; Cyan als Schrift immer <code>--accent-text</code>.</p>
+        </div>
+        <div class="regel">
+          <h4>Panel formatiert um</h4>
+          <p>Speichern im Panel ändert Einrückung und macht Datumsfelder zu Zeitstempeln – Inhaltsdateien nie per Textersetzung bearbeiten.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="offen">
+      <h2>Offene Punkte</h2>
+      <p class="intro">Stand 13.09.2026, nach Dringlichkeit.</p>
+      <ul class="offen">
+        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> Hostpoint-Paket prüfen: PHP 8.3, Limits, SSH mit PHP 8.3 auf der Kommandozeile.</p></li>
+        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> SMTP-Zugang in <code>user/config/plugins/email.yaml</code> – ohne ihn verschickt das Kontaktformular nichts.</p></li>
+        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> Cache einschalten, Vorschaubilder vorab erzeugen, Medien per SFTP hochladen.</p></li>
+        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> Passwort des lokalen Panel-Kontos ändern; für den Server neue Konten anlegen.</p></li>
+        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> <code>sitemap.xml</code> fehlt, obwohl <code>robots.txt</code> darauf verweist.</p></li>
+        <li><span class="wann">Bald</span><p><span class="chip chip--offen">offen</span> Fotograf/in bei den vier Alben 2025 eintragen.</p></li>
+        <li><span class="wann">Bald</span><p><span class="chip chip--offen">offen</span> Ausschreibung (8,4 MB) als weboptimiertes PDF; E-Mail-Adressen gegen Spam verschleiern; <code>srcset</code> für grosse Bilder.</p></li>
+        <li><span class="wann">Laufend</span><p><span class="chip chip--offen">offen</span> Bildbeschreibungen für die Albumfotos fehlen (Barrierefreiheit).</p></li>
+        <li><span class="wann">31.10.2026</span><p><span class="chip chip--auto">automatisch</span> „In eigener Sache" verschwindet von selbst.</p></li>
+        <li><span class="wann">Vor 01.09.2027</span><p><span class="chip chip--hand">von Hand</span> Dankestext „nach der Rangverkündigung" lesen, Sponsorenliste darin prüfen.</p></li>
+      </ul>
+      <p class="fuss">Abendlauf-Handbuch · gepflegt mit Claude Code im Repository <span class="mono">abendlauf</span>. Stimmt etwas nicht mehr, im Gespräch mit Claude „Handbuch nachführen" sagen.</p>
+    </section>
+
+  </main>
+</div>
