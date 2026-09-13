@@ -81,27 +81,27 @@ form:
               size: large
               markdown: true
               content: |
-                **Anders als bei den Fotos gibt es hier keine Unterseiten —
-                alle PDFs hängen an dieser einen Seite.**
+                **PDF hineinziehen – fertig.**
 
-                So kommt eine neue Rangliste dazu:
+                Die Seite ordnet eine neue Rangliste selbst Jahr und Lauf zu:
 
-                1. Unten im Feld **Dateien** die PDF hineinziehen
-                2. Auf das **Stift-Symbol** an der Datei klicken
-                3. Ausfüllen:
-                   **Titel** — was auf der Website steht, etwa „Gesamtrangliste"
-                   **Art** — `rangliste` (oder `ausschreibung`, `strecke`, `sonstiges`)
-                   **Jahr** — etwa `2027`
-                   **Lauf** — `1`, `2`, `3` oder `gesamt`
-                4. Speichern
+                - **Am Laufabend hochgeladen** (bis eine Woche danach) gilt sie
+                  als Rangliste dieses Abends. Die Daten kommen aus dem Reiter
+                  *Laufabende* der Startseite.
+                - Am letzten Abend ist die **erste** PDF der 3. Abend, die
+                  **zweite** die Gesamtrangliste. Steht „gesamt" im Dateinamen,
+                  ist es immer die Gesamtrangliste.
+                - Nennt der **Dateiname** Jahr und Lauf – etwa
+                  `2027-2-abend.pdf` oder `Rangliste Lauf 2 2027.pdf` –, gilt
+                  der Name, egal wann hochgeladen wird.
 
-                Die Tabelle ordnet sich danach von selbst: eine Zeile pro
-                Jahrgang, eine Spalte pro Abend. Auch die Zahlen im Kopfbereich
-                — Jahrgänge, Anzahl Ranglisten, ältester und neuester Jahrgang —
-                zählen sich neu.
+                Während der Laufabende meldet ein Hinweis zuoberst auf der
+                Website drei Tage lang „Neu online: 2. Abend 2027".
 
-                Ein Dateiname wie `2027-gesamt.pdf` hilft der Übersicht, ist
-                aber nicht nötig: Massgebend sind allein die Angaben oben.
+                **Prüfen oder korrigieren:** Stift-Symbol an der Datei. Dort
+                stehen Titel, Art, Jahr und Lauf (`1`, `2`, `3` oder `gesamt`).
+                Was dort steht, wird nie überschrieben.
+
             header.media_order:
               type: pagemedia
               label: Dateien

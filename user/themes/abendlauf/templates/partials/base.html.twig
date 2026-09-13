@@ -65,6 +65,26 @@
 {# Lesefortschritt — rein per CSS an das Scrollen gekoppelt. #}
 <div class="progress" aria-hidden="true"></div>
 
+{# Während der Saison meldet die Seite neue Ranglisten von selbst – bis
+   eine Woche nach dem letzten Abend und nur für Listen des laufenden
+   Jahrgangs. Ein von Hand gesetzter Hinweis hat Vorrang. #}
+{% set autoHinweis = null %}
+{% if not (startseite.header.hinweisaktiv and startseite.header.hinweistext) %}
+  {% set zeiten = (startseite.header.laufabende|default([]))|map(t => t.datum|date('U'))|sort %}
+  {% set jetzt = 'now'|date('U') %}
+  {% if zeiten is not empty and jetzt >= (zeiten|first) and jetzt < (zeiten|last) + 7 * 86400 %}
+    {% set rl = pages.find('/ranglisten') %}
+    {% set saison = (zeiten|last)|date('Y') %}
+    {% set neu = rl ? rl.media.all|filter(m => m.meta.art == 'rangliste' and m.meta.jahr == saison and m.modified > jetzt - 3 * 86400)|sort((a, b) => b.modified <=> a.modified)|first : null %}
+    {% if neu %}
+      {% set autoHinweis = { text: 'Neu online: ' ~ neu.meta.titel ~ ' ' ~ saison, link: rl.url } %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+{% if autoHinweis %}
+  <div class="notice"><a href="{{ autoHinweis.link }}">{{ autoHinweis.text }}</a></div>
+{% endif %}
+
 {% if startseite.header.hinweisaktiv and startseite.header.hinweistext %}
   <div class="notice">
     {% if startseite.header.hinweislink %}

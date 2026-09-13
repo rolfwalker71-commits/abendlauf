@@ -1,7 +1,9 @@
 {% extends 'partials/base.html.twig' %}
 
 {% block content %}
-{% set alben = page.children.visible %}
+{# Leere Alben liegen für die nächste Saison bereit – sichtbar werden
+   sie erst mit dem ersten Bild. #}
+{% set alben = page.children.visible|filter(a => a.media.images|length > 0) %}
 {% set bilderGesamt = 0 %}
 {% for a in alben %}{% set bilderGesamt = bilderGesamt + a.media.images|length %}{% endfor %}
 {% set erstes = alben|first %}

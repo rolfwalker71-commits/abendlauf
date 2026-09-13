@@ -102,12 +102,40 @@ form:
             header.aktuellstand:
               type: date
               label: Stand vom
-              help: Erscheint klein neben der Überschrift.
+              help: Erscheint klein neben der Überschrift. Nach dem Wechsel gilt automatisch das Datum des Wechsels.
+            wechselhinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                **Zwei Texte, ein automatischer Wechsel.**
+
+                Der erste steht vor und während der Laufabende. Nach der
+                Rangverkündigung am letzten Abend wechselt die Seite von selbst
+                auf den zweiten – du kannst ihn also schon vorher schreiben.
+
+                In beiden Texten stehen Platzhalter, die sich jedes Jahr selbst
+                füllen: `{nummer}` (33), `{jahr}` (2027), `{termine}`
+                (18.8. / 25.8. / 1.9.), `{vorige_nummer}` (32),
+                `{naechste_nummer}` (34), `{naechstes_jahr}` (2028).
+
+                Trägst du im Reiter *Laufabende* die Daten fürs nächste Jahr
+                ein, beginnt der Kreislauf von vorn – ohne dass ein Text
+                angepasst werden muss.
             header.aktuelltext:
               type: textarea
-              label: Text
+              label: Text vor und während der Laufabende
               rows: 14
-              help: 'Der Bereich, der vor, während und nach den Läufen ausgetauscht wird. Aufzählungen mit einem Bindestrich am Zeilenanfang, Links als [Text](Adresse).'
+              help: 'Aufzählungen mit einem Bindestrich am Zeilenanfang, Links als [Text](Adresse).'
+            header.aktuellnachher:
+              type: textarea
+              label: Text nach der Rangverkündigung
+              rows: 14
+              help: Leer lassen, wenn nichts wechseln soll.
+            header.aktuellwechsel:
+              type: datetime
+              label: Wechsel am
+              help: Leer = am letzten Laufabend um 21 Uhr. Nur ausfüllen, wenn es anders sein soll.
 
         zahlen:
           type: tab

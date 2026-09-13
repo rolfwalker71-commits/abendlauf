@@ -17,7 +17,7 @@
   bild: cover
 } %}
 
-{% set geschwister = page.parent.children.visible|filter(p => p.url != page.url) %}
+{% set geschwister = page.parent.children.visible|filter(p => p.url != page.url and p.media.images|length > 0) %}
 {% if geschwister is not empty %}
   <div class="chips-bar">
     <div class="wrap chips">

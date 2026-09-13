@@ -51,7 +51,15 @@
 {% endif %}
 
 {% set fotoSeite = pages.find('/fotos') %}
-{% set alben = fotoSeite ? fotoSeite.children.visible|slice(0, 3) : [] %}
+{# Die drei jüngsten Alben mit Bildern. Leere Alben liegen für die
+   kommende Saison schon bereit und bleiben unsichtbar, bis Fotos drin
+   sind. Sortiert wird nach Datum, nicht nach Ordnernummer. #}
+{% set alben = fotoSeite
+     ? fotoSeite.children.visible
+         |filter(a => a.media.images|length > 0)
+         |sort((a, b) => (b.header.datum ?: b.header.jahr ~ '-12-31') <=> (a.header.datum ?: a.header.jahr ~ '-12-31'))
+         |slice(0, 3)
+     : [] %}
 
 {# Streckenkarten von der Streckenseite holen — sie lagen bisher nur dort. #}
 {% set streckenSeite = pages.find('/strecke') %}
@@ -141,19 +149,33 @@
   </section>
 {% endif %}
 
-{% if h.aktuellaktiv and h.aktuelltext %}
+{# Die Saison ist das Jahr der gepflegten Laufabende – auch dann noch,
+   wenn der letzte vorbei ist. Daraus: Platzhalter und der Zeitpunkt,
+   an dem der Text nach der Rangverkündigung übernimmt. #}
+{% set alleAbende = (h.laufabende|default([]))|map(t => t.datum)|filter(d => d) %}
+{% set abendZeiten = alleAbende|map(d => d|date('U'))|sort %}
+{% set saisonJahr = abendZeiten is not empty ? (abendZeiten|last)|date('Y') : 'now'|date('Y') %}
+{% set saisonNummer = include('partials/austragung.html.twig', { jahr: saisonJahr })|trim %}
+{% set wechsel = h.aktuellwechsel
+     ? h.aktuellwechsel|date('U')
+     : (abendZeiten is not empty ? ((abendZeiten|last)|date('Y-m-d') ~ ' 21:00')|date('U') : null) %}
+{% set nachher = h.aktuellnachher and wechsel and 'now'|date('U') >= wechsel %}
+{% set aktuellText = nachher ? h.aktuellnachher : h.aktuelltext %}
+{% set aktuellStand = nachher ? wechsel : h.aktuellstand %}
+
+{% if h.aktuellaktiv and aktuellText %}
   <section class="section{{ (h.insachenaktiv and h.insachentext and not insachen_faellig) ? '' : ' section--overlap' }}">
     <div class="wrap">
       <div class="notice-panel">
         <div class="notice-panel__head">
           <p class="eyebrow" style="margin:0;">Vom OK</p>
           <h2><span class="section__num">01</span> {{ h.aktuelltitel|default('Aktuell') }}</h2>
-          {% if h.aktuellstand %}
-            <p class="notice-panel__date">Stand {{ h.aktuellstand|date('d.m.Y') }}</p>
+          {% if aktuellStand %}
+            <p class="notice-panel__date">Stand {{ aktuellStand|date('d.m.Y') }}</p>
           {% endif %}
         </div>
         <div class="notice-panel__body prose">
-          {{ h.aktuelltext|markdown|externe_links|raw }}
+          {{ aktuellText|platzhalter(saisonJahr, saisonNummer, alleAbende)|markdown|externe_links|raw }}
         </div>
       </div>
     </div>

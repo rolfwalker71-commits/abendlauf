@@ -30,19 +30,20 @@ form:
               size: large
               markdown: true
               content: |
-                **Auf dieser Seite gibt es keine Bilder — die liegen in den Alben.**
+                **Die Alben der nächsten Saison liegen schon bereit.**
 
-                Jedes Album ist eine Unterseite. So legst du eines an:
+                Sobald die Laufabende auf der Startseite gespeichert sind, legt
+                die Seite für jeden Abend ein Album an – dazu eines für die
+                Siegerehrung. Titel, Jahr, Lauf, Datum und Fotograf/in sind
+                ausgefüllt. **Leere Alben bleiben auf der Website unsichtbar.**
 
-                1. Links im Seitenbaum diese Seite („Fotos") auswählen
-                2. Oben auf **Hinzufügen → Seite**
-                3. Titel eingeben, zum Beispiel „1. Abend 2027"
-                4. Als Vorlage **Fotoalbum** wählen
-                5. Im neuen Album **Jahr** und **Lauf** setzen — danach
-                   sortiert sich das Archiv von selbst
-                6. Im Reiter **Bilder** die Fotos hineinziehen, auch
-                   mehrere hundert auf einmal
+                So kommen Fotos dazu:
 
-                Die Reihenfolge änderst du dort per Ziehen. Ohne Eingriff
-                stehen die Bilder alphabetisch nach Dateiname — bei
-                Kameranamen wie `THG0042.jpg` ist das die Aufnahmereihenfolge.
+                1. Links im Seitenbaum unter „Fotos" das Album öffnen,
+                   etwa „2. Abend 2027"
+                2. Im Reiter **Bilder** die Fotos hineinziehen, auch mehrere
+                   hundert auf einmal
+                3. Speichern – mit dem ersten Bild erscheint das Album
+
+                Ein Album von Hand anlegen geht weiterhin: *Hinzufügen → Seite*,
+                Vorlage **Fotoalbum**, dann Jahr und Lauf setzen.
