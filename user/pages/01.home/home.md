@@ -92,10 +92,10 @@ rekorde:
         gruppe: knaben
         distanz: '2260 m'
         frueher: 'über 2180 m 7:24,8 · Simon Waldis, 2000'
-        zeit: '7:43,4'
-        name: 'Silas Zurfluh'
-        ort: Steinen
-        datum: '2014-08-27'
+        zeit: '7:42,9'
+        name: 'Niklas Christen'
+        ort: Beckenried
+        datum: '2021-09-01'
     -
         kategorie: Schülerinnen
         gruppe: maedchen
