@@ -107,6 +107,7 @@
   --band-accent:  #2BB2F0;
 
   --warn:        #C2410C;
+  --warn-ink:    #FFFFFF;   /* Schrift auf --warn: 5,2:1 */
 
   --font-display: 'Oswald', 'Oswald Fallback', 'Arial Narrow', sans-serif;
   --font-body:    'Source Sans 3', 'Source Sans Fallback', system-ui, sans-serif;
@@ -144,6 +145,7 @@
     --frauen:       #F06595;   /* 5,5:1 auf --surface */
 
     --warn:      #FB923C;
+    --warn-ink:  #0C1524;   /* auf hellem Orange dunkel */
 
     --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
   }
@@ -167,6 +169,7 @@
   --frauen:       #F06595;
 
   --warn:      #FB923C;
+  --warn-ink:  #0C1524;   /* auf hellem Orange dunkel */
 
   --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
 }
@@ -292,7 +295,9 @@ a:hover { color: var(--accent); }
 .nav a.nav__cta-mobil { display: none; }
 
 @media (max-width: 950px) {
-  .nav__cta { display: none; }
+  /* Doppelte Klasse, weil .btn weiter unten display setzt und sonst gewinnt –
+     der Knopf schob den Menüknopf 23 px über den Rand, die Seite wurde zu breit. */
+  .site-header__tools .nav__cta { display: none; }
   .nav a.nav__cta-mobil { display: block; }
 }
 
@@ -2181,3 +2186,64 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   body::before { background-attachment: scroll; }
 }
+
+/* ---------- Laufabend heute: Leiste unten und Zeitplan ----------
+   Sichtbar macht beides js/renntag.js – nur am Renntag. Signalgelb nur als
+   Fläche mit dunkler Schrift. */
+.renntag-leiste {
+  position: fixed; inset-inline: 0; bottom: 0; z-index: 55;
+  background: var(--band-bg); color: var(--band-text);
+  border-top: 3px solid var(--signal); box-shadow: 0 -6px 24px rgba(0, 0, 0, .18);
+}
+.renntag-leiste__inner { display: flex; flex-wrap: wrap; align-items: center; gap: .45rem 1rem; padding-block: .7rem; }
+.renntag-leiste__marke {
+  flex: none; padding: .22rem .55rem; border-radius: 5px; background: var(--signal); color: var(--signal-ink);
+  font-family: var(--font-display); font-weight: 600; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+}
+.renntag-leiste__text { flex: 1 1 18rem; margin: 0; font-size: .95rem; line-height: 1.4; font-variant-numeric: tabular-nums; }
+.renntag-leiste__link { color: var(--band-accent); font-weight: 600; font-size: .9rem; white-space: nowrap; }
+.renntag-leiste__zu {
+  flex: none; display: grid; place-items: center; width: 2.25rem; height: 2.25rem; margin-left: auto;
+  border: 1px solid color-mix(in srgb, var(--band-text) 55%, transparent); border-radius: 50%;
+  background: transparent; color: var(--band-text); cursor: pointer;
+}
+.renntag-leiste__zu:hover { background: color-mix(in srgb, var(--band-text) 12%, transparent); }
+.renntag-leiste__zu:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.renntag-leiste--warnung { border-top-color: var(--warn); }
+.renntag-leiste--warnung .renntag-leiste__marke { background: var(--warn); color: var(--warn-ink); }
+html.mit-renntag-leiste body { padding-bottom: 5.5rem; }
+
+.renntag-plan__karte {
+  display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 1rem 2.5rem;
+  padding: 1.5rem clamp(1rem, 3vw, 2rem); background: var(--surface);
+  border-top: 3px solid var(--accent); border-radius: 0 0 var(--radius) var(--radius);
+}
+.renntag-plan__kopf h2 { margin: .2rem 0 .6rem; }
+.renntag-plan__hinweis { margin: 0; color: var(--muted); }
+.renntag-plan__absage {
+  display: inline-block; margin: .2rem 0 0; padding: .45rem .75rem; border-radius: 6px;
+  background: var(--warn); color: var(--warn-ink); font-weight: 700;
+}
+.renntag-plan__liste { list-style: none; margin: 0; padding: 0; display: grid; }
+.renntag-plan__zeile {
+  display: grid; grid-template-columns: 4.2rem minmax(0, 1fr) auto; gap: .9rem; align-items: baseline;
+  padding: .6rem .7rem; border-bottom: 1px solid var(--line); border-radius: 6px;
+}
+.renntag-plan__zeile:last-child { border-bottom: 0; }
+.renntag-plan__zeit { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.renntag-plan__kategorien { display: flex; flex-wrap: wrap; gap: .15rem 1.1rem; }
+.renntag-plan__kategorie small { color: var(--muted); white-space: nowrap; }
+.renntag-plan__marke { display: none; }
+.renntag-plan__zeile.is-vorbei { color: var(--muted); }
+.renntag-plan__zeile.is-jetzt { background: var(--signal); color: var(--signal-ink); border-bottom-color: transparent; }
+.renntag-plan__zeile.is-jetzt small { color: inherit; }
+.renntag-plan__zeile.is-jetzt .renntag-plan__marke {
+  display: inline; font-family: var(--font-display); font-weight: 600; font-size: .75rem;
+  letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+}
+@media (max-width: 760px) {
+  .renntag-plan__karte { grid-template-columns: minmax(0, 1fr); }
+  .renntag-plan__zeile { grid-template-columns: 3.6rem minmax(0, 1fr); }
+  .renntag-plan__zeile.is-jetzt .renntag-plan__marke { grid-column: 2; }
+}
+

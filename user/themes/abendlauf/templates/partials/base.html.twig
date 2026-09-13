@@ -201,6 +201,40 @@
   </div>
 </footer>
 
+{# Laufabend heute: Leiste „Jetzt am Start“ (js/renntag.js). Die Daten
+   stehen auf jeder Seite, solange ein Laufabend bevorsteht; ob und was
+   erscheint, entscheidet der Browser mit seiner Uhr – die Seite selbst liegt
+   bis zu 15 Minuten im Cache. #}
+{% set renntagAbende = (startseite.header.laufabende|default([]))
+     |filter(t => t.datum and t.datum|date('U') >= 'today'|date('U') - 86400) %}
+{% if renntagAbende is not empty %}
+  {% set renntagAusschreibung = pages.find('/ausschreibung') %}
+  {% set renntagDaten = {
+       abende: renntagAbende|map(t => {
+         start: t.datum|date('c'),
+         titel: t.titel|default('Laufabend'),
+         status: t.status|default('findet-statt'),
+         hinweis: t.statushinweis|default('')
+       }),
+       starts: (renntagAusschreibung ? renntagAusschreibung.header.kategorien|default([]) : [])
+         |filter(k => k.startzeit)
+         |sort((a, b) => a.startzeit <=> b.startzeit)
+         |map(k => { zeit: k.startzeit, name: k.bezeichnung, distanz: k.distanz|default('') })
+     } %}
+  <div class="renntag-leiste" id="renntag-leiste" hidden>
+    <div class="wrap renntag-leiste__inner">
+      <span class="renntag-leiste__marke" data-renntag="marke"></span>
+      <p class="renntag-leiste__text" data-renntag="text" aria-live="polite"></p>
+      {% if renntagAusschreibung %}<a class="renntag-leiste__link" href="{{ renntagAusschreibung.url }}">Alle Startzeiten</a>{% endif %}
+      <button class="renntag-leiste__zu" type="button" data-renntag="zu" aria-label="Hinweis ausblenden">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </div>
+  <script type="application/json" id="renntag-daten">{{ renntagDaten|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+  <script src="{{ url('theme://js/renntag.js') }}" defer></script>
+{% endif %}
+
 <script src="{{ url('theme://js/site.js') }}" defer></script>
 </body>
 </html>

@@ -375,6 +375,15 @@
           </ul>
         </div>
         <div class="regel">
+          <h4>Laufabend heute<small>auf allen Seiten</small></h4>
+          <ul>
+            <li>Ab 90 Minuten vor dem ersten Start erscheint unten eine Leiste: zuerst „Heute – Erster Start …“, dann „Jetzt am Start“ mit der nächsten Kategorie, nach dem letzten Start „Unterwegs“. Eine Stunde nach dem letzten Start verschwindet sie.</li>
+            <li>Auf der Startseite steht am Renntag zuoberst der Zeitplan; die laufende Startzeit ist gelb hervorgehoben.</li>
+            <li>Steht der Laufabend im Panel auf <em>Abgesagt</em> oder <em>Verschoben</em>, zeigt die Leiste den ganzen Tag eine Warnung mit dem Hinweis zum Status.</li>
+            <li>Die Zeiten kommen aus der Ausschreibung, die Tage aus den Laufabenden – es gibt nichts zusätzlich zu pflegen.</li>
+          </ul>
+        </div>
+        <div class="regel">
           <h4>Kalender<small>/kalender.ics</small></h4>
           <ul>
             <li>Die Laufabende der Startseite stehen als Kalender zum Abonnieren bereit – Link „In den Kalender“ bei den nächsten Laufabenden.</li>
@@ -488,6 +497,7 @@ rm -rf cache/twig cache/compiled             # nach Template-Änderungen
 php werkzeuge/pruefe-saison.php              # Regeln der Jahresautomatik
 php werkzeuge/pruefe-rangliste.php           # Auslesen der Ranglisten-PDFs
 php werkzeuge/pruefe-kalender.php            # abonnierbarer Kalender
+python3 werkzeuge/portraits-zuschneiden.py   # OK-Porträts einheitlich zuschneiden
 python3 werkzeuge/pruefe-backend.py          # jedes Feld im Panel bearbeitbar?
 GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py
 python3 werkzeuge/fotos-holen.py 2024        # Alben von der alten Seite</code></pre>

@@ -30,7 +30,7 @@ laufabende:
         statushinweis: 'Mit Rangverkündigung um 20 Uhr'
         bild: abend-3.jpg
 herobild: hero-feld.jpg
-insachenaktiv: true
+insachenaktiv: false
 insachentitel: 'In eigener Sache'
 insachenbis: '2026-10-31'
 insachentext: "Liebe Läuferin, lieber Läufer\n\nDie Urner Abendläufe 2026 sind bereits wieder Geschichte. Wir sind überwältigt vom grossen Interesse an unserer Veranstaltung.\n\nMit einem solchen Andrang steigen die Anforderungen — und dabei können Fehler passieren.\n\nAm dritten Abend ist uns ein solcher unterlaufen: In den Kategorien des Hauptfeldes wurde die Rangliste falsch zusammengestellt. Die an der Siegerehrung vorgetragene Rangliste dieses Feldes war deshalb teilweise nicht korrekt.\n\nUnsere Kontrollen haben in diesem Fall nicht gegriffen, und die Rangverkündigung um 20 Uhr liess wenig Zeit zum Nachprüfen. Wir nehmen das zum Anlass, unsere Abläufe zu verbessern.\n\nDie hier veröffentlichte Rangliste ist nach unserer Überzeugung korrekt.\n\nWir bedauern den Fehler sehr und entschuldigen uns bei allen, die an der Siegerehrung um ihre verdiente Anerkennung gekommen sind.\n\nWer eine falsche Auszeichnung erhalten hat, meldet sich bitte bei uns — wir händigen die richtige gerne aus.\n\nHerzlichen Dank für euer Verständnis.\n\nOK Urner Abendläufe\n"

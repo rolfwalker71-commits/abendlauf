@@ -128,6 +128,50 @@
   </div>
 </section>
 
+{# Am Laufabend: der Zeitplan zuoberst. Vorbereitet für den nächsten Abend
+   und verborgen – js/renntag.js blendet ihn am Renntag ein und markiert die
+   laufende Startzeit. Bei Absage steht statt des Zeitplans die Warnung. #}
+{% set planAbend = naechste is not empty ? naechste|first : null %}
+{% if planAbend and kategorien is not empty %}
+  {% set planBloecke = {} %}
+  {% for k in kategorien|filter(k => k.startzeit)|sort((a, b) => a.startzeit <=> b.startzeit) %}
+    {% set zk = 'z' ~ k.startzeit %}
+    {% set bisher = planBloecke[zk]|default({ zeit: k.startzeit, kategorien: [] }) %}
+    {% set planBloecke = planBloecke|merge({ (zk): { zeit: k.startzeit, kategorien: bisher.kategorien|merge([k]) } }) %}
+  {% endfor %}
+  {% set planStatus = planAbend.status|default('findet-statt') %}
+  <section class="section renntag-plan" id="renntag-plan" data-start="{{ planAbend.datum|date('c') }}" hidden>
+    <div class="wrap">
+      <div class="renntag-plan__karte">
+        <div class="renntag-plan__kopf">
+          <p class="eyebrow">Heute · {{ planAbend.titel }}{% if planAbend.ort %} · {{ planAbend.ort }}{% endif %}</p>
+          <h2>Startzeiten</h2>
+          {% if planStatus != 'findet-statt' %}
+            <p class="renntag-plan__absage">{{ planStatus == 'abgesagt' ? 'Abgesagt' : 'Verschoben' }}{{ planAbend.statushinweis ? ' · ' ~ planAbend.statushinweis : '' }}</p>
+          {% else %}
+            <p class="renntag-plan__hinweis">Anmeldung ab 16.30 Uhr vor Ort{{ planAbend.statushinweis ? ' · ' ~ planAbend.statushinweis : '' }}</p>
+          {% endif %}
+        </div>
+        {% if planStatus == 'findet-statt' %}
+          <ol class="renntag-plan__liste">
+            {% for block in planBloecke %}
+              <li class="renntag-plan__zeile" data-startzeit="{{ block.zeit }}">
+                <span class="renntag-plan__zeit">{{ block.zeit }}</span>
+                <span class="renntag-plan__kategorien">
+                  {%- for k in block.kategorien -%}
+                    <span class="renntag-plan__kategorie">{{ k.bezeichnung }}{% if k.distanz %} <small>{{ k.distanz }}</small>{% endif %}</span>
+                  {%- endfor -%}
+                </span>
+                <span class="renntag-plan__marke" aria-hidden="true">Jetzt am Start</span>
+              </li>
+            {% endfor %}
+          </ol>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+{% endif %}
+
 {# Mitteilung auf Zeit. Sie steht vor allem anderen, trägt aber keine
    Abschnittsnummer — sie gehört nicht zum festen Aufbau der Seite.
    Das Datum „Anzeigen bis" blendet sie von selbst aus; ohne diese
@@ -316,12 +360,14 @@
         <h2><span class="section__num">05</span> Aus den Alben</h2>
         <p class="section__aside"><a href="{{ fotoSeite.url }}">Alle Alben</a></p>
       </div>
-      <div class="bleed-strip">
+      {# Drei Alben in der Seitenbreite – als randloser Streifen wuchsen die
+         Karten auf breiten Bildschirmen über den Inhalt hinaus. #}
+      <div class="grid grid--3 reveal">
         {% for album in alben %}
           {% set cover = album.header.cover ? album.media[(album.header.cover is iterable ? album.header.cover|first : album.header.cover)] : album.media.images|first %}
           <a class="album-card" href="{{ album.url }}">
             <div class="album-card__img">
-              {% if cover %}{% include 'partials/bild.html.twig' with { bild: cover, breiten: [400, 800], verhaeltnis: 534 / 800, sizes: '(max-width: 760px) 100vw, 400px' } %}{% endif %}
+              {% if cover %}{% include 'partials/bild.html.twig' with { bild: cover, breiten: [400, 800], verhaeltnis: 534 / 800, sizes: '(max-width: 760px) 100vw, 380px' } %}{% endif %}
             </div>
             <h3 class="album-card__title">{{ album.title }}</h3>
             <p class="album-card__meta">{{ album.media.images|length }} Bilder</p>
