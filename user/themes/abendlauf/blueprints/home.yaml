@@ -173,12 +173,14 @@ form:
                 .name:
                   type: text
                   label: Name
-                .jahr:
-                  type: number
-                  label: Jahr
-                  validate:
-                    min: 1995
-                    max: 2100
+                .ort:
+                  type: text
+                  label: Wohnort
+                  placeholder: Altdorf
+                .datum:
+                  type: date
+                  label: Datum des Laufs
+                  help: Das Jahr daraus erscheint auf der Kachel.
                 .distanz:
                   type: text
                   label: Distanz

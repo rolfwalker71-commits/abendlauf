@@ -1660,6 +1660,11 @@ a:hover { color: var(--accent); }
 .record__who {
   font-size: 1.02rem; font-weight: 700; margin: 0;
 }
+/* Der Wohnort gehört zum Namen, trägt aber weniger Gewicht. */
+.record__who small {
+  display: block; font-weight: 400; font-size: .85rem; color: var(--muted);
+  margin-top: .1rem;
+}
 .record__meta {
   font-size: .85rem; color: var(--muted); margin: .15rem 0 0;
   font-variant-numeric: tabular-nums;

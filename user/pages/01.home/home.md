@@ -108,38 +108,44 @@ aktionlink: https://www.verofit.ch
 aktionlinktext: Zum Shop
 rekordeaktiv: true
 rekordetitel: Streckenrekorde
-rekordehinweis: Schnellste Einzelzeit eines Abends, ausgewertet aus den Gesamtranglisten 2013 bis 2026.
+rekordehinweis: Schnellste je gelaufene Einzelzeit eines Abends, auf der heutigen Streckenlänge.
 rekorde:
-- kategorie: Volksläufer Männer
+- kategorie: Volksläufer
   distanz: 6700 m
-  zeit: 21:15,1
-  name: Manfred Jauch
-  jahr: 2025
+  zeit: 20:19,8
+  name: Ivan Gisler
+  ort: Altdorf
+  datum: '2002-09-04'
 - kategorie: Volksläuferinnen
   distanz: 4440 m
   zeit: 14:46,5
   name: Jolanda Annen
-  jahr: 2024
+  ort: Schattdorf
+  datum: '2024-08-28'
 - kategorie: Jugend Knaben
   distanz: 4440 m
-  zeit: 14:21,0
-  name: Julian Frei
-  jahr: 2024
+  zeit: 14:16,0
+  name: Navid Kerber
+  ort: Kehrsiten
+  datum: '2019-08-21'
 - kategorie: Jugend Mädchen
   distanz: 2260 m
-  zeit: 8:24,1
-  name: Anna Jurt
-  jahr: 2016
-- kategorie: Schüler Knaben
+  zeit: 7:35,0
+  name: Priska Auf der Maur
+  ort: Altdorf
+  datum: '1997-08-27'
+- kategorie: Schüler
   distanz: 2260 m
-  zeit: 7:42,9
-  name: Niklas Christen
-  jahr: 2021
+  zeit: 7:43,4
+  name: Silas Zurfluh
+  ort: Steinen
+  datum: '2014-08-27'
 - kategorie: Schülerinnen
   distanz: 2260 m
-  zeit: 8:15,5
-  name: Jill Bürgler
-  jahr: 2023
+  zeit: 8:07,7
+  name: Shirin Kerber
+  ort: Kehrsiten
+  datum: '2018-09-12'
 alterVon: 2
 alterBis: 69
 anteilKinder: 87
