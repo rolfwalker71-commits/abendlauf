@@ -4,11 +4,6 @@
 {% set h = page.header %}
 {% set hero = h.herobild ? page.media[(h.herobild is iterable ? h.herobild|first : h.herobild)] : null %}
 
-{# Die Austragungsnummer wird als eigenes Gestaltungselement gesetzt. #}
-{% set teile = h.headline|default(page.title)|split('. ', 2) %}
-{% set nummer = teile[0] matches '/^\\d+$/' ? teile[0] : null %}
-{% set restTitel = nummer ? teile[1] : h.headline|default(page.title) %}
-
 {# Nur Termine ab heute, chronologisch, höchstens drei. #}
 {% set heute = 'today'|date('U') %}
 {% set naechste = (h.laufabende|default([]))
@@ -16,13 +11,26 @@
      |sort((a, b) => a.datum|date('U') <=> b.datum|date('U'))
      |slice(0, 3) %}
 
+{# Die Austragungsnummer wird als eigenes Gestaltungselement gesetzt.
+   Sie rechnet sich aus dem Jahr des nächsten Laufabends, damit sie
+   nicht jedes Jahr von Hand nachgezogen werden muss. Steht in der
+   Überschrift trotzdem eine Zahl, gilt diese — dann hat jemand sie
+   bewusst gesetzt. #}
+{% set teile = h.headline|default(page.title)|split('. ', 2) %}
+{% set nummer = teile[0] matches '/^\\d+$/' ? teile[0] : null %}
+{% set restTitel = nummer ? teile[1] : h.headline|default(page.title) %}
+{% set anlassJahr = naechste is not empty ? (naechste|first).datum|date('Y') : null %}
+{% if not nummer and anlassJahr %}
+  {% set nummer = include('partials/austragung.html.twig', { jahr: anlassJahr }) %}
+{% endif %}
+
 {% set sponsorenSeite = pages.find('/sponsoren') %}
 {% set alleSponsoren  = sponsorenSeite ? sponsorenSeite.header.sponsoren|default([]) : [] %}
 {% set patronat       = alleSponsoren|filter(s => s.aktiv and s.kategorie in ['haupt', 'co']) %}
 
 {# Strecken- und Vereinsdaten zuerst — die Kennzahlen greifen darauf zu. #}
 {% set streckenRunden = (pages.find('/strecke').header.runden)|default([]) %}
-{% set gruendung = config.site.verein.gruendung|default(1995) %}
+{% set gruendung = config.site.verein.gruendung|default(1994) %}
 
 {# Kennzahlen kommen aus der Ausschreibung, damit sie nie auseinanderlaufen. #}
 {% set ausschreibung = pages.find('/ausschreibung') %}
@@ -87,7 +95,6 @@
     <p class="opener__eyebrow">{{ config.site.verein.untertitel }} · Seedorf am Urnersee</p>
 
     <p class="opener__edition">{{ nummer }}<span class="hero__dot">.</span></p>
-    {% set anlassJahr = naechste is not empty ? (naechste|first).datum|date('Y') : null %}
     <h1 class="opener__title">{{ restTitel }}{% if anlassJahr %} <span class="opener__jahr">{{ anlassJahr }}</span>{% endif %}</h1>
 
     {% if h.subline %}<p class="opener__lead">{{ h.subline }}</p>{% endif %}

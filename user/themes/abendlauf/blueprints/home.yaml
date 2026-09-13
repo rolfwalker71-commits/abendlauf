@@ -27,7 +27,7 @@ form:
             header.headline:
               type: text
               label: Überschrift
-              help: Beginnt die Überschrift mit einer Zahl und einem Punkt, wird die Zahl gross herausgestellt.
+              help: 'Beginnt die Überschrift mit einer Zahl und einem Punkt, wird die Zahl gross herausgestellt. Ohne Zahl rechnet die Seite die Austragungsnummer selbst aus — dann muss sie nie nachgezogen werden.'
             header.subline:
               type: text
               label: Unterzeile

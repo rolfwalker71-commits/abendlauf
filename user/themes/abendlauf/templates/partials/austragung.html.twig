@@ -1,0 +1,10 @@
+{#- Die wievielte Austragung war ein Jahrgang? Erwartet: jahr
+
+    1994 fand der erste Lauf statt, 2020 fiel er aus. Die Nummer ist
+    deshalb nicht einfach „Jahr minus Gründungsjahr": ausgefallene
+    Jahre zählen nicht mit. 2026 war so die 32. Austragung, nicht die
+    33. — genau wie es auf den Ranglisten steht. -#}
+{%- set start = config.site.verein.gruendung|default(1994) -%}
+{%- set weg = (config.site.verein.ausgefallen|default([]))
+               |filter(a => a.jahr >= start and a.jahr <= jahr)|length -%}
+{{- jahr - start + 1 - weg -}}

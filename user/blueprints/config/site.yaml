@@ -25,6 +25,22 @@ form:
           validate:
             min: 1900
             max: 2100
+        verein.ausgefallen:
+          label: Ausgefallene Jahre
+          type: list
+          style: vertical
+          help: Zählen bei der Austragungsnummer nicht mit. 1994 war die erste Austragung, 2026 wegen 2020 erst die 32.
+          fields:
+            .jahr:
+              type: number
+              label: Jahr
+              validate:
+                min: 1994
+                max: 2100
+            .grund:
+              type: text
+              label: Grund
+              placeholder: Corona
         verein.hauptaktion:
           label: Hervorgehobener Menüpunkt
           type: text
