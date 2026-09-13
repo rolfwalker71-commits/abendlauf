@@ -28,7 +28,7 @@ form:
               type: number
               label: Jahr
               validate:
-                min: 1995
+                min: 1994
                 max: 2100
             header.lauf:
               type: select

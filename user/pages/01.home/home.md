@@ -3,7 +3,7 @@ title: Startseite
 visible: false
 headline: '33. Urner Abendläufe'
 subline: 'Drei Mittwochabende am Urnersee — für alle, vom Pfüderi bis zur Volksläuferin.'
-intro: 'Die Urner Abendläufe des STV Altdorf finden seit 1995 jeden Spätsommer an drei Mittwochabenden beim Seerestaurant in Seedorf statt. Angemeldet wird vor Ort, gelaufen wird bei jeder Witterung.'
+intro: 'Die Urner Abendläufe des STV Altdorf finden seit 1994 jeden Spätsommer an drei Mittwochabenden beim Seerestaurant in Seedorf statt. Angemeldet wird vor Ort, gelaufen wird bei jeder Witterung.'
 hinweisaktiv: false
 hinweistext: ''
 hinweislink: ''

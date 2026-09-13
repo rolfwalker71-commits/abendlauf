@@ -52,7 +52,7 @@ form:
               label: Kategorien gelten für das Jahr
               help: Erscheint klein hinter der Überschrift, damit Besucher sehen, dass die Angaben aktuell sind.
               validate:
-                min: 1995
+                min: 1994
                 max: 2100
             header.kategorien:
               type: list
