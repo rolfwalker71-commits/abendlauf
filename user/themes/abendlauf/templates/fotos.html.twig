@@ -35,7 +35,7 @@
           <div class="section__head">
             <h2><span class="section__num">{{ jahr }}</span> {{ gruppe|length }} Alben</h2>
           </div>
-          <div class="grid grid--3 reveal">
+          <div class="grid grid--alben reveal">
             {% for album in gruppe %}
               {% set cover = album.header.cover ? album.media[(album.header.cover is iterable ? album.header.cover|first : album.header.cover)] : album.media.images|first %}
               <a class="album-card" href="{{ album.url }}">

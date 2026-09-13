@@ -384,6 +384,11 @@ a:hover { color: var(--accent); }
 
 .grid { display: grid; gap: var(--gap); }
 .grid--3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+/* Ein Jahrgang bringt in der Regel vier Alben — drei Abende und die
+   Siegerehrung. Bei 1180px Satzbreite passen vier Karten zu 270px
+   nebeneinander; darunter fällt die Reihe von selbst auf drei,
+   zwei und eine. */
+.grid--alben { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 .grid--4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
 /* ---------- Laufabend-Kacheln ---------- */
@@ -485,7 +490,7 @@ a:hover { color: var(--accent); }
   justify-content: space-between; gap: .3rem .6rem; margin: .7rem 0 .1rem;
 }
 .album-card__title {
-  font-family: var(--font-display); font-size: 1.15rem;
+  font-family: var(--font-display); font-size: clamp(1rem, .9rem + .4vw, 1.15rem);
   text-transform: uppercase; margin: 0; min-width: 0;
 }
 .album-card__date {

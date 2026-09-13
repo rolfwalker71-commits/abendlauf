@@ -65,3 +65,6 @@ Thumbs.db
 *.sublime-workspace
 /.vscode
 /.idea
+
+# Python-Zwischenstand
+__pycache__/
