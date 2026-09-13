@@ -539,6 +539,11 @@ a:hover { color: var(--accent); }
 .podest__name { overflow-wrap: anywhere; }
 .podest__ort { color: var(--muted); }
 .podest__zeit { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.podest__rekord {
+  display: inline-block; margin-right: .4rem; padding: .05rem .35rem; border-radius: 4px;
+  background: var(--signal); color: var(--signal-ink); vertical-align: .08em;
+  font-family: var(--font-display); font-size: .68rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+}
 
 @media (max-width: 900px) {
   .podest, .podest tbody, .podest tr, .podest th, .podest td { display: block; width: auto; }

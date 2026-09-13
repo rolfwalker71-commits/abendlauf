@@ -322,7 +322,7 @@
             <tr><td></td><td>In eigener Sache</td><td>Mitteilung auf Zeit, mit <em>Anzeigen bis</em> – verschwindet danach von selbst</td></tr>
             <tr><td></td><td>Aktuelles</td><td>Text vor/während der Läufe, Text nach der Rangverkündigung, optional Wechselzeitpunkt</td></tr>
             <tr><td></td><td>Rekorde</td><td>Zehn Bestzeiten; <em>Gruppe</em> wählt Symbol und Farbe, <em>Kategorie in der Ausschreibung</em> liefert das Alter</td></tr>
-            <tr><td></td><td>Laufabende</td><td>Datum und Startzeit – steuert fast die ganze Jahresautomatik</td></tr>
+            <tr><td></td><td>Laufabende</td><td>Datum und Startzeit – steuert fast die ganze Jahresautomatik und den abonnierbaren Kalender</td></tr>
             <tr><td></td><td>Aktion · Hinweisbanner · Bilder</td><td>Partnerangebot, Kurzmeldung zuoberst, Bildablage</td></tr>
             <tr><td>Ausschreibung</td><td>Kategorien</td><td>Bezeichnung, Kürzel, Gruppe, Alter von/bis, Startzeit, Distanz, Startgeld</td></tr>
             <tr><td></td><td>Dateien</td><td>Ausschreibung als PDF</td></tr>
@@ -331,6 +331,7 @@
             <tr><td>Fotos › Album</td><td>Angaben · Bilder</td><td>Jahr, Lauf, Datum, Fotograf/in, Titelbild · die Fotos selbst</td></tr>
             <tr><td>Sponsoren</td><td>Sponsoren · Logos</td><td>Name, Logo, Website, Kategorie, <em>Aktiv</em> zum Pausieren, <em>Im Danketext nennen</em> für <code>{sponsoren}</code> · Logodateien</td></tr>
             <tr><td>Das OK</td><td>Mitglieder · Portraits</td><td>Personen mit Funktion und Kontakt · Fotos</td></tr>
+            <tr><td>Kalender</td><td>Inhalt</td><td>Nur der erklärende Text der Seite <code>/kalender</code> – die Termine kommen von der Startseite</td></tr>
             <tr><td>Konfiguration › Site</td><td>Urner Abendläufe</td><td>Adresse, Formular-Empfänger, Social Media, Fusszeile, erste Austragung, ausgefallene Jahre</td></tr>
           </tbody>
         </table>
@@ -370,6 +371,15 @@
             <li>Namen, Orte und Zeiten liest die Seite selbst aus der hochgeladenen PDF. Ist sie noch nicht da, steht „folgt nach dem …".</li>
             <li>Welche Kategorien und unter welchem Namen, kommt aus der Ausschreibung; die Gruppe <em>Familie</em> bleibt weg. Zuoberst stehen die Ältesten (Volksläufer), jeweils Männer/Knaben vor Frauen/Mädchen.</li>
             <li>Fehler in der Liste: korrigierte PDF erneut hochladen – sie wird neu ausgelesen.</li>
+            <li>Ist eine Abend-Zeit gleich schnell oder schneller als der Streckenrekord auf der Startseite, steht „Rekord“ daneben. Den Rekord selbst trägst du weiterhin von Hand nach.</li>
+          </ul>
+        </div>
+        <div class="regel">
+          <h4>Kalender<small>/kalender.ics</small></h4>
+          <ul>
+            <li>Die Laufabende der Startseite stehen als Kalender zum Abonnieren bereit – Link „In den Kalender“ bei den nächsten Laufabenden.</li>
+            <li>Wer abonniert hat, bekommt neue Daten, geänderte Zeiten und Absagen von selbst; eine Absage erscheint als „Abgesagt“.</li>
+            <li>Jeder Abend dauert im Kalender bis 20:30 Uhr.</li>
           </ul>
         </div>
         <div class="regel">
@@ -477,6 +487,7 @@ rm -rf cache/twig cache/compiled             # nach Template-Änderungen
 
 php werkzeuge/pruefe-saison.php              # Regeln der Jahresautomatik
 php werkzeuge/pruefe-rangliste.php           # Auslesen der Ranglisten-PDFs
+php werkzeuge/pruefe-kalender.php            # abonnierbarer Kalender
 python3 werkzeuge/pruefe-backend.py          # jedes Feld im Panel bearbeitbar?
 GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py
 python3 werkzeuge/fotos-holen.py 2024        # Alben von der alten Seite</code></pre>
@@ -502,11 +513,12 @@ python3 werkzeuge/fotos-holen.py 2024        # Alben von der alten Seite</code><
       <ul class="offen">
         <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> Hostpoint-Paket prüfen: PHP 8.3, Limits, SSH mit PHP 8.3 auf der Kommandozeile.</p></li>
         <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> SMTP-Zugang in <code>user/config/plugins/email.yaml</code> – ohne ihn verschickt das Kontaktformular nichts.</p></li>
-        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> Cache einschalten, Vorschaubilder vorab erzeugen, Medien per SFTP hochladen.</p></li>
+        <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> <code>user/config/system.yaml</code> mit auf den Server (Cache 15 Minuten, Kalenderformat <code>.ics</code>), Vorschaubilder vorab erzeugen (der erste Aufruf eines Albums rechnet sonst die WebP-Bilder), Medien per SFTP hochladen.</p></li>
         <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> Passwort des lokalen Panel-Kontos ändern; für den Server neue Konten anlegen.</p></li>
         <li><span class="wann">Vor Livegang</span><p><span class="chip chip--offen">offen</span> <code>sitemap.xml</code> fehlt, obwohl <code>robots.txt</code> darauf verweist.</p></li>
+        <li><span class="wann">Nach Livegang</span><p><span class="chip chip--offen">offen</span> Podest auf dem Server prüfen: eine Rangliste im Panel hochladen und kontrollieren, dass Namen, Orte und Zeiten auf der Ranglisten-Seite erscheinen. Das Auslesen läuft mit reinem PHP (smalot/pdfparser im Theme, braucht <code>zlib</code>, <code>iconv</code>, <code>mbstring</code>) – lokal getestet, auf Hostpoint noch nicht. Zeigen die Spalten nur „—" und den PDF-Link, steht der Grund in <code>logs/grav.log</code> („Rangliste nicht lesbar").</p></li>
         <li><span class="wann">Bald</span><p><span class="chip chip--offen">offen</span> Fotograf/in bei den vier Alben 2025 eintragen.</p></li>
-        <li><span class="wann">Bald</span><p><span class="chip chip--offen">offen</span> Ausschreibung (8,4 MB) als weboptimiertes PDF; E-Mail-Adressen gegen Spam verschleiern; <code>srcset</code> für grosse Bilder.</p></li>
+        <li><span class="wann">Bald</span><p><span class="chip chip--offen">offen</span> Ausschreibung (8,4 MB) als weboptimiertes PDF; E-Mail-Adressen gegen Spam verschleiern.</p></li>
         <li><span class="wann">Laufend</span><p><span class="chip chip--offen">offen</span> Bildbeschreibungen für die Albumfotos fehlen (Barrierefreiheit).</p></li>
         <li><span class="wann">31.10.2026</span><p><span class="chip chip--auto">automatisch</span> „In eigener Sache" verschwindet von selbst.</p></li>
         <li><span class="wann">Vor 01.09.2027</span><p><span class="chip chip--hand">von Hand</span> Dankestext „nach der Rangverkündigung" lesen; auf der Sponsorenseite prüfen, wer <em>Im Danketext nennen</em> hat.</p></li>

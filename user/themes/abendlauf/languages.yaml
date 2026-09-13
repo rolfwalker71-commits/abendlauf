@@ -1,0 +1,58 @@
+# Deutsche Texte für Plugins, die nur Englisch mitbringen.
+#
+# PLUGIN_CONSENT: der Cookie-Hinweis und seine Einstellungen. Übersetzt sind
+# nur die Texte, die Besucherinnen und Besucher sehen; die Einstellungen im
+# Panel bleiben englisch. Die Schlüssel entsprechen
+# user/plugins/consent/languages/en.yaml – bei einem Plugin-Update prüfen, ob
+# neue dazugekommen sind.
+#
+# Ohne eingeschaltete Mehrsprachigkeit schlägt Grav Übersetzungen unter „en“
+# nach (Language::translate), auch bei default_lang: de. Deshalb stehen die
+# deutschen Texte auch dort – per Verweis, nicht doppelt.
+de: &deutsch
+  PLUGIN_CONSENT:
+    BANNER:
+      TITLE: 'Cookies auf dieser Website'
+      BODY: 'Wir verwenden nur wenige Cookies, damit die Website funktioniert. Einige freiwillige würden wir gern zusätzlich setzen – du entscheidest, was du erlaubst, und kannst es jederzeit ändern.'
+    BUTTON:
+      ACCEPT: 'Alle erlauben'
+      REJECT: 'Alle ablehnen'
+      PREFERENCES: 'Auswählen'
+      SAVE: 'Auswahl speichern'
+      CLOSE: 'Schliessen'
+      REOPEN: 'Cookie-Einstellungen'
+      BACK: 'Zurück'
+    PREFS:
+      TITLE: 'Was du erlaubst'
+      BODY: 'Schalte ein, womit du einverstanden bist. Ohne deine Zustimmung bleibt alles Freiwillige aus, und du kannst die Auswahl jederzeit ändern.'
+      ALWAYS_ON: 'Immer aktiv'
+      SHOW_DETAILS: 'Was gespeichert wird'
+      HIDE_DETAILS: 'Details ausblenden'
+      NO_SERVICES: 'Auf dieser Website nutzt noch nichts diese Kategorie.'
+      RUN_BY: 'Betrieben von'
+      PRIVACY_POLICY: 'Datenschutzerklärung'
+      STORES: 'Speichert'
+      DURATION: 'Dauer'
+      SESSION: 'Bis der Browser geschlossen wird'
+    CATEGORY:
+      NECESSARY: 'Unbedingt nötig'
+      NECESSARY_DESC: 'Braucht die Website, um zu funktionieren – etwa für die Anmeldung oder um diese Auswahl zu speichern. Lässt sich nicht ausschalten.'
+      FUNCTIONAL: 'Einstellungen'
+      FUNCTIONAL_DESC: 'Merkt sich deine Einstellungen, damit die Website beim nächsten Besuch so ist, wie du sie verlassen hast.'
+      ANALYTICS: 'Statistik'
+      ANALYTICS_DESC: 'Hilft uns zu verstehen, welche Seiten genutzt werden und wo es hakt. Nichts davon erkennt dich persönlich.'
+      MARKETING: 'Marketing'
+      MARKETING_DESC: 'Misst und steuert Werbung und lädt eingebettete Inhalte von Diensten, die dich über mehrere Websites hinweg verfolgen.'
+    PLACEHOLDER:
+      TITLE: 'Dieser Inhalt ist blockiert'
+      BODY: 'Beim Laden würden Cookies gesetzt, denen du noch nicht zugestimmt hast.'
+      BUTTON: 'Erlauben und laden'
+    GPC_NOTICE: 'Dein Browser bittet Websites, dich nicht zu verfolgen. Deshalb ist alles Freiwillige ausgeschaltet – du kannst unten trotzdem etwas einschalten.'
+    STORAGE:
+      COOKIE: 'Cookie'
+      LOCAL: 'Lokaler Speicher'
+      SESSION: 'Sitzungsspeicher'
+      INDEXED_DB: 'IndexedDB'
+      PIXEL: 'Tracking-Pixel'
+
+en: *deutsch

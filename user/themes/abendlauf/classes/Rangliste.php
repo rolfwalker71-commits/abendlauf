@@ -73,6 +73,15 @@ class Rangliste
         return ['datum' => $datum, 'kategorien' => array_values($kategorien)];
     }
 
+    /** „4:35,7" oder „1:02:03,4" → Sekunden, zum Vergleich mit den Rekorden; null, wenn es keine Zeit ist */
+    public static function sekunden(string $zeit): ?float
+    {
+        if (!preg_match('/^(?:(\d+):)?(\d{1,2}):(\d{2})[,.](\d)$/', trim($zeit), $t)) {
+            return null;
+        }
+        return (int) $t[1] * 3600 + (int) $t[2] * 60 + (int) $t[3] + (int) $t[4] / 10;
+    }
+
     /** „04:35:7" → „4:35,7" – wie die Rekorde auf der Startseite */
     public static function zeit(string $roh): string
     {

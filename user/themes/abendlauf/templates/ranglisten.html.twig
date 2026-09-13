@@ -90,6 +90,11 @@
        |filter(k => k.kuerzel and k.gruppe|default('') != 'familie')
        |sort((a, b) => ((b.alter_min|default(0)) <=> (a.alter_min|default(0)))
                        ?: ((a.gruppe in ['frauen', 'maedchen'] ? 1 : 0) <=> (b.gruppe in ['frauen', 'maedchen'] ? 1 : 0))) %}
+  {# Streckenrekorde der Startseite: Eine Abend-Zeit, die gleich schnell oder
+     schneller ist, bekommt den Hinweis „Rekord“. Die Gesamtzeit ist eine
+     Summe mehrerer Läufe und bleibt aussen vor. #}
+  {% set podestRekorde = (pages.find('/home').header.rekorde|default([]))
+       |filter(r => r.kuerzel and r.zeit|zeit_sekunden is not null) %}
   {% set abendZeiten = (pages.find('/home').header.laufabende|default([]))
        |map(t => t.datum|date('U'))|filter(t => t|date('Y') == aktuell)|sort %}
   {% set podestSpalten = [
@@ -153,6 +158,7 @@
               <tr>
                 {% for s in podestSpalten %}
                   {% set eintrag = s.daten ? (s.daten.kategorien|filter(k => k.kuerzel == kat.kuerzel)|first) : null %}
+                  {% set rekord = s.schluessel != 'gesamt' ? (podestRekorde|filter(r => r.kuerzel == kat.kuerzel)|first) : null %}
                   <td data-label="{{ s.titel }}"{{ s.schluessel == 'gesamt' ? ' class="is-gesamt"' : '' }}>
                     {% if eintrag and eintrag.plaetze is not empty %}
                       <ol class="podest__liste">
@@ -160,7 +166,12 @@
                           <li>
                             <span class="podest__rang">{{ p.rang }}.</span>
                             <span class="podest__name">{{ p.name }}{% if p.ort %}, <span class="podest__ort">{{ p.ort }}</span>{% endif %}</span>
-                            <strong class="podest__zeit">{{ p.zeit }}</strong>
+                            <strong class="podest__zeit">
+                              {%- if rekord and p.zeit|zeit_sekunden is not null and p.zeit|zeit_sekunden <= rekord.zeit|zeit_sekunden -%}
+                                <span class="podest__rekord" title="Streckenrekord: {{ rekord.zeit }}">Rekord</span>
+                              {%- endif -%}
+                              {{ p.zeit -}}
+                            </strong>
                           </li>
                         {% endfor %}
                       </ol>

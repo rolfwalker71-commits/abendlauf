@@ -1,0 +1,29 @@
+title: Kalender
+extends@:
+  type: default
+  context: blueprints://pages
+
+form:
+  fields:
+    tabs:
+      type: tabs
+      active: 1
+      fields:
+
+        # Diese Seite hat keine eigenen Dateien – der Medien-Bereich bleibt zu.
+        content:
+          type: tab
+          fields:
+            kalenderhinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                **Die Termine kommen von der Startseite.**
+
+                Unter `/kalender.ics` stehen die Laufabende aus dem Reiter
+                *Laufabende* der Startseite als Kalender zum Abonnieren – mit
+                Status: Eine Absage erscheint dort als „Abgesagt“. Hier lässt
+                sich nur der erklärende Text der Seite `/kalender` bearbeiten.
+            header.media_order:
+              type: hidden

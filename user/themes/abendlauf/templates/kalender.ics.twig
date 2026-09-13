@@ -1,0 +1,17 @@
+{#- Laufabende der Startseite als abonnierbarer Kalender (classes/Kalender.php).
+    Titel mit der Austragungsnummer aus partials/austragung.html.twig, damit sie
+    nur an einer Stelle gerechnet wird. -#}
+{%- set startseite = pages.find('/home') -%}
+{%- set ausschreibung = pages.find('/ausschreibung') -%}
+{%- set termine = (startseite.header.laufabende|default([]))|filter(t => t.datum)|map(t => {
+      start: t.datum|date('U'),
+      titel: (include('partials/austragung.html.twig', { jahr: t.datum|date('Y') })|trim) ~ '. Urner Abendläufe · ' ~ t.titel,
+      ort: t.ort|default(''),
+      beschreibung: [
+        t.statushinweis|default(''),
+        ausschreibung ? 'Startzeiten und Kategorien: ' ~ ausschreibung.url(true) : ''
+      ],
+      status: t.status|default('findet-statt'),
+      url: startseite.url(true)
+    }) -%}
+{{- kalender_ics(termine)|raw -}}

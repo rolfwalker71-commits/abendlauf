@@ -4,7 +4,7 @@
    oben unangetastet bleibt und der Text trotzdem trägt. #}
 <section class="coverhead">
   {% if bild %}
-    <div class="coverhead__media">{{ bild.cropZoom(1920, 900).html()|raw }}</div>
+    <div class="coverhead__media">{% include 'partials/bild.html.twig' with { bild: bild, breiten: [960, 1440, 1920], verhaeltnis: 900 / 1920, lazy: false } %}</div>
   {% endif %}
 
   <div class="coverhead__inner wrap">

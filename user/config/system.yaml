@@ -2,10 +2,15 @@ home:
   alias: '/home'
 
 pages:
+  # ics für den abonnierbaren Kalender /kalender.ics
+  types: [html, htm, xml, txt, json, rss, atom, ics]
   theme: abendlauf
 
 cache:
   enabled: true
+  # Seiten mit Uhrzeit-Logik (Aktuell-Text um 21 Uhr, „In eigener Sache“,
+  # „Neu online“, Terminkacheln) sollen nicht tagelang im Cache stehen.
+  lifetime: 900
   check:
     method: file
 

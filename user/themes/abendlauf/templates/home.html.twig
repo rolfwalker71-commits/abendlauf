@@ -94,7 +94,7 @@
    unabhängig vom Farbschema, weil sie auf dem Bild liegt. #}
 <section class="opener {{ hero ? '' : 'opener--plain' }}">
   {% if hero %}
-    <div class="opener__media">{{ hero.cropZoom(1920, 1080).html()|raw }}</div>
+    <div class="opener__media">{% include 'partials/bild.html.twig' with { bild: hero, breiten: [960, 1440, 1920], verhaeltnis: 1080 / 1920, lazy: false } %}</div>
   {% endif %}
 
   <div class="wrap opener__inner">
@@ -187,7 +187,8 @@
     <div class="wrap">
       <div class="section__head">
         <h2><span class="section__num">02</span> Die nächsten Laufabende</h2>
-        <p class="section__aside">Anmeldung jeweils ab 16.30 Uhr vor Ort</p>
+        {% set kalenderSeite = pages.find('/kalender') %}
+        <p class="section__aside">Anmeldung jeweils ab 16.30 Uhr vor Ort{% if kalenderSeite %} · <a href="{{ kalenderSeite.url }}">In den Kalender</a>{% endif %}</p>
       </div>
       <div class="grid grid--3 reveal">
         {% for termin in naechste %}{% include 'partials/event.html.twig' %}{% endfor %}
@@ -256,7 +257,7 @@
           {% for k in karten %}
             <figure class="band__map">
               <a href="{{ k.bild.url }}" data-lightbox data-caption="{{ k.titel }} · {{ k.distanz }}">
-                {{ k.bild.cropZoom(560, 380).loading('lazy').html()|raw }}
+                {% include 'partials/bild.html.twig' with { bild: k.bild, breiten: [280, 560], verhaeltnis: 380 / 560, sizes: '(max-width: 760px) 100vw, 560px' } %}
               </a>
               <figcaption>{{ k.titel }} · {{ k.distanz }}</figcaption>
             </figure>
@@ -320,7 +321,7 @@
           {% set cover = album.header.cover ? album.media[(album.header.cover is iterable ? album.header.cover|first : album.header.cover)] : album.media.images|first %}
           <a class="album-card" href="{{ album.url }}">
             <div class="album-card__img">
-              {% if cover %}{{ cover.cropZoom(800, 534).loading('lazy').html('')|raw }}{% endif %}
+              {% if cover %}{% include 'partials/bild.html.twig' with { bild: cover, breiten: [400, 800], verhaeltnis: 534 / 800, sizes: '(max-width: 760px) 100vw, 400px' } %}{% endif %}
             </div>
             <h3 class="album-card__title">{{ album.title }}</h3>
             <p class="album-card__meta">{{ album.media.images|length }} Bilder</p>
@@ -354,7 +355,7 @@
               {% set bild = page.media[name] %}
               {% if bild %}
                 <a href="{{ bild.url }}" data-lightbox data-caption="{{ bild.meta.alt|default('') }}">
-                  {{ bild.resize(700).loading('lazy').html(bild.meta.alt|default(''))|raw }}
+                  {% include 'partials/bild.html.twig' with { bild: bild, breiten: [350, 700], sizes: '(max-width: 760px) 100vw, 350px', alt: bild.meta.alt|default('') } %}
                 </a>
               {% endif %}
             {% endfor %}

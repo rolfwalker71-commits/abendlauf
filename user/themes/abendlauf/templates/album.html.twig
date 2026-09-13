@@ -35,7 +35,7 @@
       <div class="gallery">
         {% for name, bild in bilder %}
           <a href="{{ bild.url }}" data-lightbox data-caption="{{ bild.meta.bildtext|default('') }}">
-            {{ bild.cropZoom(500, 500).loading('lazy').html(bild.meta.alt|default(bild.meta.bildtext|default('')))|raw }}
+            {% include 'partials/bild.html.twig' with { bild: bild, breiten: [250, 500], verhaeltnis: 1, sizes: '(max-width: 600px) 50vw, 260px', alt: bild.meta.alt|default(bild.meta.bildtext|default('')) } %}
           </a>
         {% endfor %}
       </div>

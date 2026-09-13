@@ -21,7 +21,7 @@
         {% set foto = m.portrait ? page.media[(m.portrait is iterable ? m.portrait|first : m.portrait)] : null %}
         <div class="person">
           <div class="person__img">
-            {% if foto %}{{ foto.cropZoom(440, 440).loading('lazy').html(m.name)|raw }}{% endif %}
+            {% if foto %}{% include 'partials/bild.html.twig' with { bild: foto, breiten: [220, 440], verhaeltnis: 1, sizes: '(max-width: 600px) 50vw, 220px', alt: m.name } %}{% endif %}
           </div>
           <p class="person__name">{{ m.name }}</p>
           <p class="person__role">{{ m.funktion }}</p>

@@ -10,21 +10,21 @@ hinweislink: ''
 laufabende:
     -
         titel: 'Erster Abend'
-        datum: 1818609900
+        datum: 1818602700
         ort: 'Seerestaurant Seedorf'
         status: findet-statt
         statushinweis: ''
         bild: abend-1.jpg
     -
         titel: 'Zweiter Abend'
-        datum: 1819214700
+        datum: 1819207500
         ort: 'Seerestaurant Seedorf'
         status: findet-statt
         statushinweis: ''
         bild: abend-2.jpg
     -
         titel: 'Dritter Abend'
-        datum: 1819819500
+        datum: 1819812300
         ort: 'Seerestaurant Seedorf'
         status: findet-statt
         statushinweis: 'Mit Rangverkündigung um 20 Uhr'

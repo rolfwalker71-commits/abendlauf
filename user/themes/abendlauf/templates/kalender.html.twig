@@ -1,0 +1,22 @@
+{% extends 'partials/base.html.twig' %}
+
+{# Anleitung zum Abonnieren. Die Termine selbst liefert kalender.ics.twig
+   unter derselben Adresse mit der Endung .ics. #}
+{% block content %}
+{% set ics = page.url(true) ~ '.ics' %}
+{% set webcal = ics|replace({ 'https://': 'webcal://', 'http://': 'webcal://' }) %}
+
+<section class="section">
+  <div class="wrap prose" style="max-width: 46rem;">
+    <p class="eyebrow">Termine</p>
+    <h1>Laufabende im Kalender</h1>
+    {{ page.content|raw }}
+
+    <p class="kalender-knoepfe">
+      <a class="btn btn--primary" href="{{ webcal }}">Kalender abonnieren</a>
+      <a class="btn btn--ghost" href="{{ ics }}" download>Als Datei herunterladen</a>
+    </p>
+    <p>Adresse zum Einfügen: <code class="kalender-adresse">{{ ics }}</code></p>
+  </div>
+</section>
+{% endblock %}

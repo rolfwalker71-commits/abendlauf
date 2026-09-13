@@ -5,7 +5,7 @@
 {% if bilder is not empty %}
   <div class="photostrip" aria-hidden="true" style="--strip-h: {{ hoehe }}px;">
     {% for bild in bilder %}
-      <span class="photostrip__cell">{{ bild.cropZoom(520, hoehe * 2).loading('lazy').html()|raw }}</span>
+      <span class="photostrip__cell">{% include 'partials/bild.html.twig' with { bild: bild, breiten: [260, 520], verhaeltnis: hoehe * 2 / 520, sizes: '260px' } %}</span>
     {% endfor %}
   </div>
 {% endif %}

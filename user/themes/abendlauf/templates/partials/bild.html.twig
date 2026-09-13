@@ -1,0 +1,22 @@
+{#- Bild als WebP in mehreren Breiten, damit Handys kleine Dateien laden.
+    Erwartet: bild (Medium), breiten (aufsteigend, z. B. [400, 800])
+    Optional: verhaeltnis (Höhe ÷ Breite, z. B. 1 = quadratisch; ohne = unverändertes
+              Seitenverhältnis), sizes (Standard 100vw), alt, lazy (Standard: ja)
+
+    Gravs derivatives() übernimmt Zuschnitt und Format nicht (kleine Varianten
+    kämen als unbeschnittenes JPG) – deshalb wird jede Breite einzeln erzeugt.
+    Breiter als das Original wird nie gerechnet. Jeder .url-Aufruf setzt die
+    Bildbefehle zurück, die Varianten beeinflussen sich also nicht. -#}
+{%- set verhaeltnis = verhaeltnis|default(null) -%}
+{%- set breiten = breiten|filter(b => not bild.width or b <= bild.width) -%}
+{%- set breiten = breiten is empty ? [bild.width|default(800)] : breiten -%}
+{%- set quellen = breiten|map(b => (verhaeltnis
+      ? bild.cropZoom(b, (b * verhaeltnis)|round)
+      : bild.resize(b)
+    ).format('webp').url ~ ' ' ~ b ~ 'w') -%}
+{%- set gross = breiten|last -%}
+<img src="{{ (verhaeltnis ? bild.cropZoom(gross, (gross * verhaeltnis)|round) : bild.resize(gross)).format('webp').url }}"
+     srcset="{{ quellen|join(', ') }}"
+     sizes="{{ sizes|default('100vw') }}"
+     alt="{{ alt|default('') }}"
+     {{- (lazy is not defined or lazy) ? ' loading="lazy"' : '' }}>

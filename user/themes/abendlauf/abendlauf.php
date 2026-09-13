@@ -4,12 +4,14 @@ namespace Grav\Theme;
 
 use Grav\Common\Theme;
 use Grav\Common\Yaml;
+use Grav\Theme\Abendlauf\Kalender;
 use Grav\Theme\Abendlauf\Rangliste;
 use Grav\Theme\Abendlauf\Saison;
 use RocketTheme\Toolbox\Event\Event;
 
 require_once __DIR__ . '/classes/Saison.php';
 require_once __DIR__ . '/classes/Rangliste.php';
+require_once __DIR__ . '/classes/Kalender.php';
 
 /**
  * Theme der Urner Abendläufe.
@@ -22,6 +24,7 @@ require_once __DIR__ . '/classes/Rangliste.php';
  *     die Fotoalben der Saison bereit – leer bleiben sie unsichtbar
  *   · Platzhalter wie {nummer} in Texten
  *   · Podest je Abend: die ersten drei jeder Kategorie aus den Ranglisten-PDFs
+ *   · Laufabende als abonnierbarer Kalender (/kalender.ics)
  */
 class Abendlauf extends Theme
 {
@@ -216,6 +219,18 @@ class Abendlauf extends Theme
 
     public function onTwigExtensions(): void
     {
+        // {{ zeit|zeit_sekunden }} – „4:09,2" → 249.2, für den Vergleich mit Rekorden
+        $this->grav['twig']->twig()->addFilter(
+            new \Twig\TwigFilter('zeit_sekunden', static fn ($zeit): ?float => Rangliste::sekunden((string) $zeit))
+        );
+
+        // {{ kalender_ics(termine)|raw }} – siehe templates/kalender.ics.twig
+        $this->grav['twig']->twig()->addFunction(
+            new \Twig\TwigFunction('kalender_ics', static function ($termine): string {
+                return Kalender::ics(array_map(static fn ($t) => (array) $t, (array) $termine));
+            })
+        );
+
         // {{ rangliste_podest(datei) }} – datei ist ein Medium der Ranglisten-Seite
         $this->grav['twig']->twig()->addFunction(
             new \Twig\TwigFunction('rangliste_podest', function ($datei): array {

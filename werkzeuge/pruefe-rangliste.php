@@ -76,6 +76,13 @@ echo "Zeitformat\n";
 soll('führende Null',                   Rangliste::zeit('00:59:1'), '0:59,1');
 soll('Punkt als Trenner',               Rangliste::zeit('24:31.5'), '24:31,5');
 
+echo "Sekunden (Vergleich mit Rekorden)\n";
+soll('Minuten',                         Rangliste::sekunden('4:09,2'), 249.2);
+soll('mit Stunde',                      Rangliste::sekunden('1:02:03,4'), 3723.4);
+soll('Punkt statt Komma',               Rangliste::sekunden('20:19.8'), 1219.8);
+soll('gleiche Zeit ist gleich schnell', Rangliste::sekunden('4:09,2') <= Rangliste::sekunden('4:09,2'), true);
+soll('keine Zeit',                      Rangliste::sekunden('DNF'), null);
+
 // Echte PDFs des neuesten Jahrgangs, falls lokal vorhanden
 $ordner = __DIR__ . '/../user/pages/04.ranglisten';
 $pdfs = glob($ordner . '/[0-9][0-9][0-9][0-9]-*.pdf') ?: [];
