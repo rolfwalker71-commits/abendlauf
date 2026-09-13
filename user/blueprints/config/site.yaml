@@ -1,5 +1,7 @@
 title: Site
-extends@: site
+extends@:
+  type: site
+  context: blueprints://config
 
 form:
   fields:
@@ -47,3 +49,4 @@ form:
         verein.fusszeile:
           label: Fusszeile
           type: text
+          help: Das Jahr und das ©-Zeichen stehen automatisch davor.

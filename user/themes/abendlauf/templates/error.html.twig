@@ -11,10 +11,21 @@
   <div class="wrap">
     <div class="section__head"><h2>Vielleicht suchst du das</h2></div>
 
-    {# Die Wege, die am häufigsten gemeint sind. #}
+    {# Die Wege, die am häufigsten gemeint sind. Der älteste Jahrgang
+       zählt sich aus den vorhandenen Ranglisten, damit hier nach einem
+       Nachtrag keine falsche Jahreszahl stehen bleibt. #}
+    {% set ranglisten = pages.find('/ranglisten') %}
+    {% set jahre = [] %}
+    {% if ranglisten %}
+      {% for datei in ranglisten.media.all %}
+        {% if datei.meta.jahr %}{% set jahre = jahre|merge([datei.meta.jahr]) %}{% endif %}
+      {% endfor %}
+    {% endif %}
+    {% set aeltestes = jahre is not empty ? jahre|sort|first : null %}
+
     <div class="grid grid--3">
       {% for route, text in {
-        '/ranglisten': 'Alle Ranglisten seit 2008, nach Jahrgang geordnet.',
+        '/ranglisten': 'Alle Ranglisten' ~ (aeltestes ? ' seit ' ~ aeltestes : '') ~ ', nach Jahrgang geordnet.',
         '/fotos': 'Die Fotoalben der vergangenen Abende.',
         '/ausschreibung': 'Kategorien, Startzeiten und Startgelder.'
       } %}

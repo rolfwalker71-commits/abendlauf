@@ -175,7 +175,9 @@
 
   </div>
   <div class="site-footer__base wrap">
-    {{ verein.fusszeile ?: '© ' ~ 'now'|date('Y') ~ ' OK Urner Abendläufe' }}
+    {# Das Jahr setzt sich selbst. In der Fusszeile steht nur der Rest -
+       sonst muesste sie jeden Januar von Hand nachgezogen werden. #}
+    © {{ 'now'|date('Y') }} {{ verein.fusszeile ?: 'OK Urner Abendläufe · STV Altdorf' }}
   </div>
 </footer>
 
