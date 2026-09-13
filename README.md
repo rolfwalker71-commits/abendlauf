@@ -7,7 +7,7 @@ Neubau von [abendlauf.ch](https://www.abendlauf.ch) mit
 
 **PHP 8.3 oder neuer** mit den Erweiterungen `curl`, `ctype`, `dom`,
 `gd`, `json`, `mbstring`, `openssl`, `session`, `simplexml`, `xml`,
-`zip`. Keine Datenbank — Grav legt die Inhalte als Dateien ab.
+`zip`, empfohlen zusätzlich `exif`, `fileinfo`, `intl` und OPcache. Keine Datenbank — Grav legt die Inhalte als Dateien ab.
 
 ## Einrichten
 
@@ -67,14 +67,14 @@ will, ändert dort und nirgends sonst.
 
 1. **Beim Livegang:** `user/pages/` per SFTP auf den Server kopieren.
 2. **Im Betrieb:** über das Panel hochladen — der normale Weg.
-3. **Von der alten Seite holen:** `werkzeuge/import-fotos.py`.
+3. **Von der alten Seite holen:** `python3 werkzeuge/fotos-holen.py <jahr>`.
 
 Ab dem Livegang ist der Server die Quelle der Wahrheit für Inhalte,
 nicht der Entwicklungsrechner.
 
 ## Warum Grav und nicht Kirby
 
-Die erste Fassung lief mit Kirby (siehe Zweig `main`). Kirby kostet
+Die erste Fassung lief mit Kirby. Kirby kostet
 einmalig CHF 95 pro Domain. Bei sechs Vereins- und Projektseiten
 summiert sich das, deshalb der Wechsel auf Grav — quelloffen unter
 MIT-Lizenz, ohne Lizenzkosten, gleiche Bauart: dateibasiert, ohne
