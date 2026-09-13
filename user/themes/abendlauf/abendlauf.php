@@ -4,10 +4,12 @@ namespace Grav\Theme;
 
 use Grav\Common\Theme;
 use Grav\Common\Yaml;
+use Grav\Theme\Abendlauf\Rangliste;
 use Grav\Theme\Abendlauf\Saison;
 use RocketTheme\Toolbox\Event\Event;
 
 require_once __DIR__ . '/classes/Saison.php';
+require_once __DIR__ . '/classes/Rangliste.php';
 
 /**
  * Theme der Urner Abendläufe.
@@ -19,6 +21,7 @@ require_once __DIR__ . '/classes/Saison.php';
  *   · sobald die Laufabende auf der Startseite gespeichert werden, liegen
  *     die Fotoalben der Saison bereit – leer bleiben sie unsichtbar
  *   · Platzhalter wie {nummer} in Texten
+ *   · Podest je Abend: die ersten drei jeder Kategorie aus den Ranglisten-PDFs
  */
 class Abendlauf extends Theme
 {
@@ -69,6 +72,7 @@ class Abendlauf extends Theme
                 'lauf'  => $treffer['lauf'],
             ]));
             $vorhanden[] = $treffer;
+            $this->podest($pdf);   // gleich auslesen, damit der erste Besuch nicht wartet
         }
     }
 
@@ -157,8 +161,69 @@ class Abendlauf extends Theme
         return $abende;
     }
 
+    /**
+     * Podest einer Ranglisten-PDF (Regeln in classes/Rangliste.php). Das
+     * Auslesen dauert rund 0,3 s; das Ergebnis liegt deshalb in
+     * user/data/ranglisten/ und wird erst neu erzeugt, wenn sich die PDF oder
+     * Rangliste::FORMAT ändert.
+     *
+     * @return array{datum: ?string, kategorien: list<array<string,mixed>>}
+     */
+    public function podest(string $pdf): array
+    {
+        $leer = ['datum' => null, 'kategorien' => []];
+        if ($pdf === '' || !is_file($pdf)) {
+            return $leer;
+        }
+        $ordner = $this->grav['locator']->findResource('user-data://', true) . '/ranglisten';
+        $ablage = $ordner . '/' . pathinfo($pdf, PATHINFO_FILENAME) . '.json';
+        $kennung = Rangliste::FORMAT . '-' . filesize($pdf) . '-' . filemtime($pdf);
+
+        if (is_file($ablage)) {
+            $gespeichert = json_decode((string) file_get_contents($ablage), true);
+            if (is_array($gespeichert) && ($gespeichert['kennung'] ?? '') === $kennung) {
+                return $gespeichert['daten'] ?? $leer;
+            }
+        }
+        try {
+            self::pdfBibliothek();
+            $daten = Rangliste::lesen((new \Smalot\PdfParser\Parser())->parseFile($pdf)->getText());
+        } catch (\Throwable $e) {
+            // Unlesbar: Die Spalte zeigt dann nur den PDF-Link. Erst eine
+            // neue Fassung der Datei wird wieder ausgelesen.
+            $this->grav['log']->warning('Rangliste nicht lesbar: ' . basename($pdf) . ' – ' . $e->getMessage());
+            $daten = $leer;
+        }
+        if (is_dir($ordner) || @mkdir($ordner, 0775, true)) {
+            file_put_contents($ablage, json_encode(['kennung' => $kennung, 'daten' => $daten], JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+        }
+        return $daten;
+    }
+
+    /** smalot/pdfparser liegt unter lib/pdfparser (siehe LIESMICH.md) */
+    private static function pdfBibliothek(): void
+    {
+        if (class_exists(\Smalot\PdfParser\Parser::class)) {
+            return;
+        }
+        spl_autoload_register(static function (string $klasse): void {
+            $datei = __DIR__ . '/lib/pdfparser/src/' . str_replace('\\', '/', $klasse) . '.php';
+            if (strncmp($klasse, 'Smalot\\PdfParser\\', 17) === 0 && is_file($datei)) {
+                require $datei;
+            }
+        });
+    }
+
     public function onTwigExtensions(): void
     {
+        // {{ rangliste_podest(datei) }} – datei ist ein Medium der Ranglisten-Seite
+        $this->grav['twig']->twig()->addFunction(
+            new \Twig\TwigFunction('rangliste_podest', function ($datei): array {
+                $pfad = is_object($datei) && method_exists($datei, 'get') ? (string) $datei->get('filepath') : (string) $datei;
+                return $this->podest($pfad);
+            })
+        );
+
         // {{ text|platzhalter(jahr, nummer, abende, sponsoren) }}
         $this->grav['twig']->twig()->addFilter(
             new \Twig\TwigFilter('platzhalter', static function (?string $text, $jahr, $nummer, $abende = [], $sponsoren = []): string {

@@ -501,6 +501,66 @@ a:hover { color: var(--accent); }
 .result-highlight h3 { margin: 0 0 .2rem; font-size: 1.4rem; }
 .result-highlight p { margin: 0; font-size: .9rem; font-weight: 600; }
 
+/* ---------- Podest je Kategorie und Abend (Ranglisten) ----------
+   Spalten = 1./2./3. Abend und Gesamt. Je Kategorie ein tbody mit der
+   Kategorie als Zwischenzeile über die ganze Breite – so passt die Tabelle
+   in die normale Seitenbreite. Unter 900px wird jede Kategorie zur Karte. */
+.podest { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.podest thead th {
+  text-align: left; vertical-align: bottom; padding: 0 .9rem .75rem;
+  border-bottom: 2px solid var(--text);
+}
+.podest__titel { display: block; font-family: var(--font-display); font-weight: 600; font-size: 1.3rem; text-transform: uppercase; }
+.podest__info { display: flex; flex-wrap: wrap; align-items: center; gap: .2rem .7rem; color: var(--muted); font-size: .85rem; font-weight: 400; }
+.podest__info .pdf { display: inline-flex; align-items: center; gap: .25rem; font-weight: 600; color: var(--accent-text); }
+.podest__info .pdf svg { width: 14px; height: 14px; }
+.podest tbody { border-bottom: 1px solid var(--line); }
+.podest__gruppe th { text-align: left; padding: 1.1rem .9rem .5rem; }
+.podest tbody td { vertical-align: top; padding: 0 .9rem 1rem; }
+.podest .is-gesamt { background: color-mix(in srgb, var(--accent) 7%, transparent); }
+.podest tbody td.podest__luecke { padding: 0; }
+.podest .is-empty { color: var(--muted); }
+
+.podest__kategorie { display: flex; flex-wrap: wrap; align-items: center; gap: .15rem .6rem; }
+.podest__icon { flex: none; width: 1.35rem; height: 1.35rem; color: var(--accent-text); }
+.podest tbody.is-w .podest__icon { color: var(--frauen); }
+.podest__kat {
+  font-family: var(--font-display); font-weight: 600; font-size: .95rem;
+  letter-spacing: .08em; text-transform: uppercase; line-height: 1.25;
+}
+.podest__meta { color: var(--muted); font-size: .85rem; font-weight: 400; }
+
+.podest__liste { list-style: none; margin: 0; padding: 0; display: grid; gap: .2rem; }
+.podest__liste li {
+  display: grid; grid-template-columns: 1.3rem minmax(0, 1fr) auto; gap: .5rem;
+  align-items: baseline; font-size: calc(.95rem - 1px); line-height: 1.35;
+}
+.podest__rang { color: var(--muted); font-variant-numeric: tabular-nums; }
+.podest__name { overflow-wrap: anywhere; }
+.podest__ort { color: var(--muted); }
+.podest__zeit { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .podest, .podest tbody, .podest tr, .podest th, .podest td { display: block; width: auto; }
+  .podest thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .podest tbody {
+    margin-bottom: 1rem; padding: .2rem 1rem .5rem; background: var(--surface);
+    border-top: 3px solid var(--accent); border-bottom: 0; border-radius: 0 0 var(--radius) var(--radius);
+  }
+  .podest tbody.is-w { border-top-color: var(--frauen); }
+  .podest__gruppe th { padding: .8rem 0 .7rem; border-bottom: 1px solid var(--line); }
+  .podest tbody td { padding: .6rem 0; }
+  .podest tbody td.podest__luecke { display: none; }
+  .podest tbody td + td { border-top: 1px solid var(--line); }
+  .podest .is-gesamt { background: none; }
+  .podest tbody td[data-label]::before {
+    content: attr(data-label); display: block; margin-bottom: .25rem;
+    font-family: var(--font-display); font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  }
+  /* Abende ohne Rangliste nehmen auf dem Handy keinen Platz weg */
+  .podest tbody td:has(.is-empty) { display: none; }
+}
+
 /* ---------- Fotoalben ---------- */
 
 .album-card { display: block; text-decoration: none; color: inherit; }

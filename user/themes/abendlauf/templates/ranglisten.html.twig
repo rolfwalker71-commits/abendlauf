@@ -78,6 +78,106 @@
   </section>
 {% endif %}
 
+{# Podest des neuesten Jahrgangs: Zeilen sind die Kategorien der
+   Ausschreibung ohne Familienkategorien, Spalten die drei Abende und
+   Gesamt. Namen und Zeiten liest rangliste_podest() aus den PDFs
+   (classes/Rangliste.php, zwischengespeichert in user/data/ranglisten). #}
+{% if page.header.podestaktiv|default(true) and aktuell %}
+  {% set ausschreibung = pages.find('/ausschreibung') %}
+  {# Älteste zuoberst, bei gleichem Alter Männer/Knaben vor Frauen/Mädchen –
+     wie die Rekordkacheln der Startseite. #}
+  {% set podestKategorien = (ausschreibung ? ausschreibung.header.kategorien|default([]) : [])
+       |filter(k => k.kuerzel and k.gruppe|default('') != 'familie')
+       |sort((a, b) => ((b.alter_min|default(0)) <=> (a.alter_min|default(0)))
+                       ?: ((a.gruppe in ['frauen', 'maedchen'] ? 1 : 0) <=> (b.gruppe in ['frauen', 'maedchen'] ? 1 : 0))) %}
+  {% set abendZeiten = (pages.find('/home').header.laufabende|default([]))
+       |map(t => t.datum|date('U'))|filter(t => t|date('Y') == aktuell)|sort %}
+  {% set podestSpalten = [
+       { schluessel: '1', titel: '1. Abend', folgt: abendZeiten[0]|default(null) },
+       { schluessel: '2', titel: '2. Abend', folgt: abendZeiten[1]|default(null) },
+       { schluessel: '3', titel: '3. Abend', folgt: abendZeiten[2]|default(null) },
+       { schluessel: 'gesamt', titel: 'Gesamt', folgt: abendZeiten|last|default(null) }
+     ]|map(s => s|merge({ datei: jahre['j' ~ aktuell].dateien['l' ~ s.schluessel]|default(null) }))
+      |map(s => s|merge({ daten: s.datei ? rangliste_podest(s.datei) : null })) %}
+
+  {% if podestKategorien is not empty and podestSpalten|filter(s => s.datei) is not empty %}
+    <section class="section" style="padding-bottom:0;">
+      <div class="wrap">
+        <div class="section__head">
+          <h2>{{ (page.header.podesttitel|default('Podest {jahr}'))|replace({'{jahr}': aktuell}) }}</h2>
+          <p class="section__aside">Die ersten drei jeder Kategorie · vollständige Listen als PDF</p>
+        </div>
+
+        {# Je Kategorie ein tbody: oben die Kategorie über die ganze Breite,
+           darunter die vier Podeste. So bleibt die Tabelle in der normalen
+           Seitenbreite, und jede Spalte hat Platz für Name, Ort und Zeit. #}
+        <table class="podest">
+          <caption class="visually-hidden">Die ersten drei je Kategorie und Laufabend {{ aktuell }}</caption>
+          <thead>
+            <tr>
+              {% for s in podestSpalten %}
+                <th scope="col"{{ s.schluessel == 'gesamt' ? ' class="is-gesamt"' : '' }}>
+                  <span class="podest__titel">{{ s.titel }}</span>
+                  <span class="podest__info">
+                    {% if s.datei %}
+                      {% if s.daten.datum %}<span>{{ s.daten.datum|date('d.m.Y') }}</span>{% endif %}
+                      {% include 'partials/pdf-link.html.twig' with { datei: s.datei } %}
+                    {% else %}
+                      <span>folgt{{ s.folgt ? ' nach dem ' ~ s.folgt|date('d.m.') : '' }}</span>
+                    {% endif %}
+                  </span>
+                </th>
+              {% endfor %}
+            </tr>
+          </thead>
+          {% for kat in podestKategorien %}
+            <tbody{{ kat.gruppe in ['frauen', 'maedchen'] ? ' class="is-w"' : '' }}>
+              <tr class="podest__gruppe">
+                {# Die Kategorie läuft über die Abende; das Feld über Gesamt bleibt
+                   leer, damit die Hinterlegung der Spalte nicht unterbricht. #}
+                <th scope="rowgroup" colspan="{{ podestSpalten|length - 1 }}">
+                  <span class="podest__kategorie">
+                    {% include 'partials/gruppe-icon.html.twig' with { gruppe: kat.gruppe|default(''), klasse: 'podest__icon' } %}
+                    <span class="podest__kat">{{ kat.bezeichnung }}</span>
+                    <span class="podest__meta">
+                      {%- if kat.alter_min -%}
+                        {{ kat.alter_max
+                            ? (kat.alter_min == kat.alter_max ? kat.alter_min ~ ' Jahre' : kat.alter_min ~ '–' ~ kat.alter_max ~ ' Jahre')
+                            : 'ab ' ~ kat.alter_min ~ ' Jahren' }} ·
+                      {%- endif %} {{ kat.distanz -}}
+                    </span>
+                  </span>
+                </th>
+                <td class="is-gesamt podest__luecke" aria-hidden="true"></td>
+              </tr>
+              <tr>
+                {% for s in podestSpalten %}
+                  {% set eintrag = s.daten ? (s.daten.kategorien|filter(k => k.kuerzel == kat.kuerzel)|first) : null %}
+                  <td data-label="{{ s.titel }}"{{ s.schluessel == 'gesamt' ? ' class="is-gesamt"' : '' }}>
+                    {% if eintrag and eintrag.plaetze is not empty %}
+                      <ol class="podest__liste">
+                        {% for p in eintrag.plaetze %}
+                          <li>
+                            <span class="podest__rang">{{ p.rang }}.</span>
+                            <span class="podest__name">{{ p.name }}{% if p.ort %}, <span class="podest__ort">{{ p.ort }}</span>{% endif %}</span>
+                            <strong class="podest__zeit">{{ p.zeit }}</strong>
+                          </li>
+                        {% endfor %}
+                      </ol>
+                    {% else %}
+                      <span class="is-empty">—</span>
+                    {% endif %}
+                  </td>
+                {% endfor %}
+              </tr>
+            </tbody>
+          {% endfor %}
+        </table>
+      </div>
+    </section>
+  {% endif %}
+{% endif %}
+
 <section class="section">
   <div class="wrap">
     {% if jahrgaenge is empty %}

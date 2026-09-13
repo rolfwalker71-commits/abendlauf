@@ -34,6 +34,43 @@ form:
               accept:
                 - image/*
 
+        podest:
+          type: tab
+          title: Podest
+          fields:
+            podesthinweis:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                **Die ersten drei jeder Kategorie – direkt aus den PDFs.**
+
+                Für den neuesten Jahrgang zeigt die Seite vier Spalten:
+                1., 2. und 3. Abend sowie Gesamt. Sobald eine Rangliste
+                hochgeladen ist, liest die Seite Namen, Orte und Zeiten selbst aus.
+
+                Welche Kategorien erscheinen und unter welchem Namen, kommt aus
+                der **Ausschreibung**; Kategorien der Gruppe *Familie* bleiben
+                weg. Zuoberst stehen die Ältesten (Volksläufer), jeweils
+                Männer/Knaben vor Frauen/Mädchen.
+
+                Stimmt etwas nicht, die korrigierte PDF erneut hochladen.
+            header.podestaktiv:
+              type: toggle
+              label: Bereich anzeigen
+              highlight: 1
+              default: true
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.podesttitel:
+              type: text
+              label: Überschrift
+              placeholder: 'Podest {jahr}'
+              help: '{jahr} wird durch den Jahrgang ersetzt. Leer lassen für „Podest 2027".'
+
         treue:
           type: tab
           title: Jahr für Jahr dabei

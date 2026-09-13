@@ -12,13 +12,14 @@ php -S localhost:8100 system/router.php     # Entwicklungsserver; Panel unter /a
 rm -rf cache/twig cache/compiled            # nach Änderungen an Templates/Blueprints, wenn alte Ausgabe erscheint
 
 php werkzeuge/pruefe-saison.php             # Regeln der Jahresautomatik (Saison.php), ohne Grav lauffähig
+php werkzeuge/pruefe-rangliste.php          # Auslesen der Ranglisten-PDFs (Rangliste.php), mit echten PDFs falls vorhanden
 python3 werkzeuge/pruefe-backend.py         # jedes Inhaltsfeld hat ein Panel-Feld? (Exit 1 wenn nicht)
 GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py   # gespeicherte Werte passen zum Feldtyp? (braucht API-Token)
 python3 werkzeuge/fotos-holen.py 2024       # Fotoalben eines Jahrgangs von der alten WordPress-Seite holen
 (cd werkzeuge && npm install pdfjs-dist && node auswerten.mjs)   # Ranglisten-PDFs auslesen (lies.mjs), siehe rekorde-auswerten.md
 ```
 
-`pruefe-feldtypen.py` und alle API-Aufrufe brauchen den laufenden Entwicklungsserver; `pruefe-saison.php` und `pruefe-backend.py` nicht.
+`pruefe-feldtypen.py` und alle API-Aufrufe brauchen den laufenden Entwicklungsserver; `pruefe-saison.php`, `pruefe-rangliste.php` und `pruefe-backend.py` nicht.
 
 API-Token für Prüfungen/Tests (lokales Konto):
 `curl -s -X POST http://localhost:8100/api/v1/auth/token -H 'Content-Type: application/json' -d '{"username":"…","password":"…"}'` → `data.access_token`, als `Authorization: Bearer` senden. Blueprints: `GET /api/v1/blueprints/pages/<vorlage>`. Uploads/Speichern über die API lösen dieselben Ereignisse aus wie das Panel – so lassen sich Panel-Abläufe ohne Browser testen (Testdateien danach per `DELETE` wieder entfernen).
@@ -47,6 +48,7 @@ Der Dateiname der Inhaltsdatei bestimmt Template und Panel-Maske: `user/pages/02
 - **Kategorien** (Ausschreibung): Alter → Jahrgänge werden aus `kategorienjahr` berechnet; die Rekordkacheln holen ihr Alter über `kuerzel` von dort; Kennzahlen der Startseite ebenso.
 - **Vereinsdaten** in `user/config/site.yaml` unter `verein` (Panel: Konfiguration → Site, erweitert durch `user/blueprints/config/site.yaml`). Erste Austragung **1994**, `ausgefallen` listet abgesagte Jahre (2020, Corona). Die Austragungsnummer rechnet ausschliesslich `partials/austragung.html.twig` (Jahr − 1994 + 1 − ausgefallene Jahre; 2026 = 32.).
 - **Ranglisten** sind keine Unterseiten: alle PDFs hängen an `04.ranglisten`, `ranglisten.html.twig` baut aus `meta.jahr`/`meta.lauf` eine Matrix Jahr × Abend.
+- **Podest** (Ranglisten, neuester Jahrgang): Tabelle mit den Spalten 1./2./3. Abend/Gesamt, je Kategorie ein `tbody` mit der Kategorie als Zwischenzeile (bleibt in der normalen Seitenbreite), jeweils die ersten drei. Twig-Funktion `rangliste_podest(datei)` liest die PDF mit **smalot/pdfparser** (reines PHP, unter `lib/pdfparser/`, LGPL) und den Regeln in `classes/Rangliste.php`; Ergebnis je PDF in `user/data/ranglisten/<name>.json`, neu erst wenn Grösse/Änderungszeit der PDF wechselt. Zeilen = Kategorien der Ausschreibung ohne `gruppe: familie`, gepaart über `kuerzel`, sortiert nach `alter_min` absteigend (männlich vor weiblich). Einträge: Rang, Name, Ort, Zeit – ändern sich die Felder, `Rangliste::FORMAT` erhöhen (macht die Zwischenspeicher ungültig).
 - **Rekorde** (Startseite) sind gepflegte Werte, keine Auswertung; Feld `gruppe` (maenner/frauen/knaben/maedchen) wählt Piktogramm und Farbe.
 
 ### Jahresautomatik (`abendlauf.php` + `classes/Saison.php`)

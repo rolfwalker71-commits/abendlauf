@@ -327,7 +327,7 @@
             <tr><td>Ausschreibung</td><td>Kategorien</td><td>Bezeichnung, Kürzel, Gruppe, Alter von/bis, Startzeit, Distanz, Startgeld</td></tr>
             <tr><td></td><td>Dateien</td><td>Ausschreibung als PDF</td></tr>
             <tr><td>Strecke</td><td>Runden · Dateien</td><td>Angaben je Runde mit Streckenkarte</td></tr>
-            <tr><td>Ranglisten</td><td>Ranglisten</td><td>PDFs; Stift-Symbol zeigt Titel, Art, Jahr, Lauf</td></tr>
+            <tr><td>Ranglisten</td><td>Ranglisten · Podest</td><td>PDFs; Stift-Symbol zeigt Titel, Art, Jahr, Lauf · Podest ein/aus und Überschrift</td></tr>
             <tr><td>Fotos › Album</td><td>Angaben · Bilder</td><td>Jahr, Lauf, Datum, Fotograf/in, Titelbild · die Fotos selbst</td></tr>
             <tr><td>Sponsoren</td><td>Sponsoren · Logos</td><td>Name, Logo, Website, Kategorie, <em>Aktiv</em> zum Pausieren, <em>Im Danketext nennen</em> für <code>{sponsoren}</code> · Logodateien</td></tr>
             <tr><td>Das OK</td><td>Mitglieder · Portraits</td><td>Personen mit Funktion und Kontakt · Fotos</td></tr>
@@ -362,6 +362,15 @@
         <div class="regel">
           <h4>Aktuell-Text<small>Startseite</small></h4>
           <p>Am letzten Laufabend um 21:00 übernimmt der Text „nach der Rangverkündigung", falls ausgefüllt. Platzhalter füllen sich selbst: <code>{nummer}</code> 33 · <code>{jahr}</code> 2027 · <code>{termine}</code> 18.8. / 25.8. / 1.9. · <code>{vorige_nummer}</code> 32 · <code>{naechste_nummer}</code> 34 · <code>{naechstes_jahr}</code> 2028. <code>{sponsoren}</code> auf einer eigenen Zeile wird zur verlinkten Aufzählung aller Sponsoren, bei denen auf der Sponsorenseite „Im Danketext nennen" eingeschaltet ist; weitere Zeilen mit Bindestrich darunter hängen sich an.</p>
+        </div>
+        <div class="regel">
+          <h4>Podest<small>Ranglisten-Seite</small></h4>
+          <ul>
+            <li>Für den neuesten Jahrgang: je Kategorie die ersten drei am 1., 2. und 3. Abend und in der Gesamtwertung, mit Ort und Zeit.</li>
+            <li>Namen, Orte und Zeiten liest die Seite selbst aus der hochgeladenen PDF. Ist sie noch nicht da, steht „folgt nach dem …".</li>
+            <li>Welche Kategorien und unter welchem Namen, kommt aus der Ausschreibung; die Gruppe <em>Familie</em> bleibt weg. Zuoberst stehen die Ältesten (Volksläufer), jeweils Männer/Knaben vor Frauen/Mädchen.</li>
+            <li>Fehler in der Liste: korrigierte PDF erneut hochladen – sie wird neu ausgelesen.</li>
+          </ul>
         </div>
         <div class="regel">
           <h4>Hinweis „Neu online"<small>zuoberst auf jeder Seite</small></h4>
@@ -467,6 +476,7 @@ php -S localhost:8100 system/router.php      # starten
 rm -rf cache/twig cache/compiled             # nach Template-Änderungen
 
 php werkzeuge/pruefe-saison.php              # Regeln der Jahresautomatik
+php werkzeuge/pruefe-rangliste.php           # Auslesen der Ranglisten-PDFs
 python3 werkzeuge/pruefe-backend.py          # jedes Feld im Panel bearbeitbar?
 GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py
 python3 werkzeuge/fotos-holen.py 2024        # Alben von der alten Seite</code></pre>
