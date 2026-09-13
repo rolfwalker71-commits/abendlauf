@@ -43,7 +43,14 @@
                   {% if cover %}{{ cover.cropZoom(800, 534).loading('lazy').html('')|raw }}{% endif %}
                   <span class="album-card__count">{{ album.media.images|length }}</span>
                 </div>
-                <h3 class="album-card__title">{{ album.title }}</h3>
+                <div class="album-card__head">
+                  <h3 class="album-card__title">{{ album.title }}</h3>
+                  {% if album.header.datum %}
+                    <time class="album-card__date" datetime="{{ album.header.datum|date('Y-m-d') }}">
+                      {{ album.header.datum|date('d.m.Y') }}
+                    </time>
+                  {% endif %}
+                </div>
                 <p class="album-card__meta">{{ album.media.images|length }} Bilder</p>
               </a>
             {% endfor %}

@@ -4,7 +4,7 @@ jahr: 2026
 lauf: 2
 datum: '2026-08-26'
 beschreibung: ''
-fotograf: ''
-cover: thg0039-1.jpg
+fotograf: 'Thomas Gasser'
+cover: thg0133-1.jpg
 ---
 
