@@ -113,8 +113,29 @@
   </div>
 </section>
 
-{% if h.aktuellaktiv and h.aktuelltext %}
+{# Mitteilung auf Zeit. Sie steht vor allem anderen, trägt aber keine
+   Abschnittsnummer — sie gehört nicht zum festen Aufbau der Seite.
+   Das Datum „Anzeigen bis" blendet sie von selbst aus; ohne diese
+   Bremse bleibt so ein Text erfahrungsgemäss jahrelang stehen. #}
+{% set insachen_faellig = h.insachenbis ? h.insachenbis|date('U') < 'today'|date('U') : false %}
+{% if h.insachenaktiv and h.insachentext and not insachen_faellig %}
   <section class="section section--overlap">
+    <div class="wrap">
+      <aside class="interim">
+        <div class="interim__head">
+          <p class="interim__label">Vorübergehender Hinweis</p>
+          <h2 class="interim__title">{{ h.insachentitel|default('In eigener Sache') }}</h2>
+        </div>
+        <div class="interim__body prose">
+          {{ h.insachentext|markdown|externe_links|raw }}
+        </div>
+      </aside>
+    </div>
+  </section>
+{% endif %}
+
+{% if h.aktuellaktiv and h.aktuelltext %}
+  <section class="section{{ (h.insachenaktiv and h.insachentext and not insachen_faellig) ? '' : ' section--overlap' }}">
     <div class="wrap">
       <div class="notice-panel">
         <div class="notice-panel__head">

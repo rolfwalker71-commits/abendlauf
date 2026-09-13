@@ -42,6 +42,45 @@ form:
               accept:
                 - image/*
 
+        insachen:
+          type: tab
+          title: In eigener Sache
+          fields:
+            erklaerung:
+              type: display
+              size: large
+              markdown: true
+              content: |
+                **Für Mitteilungen, die nur eine Weile stehen sollen.**
+
+                Der Bereich erscheint zuoberst, noch vor „Aktuell", und ist
+                als vorübergehend erkennbar. Setze ein Datum bei
+                **Anzeigen bis** — danach verschwindet er von selbst,
+                auch wenn niemand daran denkt.
+            header.insachenaktiv:
+              type: toggle
+              label: Bereich anzeigen
+              highlight: 0
+              default: false
+              options:
+                1: Wird angezeigt
+                0: Ausgeblendet
+              validate:
+                type: bool
+            header.insachentitel:
+              type: text
+              label: Überschrift
+              default: In eigener Sache
+            header.insachenbis:
+              type: date
+              label: Anzeigen bis
+              help: Letzter Tag, an dem der Bereich erscheint. Leer = bis du ihn ausschaltest.
+            header.insachentext:
+              type: textarea
+              label: Text
+              rows: 16
+              help: 'Absätze durch eine Leerzeile trennen, Links als [Text](Adresse).'
+
         aktuelles:
           type: tab
           title: Aktuelles
