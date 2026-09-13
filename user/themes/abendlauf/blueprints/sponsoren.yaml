@@ -64,6 +64,17 @@ form:
                     0: Pausiert
                   validate:
                     type: bool
+                .danke:
+                  type: toggle
+                  label: Im Danketext nennen
+                  help: 'Erscheint in den Aktuell-Texten der Startseite dort, wo {sponsoren} steht.'
+                  highlight: 1
+                  default: false
+                  options:
+                    1: Ja
+                    0: Nein
+                  validate:
+                    type: bool
 
         kopfbild:
           type: tab

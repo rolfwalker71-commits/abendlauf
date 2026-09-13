@@ -159,13 +159,13 @@ class Abendlauf extends Theme
 
     public function onTwigExtensions(): void
     {
-        // {{ text|platzhalter(jahr, nummer, abende) }}
+        // {{ text|platzhalter(jahr, nummer, abende, sponsoren) }}
         $this->grav['twig']->twig()->addFilter(
-            new \Twig\TwigFilter('platzhalter', static function (?string $text, $jahr, $nummer, $abende = []): string {
+            new \Twig\TwigFilter('platzhalter', static function (?string $text, $jahr, $nummer, $abende = [], $sponsoren = []): string {
                 return Saison::platzhalter((string) $text, (int) (string) $jahr, (int) (string) $nummer, array_map(
                     static fn ($a) => is_int($a) ? date('Y-m-d H:i', $a) : (string) $a,
                     (array) $abende
-                ));
+                ), array_map(static fn ($s) => (array) $s, (array) $sponsoren));
             })
         );
 

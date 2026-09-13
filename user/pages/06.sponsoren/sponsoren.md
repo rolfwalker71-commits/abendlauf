@@ -8,6 +8,7 @@ sponsoren:
     url: https://www.ukb.ch/
     kategorie: haupt
     aktiv: true
+    danke: true
 
   -
     name: Imholz Sport Bürglen
@@ -15,6 +16,7 @@ sponsoren:
     url: http://www.imholzsport.ch/
     kategorie: co
     aktiv: true
+    danke: true
 
   -
     name: Gasthaus Reiser
@@ -57,6 +59,7 @@ sponsoren:
     url: http://www.verofit.ch
     kategorie: sponsor
     aktiv: true
+    danke: true
 
   -
     name: Gisler Service
@@ -71,6 +74,7 @@ sponsoren:
     url: https://hauger.ch
     kategorie: sponsor
     aktiv: true
+    danke: true
 
   -
     name: Steve Events
@@ -85,6 +89,7 @@ sponsoren:
     url: http://seedorf-uri.ch
     kategorie: sponsor
     aktiv: true
+    danke: true
 
   -
     name: Gemeindeverwaltung Altdorf
@@ -92,6 +97,7 @@ sponsoren:
     url: http://altdorf.ch
     kategorie: sponsor
     aktiv: true
+    danke: true
 
   -
     name: Brand Metallbau AG
@@ -190,6 +196,7 @@ sponsoren:
     url: https://www.seerestaurant-seedorf.ch/
     kategorie: sponsor
     aktiv: true
+    danke: true
 
   -
     name: Swiss City Marathon
@@ -204,6 +211,7 @@ sponsoren:
     url: https://www.concordia.ch
     kategorie: sponsor
     aktiv: true
+    danke: true
 
   -
     name: Stiftung Carl und Elise Elsener

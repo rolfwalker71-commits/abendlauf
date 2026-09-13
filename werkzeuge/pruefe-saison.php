@@ -51,6 +51,16 @@ echo "Platzhalter\n";
 soll('Danketext', Saison::platzhalter('der {nummer}. Abendläufe {jahr} – {naechste_nummer}. im {naechstes_jahr}', 2027, 33), 'der 33. Abendläufe 2027 – 34. im 2028');
 soll('Vorige Nummer', Saison::platzhalter('der {vorige_nummer}.', 2027, 33), 'der 32.');
 soll('Termine',   Saison::platzhalter('am {termine}', 2027, 33, $abende), 'am 18.8. / 25.8. / 1.9.');
+$sponsoren = [
+    ['name' => 'Urner Kantonalbank', 'url' => 'https://www.ukb.ch/', 'kategorie' => 'haupt', 'aktiv' => true, 'danke' => true],
+    ['name' => 'Verofit (Verpflegung)', 'url' => 'http://www.verofit.ch', 'kategorie' => 'co', 'aktiv' => true, 'danke' => true],
+    ['name' => 'Stiftung ohne Website', 'url' => null, 'kategorie' => 'goenner', 'aktiv' => true, 'danke' => true],
+    ['name' => 'Pausiert', 'url' => '', 'kategorie' => 'sponsor', 'aktiv' => false, 'danke' => true],
+    ['name' => 'Nur auf der Sponsorenseite', 'url' => '', 'kategorie' => 'sponsor', 'aktiv' => true],
+];
+soll('Sponsoren', Saison::platzhalter("Danke:\n\n{sponsoren}\n- Von Hand", 2027, 33, [], $sponsoren),
+    "Danke:\n\n- [Urner Kantonalbank (Hauptsponsor)](https://www.ukb.ch/)\n- [Verofit (Verpflegung)](http://www.verofit.ch)\n- Stiftung ohne Website\n- Von Hand");
+soll('Keine Sponsoren', Saison::platzhalter('{sponsoren}', 2027, 33), '');
 
 echo $fehler ? "\n$fehler Fehler\n" : "\nAlles in Ordnung.\n";
 exit($fehler ? 1 : 0);

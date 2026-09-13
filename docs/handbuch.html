@@ -329,7 +329,7 @@
             <tr><td>Strecke</td><td>Runden · Dateien</td><td>Angaben je Runde mit Streckenkarte</td></tr>
             <tr><td>Ranglisten</td><td>Ranglisten</td><td>PDFs; Stift-Symbol zeigt Titel, Art, Jahr, Lauf</td></tr>
             <tr><td>Fotos › Album</td><td>Angaben · Bilder</td><td>Jahr, Lauf, Datum, Fotograf/in, Titelbild · die Fotos selbst</td></tr>
-            <tr><td>Sponsoren</td><td>Sponsoren · Logos</td><td>Name, Logo, Website, Kategorie, <em>Aktiv</em> zum Pausieren · Logodateien</td></tr>
+            <tr><td>Sponsoren</td><td>Sponsoren · Logos</td><td>Name, Logo, Website, Kategorie, <em>Aktiv</em> zum Pausieren, <em>Im Danketext nennen</em> für <code>{sponsoren}</code> · Logodateien</td></tr>
             <tr><td>Das OK</td><td>Mitglieder · Portraits</td><td>Personen mit Funktion und Kontakt · Fotos</td></tr>
             <tr><td>Konfiguration › Site</td><td>Urner Abendläufe</td><td>Adresse, Formular-Empfänger, Social Media, Fusszeile, erste Austragung, ausgefallene Jahre</td></tr>
           </tbody>
@@ -361,7 +361,7 @@
         </div>
         <div class="regel">
           <h4>Aktuell-Text<small>Startseite</small></h4>
-          <p>Am letzten Laufabend um 21:00 übernimmt der Text „nach der Rangverkündigung", falls ausgefüllt. Platzhalter füllen sich selbst: <code>{nummer}</code> 33 · <code>{jahr}</code> 2027 · <code>{termine}</code> 18.8. / 25.8. / 1.9. · <code>{vorige_nummer}</code> 32 · <code>{naechste_nummer}</code> 34 · <code>{naechstes_jahr}</code> 2028.</p>
+          <p>Am letzten Laufabend um 21:00 übernimmt der Text „nach der Rangverkündigung", falls ausgefüllt. Platzhalter füllen sich selbst: <code>{nummer}</code> 33 · <code>{jahr}</code> 2027 · <code>{termine}</code> 18.8. / 25.8. / 1.9. · <code>{vorige_nummer}</code> 32 · <code>{naechste_nummer}</code> 34 · <code>{naechstes_jahr}</code> 2028. <code>{sponsoren}</code> auf einer eigenen Zeile wird zur verlinkten Aufzählung aller Sponsoren, bei denen auf der Sponsorenseite „Im Danketext nennen" eingeschaltet ist; weitere Zeilen mit Bindestrich darunter hängen sich an.</p>
         </div>
         <div class="regel">
           <h4>Hinweis „Neu online"<small>zuoberst auf jeder Seite</small></h4>
@@ -499,7 +499,7 @@ python3 werkzeuge/fotos-holen.py 2024        # Alben von der alten Seite</code><
         <li><span class="wann">Bald</span><p><span class="chip chip--offen">offen</span> Ausschreibung (8,4 MB) als weboptimiertes PDF; E-Mail-Adressen gegen Spam verschleiern; <code>srcset</code> für grosse Bilder.</p></li>
         <li><span class="wann">Laufend</span><p><span class="chip chip--offen">offen</span> Bildbeschreibungen für die Albumfotos fehlen (Barrierefreiheit).</p></li>
         <li><span class="wann">31.10.2026</span><p><span class="chip chip--auto">automatisch</span> „In eigener Sache" verschwindet von selbst.</p></li>
-        <li><span class="wann">Vor 01.09.2027</span><p><span class="chip chip--hand">von Hand</span> Dankestext „nach der Rangverkündigung" lesen, Sponsorenliste darin prüfen.</p></li>
+        <li><span class="wann">Vor 01.09.2027</span><p><span class="chip chip--hand">von Hand</span> Dankestext „nach der Rangverkündigung" lesen; auf der Sponsorenseite prüfen, wer <em>Im Danketext nennen</em> hat.</p></li>
       </ul>
       <p class="fuss">Abendlauf-Handbuch · gepflegt mit Claude Code im Repository <span class="mono">abendlauf</span>. Stimmt etwas nicht mehr, im Gespräch mit Claude „Handbuch nachführen" sagen.</p>
     </section>

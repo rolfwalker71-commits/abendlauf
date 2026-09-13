@@ -119,6 +119,11 @@ form:
                 (18.8. / 25.8. / 1.9.), `{vorige_nummer}` (32),
                 `{naechste_nummer}` (34), `{naechstes_jahr}` (2028).
 
+                `{sponsoren}` steht auf einer eigenen Zeile und wird zur
+                verlinkten Aufzählung aller Sponsoren, bei denen auf der
+                Sponsorenseite *Im Danketext nennen* eingeschaltet ist.
+                Weitere Zeilen mit Bindestrich darunter hängen sich an.
+
                 Trägst du im Reiter *Laufabende* die Daten fürs nächste Jahr
                 ein, beginnt der Kreislauf von vorn – ohne dass ein Text
                 angepasst werden muss.

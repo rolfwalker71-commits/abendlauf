@@ -110,11 +110,13 @@ final class Saison
     /**
      * Ersetzt Platzhalter in redaktionellen Texten, damit derselbe Text
      * Jahr für Jahr stimmt: {jahr}, {nummer}, {vorige_nummer},
-     * {naechstes_jahr}, {naechste_nummer} und {termine} („18.8. / 25.8. / 1.9.").
+     * {naechstes_jahr}, {naechste_nummer}, {termine} („18.8. / 25.8. / 1.9.")
+     * und {sponsoren} (Aufzählung, siehe sponsorenliste()).
      *
      * @param string[] $abende Laufabende als 'Y-m-d' oder 'Y-m-d H:i'
+     * @param array<int,array<string,mixed>> $sponsoren Einträge der Sponsorenseite
      */
-    public static function platzhalter(string $text, int $jahr, int $nummer, array $abende = []): string
+    public static function platzhalter(string $text, int $jahr, int $nummer, array $abende = [], array $sponsoren = []): string
     {
         $tage = [];
         foreach ($abende as $a) {
@@ -131,7 +133,37 @@ final class Saison
             '{naechstes_jahr}' => (string) ($jahr + 1),
             '{naechste_nummer}' => (string) ($nummer + 1),
             '{termine}' => implode(' / ', array_map(static fn ($t) => date('j.n.', $t), $tage)),
+            '{sponsoren}' => self::sponsorenliste($sponsoren),
         ]);
+    }
+
+    /**
+     * Markdown-Aufzählung der Sponsoren, die im Danketext genannt werden:
+     * aktiv und „Im Danketext nennen" eingeschaltet, in der Reihenfolge der
+     * Sponsorenseite. Haupt- und Co-Sponsoren bekommen ihre Rolle in
+     * Klammern, sofern der Name nicht schon eine Klammer enthält.
+     *
+     * @param array<int,array<string,mixed>> $sponsoren
+     */
+    public static function sponsorenliste(array $sponsoren): string
+    {
+        $rollen = ['haupt' => 'Hauptsponsor', 'co' => 'Partner'];
+        $zeilen = [];
+        foreach ($sponsoren as $s) {
+            $s = (array) $s;
+            $name = trim((string) ($s['name'] ?? ''));
+            if ($name === '' || empty($s['aktiv']) || empty($s['danke'])) {
+                continue;
+            }
+            $rolle = $rollen[(string) ($s['kategorie'] ?? '')] ?? null;
+            if ($rolle !== null && strpos($name, '(') === false) {
+                $name .= " ($rolle)";
+            }
+            $name = str_replace(['[', ']'], ['\[', '\]'], $name);
+            $url = trim((string) ($s['url'] ?? ''));
+            $zeilen[] = '- ' . ($url !== '' ? "[$name]($url)" : $name);
+        }
+        return implode("\n", $zeilen);
     }
 
     /** @return array{0:int,1:int,2:int}|null  [Jahr, Nummer des Abends, Nummer des letzten Abends] */
