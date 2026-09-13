@@ -13,7 +13,7 @@ import pathlib, re, sys
 import yaml
 
 VORLAGEN = {'home', 'ausschreibung', 'strecke', 'ranglisten', 'fotos', 'album',
-            'sponsoren', 'ok', 'kontakt', 'default', 'error'}
+            'sponsoren', 'ok', 'kontakt', 'seite', 'error'}
 
 # Von Grav selbst verwaltet, braucht kein eigenes Feld
 SYSTEM = {'title', 'visible', 'published', 'date', 'slug', 'menu', 'taxonomy',

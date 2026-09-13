@@ -9,6 +9,16 @@ form:
       type: tabs
       active: 1
       fields:
+
+        # Gravs Reiter „Inhalt“ zeigt dieselben Dateien wie unser
+        # Reiter „Ranglisten“. Einmal reicht - sonst weiss niemand,
+        # welcher der richtige ist.
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              type: hidden
+
         angaben:
           type: tab
           title: Angaben

@@ -10,6 +10,16 @@ form:
       active: 1
       fields:
 
+        # Gravs Reiter „Inhalt“ zeigt dieselben Dateien wie unser
+        # Reiter „Logos“. Einmal reicht - sonst weiss niemand,
+        # welcher der richtige ist.
+        content:
+          type: tab
+          fields:
+            header.media_order:
+              type: hidden
+
+
         liste:
           type: tab
           title: Sponsoren
