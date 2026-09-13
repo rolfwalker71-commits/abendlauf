@@ -68,6 +68,17 @@ form:
                   type: text
                   label: Kategorie
                   placeholder: A
+                .gruppe:
+                  type: select
+                  label: Gruppe
+                  help: Bestimmt Symbol und Farbe der Karte.
+                  default: maenner
+                  options:
+                    maenner: Männer
+                    frauen: Frauen
+                    knaben: Knaben
+                    maedchen: Mädchen
+                    familie: Eltern mit Kind
                 .alter_min:
                   type: number
                   label: Alter ab

@@ -27,6 +27,7 @@ punkte:
   text: Die Läufe sind lizenzfrei.
 kategorien:
 - bezeichnung: Piccolo Knaben
+  gruppe: knaben
   kuerzel: A
   startzeit: '17:25'
   runden: 1 kleine Runde
@@ -35,6 +36,7 @@ kategorien:
   alter_min: 9
   alter_max: 10
 - bezeichnung: Piccolo Mädchen
+  gruppe: maedchen
   kuerzel: B
   startzeit: '17:35'
   runden: 1 kleine Runde
@@ -43,6 +45,7 @@ kategorien:
   alter_min: 9
   alter_max: 10
 - bezeichnung: Kids Knaben
+  gruppe: knaben
   kuerzel: L
   startzeit: '17:45'
   runden: 1 kleine Runde
@@ -51,6 +54,7 @@ kategorien:
   alter_min: 7
   alter_max: 8
 - bezeichnung: Kids Mädchen
+  gruppe: maedchen
   kuerzel: M
   startzeit: '17:55'
   runden: 1 kleine Runde
@@ -59,6 +63,7 @@ kategorien:
   alter_min: 7
   alter_max: 8
 - bezeichnung: Eltern mit Pfüderi
+  gruppe: familie
   kuerzel: C
   startzeit: '18:05'
   runden: 1 kleine Runde
@@ -67,6 +72,7 @@ kategorien:
   alter_min: 2
   alter_max: 4
 - bezeichnung: Eltern mit Höseler
+  gruppe: familie
   kuerzel: X
   startzeit: '18:20'
   runden: 1 kleine Runde
@@ -75,6 +81,7 @@ kategorien:
   alter_min: 5
   alter_max: 5
 - bezeichnung: Kind mit Eltern
+  gruppe: familie
   kuerzel: D
   startzeit: '18:35'
   runden: 1 kleine Runde
@@ -83,6 +90,7 @@ kategorien:
   alter_min: 6
   alter_max: 6
 - bezeichnung: Schüler Knaben
+  gruppe: knaben
   kuerzel: F
   startzeit: '18:50'
   runden: 1 grosse Runde
@@ -91,6 +99,7 @@ kategorien:
   alter_min: 11
   alter_max: 13
 - bezeichnung: Schülerinnen
+  gruppe: maedchen
   kuerzel: E
   startzeit: '18:50'
   runden: 1 grosse Runde
@@ -99,6 +108,7 @@ kategorien:
   alter_min: 11
   alter_max: 13
 - bezeichnung: Jugend Knaben
+  gruppe: knaben
   kuerzel: H
   startzeit: '18:50'
   runden: 2 grosse Runden
@@ -107,6 +117,7 @@ kategorien:
   alter_min: 14
   alter_max: 17
 - bezeichnung: Jugend Mädchen
+  gruppe: maedchen
   kuerzel: G
   startzeit: '18:50'
   runden: 1 grosse Runde
@@ -115,6 +126,7 @@ kategorien:
   alter_min: 14
   alter_max: 17
 - bezeichnung: Volksläufer Männer
+  gruppe: maenner
   kuerzel: J
   startzeit: '18:50'
   runden: 3 grosse Runden
@@ -123,6 +135,7 @@ kategorien:
   alter_min: 18
   alter_max: null
 - bezeichnung: Volksläuferinnen
+  gruppe: frauen
   kuerzel: K
   startzeit: '18:50'
   runden: 2 grosse Runden

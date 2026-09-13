@@ -81,8 +81,10 @@
                   {% endif %}
                 {% endif %}
 
-                <article class="startcard">
+                {% set gruppe = k.gruppe|default('') %}
+                <article class="startcard startcard--{{ gruppe ?: 'ohne' }}">
                   <header class="startcard__head">
+                    {% include 'partials/gruppe-icon.html.twig' with { gruppe: gruppe, klasse: 'startcard__icon' } %}
                     <h3 class="startcard__name">{{ k.bezeichnung }}</h3>
                     {% if k.kuerzel %}<span class="startcard__kat">{{ k.kuerzel }}</span>{% endif %}
                   </header>

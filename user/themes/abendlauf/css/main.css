@@ -1396,20 +1396,27 @@ a:hover { color: var(--accent); }
 
 /* ---------- Einzelne Kategorie ---------- */
 
+/* Symbol und Kante wie bei den Rekordkacheln: Cyan für Männer und
+   Knaben, Himbeer für Frauen und Mädchen, Grau für Eltern mit Kind. */
 .startcard {
+  --grp: var(--accent-text);
   display: flex; flex-direction: column; gap: .7rem;
   padding: 1rem 1.1rem;
   background: var(--surface);
   border-radius: var(--radius);
-  border-left: 3px solid transparent;
+  border-left: 3px solid var(--grp);
   transition: border-color .2s ease, transform .2s cubic-bezier(.2,.7,.3,1);
 }
-.startcard:hover { border-left-color: var(--accent); transform: translateX(3px); }
+.startcard--frauen, .startcard--maedchen { --grp: var(--frauen); }
+.startcard--familie { --grp: var(--muted); }
+.startcard--ohne { --grp: transparent; }
+.startcard:hover { transform: translateX(3px); }
 
-.startcard__head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; }
+.startcard__head { display: flex; align-items: center; gap: .55rem; }
+.startcard__icon { flex: none; width: 24px; height: 24px; color: var(--grp); }
 .startcard__name {
   font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase;
-  margin: 0; line-height: 1.1;
+  margin: 0; line-height: 1.1; flex: 1; min-width: 0;
 }
 .startcard__kat {
   flex: none;
