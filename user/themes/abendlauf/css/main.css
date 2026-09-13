@@ -1053,12 +1053,11 @@ a:hover { color: var(--accent); }
   @keyframes linie-ziehen { to { transform: scaleX(1); } }
 }
 
-/* ---------- Klebende Jahreszahl in langen Listen ---------- */
+/* ---------- Jahreszahl in langen Listen ---------- */
 
+/* Ohne Hintergrund kann die Überschrift nicht kleben: die Bilder
+   würden beim Scrollen dahinter durchlaufen. Sie scrollt deshalb mit. */
 .year-block .section__head {
-  position: sticky; top: 4.2rem; z-index: 10;
-  background: color-mix(in srgb, var(--bg) 90%, transparent);
-  backdrop-filter: blur(8px);
   padding-block: .6rem; margin-bottom: 1rem;
 }
 
