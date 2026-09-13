@@ -15,7 +15,10 @@ php werkzeuge/pruefe-saison.php             # Regeln der Jahresautomatik (Saison
 python3 werkzeuge/pruefe-backend.py         # jedes Inhaltsfeld hat ein Panel-Feld? (Exit 1 wenn nicht)
 GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py   # gespeicherte Werte passen zum Feldtyp? (braucht API-Token)
 python3 werkzeuge/fotos-holen.py 2024       # Fotoalben eines Jahrgangs von der alten WordPress-Seite holen
+(cd werkzeuge && npm install pdfjs-dist && node auswerten.mjs)   # Ranglisten-PDFs auslesen (lies.mjs), siehe rekorde-auswerten.md
 ```
+
+`pruefe-feldtypen.py` und alle API-Aufrufe brauchen den laufenden Entwicklungsserver; `pruefe-saison.php` und `pruefe-backend.py` nicht.
 
 API-Token für Prüfungen/Tests (lokales Konto):
 `curl -s -X POST http://localhost:8100/api/v1/auth/token -H 'Content-Type: application/json' -d '{"username":"…","password":"…"}'` → `data.access_token`, als `Authorization: Bearer` senden. Blueprints: `GET /api/v1/blueprints/pages/<vorlage>`. Uploads/Speichern über die API lösen dieselben Ereignisse aus wie das Panel – so lassen sich Panel-Abläufe ohne Browser testen (Testdateien danach per `DELETE` wieder entfernen).

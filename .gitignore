@@ -68,3 +68,6 @@ Thumbs.db
 
 # Python-Zwischenstand
 __pycache__/
+
+# Node-Abhängigkeiten der Werkzeuge (pdfjs-dist)
+node_modules/
