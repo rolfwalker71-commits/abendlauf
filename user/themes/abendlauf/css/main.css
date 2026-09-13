@@ -429,9 +429,12 @@ a:hover { color: var(--accent); }
 .event--plain::after { display: none; }
 
 .event__top { display: flex; align-items: flex-start; justify-content: space-between; gap: .75rem; }
+/* Dasselbe gelbe Plättchen wie auf den Albumkacheln — ein Datum sieht
+   auf der ganzen Seite gleich aus. 14,5:1 gegen die dunkle Schrift. */
 .event__date {
-  font-family: var(--font-display); font-size: 1.05rem; line-height: 1;
-  background: var(--accent); color: var(--accent-ink);
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 1.05rem; line-height: 1;
+  background: var(--signal); color: var(--signal-ink);
   padding: .45rem .7rem; border-radius: 7px;
 }
 .event__time { display: flex; align-items: center; gap: .35rem; font-family: var(--font-display); font-size: .95rem; }
@@ -1559,10 +1562,17 @@ a:hover { color: var(--accent); }
 .countdown__unit:first-child .countdown__label { color: color-mix(in srgb, var(--signal-ink) 75%, transparent); }
 
 /* Der dritte Abend mit Rangverkündigung sticht heraus */
-.event__status { background: var(--signal); color: var(--signal-ink); }
+/* Seit das Datum gelb ist, wäre ein zweites gelbes Plättchen auf
+   derselben Kachel eine Dopplung. Der Hinweis tritt zurück: nur eine
+   Kontur auf dem abgedunkelten Bild. */
+.event__status {
+  background: transparent; color: #F4F8FC;
+  border: 1px solid rgba(244, 248, 252, .55);
+}
+.event--plain .event__status { color: var(--text); border-color: var(--muted); }
 /* Abgesagt oder verschoben ist eine Warnung, nicht ein Hinweis —
    dafür bleibt das Orange. */
-.event__status--warn { background: var(--warn); color: #fff; }
+.event__status--warn { background: var(--warn); color: #fff; border-color: var(--warn); }
 
 @media (max-width: 700px) {
   .results tbody tr.is-current .results__year::after { display: none; }
