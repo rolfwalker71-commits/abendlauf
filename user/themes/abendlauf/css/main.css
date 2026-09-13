@@ -1674,9 +1674,13 @@ a:hover { color: var(--accent); }
 }
 
 .record__kat {
-  font-family: var(--font-display); font-size: .74rem;
+  font-family: var(--font-display); font-size: calc(.74rem + 1px); font-weight: 600;
   letter-spacing: .16em; text-transform: uppercase;
   color: var(--muted); margin: 0; padding-right: 2.2rem;
+}
+.record__alter {
+  font-size: .8rem; color: var(--muted); margin: .15rem 0 0;
+  padding-right: 2.2rem;
 }
 
 .record--w { --rec: var(--frauen); --rec-text: var(--frauen); }

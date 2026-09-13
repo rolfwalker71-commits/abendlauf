@@ -53,6 +53,7 @@ rekordehinweis: 'Schnellste je gelaufene Einzelzeit eines Abends. Verglichen wir
 rekorde:
     -
         kategorie: Volksläufer
+        kuerzel: J
         gruppe: maenner
         distanz: '6700 m'
         frueher: 'über 6600 m 20:44,7 · Matthias Simmen, 1998'
@@ -62,6 +63,7 @@ rekorde:
         datum: '2002-09-04'
     -
         kategorie: Volksläuferinnen
+        kuerzel: K
         gruppe: frauen
         distanz: '4440 m'
         frueher: 'über 6700 m 25:23,3 · Jasmin Widmer, 2007'
@@ -71,6 +73,7 @@ rekorde:
         datum: '2024-08-28'
     -
         kategorie: 'Jugend Knaben'
+        kuerzel: H
         gruppe: knaben
         distanz: '4440 m'
         frueher: 'über 2200 m 6:38,9 · Hans Furger, 1999 · über 6700 m 25:31,2 · Marcel Würsten, 2010'
@@ -80,6 +83,7 @@ rekorde:
         datum: '2019-08-21'
     -
         kategorie: 'Jugend Mädchen'
+        kuerzel: G
         gruppe: maedchen
         distanz: '2260 m'
         frueher: 'über 2180 m 7:44,9 · Jasmin Widmer, 2003'
@@ -89,6 +93,7 @@ rekorde:
         datum: '1997-08-27'
     -
         kategorie: Schüler
+        kuerzel: F
         gruppe: knaben
         distanz: '2260 m'
         frueher: 'über 2180 m 7:24,8 · Simon Waldis, 2000'
@@ -98,6 +103,7 @@ rekorde:
         datum: '2021-09-01'
     -
         kategorie: Schülerinnen
+        kuerzel: E
         gruppe: maedchen
         distanz: '2260 m'
         frueher: 'über 2180 m 7:50,5 · Denise Wyrsch, 2002'
@@ -107,6 +113,7 @@ rekorde:
         datum: '2018-09-12'
     -
         kategorie: 'Piccolo Knaben'
+        kuerzel: A
         gruppe: knaben
         distanz: '1210 m'
         frueher: 'über 1130 m 4:00,0 · Nino Gisler, 2001 · über 2200 m 8:05,0 · Severin Jauch, 1997'
@@ -116,6 +123,7 @@ rekorde:
         datum: '2026-08-26'
     -
         kategorie: 'Piccolo Mädchen'
+        kuerzel: B
         gruppe: maedchen
         distanz: '1210 m'
         frueher: 'über 1130 m 4:09,0 · Jasmine Brand, 2003 · über 2200 m 8:49,9 · Melanie Kempf, 1994'
@@ -125,6 +133,7 @@ rekorde:
         datum: '2016-08-31'
     -
         kategorie: 'Kids Knaben'
+        kuerzel: L
         gruppe: knaben
         distanz: '1210 m'
         frueher: 'Kategorie seit 2019'
@@ -134,6 +143,7 @@ rekorde:
         datum: '2025-08-20'
     -
         kategorie: 'Kids Mädchen'
+        kuerzel: M
         gruppe: maedchen
         distanz: '1210 m'
         frueher: 'Kategorie seit 2019'

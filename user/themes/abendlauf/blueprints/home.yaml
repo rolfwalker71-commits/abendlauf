@@ -166,6 +166,11 @@ form:
                 .kategorie:
                   type: text
                   label: Kategorie
+                .kuerzel:
+                  type: text
+                  label: Kategorie in der Ausschreibung
+                  placeholder: J
+                  help: Buchstabe der Kategorie unter Ausschreibung → Kategorien. Das Alter auf der Kachel kommt von dort.
                 .gruppe:
                   type: select
                   label: Gruppe

@@ -260,6 +260,17 @@
           <article class="record{{ weiblich ? ' record--w' : '' }}">
             {% include 'partials/gruppe-icon.html.twig' with { gruppe: r.gruppe|default('') } %}
             <p class="record__kat">{{ r.kategorie }}</p>
+            {# Das Alter steht nicht doppelt im Panel, sondern kommt aus der
+               Ausschreibung — ändert sich dort eine Altersgrenze, zieht die
+               Kachel mit. #}
+            {% set kat = r.kuerzel ? (kategorien|filter(k => k.kuerzel == r.kuerzel)|first) : null %}
+            {% if kat and kat.alter_min %}
+              <p class="record__alter">
+                {{- kat.alter_max
+                    ? (kat.alter_min == kat.alter_max ? kat.alter_min ~ ' Jahre' : kat.alter_min ~ '–' ~ kat.alter_max ~ ' Jahre')
+                    : 'ab ' ~ kat.alter_min ~ ' Jahren' -}}
+              </p>
+            {% endif %}
             <p class="record__time">{{ r.zeit }}</p>
             <p class="record__who">{{ r.name }}{% if r.ort %}<small>{{ r.ort }}</small>{% endif %}</p>
             <p class="record__meta">{{ r.datum ? r.datum|date('Y') : r.jahr }} · {{ r.distanz }}</p>
