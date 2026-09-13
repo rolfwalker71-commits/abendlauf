@@ -1622,6 +1622,20 @@ a:hover { color: var(--accent); }
   display: grid; gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
 }
+/* Breit genug: je Kategorie eine Spalte, Knaben/Männer oben,
+   Mädchen/Frauen darunter. Die Einträge stehen paarweise in der Liste,
+   deshalb füllt sich das Raster spaltenweise. Kommt eine Kategorie
+   dazu, entsteht einfach eine Spalte mehr. */
+@media (min-width: 1080px) {
+  .records {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(0, 1fr);
+  }
+  .records .record { padding: 1.2rem 1.15rem 1.1rem; }
+  .records .record__time { font-size: clamp(2rem, 2.6vw, 2.5rem); }
+}
 
 .record {
   position: relative;

@@ -99,6 +99,38 @@ rekorde:
         name: 'Shirin Kerber'
         ort: Kehrsiten
         datum: '2018-09-12'
+    -
+        kategorie: 'Piccolo Knaben'
+        distanz: '1210 m'
+        frueher: 'über 1130 m 4:00,0 · Nino Gisler, 2001 · über 2200 m 8:05,0 · Severin Jauch, 1997'
+        zeit: '4:09,2'
+        name: 'Elia Dittli'
+        ort: Uster
+        datum: '2026-08-26'
+    -
+        kategorie: 'Piccolo Mädchen'
+        distanz: '1210 m'
+        frueher: 'über 1130 m 4:09,0 · Jasmine Brand, 2003 · über 2200 m 8:49,9 · Melanie Kempf, 1994'
+        zeit: '4:28,2'
+        name: 'Shirin Kerber'
+        ort: Kehrsiten
+        datum: '2016-08-31'
+    -
+        kategorie: 'Kids Knaben'
+        distanz: '1210 m'
+        frueher: 'Kategorie seit 2019'
+        zeit: '4:43,2'
+        name: 'Noah Deplazes'
+        ort: Altdorf
+        datum: '2025-08-20'
+    -
+        kategorie: 'Kids Mädchen'
+        distanz: '1210 m'
+        frueher: 'Kategorie seit 2019'
+        zeit: '5:01,0'
+        name: 'Valeria Schuler'
+        ort: Schattdorf
+        datum: '2021-08-25'
 alterVon: 2
 alterBis: 69
 anteilKinder: 87

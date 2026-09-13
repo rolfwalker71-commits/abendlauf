@@ -187,8 +187,8 @@ form:
                   placeholder: 6700 m
                 .frueher:
                   type: text
-                  label: Auf früherer Streckenlänge
-                  help: 'Nicht vergleichbar, aber erwähnenswert. Etwa: über 2180 m 7:24,8 · Simon Waldis, 2000'
+                  label: Anmerkung
+                  help: 'Klein unter der Kachel. Etwa Zeiten auf früheren Streckenlängen (über 2180 m 7:24,8 · Simon Waldis, 2000) oder „Kategorie seit 2019“.'
 
         termine:
           type: tab
