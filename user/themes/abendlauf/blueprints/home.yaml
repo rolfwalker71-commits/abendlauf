@@ -185,6 +185,10 @@ form:
                   type: text
                   label: Distanz
                   placeholder: 6700 m
+                .frueher:
+                  type: text
+                  label: Auf früherer Streckenlänge
+                  help: 'Nicht vergleichbar, aber erwähnenswert. Etwa: über 2180 m 7:24,8 · Simon Waldis, 2000'
 
         termine:
           type: tab

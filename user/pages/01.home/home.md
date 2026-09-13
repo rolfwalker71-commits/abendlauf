@@ -108,40 +108,46 @@ aktionlink: https://www.verofit.ch
 aktionlinktext: Zum Shop
 rekordeaktiv: true
 rekordetitel: Streckenrekorde
-rekordehinweis: Schnellste je gelaufene Einzelzeit eines Abends, auf der heutigen Streckenlänge.
+rekordehinweis: 'Schnellste je gelaufene Einzelzeit eines Abends. Verglichen wird nur auf der heutigen Streckenlänge — früher wurde über andere Distanzen gelaufen.'
 rekorde:
 - kategorie: Volksläufer
   distanz: 6700 m
+  frueher: über 6600 m 20:44,7 · Matthias Simmen, 1998
   zeit: 20:19,8
   name: Ivan Gisler
   ort: Altdorf
   datum: '2002-09-04'
 - kategorie: Volksläuferinnen
   distanz: 4440 m
+  frueher: über 6700 m 25:23,3 · Jasmin Widmer, 2007
   zeit: 14:46,5
   name: Jolanda Annen
   ort: Schattdorf
   datum: '2024-08-28'
 - kategorie: Jugend Knaben
   distanz: 4440 m
+  frueher: über 2200 m 6:38,9 · Hans Furger, 1999 · über 6700 m 25:31,2 · Marcel Würsten, 2010
   zeit: 14:16,0
   name: Navid Kerber
   ort: Kehrsiten
   datum: '2019-08-21'
 - kategorie: Jugend Mädchen
   distanz: 2260 m
+  frueher: über 2180 m 7:44,9 · Jasmin Widmer, 2003
   zeit: 7:35,0
   name: Priska Auf der Maur
   ort: Altdorf
   datum: '1997-08-27'
 - kategorie: Schüler
   distanz: 2260 m
+  frueher: über 2180 m 7:24,8 · Simon Waldis, 2000
   zeit: 7:43,4
   name: Silas Zurfluh
   ort: Steinen
   datum: '2014-08-27'
 - kategorie: Schülerinnen
   distanz: 2260 m
+  frueher: über 2180 m 7:50,5 · Denise Wyrsch, 2002
   zeit: 8:07,7
   name: Shirin Kerber
   ort: Kehrsiten

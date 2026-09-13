@@ -1665,6 +1665,11 @@ a:hover { color: var(--accent); }
   display: block; font-weight: 400; font-size: .85rem; color: var(--muted);
   margin-top: .1rem;
 }
+.record__frueher {
+  margin: .7rem 0 0; padding-top: .6rem;
+  border-top: 1px dashed var(--line);
+  font-size: .76rem; line-height: 1.45; color: var(--muted);
+}
 .record__meta {
   font-size: .85rem; color: var(--muted); margin: .15rem 0 0;
   font-variant-numeric: tabular-nums;

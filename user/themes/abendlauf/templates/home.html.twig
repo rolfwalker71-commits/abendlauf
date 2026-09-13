@@ -254,6 +254,9 @@
             <p class="record__time">{{ r.zeit }}</p>
             <p class="record__who">{{ r.name }}{% if r.ort %}<small>{{ r.ort }}</small>{% endif %}</p>
             <p class="record__meta">{{ r.datum ? r.datum|date('Y') : r.jahr }} · {{ r.distanz }}</p>
+            {# Frühere Streckenlängen stehen daneben, nicht darin: die Zeiten
+               sind über eine andere Distanz gelaufen und nicht vergleichbar. #}
+            {% if r.frueher %}<p class="record__frueher">{{ r.frueher }}</p>{% endif %}
           </article>
         {% endfor %}
       </div>
