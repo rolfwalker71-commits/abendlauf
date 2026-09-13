@@ -5,5 +5,6 @@ lauf: gesamt
 datum: '2025-09-03'
 beschreibung: ''
 fotograf: ''
-cover: ""
+cover: thg0324-scaled.jpg
 ---
+

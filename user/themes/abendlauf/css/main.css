@@ -276,8 +276,8 @@ a:hover { color: var(--accent); }
 /* Hauptaktion rechts, abgesetzt vom Menü */
 .site-header__tools { display: flex; gap: .5rem; align-items: center; }
 .nav__cta {
-  padding: .55rem 1.1rem;
-  font-size: .85rem;
+  padding: .45rem 1rem;
+  font-size: .8rem;
 }
 /* Im waagrechten Menü ist die Hauptaktion der Knopf rechts —
    der Eintrag in der Liste wäre eine Dopplung. Der Selektor braucht
@@ -359,17 +359,34 @@ a:hover { color: var(--accent); }
 
 /* ---------- Schaltflächen ---------- */
 
+/* Die Seite setzt Farbe sonst als Linie ein: der aktive Menüpunkt als
+   Unterstreichung, die Überschriften mit ihrem Balken. Eine vollflächige
+   Pille fiel aus diesem Ton heraus — sie war das Lauteste auf der Seite.
+   Die Knöpfe tragen das Cyan deshalb als Kontur und Schrift auf zart
+   getönter Fläche; gefüllt werden sie erst beim Zeigen.
+   Kontraste: Schrift auf der Tönung 4,9:1 (hell) bzw. 6,1:1 (dunkel),
+   die Kontur 5,5:1 bzw. 7,6:1 — deutlich über den 3:1, die eine
+   Bedienelement-Begrenzung braucht. */
 .btn {
   display: inline-flex; align-items: center; gap: .5rem;
-  padding: .85rem 1.5rem; border-radius: 999px;
-  font-family: var(--font-display); font-size: .95rem; text-transform: uppercase;
-  letter-spacing: .03em; text-decoration: none; border: 1px solid transparent;
+  padding: .6rem 1.2rem; border-radius: 8px;
+  font-family: var(--font-display); font-size: .88rem; text-transform: uppercase;
+  letter-spacing: .04em; text-decoration: none; border: 1px solid transparent;
   cursor: pointer; transition: background-color .15s, color .15s, border-color .15s;
 }
-.btn--primary { background: var(--accent); color: var(--accent-ink); }
-.btn--primary:hover { background: var(--accent-hover); color: var(--accent-ink); }
-.btn--ghost { border-color: var(--line); color: inherit; }
-.btn--ghost:hover { background: var(--surface); color: inherit; }
+.btn--primary {
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border-color: var(--accent-text);
+  color: var(--accent-text);
+}
+.btn--primary:hover {
+  background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
+}
+
+/* Der zweite Weg ist eine Nebensache — nur eine Kontur, keine Fläche.
+   Grau statt der Haarlinie --line, die als Begrenzung zu schwach wäre. */
+.btn--ghost { border-color: var(--muted); color: inherit; }
+.btn--ghost:hover { border-color: var(--accent-text); color: var(--accent-text); background: transparent; }
 
 /* ---------- Abschnitte ---------- */
 
@@ -1908,8 +1925,15 @@ a:hover { color: var(--accent); }
 .opener .countdown__unit:first-child .countdown__value { color: var(--signal-ink); }
 .opener .countdown__unit:first-child .countdown__label { color: color-mix(in srgb, var(--signal-ink) 75%, transparent); }
 
+/* Auf dem Auftaktbild trägt die zurückgenommene Kontur nicht — gegen ein
+   Foto braucht die Hauptaktion eine Fläche. Nur hier. */
+.opener .btn--primary {
+  background: var(--accent); border-color: var(--accent); color: var(--accent-ink);
+}
+.opener .btn--primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+
 /* Zweiter Knopf auf dunklem Grund */
-.btn--hell { border-color: rgba(244, 248, 252, .4); color: #F4F8FC; }
+.btn--hell { border-color: rgba(244, 248, 252, .55); color: #F4F8FC; }
 .btn--hell:hover { background: rgba(244, 248, 252, .14); color: #F4F8FC; }
 
 @media (max-width: 860px) {

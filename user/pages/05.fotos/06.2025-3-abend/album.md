@@ -5,5 +5,6 @@ lauf: 3
 datum: '2025-09-03'
 beschreibung: ''
 fotograf: ''
-cover: ""
+cover: thg0064-mittel.jpg
 ---
+
