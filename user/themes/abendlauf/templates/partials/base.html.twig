@@ -57,7 +57,7 @@
   <link rel="preload" href="{{ url('theme://fonts/Dosis-800.woff2') }}" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="{{ url('theme://fonts/SourceSans3-400.woff2') }}" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="{{ url('theme://css/main.css') }}">
+  <link rel="stylesheet" href="{{ theme_datei('css/main.css') }}">
   <link rel="icon" href="{{ url('theme://img/logo.svg') }}" type="image/svg+xml">
 </head>
 <body>
@@ -232,9 +232,9 @@
     </div>
   </div>
   <script type="application/json" id="renntag-daten">{{ renntagDaten|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
-  <script src="{{ url('theme://js/renntag.js') }}" defer></script>
+  <script src="{{ theme_datei('js/renntag.js') }}" defer></script>
 {% endif %}
 
-<script src="{{ url('theme://js/site.js') }}" defer></script>
+<script src="{{ theme_datei('js/site.js') }}" defer></script>
 </body>
 </html>

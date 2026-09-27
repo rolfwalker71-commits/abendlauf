@@ -241,6 +241,18 @@ class Abendlauf extends Theme
             })
         );
 
+        // {{ theme_datei('js/site.js') }} – Adresse mit Änderungszeit (?v=…), damit
+        // Browser nach einer Änderung die neue Fassung laden statt der gespeicherten
+        $this->grav['twig']->twig()->addFunction(
+            new \Twig\TwigFunction('theme_datei', function (string $pfad): string {
+                $locator = $this->grav['locator'];
+                $datei = $locator->findResource('theme://' . $pfad, true);
+                $url = $locator->findResource('theme://' . $pfad, false);
+                $basis = rtrim($this->grav['uri']->rootUrl(false), '/');
+                return $basis . '/' . ltrim((string) $url, '/') . ($datei ? '?v=' . filemtime($datei) : '');
+            })
+        );
+
         // {{ hoehenprofil(datei, laenge) }} – datei ist eine GPX-Datei der Streckenseite,
         // laenge die offizielle Distanz in m; null, wenn die Datei keine Höhen hat
         $this->grav['twig']->twig()->addFunction(

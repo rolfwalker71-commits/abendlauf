@@ -114,22 +114,60 @@
   </section>
 {% endif %}
 
-{% if punkte is not empty %}
+{# Rechts neben „Organisatorisches“: Termine zum Abonnieren. Einleitung
+   und Anleitung stehen auf der Seite /kalender (im Panel unter „Kalender“),
+   die Daten kommen von den Laufabenden der Startseite. #}
+{% set kalender = pages.find('/kalender') %}
+{% set termine = (pages.find('/home').header.laufabende|default([]))
+     |filter(t => t.datum and t.datum|date('U') >= 'today'|date('U'))
+     |sort((a, b) => a.datum|date('U') <=> b.datum|date('U')) %}
+
+{% if punkte is not empty or kalender %}
   <section class="section section--tint">
-    <div class="wrap">
-      <h2><span class="section__num">02</span> Organisatorisches</h2>
-      <div class="results">
-        <table>
-          <tbody>
-            {% for p in punkte %}
-              <tr>
-                <th scope="row" style="width:11rem; vertical-align:top;">{{ p.stichwort }}</th>
-                <td>{{ p.text|markdown(false)|raw }}</td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-      </div>
+    <div class="wrap{{ kalender and punkte is not empty ? ' orga' : '' }}">
+      {% if punkte is not empty %}
+        <div>
+          <h2><span class="section__num">02</span> Organisatorisches</h2>
+          <div class="results">
+            <table>
+              <tbody>
+                {% for p in punkte %}
+                  <tr>
+                    <th scope="row" style="width:11rem; vertical-align:top;">{{ p.stichwort }}</th>
+                    <td>{{ p.text|markdown(false)|raw }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      {% endif %}
+
+      {% if kalender %}
+        {% set ics = kalender.url(true) ~ '.ics' %}
+        <aside class="kalenderkarte" aria-labelledby="kalenderkarte-titel">
+          <p class="eyebrow">Termine</p>
+          <h2 class="kalenderkarte__titel" id="kalenderkarte-titel">Laufabende im Kalender</h2>
+          {% if termine is not empty %}
+            <ul class="kalenderkarte__termine">
+              {% for t in termine %}
+                <li{% if t.status == 'abgesagt' %} class="ist-abgesagt"{% endif %}>
+                  <span class="kalenderkarte__datum">{{ t.datum|date('j.n.') }}</span>
+                  <span>{{ t.titel|default('Laufabend') }} · {{ t.datum|date('H:i') }} Uhr{% if t.status == 'abgesagt' %} · abgesagt{% endif %}</span>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          {# Erster Absatz der Kalender-Seite als Erklärung #}
+          {% set einleitung = kalender.content|split('</p>')|first %}
+          {% if einleitung|striptags|trim %}<p class="kalenderkarte__text">{{ einleitung|striptags }}</p>{% endif %}
+          <p class="kalenderkarte__knoepfe">
+            <a class="btn btn--primary" href="{{ ics|replace({ 'https://': 'webcal://', 'http://': 'webcal://' }) }}">Kalender abonnieren</a>
+            <a class="btn btn--ghost" href="{{ ics }}" download>Als Datei</a>
+          </p>
+          <p class="kalenderkarte__text"><a href="{{ kalender.url }}">Anleitung für iPhone, Google und Outlook</a></p>
+        </aside>
+      {% endif %}
     </div>
   </section>
 {% endif %}

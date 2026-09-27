@@ -272,7 +272,8 @@ a:hover { color: var(--accent); }
 .nav { display: flex; align-items: center; gap: .15rem; }
 .nav a {
   display: block; padding: .5rem .7rem; border-radius: 8px;
-  font-size: .95rem; font-weight: 600; color: inherit; text-decoration: none;
+  font-size: calc(.95rem + 2px); font-weight: 600; color: inherit; text-decoration: none;
+  white-space: nowrap;
 }
 .nav a:hover { background: var(--surface); }
 
@@ -298,7 +299,9 @@ a:hover { color: var(--accent); }
    dieselbe Spezifität wie `.nav a`, sonst gewinnt dessen display. */
 .nav a.nav__cta-mobil { display: none; }
 
-@media (max-width: 950px) {
+/* Unter 1060 px passt die Menüzeile (Schrift 17 px) nicht mehr neben Logo und Knöpfe –
+   dann gilt das aufklappbare Menü. Die Grenze gilt für alle Kopfzeilen-Regeln. */
+@media (max-width: 1060px) {
   /* Doppelte Klasse, weil .btn weiter unten display setzt und sonst gewinnt –
      der Knopf schob den Menüknopf 23 px über den Rand, die Seite wurde zu breit. */
   .site-header__tools .nav__cta { display: none; }
@@ -325,7 +328,7 @@ a:hover { color: var(--accent); }
 
 .nav-toggle { display: none; }
 
-@media (max-width: 950px) {
+@media (max-width: 1060px) {
   .nav {
     display: none; position: absolute; inset-inline: 0; top: 100%;
     flex-direction: column; align-items: stretch; gap: 0;
@@ -1300,6 +1303,32 @@ a:hover { color: var(--accent); }
   .grid--personen { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
+/* ---------- Ausschreibung: Organisatorisches und Kalender ---------- */
+
+.orga { display: grid; gap: clamp(1.5rem, 4vw, 3rem); grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem); align-items: start; }
+.kalenderkarte {
+  background: var(--bg); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 1.3rem 1.4rem;
+  position: sticky; top: 6rem;   /* läuft neben der langen Tabelle mit */
+}
+@media (max-width: 900px) { .kalenderkarte { position: static; } }
+.kalenderkarte__titel { font-size: 1.35rem; margin: 0 0 .9rem; }
+.kalenderkarte__termine { list-style: none; margin: 0 0 1rem; padding: 0; display: grid; gap: .45rem; }
+.kalenderkarte__termine li { display: flex; align-items: center; gap: .7rem; font-size: .95rem; }
+.kalenderkarte__datum {
+  flex: none; min-width: 3.4rem; text-align: center;
+  font-family: var(--font-display); font-weight: 600; font-variant-numeric: tabular-nums;
+  background: var(--signal); color: var(--signal-ink); border-radius: 6px; padding: .2rem .4rem;
+}
+.kalenderkarte__termine .ist-abgesagt .kalenderkarte__datum { text-decoration: line-through; }
+.kalenderkarte__text { font-size: .9rem; color: var(--muted); margin: 0 0 .9rem; }
+.kalenderkarte__text:last-child { margin: .9rem 0 0; }
+.kalenderkarte__knoepfe { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0; }
+
+@media (max-width: 900px) {
+  .orga { grid-template-columns: 1fr; }
+}
+
 /* ---------- Streckenseite ---------- */
 
 .route {
@@ -2190,11 +2219,11 @@ a:hover { color: var(--accent); }
 
 /* Im aufgeklappten Menü schmaler Bildschirme steht es links neben den
    übrigen Einträgen und braucht dieselbe Ausrichtung. */
-@media (max-width: 950px) {
+@media (max-width: 1060px) {
   .nav a.nav__start { display: flex; justify-content: flex-start; padding-inline: .5rem; }
 }
 
-@media (max-width: 950px) {
+@media (max-width: 1060px) {
   .nav a.nav__start { display: flex; }
 }
 
