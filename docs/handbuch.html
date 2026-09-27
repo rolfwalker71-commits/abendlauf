@@ -227,7 +227,7 @@
       <li><b>System</b> Grav 2.1 · Admin2 · ohne Datenbank</li>
       <li><b>Repository</b> <a href="https://github.com/rolfwalker71-commits/abendlauf">rolfwalker71-commits/abendlauf</a> (öffentlich)</li>
       <li><b>Lokal</b> <span class="mono">localhost:8100</span> · Panel <span class="mono">/admin</span></li>
-      <li><b>Stand</b> 13.09.2026</li>
+      <li><b>Stand</b> 27.09.2026</li>
     </ul>
   </div>
 </header>
@@ -326,7 +326,7 @@
             <tr><td></td><td>Aktion · Hinweisbanner · Bilder</td><td>Partnerangebot, Kurzmeldung zuoberst, Bildablage</td></tr>
             <tr><td>Ausschreibung</td><td>Kategorien</td><td>Bezeichnung, Kürzel, Gruppe, Alter von/bis, Startzeit, Distanz, Startgeld</td></tr>
             <tr><td></td><td>Dateien</td><td>Ausschreibung als PDF</td></tr>
-            <tr><td>Strecke</td><td>Runden · Dateien</td><td>Angaben je Runde mit Streckenkarte</td></tr>
+            <tr><td>Strecke</td><td>Runden · Dateien</td><td>Angaben je Runde mit Streckenkarte und <em>Höhenprofil (GPX-Datei)</em> – die Grafik rechnet sich aus der GPX · Karten und GPX-Dateien</td></tr>
             <tr><td>Ranglisten</td><td>Ranglisten · Podest</td><td>PDFs; Stift-Symbol zeigt Titel, Art, Jahr, Lauf · Podest ein/aus und Überschrift</td></tr>
             <tr><td>Fotos › Album</td><td>Angaben · Bilder</td><td>Jahr, Lauf, Datum, Fotograf/in, Titelbild · die Fotos selbst</td></tr>
             <tr><td>Sponsoren</td><td>Sponsoren · Logos</td><td>Name, Logo, Website, Kategorie, <em>Aktiv</em> zum Pausieren, <em>Im Danketext nennen</em> für <code>{sponsoren}</code> · Logodateien</td></tr>
@@ -497,6 +497,7 @@ rm -rf cache/twig cache/compiled             # nach Template-Änderungen
 php werkzeuge/pruefe-saison.php              # Regeln der Jahresautomatik
 php werkzeuge/pruefe-rangliste.php           # Auslesen der Ranglisten-PDFs
 php werkzeuge/pruefe-kalender.php            # abonnierbarer Kalender
+php werkzeuge/pruefe-hoehenprofil.php        # Höhenprofil der Streckenseite
 python3 werkzeuge/portraits-zuschneiden.py   # OK-Porträts einheitlich zuschneiden
 python3 werkzeuge/pruefe-backend.py          # jedes Feld im Panel bearbeitbar?
 GRAV_TOKEN=… python3 werkzeuge/pruefe-feldtypen.py

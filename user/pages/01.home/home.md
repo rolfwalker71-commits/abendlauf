@@ -153,7 +153,6 @@ rekorde:
         name: 'Valeria Schuler'
         ort: Schattdorf
         datum: '2021-08-25'
-alterVon: 2
 alterBis: 69
 anteilKinder: 87
 ---

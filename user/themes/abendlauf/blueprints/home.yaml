@@ -153,14 +153,11 @@ form:
               content: |
                 Distanzen, Kategorien und Startgeld im Zahlenband werden aus
                 der Ausschreibung und der Streckenseite berechnet. Nur die
-                drei folgenden Werte stehen hier, weil sie aus den
+                zwei folgenden Werte stehen hier, weil sie aus den
                 Ranglisten stammen.
-            header.alterVon:
-              type: number
-              label: Jüngste Gewertete (Alter)
             header.alterBis:
               type: number
-              label: Älteste Gewertete (Alter)
+              label: Ältester Teilnehmer (Alter)
             header.anteilKinder:
               type: number
               label: Anteil Kinder- und Elternkategorien (%)

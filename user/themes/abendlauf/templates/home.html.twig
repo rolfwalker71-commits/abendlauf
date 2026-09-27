@@ -273,11 +273,11 @@
             <p class="bignum__note">Mittwochs, August und September</p>
           </div>
         {% endif %}
-        {% if h.alterVon and h.alterBis %}
+        {% if h.alterBis %}
           <div class="bignum">
-            <p class="bignum__value">{{ h.alterVon }}–{{ h.alterBis }}<small>Jahre</small></p>
-            <p class="bignum__label">Altersspanne</p>
-            <p class="bignum__note">Jüngste und älteste Gewertete</p>
+            <p class="bignum__value">{{ h.alterBis }}<small>Jahre</small></p>
+            <p class="bignum__label">Ältester Teilnehmer</p>
+            <p class="bignum__note">In der Rangliste gewertet</p>
           </div>
         {% endif %}
         {% if h.anteilKinder %}

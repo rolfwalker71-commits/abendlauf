@@ -1,25 +1,29 @@
+/* Titelschrift Dosis (rund, schmal). Dosis wirkt leichter als die
+   frühere Oswald; die Stufen sind deshalb versetzt: font-weight 300
+   zeigt Dosis 500, 400 zeigt Dosis 600, 600 zeigt Dosis 800. So bleiben
+   alle Gewichtsangaben weiter unten gültig. */
 @font-face {
-  font-family: 'Oswald';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 300;
   font-display: swap;
-  src: url('../fonts/Oswald-300.woff2') format('woff2');
+  src: url('../fonts/Dosis-500.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Oswald';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('../fonts/Oswald-400.woff2') format('woff2');
+  src: url('../fonts/Dosis-600.woff2') format('woff2');
 }
 
 @font-face {
-  font-family: 'Oswald';
+  font-family: 'Dosis';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('../fonts/Oswald-600.woff2') format('woff2');
+  src: url('../fonts/Dosis-800.woff2') format('woff2');
 }
 
 @font-face {
@@ -49,11 +53,11 @@
 /* Ersatzschriften an die Metriken der echten Schriften angleichen,
    damit beim Umschalten nichts springt. */
 @font-face {
-  font-family: 'Oswald Fallback';
+  font-family: 'Dosis Fallback';
   src: local('Arial Narrow'), local('Liberation Sans Narrow'), local('Helvetica Neue Condensed');
-  size-adjust: 88%;
-  ascent-override: 105%;
-  descent-override: 25%;
+  size-adjust: 106.5%;
+  ascent-override: 100%;
+  descent-override: 22%;
 }
 @font-face {
   font-family: 'Source Sans Fallback';
@@ -109,7 +113,7 @@
   --warn:        #C2410C;
   --warn-ink:    #FFFFFF;   /* Schrift auf --warn: 5,2:1 */
 
-  --font-display: 'Oswald', 'Oswald Fallback', 'Arial Narrow', sans-serif;
+  --font-display: 'Dosis', 'Dosis Fallback', 'Arial Narrow', sans-serif;
   --font-body:    'Source Sans 3', 'Source Sans Fallback', system-ui, sans-serif;
 
   --wrap:   1180px;
@@ -1330,6 +1334,59 @@ a:hover { color: var(--accent); }
 .route__map img { width: 100%; height: auto; display: block; }
 .route__map figcaption { color: var(--muted); font-size: .82rem; margin-top: .7rem; }
 
+/* Höhenprofil unter den Angaben einer Runde (partials/hoehenprofil.html.twig).
+   Die Höhenachse hat mindestens 20 m Spanne, damit flach auch flach aussieht. */
+.profil { margin: 1.6rem 0 0; }
+.profil__kopf {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 1rem;
+  margin-bottom: .6rem;
+}
+.profil__label {
+  font-family: var(--font-display); font-size: .72rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.profil__spanne { font-weight: 600; font-size: .92rem; }
+.profil__diagramm {
+  display: grid; grid-template-columns: 2.2rem minmax(0, 1fr);
+  grid-template-rows: 8.5rem auto;
+}
+.profil__y { position: relative; }
+.profil__y span {
+  position: absolute; right: .5rem; transform: translateY(-50%);
+  font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; line-height: 1;
+}
+.profil__plot { position: relative; touch-action: pan-y; cursor: crosshair; }
+.profil__plot svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.profil__raster { stroke: var(--line); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.profil__fuellung { fill: color-mix(in srgb, var(--accent) 16%, transparent); }
+.profil__linie {
+  fill: none; stroke: var(--accent-text); stroke-width: 2;   /* 5,5:1 statt 2,9:1 mit --accent */
+  stroke-linejoin: round; vector-effect: non-scaling-stroke;
+}
+.profil__x { grid-column: 2; position: relative; height: 1.4rem; }
+.profil__x span {
+  position: absolute; top: .35rem; transform: translateX(-50%);
+  font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.profil__x span:first-child { transform: none; }
+
+/* Anzeige beim Überfahren (js/site.js) */
+.profil__zeiger, .profil__punkt, .profil__tipp { position: absolute; pointer-events: none; opacity: 0; transition: opacity .12s ease; }
+.profil__plot.ist-aktiv .profil__zeiger,
+.profil__plot.ist-aktiv .profil__punkt,
+.profil__plot.ist-aktiv .profil__tipp { opacity: 1; }
+.profil__zeiger { top: 0; bottom: 0; width: 1px; background: var(--muted); }
+.profil__punkt {
+  width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%;
+  background: var(--accent-text); box-shadow: 0 0 0 2px var(--bg);
+}
+.profil__tipp {
+  top: .2rem; transform: translateX(-50%);
+  background: var(--text); color: var(--bg); border-radius: 6px;
+  padding: .25rem .5rem; font-size: .78rem; font-weight: 600; white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
 @media (max-width: 820px) {
   .route,
   .section--tint .route { grid-template-columns: 1fr; }
@@ -2050,6 +2107,9 @@ a:hover { color: var(--accent); }
 .opener__inner {
   padding-block: clamp(2.5rem, 6vw, 4.5rem);
   color: #F4F8FC;
+  /* volle Breite der Spalte, sonst schrumpft der Block im Flex-Kopf
+     auf seinen Inhalt und steht mittig statt bündig mit dem Artikel */
+  width: 100%;
   max-width: min(var(--wrap), 100%);
 }
 

@@ -4,6 +4,7 @@ namespace Grav\Theme;
 
 use Grav\Common\Theme;
 use Grav\Common\Yaml;
+use Grav\Theme\Abendlauf\Hoehenprofil;
 use Grav\Theme\Abendlauf\Kalender;
 use Grav\Theme\Abendlauf\Rangliste;
 use Grav\Theme\Abendlauf\Saison;
@@ -12,6 +13,7 @@ use RocketTheme\Toolbox\Event\Event;
 require_once __DIR__ . '/classes/Saison.php';
 require_once __DIR__ . '/classes/Rangliste.php';
 require_once __DIR__ . '/classes/Kalender.php';
+require_once __DIR__ . '/classes/Hoehenprofil.php';
 
 /**
  * Theme der Urner Abendläufe.
@@ -236,6 +238,20 @@ class Abendlauf extends Theme
             new \Twig\TwigFunction('rangliste_podest', function ($datei): array {
                 $pfad = is_object($datei) && method_exists($datei, 'get') ? (string) $datei->get('filepath') : (string) $datei;
                 return $this->podest($pfad);
+            })
+        );
+
+        // {{ hoehenprofil(datei, laenge) }} – datei ist eine GPX-Datei der Streckenseite,
+        // laenge die offizielle Distanz in m; null, wenn die Datei keine Höhen hat
+        $this->grav['twig']->twig()->addFunction(
+            new \Twig\TwigFunction('hoehenprofil', static function ($datei, $laenge = null): ?array {
+                $pfad = is_object($datei) && method_exists($datei, 'get') ? (string) $datei->get('filepath') : (string) $datei;
+                if ($pfad === '' || !is_file($pfad)) {
+                    return null;
+                }
+                $text = str_replace(',', '.', (string) $laenge);
+                $laenge = (float) preg_replace('/[^\d.]/', '', $text) * (stripos($text, 'km') !== false ? 1000 : 1);
+                return Hoehenprofil::ansicht(Hoehenprofil::punkte((string) file_get_contents($pfad)), $laenge ?: null);
             })
         );
 

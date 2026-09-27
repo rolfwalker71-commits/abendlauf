@@ -61,6 +61,12 @@ form:
                   label: Streckenkarte
                   accept:
                     - image/*
+                .profil:
+                  type: pagemediaselect
+                  label: Höhenprofil (GPX-Datei)
+                  help: GPX-Datei der Runde mit Höhenangaben, zuerst unter „Dateien" hochladen. Leer = kein Höhenprofil.
+                  accept:
+                    - .gpx
 
         kopfbild:
           type: tab
@@ -79,4 +85,4 @@ form:
           fields:
             header.media_order:
               type: pagemedia
-              label: Karten und Bilder
+              label: Karten, Bilder und GPX-Dateien

@@ -1,0 +1,7 @@
+# Zusätzliche Dateitypen, die Grav als Seitenmedien annimmt.
+types:
+  # Streckenverlauf mit Höhen für das Höhenprofil (Streckenseite)
+  gpx:
+    type: file
+    thumb: media/thumb.png
+    mime: application/gpx+xml

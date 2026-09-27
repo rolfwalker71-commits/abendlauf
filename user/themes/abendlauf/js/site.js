@@ -105,6 +105,43 @@
   }
 
 
+  /* ---- Höhenprofil: Distanz und Höhe an der Stelle unter dem Zeiger - */
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-profil]'), function (fig) {
+    var plot   = fig.querySelector('.profil__plot');
+    var zeiger = fig.querySelector('.profil__zeiger');
+    var punkt  = fig.querySelector('.profil__punkt');
+    var tipp   = fig.querySelector('.profil__tipp');
+    var laenge = parseFloat(fig.dataset.laenge);
+    var hmin   = parseFloat(fig.dataset.hmin);
+    var hmax   = parseFloat(fig.dataset.hmax);
+    var punkte = fig.dataset.punkte.split(';').map(function (p) {
+      var t = p.split(':'); return [parseFloat(t[0]), parseFloat(t[1])];
+    });
+    if (!plot || punkte.length < 2 || !(laenge > 0)) return;
+
+    function zeigen(clientX) {
+      var r = plot.getBoundingClientRect();
+      var d = Math.max(0, Math.min(1, (clientX - r.left) / r.width)) * laenge;
+      // nächster Punkt (Punkte sind nach Distanz sortiert)
+      var lo = 0, hi = punkte.length - 1;
+      while (hi - lo > 1) { var m = (lo + hi) >> 1; if (punkte[m][0] < d) lo = m; else hi = m; }
+      var p = (d - punkte[lo][0] < punkte[hi][0] - d) ? punkte[lo] : punkte[hi];
+      var x = p[0] / laenge * 100 + '%';
+      var y = (hmax - p[1]) / (hmax - hmin) * 100 + '%';
+      zeiger.style.left = x;
+      punkt.style.left = x; punkt.style.top = y;
+      tipp.textContent = Math.round(p[0]) + ' m · ' + Math.round(p[1]) + ' m ü. M.';
+      // Hinweis innerhalb der Grafik halten
+      var halb = tipp.offsetWidth / 2;
+      tipp.style.left = Math.max(halb, Math.min(r.width - halb, p[0] / laenge * r.width)) + 'px';
+      plot.classList.add('ist-aktiv');
+    }
+    plot.addEventListener('pointermove', function (e) { zeigen(e.clientX); });
+    plot.addEventListener('pointerdown', function (e) { zeigen(e.clientX); });
+    plot.addEventListener('pointerleave', function () { plot.classList.remove('ist-aktiv'); });
+  });
+
   /* ---- Bildbetrachter für die Alben --------------------------------- */
 
   var bilder = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));

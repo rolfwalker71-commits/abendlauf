@@ -6,12 +6,15 @@
 {% include 'partials/pagehead-daten.html.twig' with {
   eyebrow: 'Informationen · Seedorf am Urnersee',
   titel: page.title,
-  lead: page.header.intro,
-  daten: runden|map(r => { wert: r.distanz|replace({' m': ''}), einheit: 'm', label: r.titel, notiz: r.untergrund })
+  lead: page.header.intro
 } %}
+{# Kein Zahlenband: Distanz und Untergrund stehen schon bei jeder Runde
+   und im Zahlenband der Startseite. #}
 
 {% for runde in runden %}
   {% set karte = runde.karte ? page.media[(runde.karte is iterable ? runde.karte|first : runde.karte)] : null %}
+  {% set gpx = runde.profil ? page.media[(runde.profil is iterable ? runde.profil|first : runde.profil)] : null %}
+  {% set profil = gpx ? hoehenprofil(gpx, runde.distanz) : null %}
   <section class="section{{ loop.index0 is odd ? ' section--tint' : '' }}">
     <div class="wrap route">
 
@@ -32,6 +35,10 @@
             {% if wert %}<div><dt>{{ label }}</dt><dd>{{ wert }}</dd></div>{% endif %}
           {% endfor %}
         </dl>
+
+        {% if profil %}
+          {% include 'partials/hoehenprofil.html.twig' with { profil: profil, titel: runde.titel } %}
+        {% endif %}
       </div>
 
       {% if karte %}

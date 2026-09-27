@@ -1,0 +1,32 @@
+{# Höhenprofil einer Runde. profil kommt aus hoehenprofil() (classes/Hoehenprofil.php).
+   Das SVG wird ohne festes Seitenverhältnis auf die Spalte gezogen, die
+   Beschriftung steht als HTML daneben und bleibt so auch auf dem Handy
+   lesbar. Beim Überfahren zeigt js/site.js Distanz und Höhe (data-punkte). #}
+{% set p = profil %}
+<figure class="profil" data-profil data-punkte="{{ p.daten }}" data-laenge="{{ p.laenge }}" data-hmin="{{ p.hmin }}" data-hmax="{{ p.hmax }}">
+  <figcaption class="profil__kopf">
+    <span class="profil__label">Höhenprofil</span>
+    <span class="profil__spanne">{{ p.tief }}–{{ p.hoch }} m ü. M.</span>
+  </figcaption>
+  <div class="profil__diagramm">
+    <div class="profil__y" aria-hidden="true">
+      {% for t in p.hticks %}<span style="top: {{ t.prozent }}%">{{ t.wert }}</span>{% endfor %}
+    </div>
+    <div class="profil__plot">
+      <svg viewBox="0 0 {{ p.breite }} {{ p.hoehe }}" preserveAspectRatio="none" role="img"
+           aria-label="Höhenprofil {{ titel }}: {{ p.laenge }} m lang, zwischen {{ p.tief }} und {{ p.hoch }} Meter über Meer">
+        {% for t in p.hticks %}
+          <line class="profil__raster" x1="0" x2="{{ p.breite }}" y1="{{ t.y }}" y2="{{ t.y }}"/>
+        {% endfor %}
+        <path class="profil__fuellung" d="{{ p.flaeche }}"/>
+        <path class="profil__linie" d="{{ p.linie }}"/>
+      </svg>
+      <span class="profil__zeiger" aria-hidden="true"></span>
+      <span class="profil__punkt" aria-hidden="true"></span>
+      <span class="profil__tipp" aria-hidden="true"></span>
+    </div>
+    <div class="profil__x" aria-hidden="true">
+      {% for t in p.dticks %}<span style="left: {{ t.prozent }}%">{{ t.wert }}{{ loop.last ? ' m' : '' }}</span>{% endfor %}
+    </div>
+  </div>
+</figure>
